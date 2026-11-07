@@ -176,7 +176,14 @@ body:not(.karten) .reinflug { animation-play-state: paused; }
 #intro .intro-tipp { top: auto; bottom: 22%; opacity: 0; pointer-events: none; }
 #intro.bereit .intro-tipp { opacity: 1; transition: opacity 0.2s steps(2, end); }
 #intro.start .buchstaben { opacity: 0; transition: opacity 0.25s steps(3, end); }
-.intro-datum { position: absolute; z-index: 3; left: 50%; top: 50%; transform: translate(-50%, -50%) scale(2.6) rotate(-2deg); filter: drop-shadow(0 2px 0 rgba(0,0,0,0.35)); }
+/* Intro ab 2026-11-08: Logo sofort sichtbar, keine Einzel-Schnipsel; am Ende verschwimmt es im Dunklen */
+#intro.sofort .schnipsel { display: none; }
+#intro.sofort .buchstaben img.ganz { opacity: 1 !important; transition: none; }
+#intro.verschwimmt .buchstaben { filter: blur(14px); opacity: 0; transform: scale(0.94); transition: filter 0.6s ease, opacity 0.6s ease, transform 0.6s ease; }
+#intro.verschwimmt { background: rgba(6,14,38,0.35); transition: background 0.6s ease; }
+#intro.verschwimmt::before { opacity: 0.5; transition: opacity 0.6s ease; }
+#intro .intro-datum { position: absolute; z-index: 3; left: 50%; top: 70%; transform: translateX(-50%) scale(2.2) rotate(-2deg); transform-origin: 50% 50%; filter: drop-shadow(0 2px 0 rgba(0,0,0,0.35)); }
+#intro { transition: opacity 0.35s ease, visibility 0.35s; }
 body:not(.los) #kurz .erpress { visibility: hidden; }
 .intro-tipp { position: absolute; z-index: 2; left: 50%; top: 50%; transform: translate(-50%, -50%) rotate(-2deg); border: 0; cursor: pointer;
   font: 800 1rem var(--sans); letter-spacing: 0.05em; text-transform: uppercase; color: var(--creme); background-color: var(--rost); background-image: var(--faser); white-space: nowrap;
@@ -662,38 +669,34 @@ html.kontrast .leiste { background: none !important; border: 0 !important; }
   function los() { if (fertig) return; fertig = true; document.body.classList.add('los', 'karten'); if (intro) { intro.classList.add('weg'); setTimeout(function () { intro.remove(); }, 400); } }
   if (still) { if (intro) intro.remove(); document.addEventListener('DOMContentLoaded', function () { document.body.classList.add('los', 'karten'); }); }
   else if (intro) {
-    /* 1) Nekos News baut sich auf, 2) „Bitte tippen“, 3) Antippen: Ton + Datum erscheint groß und gleitet an seinen Platz im 30-Sekunden-Zettel */
-    setTimeout(function () { intro.classList.add('ganz-da'); }, 830);
-    /* Kein Antippen mehr (Wunsch Nicolas): Datum kommt automatisch; Ton nur, wenn der Browser ihn erlaubt */
-    setTimeout(function starten() {
-      intro.classList.add('start', 'ganz-da');
-      window.dispatchEvent(new Event('mz-intro-start')); /* Töne im selben Antippen, sonst bleibt das Handy stumm */
-      document.body.classList.add('karten');
-      var echt = document.querySelector('#kurz .erpress');
-      if (!echt || !document.body.animate) { /* Unterseiten ohne Datum: Logo fährt wie bisher nach oben */
-        var gruppe = intro.querySelector('.buchstaben'), ziel = document.querySelector('.logo-oben');
-        if (!gruppe || !ziel || !gruppe.animate) { los(); return; }
-        var q = gruppe.getBoundingClientRect(), z = ziel.getBoundingClientRect(), k = z.width / q.width;
-        intro.classList.add('fliegt');
-        gruppe.animate([{ transform: 'none' }, { transform: 'translate(' + ((z.left + z.width / 2) - (q.left + q.width / 2)) + 'px,' + ((z.top + z.height / 2) - (q.top + q.height / 2)) + 'px) scale(' + k + ') rotate(-1.5deg)' }],
-          { duration: 540, easing: 'steps(6, end)', fill: 'forwards' }).onfinish = los;
-        return;
-      }
-      var gross = 2.6, datum = echt.cloneNode(true); datum.className = 'erpress intro-datum'; datum.removeAttribute('aria-label');
+    /* Intro (Wunsch Nicolas 2026-11-08): Logo-Schrift steht sofort da -> nur die Datums-Zettel kommen dazu
+       -> sie fliegen an ihren Platz im 30-Sekunden-Zettel, das Logo verschwimmt und verschwindet im leicht Dunklen */
+    intro.classList.add('ganz-da', 'sofort');
+    document.addEventListener('DOMContentLoaded', function () {
+      window.dispatchEvent(new Event('mz-intro-start')); /* Ton nur, wenn der Browser ihn erlaubt */
+      var gruppe = intro.querySelector('.buchstaben'), echt = document.querySelector('#kurz .erpress');
+      function ausblenden(nach) { setTimeout(function () { intro.classList.add('verschwimmt'); document.body.classList.add('karten'); }, nach); }
+      if (!echt || !document.body.animate) { ausblenden(1100); setTimeout(los, 1900); return; }
+      var gross = 2.2, datum = echt.cloneNode(true); datum.className = 'erpress intro-datum'; datum.removeAttribute('aria-label');
+      var g = gruppe.getBoundingClientRect();
+      datum.style.top = (g.bottom + 46) + 'px';
       intro.appendChild(datum);
       Array.prototype.forEach.call(datum.children, function (s, n) {
-        s.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 1, delay: 280 + n * 140, fill: 'both' });
-        if (window.mzKlick) setTimeout(function () { window.mzKlick(0.05); }, 280 + n * 140);
+        var d = 350 + n * 150;
+        s.animate([{ opacity: 0, transform: 'scale(1.6) rotate(-12deg)' }, { opacity: 1, transform: 'scale(1.15) rotate(6deg)', offset: 0.5 }, { opacity: 1 }],
+          { duration: 240, delay: d, easing: 'steps(3, end)', fill: 'both', composite: 'add' });
+        if (window.mzKlick) setTimeout(function () { window.mzKlick(0.05); }, d);
       });
+      document.body.classList.add('karten'); /* Zettel fliegen hinter dem Dunklen schon an ihren Platz */
       setTimeout(function () {
         var c = datum.getBoundingClientRect(), z = echt.getBoundingClientRect();
         var dx = (z.left + z.width / 2) - (c.left + c.width / 2), dy = (z.top + z.height / 2) - (c.top + c.height / 2);
-        intro.classList.add('fliegt');
-        datum.animate([{ transform: 'translate(-50%, -50%) scale(' + gross + ') rotate(-2deg)' },
-                       { transform: 'translate(calc(-50% + ' + dx + 'px), calc(-50% + ' + dy + 'px)) scale(1) rotate(0deg)' }],
-          { duration: 600, easing: 'steps(7, end)', fill: 'forwards' }).onfinish = los;
-      }, 1500);
-    }, 1500);
+        intro.classList.add('verschwimmt');
+        datum.animate([{ transform: 'translateX(-50%) scale(' + gross + ') rotate(-2deg)' },
+                       { transform: 'translate(calc(-50% + ' + dx + 'px), ' + dy + 'px) scale(1) rotate(0deg)' }],
+          { duration: 650, easing: 'cubic-bezier(0.5, 0, 0.2, 1)', fill: 'forwards' }).onfinish = los;
+      }, 1650);
+    });
   }
   document.addEventListener('DOMContentLoaded', function () {
     var AUSWAHL = '.wrap > header, .wrap > aside, .wrap > .reels, .gruppe > *, .wrap > footer';
