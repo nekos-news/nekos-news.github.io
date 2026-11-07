@@ -127,6 +127,10 @@ def neko():
 ''' + FUSS
     k = re.search(r'<div class="kanaele">(.*?)</div>', vorlage(), re.S).group(1).strip()
     seite(inhalt.replace("KANAELE", k), "Neko", "neko.html")
+    # Auf der Profilseite kein „Kein Journalismus“-Hinweis (Wunsch Nicolas)
+    pfad = os.path.join(HIER, "neko.html"); t = open(pfad, encoding="utf-8").read()
+    t = re.sub(r'\s*<p class="hinweis">.*?</p>', '', t, count=1, flags=re.S)
+    open(pfad, "w", encoding="utf-8").write(t)
 
 if __name__ == "__main__":
     bestenliste(); shop(); neko()

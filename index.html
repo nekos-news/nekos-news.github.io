@@ -48,15 +48,9 @@ html { background-color: var(--grund); padding-top: env(safe-area-inset-top, 0px
 body { margin: 0; }
 [hidden] { display: none !important; }
 img { max-width: 100%; }
-body { background-color: var(--grund); color: var(--anthrazit); font-family: var(--lesen); font-size: 15.5px; line-height: 1.55; min-height: 100vh; position: relative; }
+body { background: transparent; color: var(--anthrazit); font-family: var(--lesen); font-size: 15.5px; line-height: 1.55; min-height: 100vh; position: relative; }
 /* Hintergrund als eigene feste Ebene (stabil auf dem iPhone, kein background-attachment: fixed, kein Mischmodus) */
-body::before { content: ""; position: fixed; inset: -40vh -10vw; z-index: 0; pointer-events: none; transform: translateZ(0);
-  background-color: var(--grund);
-  background-image: var(--faser),
-    repeating-linear-gradient(0deg, rgba(232,220,198,0.07) 0 1px, transparent 1px 28px),
-    repeating-linear-gradient(90deg, rgba(232,220,198,0.07) 0 1px, transparent 1px 28px),
-    repeating-linear-gradient(0deg, rgba(232,220,198,0.06) 0 2px, transparent 2px 140px),
-    repeating-linear-gradient(90deg, rgba(232,220,198,0.06) 0 2px, transparent 2px 140px); }
+/* Hintergrund: Raster liegt direkt auf html (stabil auf dem iPhone, auch beim Überziehen) */
 
 
 .wrap { position: relative; z-index: 2; width: min(33rem, 84vw); margin: 0 auto; padding-block: 2.2rem 7.5rem; display: grid; gap: 2.4rem; }
@@ -394,7 +388,7 @@ html.ruhig .reel { opacity: 1; transform: none; }
 .hilfe-feld button[aria-pressed="true"] { background: var(--anthrazit) !important; color: var(--creme) !important; }
 /* Starker Kontrast: überall Schwarz/Weiß, keine Texturen, keine Schrägen */
 html.kontrast, html.kontrast body { background: #000 !important; background-image: none !important; }
-html.kontrast body::before { background: #000 !important; }
+
 html.kontrast .hinweis, html.kontrast .menue nav, html.kontrast .hilfe-feld, html.kontrast .news-wahl a, html.kontrast .leiste,
 html.kontrast .leiste-oben > a, html.kontrast .menue-knopf, html.kontrast .sicht, html.kontrast .these, html.kontrast .marke, html.kontrast .reel,
 html.kontrast .reel .aufrufe, html.kontrast .filter button, html.kontrast .kanaele a, html.kontrast footer, html.kontrast .liste-info {
@@ -424,6 +418,13 @@ html.kontrast .leiste { transform: translateX(-50%) !important; }
 .vita .profil { position: relative; display: block; width: min(10rem, 46vw); margin: 0.2rem auto 0.6rem; transform: rotate(-3deg); filter: drop-shadow(2px 3px 0 rgba(46,43,42,0.45)); }
 .vita .profil img { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; clip-path: polygon(99.2% 50.0%, 96.1% 63.5%, 91.0% 76.3%, 81.4% 86.2%, 69.9% 93.5%, 57.1% 99.3%, 42.9% 99.4%, 30.4% 92.8%, 17.9% 87.1%, 8.6% 76.6%, 5.4% 63.1%, 1.6% 50.0%, 4.8% 36.7%, 9.3% 23.9%, 18.7% 13.9%, 29.4% 5.0%, 43.2% 2.7%, 56.7% 3.5%, 70.0% 6.2%, 81.0% 14.2%, 90.1% 24.2%, 97.8% 36.0%); }
 .vita .profil::after { content: ""; position: absolute; top: -0.4rem; left: 50%; width: 3.4rem; height: 1.1rem; margin-left: -1.7rem; background: rgba(217,154,78,0.85); transform: rotate(4deg); }
+/* Weniger Reize: ruhig, gedämpft, gerade, ohne Textur */
+html.ruhig { background-image: none !important; }
+html.ruhig .wrap, html.ruhig .oben { filter: saturate(0.55); }
+html.ruhig .papier, html.ruhig .zettel, html.ruhig article.papier, html.ruhig .reel, html.ruhig .leiste-oben > a, html.ruhig .news-knopf,
+html.ruhig .hinweis, html.ruhig .kurz li a::after, html.ruhig .marke, html.ruhig .mitdenken, html.ruhig .logo-oben, html.ruhig .hoeren button { transform: none !important; }
+html.ruhig .papier::before, html.ruhig .zettel::before, html.ruhig .hinweis, html.ruhig .reel { background-image: none !important; }
+html.ruhig .vita .winkt, html.ruhig .vita .profil { animation: none !important; transform: none !important; }
 </style>
 </head>
 <body>
@@ -459,7 +460,8 @@ html.kontrast .leiste { transform: translateX(-50%) !important; }
     }, 950);
   }
   document.addEventListener('DOMContentLoaded', function () {
-    var teile = document.querySelectorAll('.wrap > header, .wrap > aside, .gruppe > *, .wrap > footer');
+    var AUSWAHL = '.wrap > header, .wrap > aside, .wrap > .reels, .gruppe > *, .wrap > footer';
+    var teile = Array.prototype.slice.call(document.querySelectorAll(AUSWAHL));
     var hoehe = window.innerHeight, n = 0;
     teile.forEach(function (el) {
       el.classList.add('kette');
@@ -473,6 +475,11 @@ html.kontrast .leiste { transform: translateX(-50%) !important; }
     /* Perlenkette: beim Scrollen bleiben die Stücke kurz zurück, das jeweils führende zieht die nächsten hinterher */
     var y = Array.prototype.map.call(teile, function () { return 0; });
     var letzte = window.scrollY, laeuft = false;
+    document.addEventListener('mz-neu', function () {
+      teile.forEach(function (t) { t.style.translate = ''; });
+      teile = Array.prototype.slice.call(document.querySelectorAll(AUSWAHL)); y = teile.map(function () { return 0; });
+      teile.forEach(function (el) { el.classList.add('kette'); });
+    });
     function schritt() {
       if (document.documentElement.classList.contains('ruhig')) { teile.forEach(function (t, k) { y[k] = 0; t.style.translate = ''; }); laeuft = false; return; }
       var dy = window.scrollY - letzte; letzte = window.scrollY;
@@ -510,8 +517,8 @@ html.kontrast .leiste { transform: translateX(-50%) !important; }
     <button type="button" data-hilfe="gross" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M3 19 L8 5 L10 5 L15 19 L12.6 19 L11.5 15.6 L6.5 15.6 L5.4 19 Z M7.2 13.5 L10.8 13.5 L9 8 Z"/><path d="M17 9 h2 v-2 h1.6 v2 h2 v1.6 h-2 v2 h-1.6 v-2 h-2 Z"/></svg><span>Größer</span></button>
     <button type="button" data-hilfe="lesbar" aria-pressed="false"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><path d="M12 5 C6.5 5 2.6 9.2 1.5 12 C2.6 14.8 6.5 19 12 19 C17.5 19 21.4 14.8 22.5 12 C21.4 9.2 17.5 5 12 5 Z M12 7 C16 7 19 10 20.3 12 C19 14 16 17 12 17 C8 17 5 14 3.7 12 C5 10 8 7 12 7 Z"/></svg><span>Gut lesbar</span></button>
     <button type="button" data-hilfe="kontrast" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M12 2.5 A9.5 9.5 0 1 0 12 21.5 A9.5 9.5 0 1 0 12 2.5 Z M12 4.5 V19.5 A7.5 7.5 0 0 1 12 4.5 Z"/></svg><span>Kontrast</span></button>
-    <button type="button" data-hilfe="ruhig" aria-pressed="false"><svg viewBox="0 0 24 24"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg><span>Animationen aus</span></button>
-    <p><b>Animationen aus</b> stoppt Intro, Wackeln und Nachziehen beim Scrollen – hilft, wenn Bewegung Schwindel macht. Vorlesen: der orange Knopf an jedem Artikel.</p>
+    <button type="button" data-hilfe="ruhig" aria-pressed="false"><svg viewBox="0 0 24 24"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg><span>Weniger Reize</span></button>
+    <p><b>Weniger Reize:</b> keine Bewegung, keine Töne, ruhigere Farben, kein Intro beim nächsten Besuch. Vorlesen: der orange Knopf an jedem Artikel.</p>
   </div>
 </div>
 </div>
@@ -724,6 +731,20 @@ html.kontrast .leiste { transform: translateX(-50%) !important; }
       leiste.appendChild(a);
     });
     kurz.insertAdjacentElement('afterend', sek);
+    document.dispatchEvent(new Event('mz-neu'));
+    /* seitliches Nachziehen: beim Wischen bleiben die Videos kurz zurück */
+    (function () {
+      var karten = Array.prototype.slice.call(leiste.querySelectorAll('.reel')), x = karten.map(function () { return 0; }), alt = leiste.scrollLeft, an = false;
+      function tick() {
+        if (document.documentElement.classList.contains('ruhig')) { karten.forEach(function (k) { k.style.translate = ''; }); an = false; return; }
+        var dx = leiste.scrollLeft - alt; alt = leiste.scrollLeft; var rechts = dx >= 0, bewegt = Math.abs(dx) > 0.1, vorher = 0;
+        var ord = karten.map(function (_, i) { return i; }); if (!rechts) ord.reverse();
+        ord.forEach(function (k, j) { x[k] = Math.max(-40, Math.min(40, x[k] + dx * 0.25)); x[k] += ((j === 0 ? 0 : vorher) - x[k]) * 0.3; vorher = x[k];
+          if (Math.abs(x[k]) > 0.3) bewegt = true; karten[k].style.translate = x[k].toFixed(1) + 'px 0'; });
+        if (bewegt) requestAnimationFrame(tick); else { an = false; karten.forEach(function (k, i) { x[i] = 0; k.style.translate = ''; }); }
+      }
+      leiste.addEventListener('scroll', function () { if (!an) { an = true; requestAnimationFrame(tick); } }, { passive: true });
+    })();
     var zeigen = function () { leiste.querySelectorAll('.reel').forEach(function (a) { a.classList.add('da'); }); };
     if ('IntersectionObserver' in window) { var io = new IntersectionObserver(function (e) { if (e[0].isIntersecting) { zeigen(); io.disconnect(); } }, { threshold: 0.3 }); io.observe(leiste); } else zeigen();
   }).catch(function () {});
