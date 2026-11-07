@@ -111,7 +111,7 @@ def neko():
   <section class="gruppe" id="neko">
     <h2 class="zettel zettel-gross">Neko</h2>
     <article class="papier riss vita">
-      <img class="winkt" src="bilder/neko_winken.png" alt="Neko winkt" width="260" height="360">
+      <span class="profil"><img src="bilder/profilbild.jpg" alt="Nekos Instagram-Profilbild" width="220" height="220"></span>
       <h3>Hi, ich bin Neko.</h3>
       <p>Ich mache Nekos_news: politische Kurzvideos auf Instagram, TikTok und YouTube. Links, antifaschistisch und mit Fakten, so dass man mich auch dann nicht schlechtreden kann, wenn man anders denkt.</p>
       <p>Mich interessiert, was nicht zusammenpasst: Ungerechtigkeit, Doppelmoral und Politik, die am Ende ganz normale Leute trifft. Ich erzähle das so, wie ich es einem Freund erzählen würde, nicht wie eine Nachrichtensendung.</p>
