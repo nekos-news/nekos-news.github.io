@@ -125,14 +125,13 @@ def neko():
       <h3>Hi, ich bin Neko.</h3>
       <p>Ich mache Nekos_news: politische Kurzvideos auf Instagram, TikTok und YouTube. Links, antifaschistisch und mit Fakten, so dass man mich auch dann nicht schlechtreden kann, wenn man anders denkt.</p>
       <p>Mich interessiert, was nicht zusammenpasst: Ungerechtigkeit, Doppelmoral und Politik, die am Ende ganz normale Leute trifft. Ich erzähle das so, wie ich es einem Freund erzählen würde, nicht wie eine Nachrichtensendung.</p>
-      <div class="kanaele" style="justify-content:flex-start">KANAELE</div>
+      <div class="kanaele vita-kanaele" style="justify-content:flex-start">KANAELE<a class="anfrage" href="mailto:neko.anfragen@gmail.com?subject=Anfrage%20an%20Neko"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5 H21 A1 1 0 0 1 22 6 V18 A1 1 0 0 1 21 19 H3 A1 1 0 0 1 2 18 V6 A1 1 0 0 1 3 5 Z M4 7.2 V17 H20 V7.2 L12 12.6 Z M5.6 7 L12 11.2 L18.4 7 Z"/></svg>Anfragen</a></div>
     </article>
   </section>
   <section class="gruppe" id="content">
     <h2 class="zettel zettel-gross">Content</h2>
     <div class="filter" id="filter" role="group" aria-label="Nach Thema filtern"></div>
     <div class="raster" id="raster"></div>
-    <p class="liste-info">Antippen öffnet das Video auf Instagram.</p>
   </section>
 ''' + FUSS
     k = re.search(r'<div class="kanaele">(.*?)</div>', vorlage(), re.S).group(1).strip()
