@@ -485,7 +485,6 @@ html.kontrast .zahl::after { filter: grayscale(1) brightness(0); }
 article h3 { color: var(--creme) !important; position: relative; overflow: visible; margin-top: 0.35rem !important; }
 article h3::after { content: ""; position: absolute; top: -0.55rem; left: 0.9rem; width: 3.2rem; height: 1rem; background: rgba(217,154,78,0.72);
   transform: rotate(-6deg); box-shadow: 0 1px 1px rgba(0,0,0,0.12); pointer-events: none; }
-article:nth-of-type(even) h3::after { left: auto; right: 0.9rem; transform: rotate(5deg); background: rgba(232,220,198,0.8); }
 article h3 { clip-path: none !important; }
 article .rubrik { border-bottom: 0 !important; padding: 0 !important; justify-self: start; font-family: var(--maschine) !important; font-weight: 400 !important;
   font-size: 0.78rem !important; letter-spacing: 0.04em !important; text-transform: none !important; color: var(--anthrazit) !important; display: inline-flex; align-items: center; gap: 0.35rem; }
@@ -494,11 +493,46 @@ html.kontrast article h3::after { display: none; }
 html.ruhig article h3::after { transform: none; }
 /* Feinschliff */
 article h3::after { top: -0.7rem !important; width: 2.6rem !important; height: 0.85rem !important; background: rgba(217,154,78,0.6) !important; }
-article:nth-of-type(even) h3::after { background: rgba(46,43,42,0.28) !important; }
 .fakt b, .einordnung b, .these b, .gegen b { font-family: var(--maschine) !important; font-weight: 400 !important; font-size: 0.72rem !important; letter-spacing: 0.02em !important;
   text-transform: none !important; color: var(--rost) !important; margin-right: 0.4rem; }
 .fakt b::after, .einordnung b::after, .these b::after { content: ":"; }
 html.kontrast .fakt b, html.kontrast .einordnung b, html.kontrast .these b { color: #000 !important; }
+/* Befestigungen: 12 Varianten (Tape, Nadeln), per Zufall je Überschrift */
+article h3::after { all: unset; }
+article h3::before, article h3::after { content: ""; position: absolute; pointer-events: none; }
+article h3:not([class*="bef-"])::after { display: none; }
+article h3.bef-0::after { top:-0.7rem;left:0.9rem;width:2.6rem;height:0.85rem;background:rgba(217,154,78,0.62);transform:rotate(-6deg); }
+article h3.bef-0::before { display: none; }
+article h3.bef-1::after { top:-0.6rem;right:0.8rem;width:2.8rem;height:0.85rem;background:rgba(46,43,42,0.3);transform:rotate(5deg); }
+article h3.bef-1::before { display: none; }
+article h3.bef-2::after { top:-0.65rem;left:50%;margin-left:-1.5rem;width:3rem;height:0.85rem;background:rgba(232,220,198,0.78);transform:rotate(-2deg); }
+article h3.bef-2::before { display: none; }
+article h3.bef-3::after { top:-0.45rem;left:-0.6rem;width:2.4rem;height:0.8rem;background:rgba(217,154,78,0.62);transform:rotate(-38deg); }
+article h3.bef-3::before { bottom:-0.45rem;right:-0.6rem;width:2.4rem;height:0.8rem;background:rgba(217,154,78,0.62);transform:rotate(-38deg); }
+article h3.bef-4::after { top:-0.45rem;right:-0.6rem;width:2.4rem;height:0.8rem;background:rgba(200,96,58,0.55);transform:rotate(38deg); }
+article h3.bef-4::before { display: none; }
+article h3.bef-5::after { top:-0.55rem;left:50%;margin-left:-0.5rem;width:1rem;height:1rem;border-radius:50%;background:radial-gradient(circle at 35% 30%, #f08a6a, #C8603A 55%, #7a2f18);box-shadow:0 3px 3px rgba(0,0,0,0.4); }
+article h3.bef-5::before { display: none; }
+article h3.bef-6::after { top:-0.5rem;left:0.7rem;width:0.9rem;height:0.9rem;border-radius:50%;background:radial-gradient(circle at 35% 30%, #fff3d6, #D99A4E 55%, #7a4b32);box-shadow:0 3px 3px rgba(0,0,0,0.4); }
+article h3.bef-6::before { top:-0.5rem;right:0.7rem;width:0.9rem;height:0.9rem;border-radius:50%;background:radial-gradient(circle at 35% 30%, #fff3d6, #D99A4E 55%, #7a4b32);box-shadow:0 3px 3px rgba(0,0,0,0.4); }
+article h3.bef-7::after { top:-0.7rem;left:1.4rem;width:2rem;height:0.8rem;background:rgba(232,220,198,0.78);transform:rotate(-9deg); }
+article h3.bef-7::before { top:-0.6rem;left:2.6rem;width:2rem;height:0.8rem;background:rgba(46,43,42,0.3);transform:rotate(7deg); }
+article h3.bef-8::after { top:30%;left:-0.9rem;width:2.2rem;height:0.8rem;background:rgba(217,154,78,0.62);transform:rotate(-80deg); }
+article h3.bef-8::before { display: none; }
+article h3.bef-9::after { bottom:-0.5rem;right:1.2rem;width:2.7rem;height:0.85rem;background:rgba(232,220,198,0.78);transform:rotate(-4deg); }
+article h3.bef-9::before { top:-0.55rem;left:1rem;width:0.9rem;height:0.9rem;border-radius:50%;background:radial-gradient(circle at 35% 30%, #f08a6a, #C8603A 55%, #7a2f18);box-shadow:0 3px 3px rgba(0,0,0,0.4); }
+article h3.bef-10::after { top:-0.6rem;right:2rem;width:3.4rem;height:0.9rem;background:rgba(200,96,58,0.55);transform:rotate(3deg);clip-path:polygon(4% 0,100% 8%,96% 100%,0 92%); }
+article h3.bef-10::before { display: none; }
+article h3.bef-11::after { top:-0.6rem;left:0.4rem;width:0.95rem;height:0.95rem;border-radius:50%;background:radial-gradient(circle at 35% 30%, #f08a6a, #C8603A 55%, #7a2f18);box-shadow:0 3px 3px rgba(0,0,0,0.4); }
+article h3.bef-11::before { bottom:-0.45rem;right:0.5rem;width:2.3rem;height:0.8rem;background:rgba(217,154,78,0.62);transform:rotate(-30deg); }
+html.kontrast article h3::before, html.kontrast article h3::after { display: none !important; }
+/* Weiter-Knöpfe unter den Beiträgen */
+.mehr-news { display: grid; gap: 0.7rem; }
+.mehr-news .knoepfe { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.mehr-news a { flex: 1 1 8rem; text-align: center; text-decoration: none; font: 800 0.85rem var(--sans); color: var(--creme); background-color: var(--rost); background-image: var(--faser);
+  padding: 0.8rem 0.6rem 0.72rem; filter: drop-shadow(0 3px 0 rgba(0,0,0,0.25)) drop-shadow(3px 8px 8px rgba(2,6,20,0.5)); }
+.mehr-news a:nth-child(1) { transform: rotate(-1.5deg); } .mehr-news a:nth-child(2) { transform: rotate(1deg); background-color: var(--braun); } .mehr-news a:nth-child(3) { transform: rotate(-0.6deg); background-color: var(--anthrazit); }
+html.kontrast .mehr-news a { background: #000 !important; color: #fff !important; transform: none; filter: none; }
 </style>
 </head>
 <body>
@@ -812,6 +846,20 @@ html.kontrast .fakt b, html.kontrast .einordnung b, html.kontrast .these b { col
   if (!('IntersectionObserver' in window)) { ziele.forEach(function (z) { z.classList.add('sichtbar'); }); return; }
   var io = new IntersectionObserver(function (e) { e.forEach(function (x) { if (x.isIntersecting) { x.target.classList.add('sichtbar'); io.unobserve(x.target); } }); }, { threshold: 0.35 });
   ziele.forEach(function (z) { io.observe(z); });
+})();
+/* Unter den heutigen Beiträgen: weiter zu Woche, Monat, Jahr */
+(function () {
+  var wrap = document.querySelector('.wrap[data-datum]'), fuss = wrap && wrap.querySelector('footer'); if (!fuss) return;
+  var s = document.createElement('section'); s.className = 'mehr-news';
+  s.innerHTML = '<h2 class="zettel">Mehr News</h2><div class="knoepfe"><a href="/woche.html">Diese Woche</a><a href="/monat.html">Dieser Monat</a><a href="/jahr.html">Dieses Jahr</a></div>';
+  wrap.insertBefore(s, fuss);
+})();
+/* Jede Überschrift bekommt eine andere Befestigung (Tape oder Nadel), nie zweimal hintereinander gleich */
+(function () {
+  var letzte = -1;
+  document.querySelectorAll('article h3').forEach(function (h, i) {
+    var n; do { n = Math.floor(Math.random() * 12); } while (n === letzte); letzte = n; h.classList.add('bef-' + n);
+  });
 })();
 /* News-Auswahl */
 (function () {
