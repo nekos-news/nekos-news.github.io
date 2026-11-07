@@ -378,6 +378,10 @@ html.ruhig .reel { opacity: 1; transform: none; }
 .reel .aufrufe { position: absolute; left: 0.22rem; bottom: 0.22rem; min-width: 44%; padding: 0.22rem 0.4rem 0.18rem; font: 800 0.62rem var(--sans); color: var(--anthrazit);
   background-color: var(--creme); background-image: var(--faser); transform: rotate(-2deg); clip-path: polygon(0 6%, 100% 0, 97% 100%, 3% 94%); }
 .reel .aufrufe::before { content: "▶ "; color: var(--rost); }
+/* Play-Knöpfe: orange, jeder anders geschnitten, harter kleiner Papierschatten */
+.hoeren .huelle { filter: drop-shadow(1.5px 2px 0 rgba(46,43,42,0.55)) !important; }
+.hoeren button { background-color: var(--rost) !important; }
+.hoeren button[aria-pressed="true"] { background-color: var(--anthrazit) !important; }
 </style>
 </head>
 <body>
@@ -530,6 +534,26 @@ html.ruhig .reel { opacity: 1; transform: none; }
     y = n;
   }, { passive: true });
 })();
+/* Leiser Schreibmaschinen-Klick, ohne Sounddatei */
+(function () {
+  var ctx = null;
+  window.mzKlick = function (laut) {
+    if (document.documentElement.classList.contains('ruhig')) return;
+    try {
+      ctx = ctx || new (window.AudioContext || window.webkitAudioContext)();
+      if (ctx.state === 'suspended') { ctx.resume(); if (ctx.state === 'suspended') return; }
+      var t = ctx.currentTime, len = 0.045, buf = ctx.createBuffer(1, Math.floor(ctx.sampleRate * len), ctx.sampleRate), d = buf.getChannelData(0);
+      for (var i = 0; i < d.length; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / d.length, 6);
+      var src = ctx.createBufferSource(); src.buffer = buf;
+      var bp = ctx.createBiquadFilter(); bp.type = 'bandpass'; bp.frequency.value = 2200 + Math.random() * 1600; bp.Q.value = 1.4;
+      var g = ctx.createGain(); g.gain.value = (laut || 0.12) * (0.8 + Math.random() * 0.4);
+      src.connect(bp); bp.connect(g); g.connect(ctx.destination); src.start(t);
+    } catch (e) {}
+  };
+  document.addEventListener('click', function (e) { if (e.target.closest('button, .reel, .news-wahl a, .leiste-oben a, .kurz a')) window.mzKlick(0.1); }, true);
+  var intro = document.getElementById('intro');
+  if (intro) for (var i = 0; i < 9; i++) setTimeout(function () { window.mzKlick(0.07); }, 60 + i * 70);
+})();
 /* Neueste Uploads unter „Das Wichtigste“ (Daten: daten/content.json, Klick führt zu Instagram) */
 (function () {
   var kurz = document.getElementById('kurz'); if (!kurz || !window.fetch) return;
@@ -623,6 +647,11 @@ html.ruhig .reel { opacity: 1; transform: none; }
       d.innerHTML = '<span class="huelle"><button type="button" aria-pressed="false" aria-label="Anhören"></button></span><small>Anhören · Nekos KI-Stimme</small>';
       var ziel = x.el.querySelector('.rubrik, h2'); ziel.insertAdjacentElement('afterend', d);
       x.knopf = d.querySelector('button');
+      var punkte = [], n = 16 + (i % 3) * 2;
+      for (var k = 0; k < n; k++) { var w = k / n * Math.PI * 2, r = 50 - ((Math.sin(i * 12.9898 + k * 78.233) * 43758.5453) % 1 + 1) % 1 * 6;
+        punkte.push((50 + r * Math.cos(w)).toFixed(1) + '% ' + (50 + r * Math.sin(w)).toFixed(1) + '%'); }
+      x.knopf.style.setProperty('clip-path', 'polygon(' + punkte.join(',') + ')', 'important');
+      x.knopf.style.transform = 'rotate(' + ((i * 37) % 11 - 5) + 'deg)';
       x.knopf.addEventListener('click', function () {
         if (pos === i && !player.paused) { player.pause(); x.knopf.setAttribute('aria-pressed', false); return; }
         if (pos === i && player.paused) { player.play(); knoepfe(i); return; }
