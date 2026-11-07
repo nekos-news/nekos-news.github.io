@@ -155,24 +155,21 @@ body:not(.los) .logo-oben { opacity: 0; }
 #intro .buchstaben { position: relative; width: min(74vw, 320px); aspect-ratio: 330 / 280; will-change: transform;
   filter: drop-shadow(0 3px 0 rgba(0,0,0,0.3)) drop-shadow(4px 10px 12px rgba(2,6,20,0.6)); }
 #intro .buchstaben img { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0;
-  clip-path: inset(var(--t) var(--r) var(--b) var(--l));
-  animation: buchstabe-plopp 0.36s steps(1, end) both, kochen 1s steps(1, end) infinite;
-  animation-delay: calc(var(--i) * 0.07s), calc(0.4s + var(--i) * 0.11s); }
-/* Stop-Motion wie ausgetauschte Papierstücke: jedes Bild leicht andere Form (Schnittkante), Größe, Drehung und Farbton */
+  animation: buchstabe-plopp 0.4s steps(1, end) both; animation-delay: calc(var(--i) * 0.07s); }
+#intro .buchstaben img.ganz { animation: ganz-da 0.01s steps(1, end) 0.98s both, kochen 1s steps(1, end) 0.98s infinite; }
+@keyframes ganz-da { to { opacity: 1; } }
+/* Stop-Motion wie ausgetauschte Papierstücke: je Bild leicht anders verzogen, gekippt, getönt (keine Beschnitte) */
 @keyframes buchstabe-plopp {
-  0%   { opacity: 1; transform: scale(0.45) rotate(-11deg); filter: hue-rotate(-14deg) brightness(0.9) saturate(1.15);
-         clip-path: inset(calc(var(--t) + 3%) calc(var(--r) + 2%) calc(var(--b) + 1%) calc(var(--l) + 3%) round 6px); }
-  25%  { opacity: 1; transform: scale(1.22) rotate(6deg); filter: hue-rotate(10deg) brightness(1.08) saturate(0.9);
-         clip-path: inset(calc(var(--t) - 1%) calc(var(--r) + 1%) calc(var(--b) + 2%) calc(var(--l) - 0.5%) round 2px); }
-  50%  { opacity: 1; transform: scale(0.93) rotate(-3.5deg); filter: hue-rotate(-6deg) brightness(0.96) saturate(1.08);
-         clip-path: inset(calc(var(--t) + 1.5%) calc(var(--r) - 0.5%) calc(var(--b) - 0.5%) calc(var(--l) + 1.5%) round 4px); }
-  75%  { opacity: 1; transform: scale(1.04) rotate(1.5deg); filter: hue-rotate(5deg) brightness(1.03);
-         clip-path: inset(calc(var(--t) + 0.5%) calc(var(--r) + 1%) calc(var(--b) + 0.5%) calc(var(--l) + 0.5%)); }
-  100% { opacity: 1; transform: none; filter: none; clip-path: inset(var(--t) var(--r) var(--b) var(--l)); } }
+  0%   { opacity: 1; transform: scale(0.5, 0.42) rotate(-12deg) skew(6deg, -3deg); filter: hue-rotate(-16deg) brightness(0.88) saturate(1.2) contrast(1.08); }
+  20%  { opacity: 1; transform: scale(1.18, 1.26) rotate(7deg) skew(-4deg, 2deg); filter: hue-rotate(12deg) brightness(1.1) saturate(0.85); }
+  40%  { opacity: 1; transform: scale(0.9, 0.96) rotate(-4deg) skew(3deg, -1deg); filter: hue-rotate(-7deg) brightness(0.95) saturate(1.1) sepia(0.12); }
+  60%  { opacity: 1; transform: scale(1.06, 1.02) rotate(2.5deg) skew(-2deg, 0); filter: hue-rotate(5deg) brightness(1.04) contrast(0.95); }
+  80%  { opacity: 1; transform: scale(0.98, 1.01) rotate(-1deg) skew(1deg, 0.5deg); filter: hue-rotate(-3deg) brightness(0.98) sepia(0.06); }
+  100% { opacity: 1; transform: none; filter: none; } }
 @keyframes kochen {
-  0%  { opacity: 1; transform: rotate(0.8deg) translate(0.5px, -1px); filter: hue-rotate(4deg) brightness(1.02); clip-path: inset(calc(var(--t) + 0.6%) var(--r) var(--b) calc(var(--l) + 0.4%)); }
-  33% { opacity: 1; transform: rotate(-0.7deg) translate(-1px, 0.5px); filter: hue-rotate(-5deg) brightness(0.97); clip-path: inset(var(--t) calc(var(--r) + 0.6%) calc(var(--b) + 0.5%) var(--l)); }
-  66% { opacity: 1; transform: rotate(0.3deg) translate(0.5px, 1px); filter: none; clip-path: inset(var(--t) var(--r) var(--b) var(--l)); } }
+  0%  { opacity: 1; transform: rotate(0.9deg) skew(-0.8deg, 0) translate(0.5px, -1px); filter: hue-rotate(4deg) brightness(1.03); }
+  33% { opacity: 1; transform: rotate(-0.8deg) skew(0.6deg, 0.3deg) translate(-1px, 0.5px); filter: hue-rotate(-5deg) brightness(0.97) sepia(0.05); }
+  66% { opacity: 1; transform: rotate(0.3deg) translate(0.5px, 1px); filter: none; } }
 @keyframes zettel-landet { 0% { opacity: 0; transform: translateY(-40px) rotate(-10deg) scale(1.25); } 40% { opacity: 1; }
   80% { transform: translateY(3px) rotate(-0.5deg) scale(0.98); } 100% { opacity: 1; transform: rotate(-1.5deg); } }
 /* Reinfliegen nach dem Intro */
@@ -368,20 +365,34 @@ html.ruhig .reel { opacity: 1; transform: none; }
 .sicht .quelle { margin-top: 0.35rem; }
 .mitdenken { margin-top: 0.6rem !important; font-size: 0.92rem; background: var(--anthrazit); color: var(--creme); padding: 0.55rem 0.7rem; transform: rotate(-0.4deg); }
 .mitdenken b { font: 800 0.66rem var(--sans); letter-spacing: 0.06em; text-transform: uppercase; color: var(--ocker); margin-right: 0.35rem; }
+/* Anhören: handgeschnittener Papierkreis mit kleinem Schlagschatten */
+.hoeren .huelle { display: inline-block; filter: drop-shadow(1px 2px 0 rgba(0,0,0,0.3)) drop-shadow(2px 4px 4px rgba(2,6,20,0.35)); }
+.hoeren button { width: 2.5rem !important; height: 2.5rem !important; clip-path: polygon(98.5% 50.0%, 96.3% 66.9%, 86.1% 80.3%, 74.8% 93.0%, 58.3% 96.9%, 41.6% 97.6%, 25.1% 93.1%, 13.4% 80.7%, 3.2% 67.0%, 2.0% 50.0%, 3.3% 33.0%, 12.0% 18.1%, 26.0% 8.4%, 42.0% 4.4%, 58.6% 1.3%, 74.5% 7.6%, 86.1% 19.7%, 93.0% 34.4%) !important; background-image: var(--faser) !important; }
+/* Nach oben: ausgeschnittener Papierpfeil */
+.leiste .hoch { width: 2.3rem; height: 2.6rem; padding: 0 !important; font-size: 0 !important; color: transparent !important; background-color: var(--ocker) !important; background-image: var(--faser);
+  clip-path: polygon(50% 1%, 97% 44%, 70% 46%, 72% 98%, 29% 99%, 31% 47%, 3% 45%); transform: rotate(4deg); }
+.leiste .hoch:active { transform: rotate(0) translateY(-2px); }
+/* Reels etwas größer, das nächste ragt angeschnitten ins Bild */
+.reels-leiste .reel { flex-basis: 33%; }
+/* Aufrufe als eigener Papierschnipsel (deckt die Zahl aus dem Instagram-Bild ab) */
+.reel .aufrufe { position: absolute; left: 0.22rem; bottom: 0.22rem; min-width: 44%; padding: 0.22rem 0.4rem 0.18rem; font: 800 0.62rem var(--sans); color: var(--anthrazit);
+  background-color: var(--creme); background-image: var(--faser); transform: rotate(-2deg); clip-path: polygon(0 6%, 100% 0, 97% 100%, 3% 94%); }
+.reel .aufrufe::before { content: "▶ "; color: var(--rost); }
 </style>
 </head>
 <body>
 <div id="intro" aria-hidden="true">
   <div class="buchstaben">
-    <img src="bilder/logo_buchstaben.png" alt="" style="--t:0.00%;--r:74.55%;--b:52.86%;--l:3.03%;transform-origin:14.2% 23.6%;--i:0">
-    <img src="bilder/logo_buchstaben.png" alt="" style="--t:0.00%;--r:57.27%;--b:52.86%;--l:25.45%;transform-origin:34.1% 23.6%;--i:1">
-    <img src="bilder/logo_buchstaben.png" alt="" style="--t:0.00%;--r:36.97%;--b:52.86%;--l:42.73%;transform-origin:52.9% 23.6%;--i:2">
-    <img src="bilder/logo_buchstaben.png" alt="" style="--t:0.00%;--r:20.30%;--b:52.86%;--l:63.03%;transform-origin:71.4% 23.6%;--i:3">
-    <img src="bilder/logo_buchstaben.png" alt="" style="--t:0.00%;--r:1.82%;--b:52.86%;--l:79.70%;transform-origin:88.9% 23.6%;--i:4">
-    <img src="bilder/logo_buchstaben.png" alt="" style="--t:47.14%;--r:74.24%;--b:0.00%;--l:1.82%;transform-origin:13.8% 73.6%;--i:5">
-    <img src="bilder/logo_buchstaben.png" alt="" style="--t:47.14%;--r:51.52%;--b:0.00%;--l:25.76%;transform-origin:37.1% 73.6%;--i:6">
-    <img src="bilder/logo_buchstaben.png" alt="" style="--t:47.14%;--r:25.76%;--b:0.00%;--l:48.48%;transform-origin:61.4% 73.6%;--i:7">
-    <img src="bilder/logo_buchstaben.png" alt="" style="--t:47.14%;--r:4.85%;--b:0.00%;--l:74.24%;transform-origin:84.7% 73.6%;--i:8">
+    <img src="bilder/logo_buchstaben.png" alt="" style="clip-path:polygon(0.0% 0.0%, 25.8% 0.0%, 25.8% 46.4%, 0.0% 46.4%);transform-origin:12.9% 23.2%;--i:0">
+    <img src="bilder/logo_buchstaben.png" alt="" style="clip-path:polygon(25.8% 0.0%, 42.7% 0.0%, 42.7% 46.4%, 25.8% 46.4%);transform-origin:34.2% 23.2%;--i:1">
+    <img src="bilder/logo_buchstaben.png" alt="" style="clip-path:polygon(42.7% 0.0%, 62.4% 0.0%, 62.4% 46.4%, 42.7% 46.4%);transform-origin:52.6% 23.2%;--i:2">
+    <img src="bilder/logo_buchstaben.png" alt="" style="clip-path:polygon(62.4% 0.0%, 81.5% 0.0%, 81.5% 46.4%, 62.4% 46.4%);transform-origin:72.0% 23.2%;--i:3">
+    <img src="bilder/logo_buchstaben.png" alt="" style="clip-path:polygon(81.5% 0.0%, 100.0% 0.0%, 100.0% 46.4%, 81.5% 46.4%);transform-origin:90.8% 23.2%;--i:4">
+    <img src="bilder/logo_buchstaben.png" alt="" style="clip-path:polygon(0.0% 46.4%, 25.8% 46.4%, 25.8% 100.0%, 0.0% 100.0%);transform-origin:12.9% 73.2%;--i:5">
+    <img src="bilder/logo_buchstaben.png" alt="" style="clip-path:polygon(25.8% 46.4%, 47.6% 46.4%, 47.6% 100.0%, 25.8% 100.0%);transform-origin:36.7% 73.2%;--i:6">
+    <img src="bilder/logo_buchstaben.png" alt="" style="clip-path:polygon(47.6% 46.4%, 74.8% 46.4%, 74.8% 100.0%, 47.6% 100.0%);transform-origin:61.2% 73.2%;--i:7">
+    <img src="bilder/logo_buchstaben.png" alt="" style="clip-path:polygon(74.8% 46.4%, 100.0% 46.4%, 100.0% 100.0%, 74.8% 100.0%);transform-origin:87.4% 73.2%;--i:8">
+    <img class="ganz" src="bilder/logo_buchstaben.png" alt="">
   </div>
 </div>
 <script>
@@ -554,14 +565,14 @@ html.ruhig .reel { opacity: 1; transform: none; }
 /* Neueste Uploads unter „Das Wichtigste“ (Daten: daten/content.json, Klick führt zu Instagram) */
 (function () {
   var kurz = document.getElementById('kurz'); if (!kurz || !window.fetch) return;
-  fetch('/morgenzeitung/daten/content.json').then(function (r) { return r.ok ? r.json() : []; }).then(function (alle) {
+  fetch('/morgenzeitung/daten/content.json', { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : []; }).then(function (alle) {
     var neu = alle.filter(function (x) { return !x.angepinnt; }).slice(0, 8); if (!neu.length) return;
     var sek = document.createElement('section'); sek.className = 'reels';
-    sek.innerHTML = '<div class="reels-kopf"><h2 class="zettel">Neu von Neko</h2><a href="/morgenzeitung/neko.html#content">Alle Videos →</a></div><div class="reels-leiste"></div>';
+    sek.innerHTML = '<div class="reels-kopf"><h2 class="zettel">Neu von Neko</h2><a href="https://www.instagram.com/nekos_news/reels/" rel="noopener">Alle Videos →</a></div><div class="reels-leiste"></div>';
     var leiste = sek.querySelector('.reels-leiste');
     neu.forEach(function (x, i) {
       var a = document.createElement('a'); a.className = 'reel'; a.href = 'https://www.instagram.com/reel/' + x.code + '/'; a.rel = 'noopener'; a.style.setProperty('--n', i);
-      a.innerHTML = '<img loading="lazy" alt="' + x.titel.replace(/"/g, '&quot;') + '" src="/morgenzeitung/' + x.bild + '">';
+      a.innerHTML = '<img loading="lazy" alt="' + x.titel.replace(/"/g, '&quot;') + '" src="/morgenzeitung/' + x.bild + '">' + (x.aufrufe ? '<span class="aufrufe">' + x.aufrufe + '</span>' : '');
       leiste.appendChild(a);
     });
     kurz.insertAdjacentElement('afterend', sek);
@@ -572,7 +583,7 @@ html.ruhig .reel { opacity: 1; transform: none; }
 /* Content-Seite: Raster mit Themenfilter */
 (function () {
   var raster = document.getElementById('raster'); if (!raster) return;
-  fetch('/morgenzeitung/daten/content.json').then(function (r) { return r.json(); }).then(function (alle) {
+  fetch('/morgenzeitung/daten/content.json', { cache: 'no-cache' }).then(function (r) { return r.json(); }).then(function (alle) {
     var themen = []; alle.forEach(function (x) { x.themen.forEach(function (t) { if (themen.indexOf(t) < 0) themen.push(t); }); });
     var filter = document.getElementById('filter');
     ['Alle'].concat(themen).forEach(function (t, i) {
@@ -585,7 +596,7 @@ html.ruhig .reel { opacity: 1; transform: none; }
     });
     alle.forEach(function (x) {
       var a = document.createElement('a'); a.className = 'reel'; a.href = 'https://www.instagram.com/reel/' + x.code + '/'; a.rel = 'noopener'; a.dataset.themen = x.themen.join('|');
-      a.innerHTML = (x.angepinnt ? '<span class="pin" aria-hidden="true"></span>' : '') + '<img loading="lazy" alt="' + x.titel.replace(/"/g, '&quot;') + '" src="/morgenzeitung/' + x.bild + '">';
+      a.innerHTML = (x.angepinnt ? '<span class="pin" aria-hidden="true"></span>' : '') + '<img loading="lazy" alt="' + x.titel.replace(/"/g, '&quot;') + '" src="/morgenzeitung/' + x.bild + '">' + (x.aufrufe ? '<span class="aufrufe">' + x.aufrufe + '</span>' : '');
       raster.appendChild(a);
     });
   });
@@ -641,7 +652,7 @@ html.ruhig .reel { opacity: 1; transform: none; }
     btn.hidden = false;
     liste.forEach(function (x, i) {
       var d = document.createElement('div'); d.className = 'hoeren';
-      d.innerHTML = '<button type="button" aria-pressed="false" aria-label="Anhören"></button><small>Anhören · Nekos KI-Stimme</small>';
+      d.innerHTML = '<span class="huelle"><button type="button" aria-pressed="false" aria-label="Anhören"></button></span><small>Anhören · Nekos KI-Stimme</small>';
       var ziel = x.el.querySelector('.rubrik, h2'); ziel.insertAdjacentElement('afterend', d);
       x.knopf = d.querySelector('button');
       x.knopf.addEventListener('click', function () {
