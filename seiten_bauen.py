@@ -17,7 +17,7 @@ def seite(inhalt, titel, datei):
     a = s.index("<!-- AUSGABE-START -->") + len("<!-- AUSGABE-START -->")
     b = s.index("<!-- AUSGABE-ENDE -->")
     s = s[:a] + "\n" + inhalt + "\n" + s[b:]
-    s = s.replace("<title>Nekos Morgenzeitung</title>", f"<title>{html.escape(titel)} · Nekos Morgenzeitung</title>", 1)
+    s = s.replace("<title>Nekos News Shop</title>", f"<title>{html.escape(titel)} · Nekos News Shop</title>", 1)
     open(os.path.join(HIER, datei), "w", encoding="utf-8").write(s)
 
 def kopf(zeile, titel, unter, neko="neko_zeitung.png"):

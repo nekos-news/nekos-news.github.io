@@ -1,13 +1,21 @@
 {
-  "name": "Nekos Morgenzeitung",
-  "short_name": "Morgenzeitung",
-  "start_url": "./",
-  "display": "standalone",
-  "background_color": "#13306B",
-  "theme_color": "#13306B",
-  "lang": "de",
-  "icons": [
-    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png" },
-    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png" }
-  ]
+ "name": "Nekos News Shop",
+ "short_name": "Nekos News",
+ "start_url": "./",
+ "display": "standalone",
+ "background_color": "#13306B",
+ "theme_color": "#13306B",
+ "lang": "de",
+ "icons": [
+  {
+   "src": "icon-192.png",
+   "sizes": "192x192",
+   "type": "image/png"
+  },
+  {
+   "src": "icon-512.png",
+   "sizes": "512x512",
+   "type": "image/png"
+  }
+ ]
 }

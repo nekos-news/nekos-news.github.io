@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Neko · Nekos Morgenzeitung</title>
-<meta name="description" content="Jeden Morgen die wichtigsten Nachrichten, kurz und sachlich.">
+<title>Neko · Nekos News Shop</title>
+<meta name="description" content="Nekos News Shop: jeden Morgen die wichtigsten Nachrichten, Nekos Videos und bald ein Shop.">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Morgenzeitung">
+<meta name="apple-mobile-web-app-title" content="Nekos News">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#13306B">
 <meta name="robots" content="noindex">
@@ -42,21 +42,22 @@ try { (JSON.parse(localStorage.getItem('mz-hilfe') || '[]')).forEach(function (k
   --korn: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.5 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
   --faser: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.02 0.6' numOctaves='2' seed='4'/%3E%3CfeColorMatrix values='0 0 0 0 0.3 0 0 0 0 0.22 0 0 0 0 0.15 0 0 0 0.22 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");
 }
-html { background: var(--grund); padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+html { background-color: var(--grund); padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px);
+  background-image: repeating-linear-gradient(0deg, rgba(232,220,198,0.07) 0 1px, transparent 1px 28px), repeating-linear-gradient(90deg, rgba(232,220,198,0.07) 0 1px, transparent 1px 28px),
+    repeating-linear-gradient(0deg, rgba(232,220,198,0.06) 0 2px, transparent 2px 140px), repeating-linear-gradient(90deg, rgba(232,220,198,0.06) 0 2px, transparent 2px 140px); }
 body { margin: 0; }
 [hidden] { display: none !important; }
 img { max-width: 100%; }
 body { background-color: var(--grund); color: var(--anthrazit); font-family: var(--lesen); font-size: 15.5px; line-height: 1.55; min-height: 100vh; position: relative; }
 /* Hintergrund als eigene feste Ebene (stabil auf dem iPhone, kein background-attachment: fixed, kein Mischmodus) */
-body::before { content: ""; position: fixed; inset: 0; z-index: 0; pointer-events: none; transform: translateZ(0);
+body::before { content: ""; position: fixed; inset: -40vh -10vw; z-index: 0; pointer-events: none; transform: translateZ(0);
   background-color: var(--grund);
   background-image: var(--faser),
     repeating-linear-gradient(0deg, rgba(232,220,198,0.07) 0 1px, transparent 1px 28px),
     repeating-linear-gradient(90deg, rgba(232,220,198,0.07) 0 1px, transparent 1px 28px),
     repeating-linear-gradient(0deg, rgba(232,220,198,0.06) 0 2px, transparent 2px 140px),
     repeating-linear-gradient(90deg, rgba(232,220,198,0.06) 0 2px, transparent 2px 140px); }
-body::after { content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 1; transform: translateZ(0);
-  background: radial-gradient(ellipse at center, transparent 55%, rgba(5,12,30,0.45) 100%); }
+
 
 .wrap { position: relative; z-index: 2; width: min(33rem, 84vw); margin: 0 auto; padding-block: 2.2rem 7.5rem; display: grid; gap: 2.4rem; }
 
@@ -154,9 +155,9 @@ section.gruppe, aside.kurz { scroll-margin-top: 4.5rem; }
 body:not(.los) .logo-oben { opacity: 0; }
 #intro .buchstaben { position: relative; width: min(74vw, 320px); aspect-ratio: 330 / 280; will-change: transform;
   filter: drop-shadow(0 3px 0 rgba(0,0,0,0.3)) drop-shadow(4px 10px 12px rgba(2,6,20,0.6)); }
-#intro .buchstaben img { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0;
+#intro .buchstaben img { position: absolute; opacity: 0;
   animation: buchstabe-plopp 0.4s steps(1, end) both; animation-delay: calc(var(--i) * 0.07s); }
-#intro .buchstaben img.ganz { animation: ganz-da 0.01s steps(1, end) 0.98s both, kochen 1s steps(1, end) 0.98s infinite; }
+#intro .buchstaben img.ganz { inset: 0; width: 100%; height: 100%; animation: ganz-da 0.01s steps(1, end) 0.98s both, kochen 1s steps(1, end) 0.98s infinite; }
 @keyframes ganz-da { to { opacity: 1; } }
 /* Stop-Motion wie ausgetauschte Papierstücke: je Bild leicht anders verzogen, gekippt, getönt (keine Beschnitte) */
 @keyframes buchstabe-plopp {
@@ -382,20 +383,25 @@ html.ruhig .reel { opacity: 1; transform: none; }
 .hoeren .huelle { filter: drop-shadow(1.5px 2px 0 rgba(46,43,42,0.55)) !important; }
 .hoeren button { background-color: var(--rost) !important; }
 .hoeren button[aria-pressed="true"] { background-color: var(--anthrazit) !important; }
+.hilfe-feld { grid-template-columns: 1fr 1fr; }
+.hilfe-feld p { grid-column: 1 / -1; }
+.hilfe-feld button { flex-direction: column; align-items: center; justify-content: center; gap: 0.3rem; text-align: center; padding: 0.7rem 0.4rem 0.55rem; position: relative; }
+.hilfe-feld button svg { width: 1.6rem; height: 1.6rem; fill: currentColor; }
+.hilfe-feld button::after { position: absolute; top: 0.3rem; right: 0.4rem; font-size: 0.6rem; }
 </style>
 </head>
 <body>
 <div id="intro" aria-hidden="true">
   <div class="buchstaben">
-    <img src="bilder/logo_buchstaben.png" alt="" style="clip-path:polygon(0.0% 0.0%, 25.8% 0.0%, 25.8% 46.4%, 0.0% 46.4%);transform-origin:12.9% 23.2%;--i:0">
-    <img src="bilder/logo_buchstaben.png" alt="" style="clip-path:polygon(25.8% 0.0%, 42.7% 0.0%, 42.7% 46.4%, 25.8% 46.4%);transform-origin:34.2% 23.2%;--i:1">
-    <img src="bilder/logo_buchstaben.png" alt="" style="clip-path:polygon(42.7% 0.0%, 62.4% 0.0%, 62.4% 46.4%, 42.7% 46.4%);transform-origin:52.6% 23.2%;--i:2">
-    <img src="bilder/logo_buchstaben.png" alt="" style="clip-path:polygon(62.4% 0.0%, 81.5% 0.0%, 81.5% 46.4%, 62.4% 46.4%);transform-origin:72.0% 23.2%;--i:3">
-    <img src="bilder/logo_buchstaben.png" alt="" style="clip-path:polygon(81.5% 0.0%, 100.0% 0.0%, 100.0% 46.4%, 81.5% 46.4%);transform-origin:90.8% 23.2%;--i:4">
-    <img src="bilder/logo_buchstaben.png" alt="" style="clip-path:polygon(0.0% 46.4%, 25.8% 46.4%, 25.8% 100.0%, 0.0% 100.0%);transform-origin:12.9% 73.2%;--i:5">
-    <img src="bilder/logo_buchstaben.png" alt="" style="clip-path:polygon(25.8% 46.4%, 47.6% 46.4%, 47.6% 100.0%, 25.8% 100.0%);transform-origin:36.7% 73.2%;--i:6">
-    <img src="bilder/logo_buchstaben.png" alt="" style="clip-path:polygon(47.6% 46.4%, 74.8% 46.4%, 74.8% 100.0%, 47.6% 100.0%);transform-origin:61.2% 73.2%;--i:7">
-    <img src="bilder/logo_buchstaben.png" alt="" style="clip-path:polygon(74.8% 46.4%, 100.0% 46.4%, 100.0% 100.0%, 74.8% 100.0%);transform-origin:87.4% 73.2%;--i:8">
+    <img src="bilder/buchstaben/0.png" alt="" style="left:1.82%;top:3.21%;width:26.06%;height:39.29%;--i:0">
+    <img src="bilder/buchstaben/1.png" alt="" style="left:23.94%;top:4.64%;width:19.09%;height:36.07%;--i:1">
+    <img src="bilder/buchstaben/2.png" alt="" style="left:41.21%;top:1.79%;width:23.64%;height:40.00%;--i:2">
+    <img src="bilder/buchstaben/3.png" alt="" style="left:62.42%;top:2.86%;width:19.39%;height:40.71%;--i:3">
+    <img src="bilder/buchstaben/4.png" alt="" style="left:79.39%;top:7.50%;width:17.27%;height:36.07%;--i:4">
+    <img src="bilder/buchstaben/5.png" alt="" style="left:2.42%;top:50.36%;width:23.64%;height:42.50%;--i:5">
+    <img src="bilder/buchstaben/6.png" alt="" style="left:25.15%;top:48.93%;width:24.24%;height:46.79%;--i:6">
+    <img src="bilder/buchstaben/7.png" alt="" style="left:47.58%;top:50.71%;width:29.39%;height:46.79%;--i:7">
+    <img src="bilder/buchstaben/8.png" alt="" style="left:72.12%;top:53.57%;width:22.73%;height:42.86%;--i:8">
     <img class="ganz" src="bilder/logo_buchstaben.png" alt="">
   </div>
 </div>
@@ -464,11 +470,11 @@ html.ruhig .reel { opacity: 1; transform: none; }
 <div class="hilfe-rechts">  <div class="hilfe">
   <button class="hilfe-knopf" type="button" aria-expanded="false" aria-label="Hilfe und Barrierefreiheit"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="4.2" r="2.2"/><path d="M4 7.6 L20 7.6 L19.4 9.6 L14.2 10.4 L14.2 13.6 L16.6 21.2 L14.5 21.9 L12 15.2 L9.5 21.9 L7.4 21.2 L9.8 13.6 L9.8 10.4 L4.6 9.6 Z"/></svg></button>
   <div class="hilfe-feld" role="group" aria-label="Darstellung anpassen">
-    <button type="button" data-hilfe="gross" aria-pressed="false">Größere Schrift</button>
-    <button type="button" data-hilfe="lesbar" aria-pressed="false">Besonders gut lesbare Schrift</button>
-    <button type="button" data-hilfe="kontrast" aria-pressed="false">Starker Kontrast</button>
-    <button type="button" data-hilfe="ruhig" aria-pressed="false">Keine Bewegung</button>
-    <p>Vorlesen: An jedem Artikel gibt es „▶ Anhören“, unten „Alles anhören“.</p>
+    <button type="button" data-hilfe="gross" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M3 19 L8 5 L10 5 L15 19 L12.6 19 L11.5 15.6 L6.5 15.6 L5.4 19 Z M7.2 13.5 L10.8 13.5 L9 8 Z"/><path d="M17 9 h2 v-2 h1.6 v2 h2 v1.6 h-2 v2 h-1.6 v-2 h-2 Z"/></svg><span>Größer</span></button>
+    <button type="button" data-hilfe="lesbar" aria-pressed="false"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><path d="M12 5 C6.5 5 2.6 9.2 1.5 12 C2.6 14.8 6.5 19 12 19 C17.5 19 21.4 14.8 22.5 12 C21.4 9.2 17.5 5 12 5 Z M12 7 C16 7 19 10 20.3 12 C19 14 16 17 12 17 C8 17 5 14 3.7 12 C5 10 8 7 12 7 Z"/></svg><span>Gut lesbar</span></button>
+    <button type="button" data-hilfe="kontrast" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M12 2.5 A9.5 9.5 0 1 0 12 21.5 A9.5 9.5 0 1 0 12 2.5 Z M12 4.5 V19.5 A7.5 7.5 0 0 1 12 4.5 Z"/></svg><span>Kontrast</span></button>
+    <button type="button" data-hilfe="ruhig" aria-pressed="false"><svg viewBox="0 0 24 24"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg><span>Keine Bewegung</span></button>
+    <p>Vorlesen: der orange Knopf an jedem Artikel, unten „Alles anhören“.</p>
   </div>
 </div>
 </div>
@@ -530,25 +536,34 @@ html.ruhig .reel { opacity: 1; transform: none; }
     y = n;
   }, { passive: true });
 })();
-/* Leiser Schreibmaschinen-Klick, ohne Sounddatei */
+/* Töne, im Browser erzeugt (keine Dateien): weiche Schreibmaschine, Harfenklang im Intro, Papier-Umblättern bei Klicks */
 (function () {
   var ctx = null;
-  window.mzKlick = function (laut) {
-    if (document.documentElement.classList.contains('ruhig')) return;
-    try {
-      ctx = ctx || new (window.AudioContext || window.webkitAudioContext)();
-      if (ctx.state === 'suspended') { ctx.resume(); if (ctx.state === 'suspended') return; }
-      var t = ctx.currentTime, len = 0.045, buf = ctx.createBuffer(1, Math.floor(ctx.sampleRate * len), ctx.sampleRate), d = buf.getChannelData(0);
-      for (var i = 0; i < d.length; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / d.length, 6);
-      var src = ctx.createBufferSource(); src.buffer = buf;
-      var bp = ctx.createBiquadFilter(); bp.type = 'bandpass'; bp.frequency.value = 2200 + Math.random() * 1600; bp.Q.value = 1.4;
-      var g = ctx.createGain(); g.gain.value = (laut || 0.12) * (0.8 + Math.random() * 0.4);
-      src.connect(bp); bp.connect(g); g.connect(ctx.destination); src.start(t);
-    } catch (e) {}
-  };
-  document.addEventListener('click', function (e) { if (e.target.closest('button, .reel, .news-wahl a, .leiste-oben a, .kurz a')) window.mzKlick(0.1); }, true);
-  var intro = document.getElementById('intro');
-  if (intro) for (var i = 0; i < 9; i++) setTimeout(function () { window.mzKlick(0.07); }, 60 + i * 70);
+  function c() { if (document.documentElement.classList.contains('ruhig')) return null;
+    try { ctx = ctx || new (window.AudioContext || window.webkitAudioContext)(); if (ctx.state === 'suspended') ctx.resume(); return ctx.state === 'running' ? ctx : null; } catch (e) { return null; } }
+  function rauschen(ac, dauer, form) {
+    var b = ac.createBuffer(1, Math.floor(ac.sampleRate * dauer), ac.sampleRate), d = b.getChannelData(0);
+    for (var i = 0; i < d.length; i++) d[i] = (Math.random() * 2 - 1) * form(i / d.length);
+    var s = ac.createBufferSource(); s.buffer = b; return s;
+  }
+  function tipp(laut) { var ac = c(); if (!ac) return;
+    var s = rauschen(ac, 0.06, function (x) { return Math.min(1, x * 25) * Math.pow(1 - x, 4); });
+    var f = ac.createBiquadFilter(); f.type = 'bandpass'; f.frequency.value = 1300 + Math.random() * 700; f.Q.value = 0.9;
+    var lp = ac.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 3200;
+    var g = ac.createGain(); g.gain.value = laut || 0.045; s.connect(f); f.connect(lp); lp.connect(g); g.connect(ac.destination); s.start(); }
+  function harfe(nr) { var ac = c(); if (!ac) return;
+    var toene = [392, 440, 523.25, 587.33, 659.25, 783.99, 880, 1046.5, 1174.66], t = ac.currentTime, fq = toene[nr % toene.length];
+    [1, 2, 3].forEach(function (h, k) { var o = ac.createOscillator(), g = ac.createGain(); o.type = k ? 'sine' : 'triangle'; o.frequency.value = fq * h;
+      g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(0.022 / (k + 1), t + 0.008); g.gain.exponentialRampToValueAtTime(0.0001, t + 1.4 / (k + 1));
+      o.connect(g); g.connect(ac.destination); o.start(t); o.stop(t + 1.5); }); }
+  function papier() { var ac = c(); if (!ac) return;
+    var s = rauschen(ac, 0.22, function (x) { return Math.sin(Math.PI * x) * (0.6 + 0.4 * Math.random()); });
+    var f = ac.createBiquadFilter(); f.type = 'bandpass'; f.Q.value = 0.7; var t = ac.currentTime;
+    f.frequency.setValueAtTime(700, t); f.frequency.exponentialRampToValueAtTime(3600, t + 0.2);
+    var g = ac.createGain(); g.gain.value = 0.035; s.connect(f); f.connect(g); g.connect(ac.destination); s.start(); }
+  window.mzKlick = tipp;
+  document.addEventListener('click', function (e) { if (e.target.closest('a, button, summary, .reel')) papier(); }, true);
+  if (document.getElementById('intro')) for (var i = 0; i < 9; i++) (function (n) { setTimeout(function () { tipp(0.035); harfe(n); }, 40 + n * 70); })(i);
 })();
 /* Neueste Uploads unter „Das Wichtigste“ (Daten: daten/content.json, Klick führt zu Instagram) */
 (function () {
