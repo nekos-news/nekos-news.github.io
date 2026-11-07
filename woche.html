@@ -938,6 +938,9 @@ article details.lang .klapp p:first-child b { display: block; font: 0.7rem var(-
     griff.addEventListener('pointerup', function () { if (fenster) fenster.classList.remove('zieht'); });
     document.querySelectorAll('.surf-knopf').forEach(function (b) { b.setAttribute('aria-pressed', true); });
   }
+  /* Nie offen beim Betreten: beim Verlassen schließen, auch nach Wiederherstellung aus dem Zwischenspeicher */
+  window.addEventListener('pagehide', zu);
+  window.addEventListener('pageshow', function (e) { if (e.persisted) zu(); });
   document.querySelectorAll('.wrap[data-datum] article, .wrap[data-datum] .kurz').forEach(function (a) {
     var b = document.createElement('button'); b.type = 'button'; b.className = 'surf-knopf'; b.setAttribute('aria-pressed', false);
     b.innerHTML = '🛹 Gen Z Konzentrationshilfe'; b.title = 'Für alle, die sich nur mit Gameplay daneben konzentrieren können';
