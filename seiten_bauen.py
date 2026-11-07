@@ -30,7 +30,7 @@ def kopf(zeile, titel, unter, neko="neko_zeitung.png"):
   </header>'''
 
 FUSS = '''  <footer class="papier riss">
-    <span>Kein Journalismus: Eine KI (Claude) fasst hier nur Berichte echter Journalist:innen zusammen und verlinkt die Originale. „Perspektive“ ist eine Einordnung aus linker Sicht, keine Tatsache.</span>
+    <span>Kein Journalismus: Eine KI (Claude) fasst hier nur Berichte echter Journalist:innen zusammen und verlinkt die Originale.</span>
   </footer>
 </div>'''
 
@@ -100,7 +100,7 @@ def links():
     <h2 class="zettel">Wichtig</h2>
     <article class="papier riss">
       <span class="rubrik">⚠ Kein Journalismus</span>
-      <p>Ich bin kein Journalist und mache auf dieser Seite keinen eigenen Journalismus. Die Morgenzeitung fasst nur die Arbeit echter Journalistinnen und Journalisten zusammen und verlinkt die Originalartikel. Zusammengestellt wird sie jeden Morgen automatisch von einer KI (Claude); ich prüfe die Meldungen nicht selbst. Die Abschnitte „Perspektive“ sind eine Einordnung aus linker Sicht, keine Tatsachen.</p>
+      <p>Ich bin kein Journalist und mache auf dieser Seite keinen eigenen Journalismus. Die Morgenzeitung fasst nur die Arbeit echter Journalistinnen und Journalisten zusammen und verlinkt die Originalartikel. Zusammengestellt wird sie jeden Morgen automatisch von einer KI (Claude); ich prüfe die Meldungen nicht selbst.</p>
     </article>
   </section>
 ''' + FUSS
