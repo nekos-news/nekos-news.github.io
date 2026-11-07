@@ -595,6 +595,8 @@ html.ruhig .surf-knopf { display: none; }
   font: 700 0.58rem var(--maschine); color: var(--anthrazit); cursor: grab; user-select: none; -webkit-user-select: none; }
 .surf-fenster .griff::before { content: "⠿"; color: var(--rost); font-size: 0.8rem; }
 .surf-fenster.zieht { cursor: grabbing; animation: none; }
+.surf-fenster .griff, .surf-fenster .zu { z-index: 3; } /* Video lag über der Leiste, Ziehen ging nicht (2026-11-08) */
+.surf-fenster.zieht iframe { pointer-events: none; }
 .surf-fenster .bild { position: relative; width: 100%; height: 100%; overflow: hidden; background: #000; }
 .surf-fenster .bild iframe { position: absolute; left: 50%; top: 50%; width: 150% !important; height: 150% !important; transform: translate(-50%, -50%); }
 .surf-fenster .deckel { position: absolute; inset: 0; display: grid; place-items: center; background-color: var(--rost); background-image: var(--faser); color: var(--creme);
@@ -816,7 +818,6 @@ article:has(.hoeren) > .rubrik { position: absolute; top: 0.95rem; right: 1rem; 
     <button type="button" data-hilfe="ruhig" aria-pressed="false"><svg viewBox="0 0 24 24"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg><span>Migräne-Modus</span></button>
     <button type="button" data-hilfe="leicht" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M4 4 H20 A2 2 0 0 1 22 6 V15 A2 2 0 0 1 20 17 H10 L5 21 V17 H4 A2 2 0 0 1 2 15 V6 A2 2 0 0 1 4 4 Z M6 8 V10 H18 V8 Z M6 12 V14 H14 V12 Z"/></svg><span>Einfache Sprache</span></button>
       <button type="button" data-surf aria-pressed="false" class="surf-kachel"><span aria-hidden="true" style="font-size:1.4rem">🛹</span><span>Gen Z</span></button>
-      <p><b>Weniger Reize:</b> keine Bewegung, keine Töne, ruhigere Farben, kein Intro beim nächsten Besuch. Vorlesen: der orange Knopf an jedem Artikel.</p>
   </div>
 </div>
 </div>
