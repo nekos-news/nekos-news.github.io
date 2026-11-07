@@ -583,6 +583,13 @@ article details.lang { justify-self: stretch; text-align: left; border-top: 1px 
 article details.lang summary { display: block; width: max-content; margin: 0 auto; }
 article details.lang .klapp p { margin-top: 0.6rem; font-size: 0.97rem; }
 article details.lang .klapp p:first-child b { display: block; font: 0.7rem var(--maschine); color: var(--rost); margin-bottom: 0.2rem; }
+.hilfe-feld .surf-kachel { grid-column: 1 / -1; flex-direction: row !important; gap: 0.5rem !important; }
+html.ruhig .hilfe-feld .surf-kachel { display: none !important; }
+/* Einfache Sprache */
+.einfach { display: none; margin: 0; font-size: 1.02rem; line-height: 1.6; }
+.einfach b { display: block; font: 0.7rem var(--maschine); color: var(--rost); margin-bottom: 0.15rem; }
+html.leicht .einfach { display: block; }
+html.leicht article .fakt, html.leicht article .einordnung, html.leicht article .these, html.leicht article details.mehr { display: none !important; }
 </style>
 </head>
 <body>
@@ -676,7 +683,9 @@ article details.lang .klapp p:first-child b { display: block; font: 0.7rem var(-
     <button type="button" data-hilfe="lesbar" aria-pressed="false"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><path d="M12 5 C6.5 5 2.6 9.2 1.5 12 C2.6 14.8 6.5 19 12 19 C17.5 19 21.4 14.8 22.5 12 C21.4 9.2 17.5 5 12 5 Z M12 7 C16 7 19 10 20.3 12 C19 14 16 17 12 17 C8 17 5 14 3.7 12 C5 10 8 7 12 7 Z"/></svg><span>Gut lesbar</span></button>
     <button type="button" data-hilfe="kontrast" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M12 2.5 A9.5 9.5 0 1 0 12 21.5 A9.5 9.5 0 1 0 12 2.5 Z M12 4.5 V19.5 A7.5 7.5 0 0 1 12 4.5 Z"/></svg><span>Kontrast</span></button>
     <button type="button" data-hilfe="ruhig" aria-pressed="false"><svg viewBox="0 0 24 24"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg><span>Weniger Reize</span></button>
-    <p><b>Weniger Reize:</b> keine Bewegung, keine Töne, ruhigere Farben, kein Intro beim nächsten Besuch. Vorlesen: der orange Knopf an jedem Artikel.</p>
+    <button type="button" data-hilfe="leicht" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M4 4 H20 A2 2 0 0 1 22 6 V15 A2 2 0 0 1 20 17 H10 L5 21 V17 H4 A2 2 0 0 1 2 15 V6 A2 2 0 0 1 4 4 Z M6 8 V10 H18 V8 Z M6 12 V14 H14 V12 Z"/></svg><span>Einfache Sprache</span></button>
+      <button type="button" data-surf aria-pressed="false" class="surf-kachel"><span aria-hidden="true" style="font-size:1.4rem">🛹</span><span>Gen Z</span></button>
+      <p><b>Weniger Reize:</b> keine Bewegung, keine Töne, ruhigere Farben, kein Intro beim nächsten Besuch. Vorlesen: der orange Knopf an jedem Artikel.</p>
   </div>
 </div>
 </div>
@@ -716,6 +725,7 @@ article details.lang .klapp p:first-child b { display: block; font: 0.7rem var(-
     <article class="papier riss" id="m1" data-lesen>
       <span class="rubrik">Bundespolitik</span>
       <h3>Streit in der Koalition: Kritik aus der eigenen SPD</h3>
+      <p class="einfach"><b>In einfacher Sprache</b>Die SPD im Ruhrgebiet ist unzufrieden. Sie sagt: Die Regierung streitet zu viel. Kanzler Merz hatte die Zusammenarbeit mit der SPD kurz vorher gelobt.</p>
       <p class="fakt"><b title="KI-Zusammenfassung">KI-Zusammenfassung</b>Die SPD im Ruhrgebiet wirft der schwarz-roten Bundesregierung vor, uneinig aufzutreten und öffentlich zu streiten.</p>
       <p class="einordnung"><b title="Einordnung">Einordnung</b>Kanzler Merz hatte noch am Mittwoch die Zusammenarbeit mit der SPD gelobt. Die Kritik zeigt, dass die Basis unruhig bleibt.</p>
       <p class="quelle"><a href="https://www.zdfheute.de/newsticker/schlagzeilen-100.html">ZDFheute</a> · <a href="https://de.investing.com/news/general-news/merz-lobt-spd-fur-zusammenarbeit-in-der-koalition-3747149">dpa-AFX</a></p>
@@ -723,6 +733,7 @@ article details.lang .klapp p:first-child b { display: block; font: 0.7rem var(-
     <article class="papier riss" id="m2" data-lesen>
       <span class="rubrik">Soziales</span>
       <h3>Rentenreform verzögert sich bis ins Frühjahr</h3>
+      <p class="einfach"><b>In einfacher Sprache</b>Die Regierung will die Rente ändern. Der Bundestag soll aber erst Anfang 2027 darüber abstimmen. Schon fest ist die Frühstart-Rente. Sie beginnt am 1. Januar 2027.</p>
       <p class="fakt"><b title="KI-Zusammenfassung">KI-Zusammenfassung</b>Das Kabinett will den Entwurf noch vor Weihnachten beschließen. Im Bundestag ist die Reform aber erst für das erste Quartal 2027 geplant.</p>
       <p class="einordnung"><b title="Einordnung">Einordnung</b>Schon beschlossen ist die Frühstart-Rente: Sie gilt ab 1. Januar 2027.</p>
       <p class="quelle"><a href="https://www.t-online.de/nachrichten/deutschland/innenpolitik/id_101473498/rentenreform-merz-erwartet-bundestagsbeschluss-wohl-erst-2027.html">t-online</a> · <a href="https://www.ad-hoc-news.de/wissenschaft/rentenreform-kabinett-plant-beschluss-vor-weihnachten-kapitalrente-folgt-2027/70460882">ad-hoc-news</a></p>
@@ -730,6 +741,7 @@ article details.lang .klapp p:first-child b { display: block; font: 0.7rem var(-
     <article class="papier riss" id="m3" data-lesen>
       <span class="rubrik">Düsseldorf · Justiz</span>
       <h3>Prozess gegen <mark class="kreis">„Königreich Deutschland“</mark></h3>
+      <p class="einfach"><b>In einfacher Sprache</b>In Düsseldorf hat ein Prozess vor Gericht angefangen. Angeklagt sind vier Personen aus einer Reichsbürger-Gruppe. Die Gruppe hat einen eigenen „Staat“ ausgerufen. Die Gruppe ist verboten.</p>
       <p class="fakt"><b title="KI-Zusammenfassung">KI-Zusammenfassung</b>Vor dem Oberlandesgericht Düsseldorf hat am Freitag der Prozess gegen vier mutmaßliche Anführer der verbotenen Reichsbürger-Gruppe begonnen.</p>
       <p class="these"><b>Populistische These</b>„Reichsbürger sind doch nur harmlose Spinner.“</p>
       <p class="einordnung"><b title="Einordnung">Einordnung</b>Die Gruppe hatte einen eigenen „Staat“ ausgerufen. Der Prozess dürfte länger dauern.</p>
@@ -739,6 +751,7 @@ article details.lang .klapp p:first-child b { display: block; font: 0.7rem var(-
     <article class="papier riss" id="m4" data-lesen>
       <span class="rubrik">Recht</span>
       <h3>Härtere Strafen für <mark class="kreis">K.-o.-Tropfen</mark></h3>
+      <p class="einfach"><b>In einfacher Sprache</b>Manche Täter benutzen K.-o.-Tropfen. Damit machen sie Menschen wehrlos. Wer das für eine Vergewaltigung oder einen Raub tut, soll mindestens fünf Jahre ins Gefängnis. Der Bundestag sollte das am Freitag beschließen. Ob es beschlossen wurde, ist noch nicht bestätigt.</p>
       <p class="fakt"><b title="KI-Zusammenfassung">KI-Zusammenfassung</b>Der Bundestag sollte am Freitag ein schärferes Gesetz beschließen. Wer K.-o.-Tropfen für eine Vergewaltigung oder einen Raub nutzt, soll mindestens fünf Jahre Haft bekommen.</p>
       <span class="marke">Abstimmungsergebnis noch nicht bestätigt</span>
       <p class="quelle"><a href="https://www.news.de/panorama/860164168/6-november-2026-news-themen-des-tages-was-passiert-heute-in-deutschland-und-der-welt-das-ist-heute-am-06-11-2026-wichtig-in-den-nachrichten-aus-politik-wirtschaft-sport-und-co/1/">news.de (dpa)</a></p>
@@ -746,6 +759,7 @@ article details.lang .klapp p:first-child b { display: block; font: 0.7rem var(-
     <article class="papier riss" id="m5" data-lesen>
       <span class="rubrik">Finanzen</span>
       <h3><mark class="strich blau">Haushalt 2027</mark>: Ende November wird abgestimmt</h3>
+      <p class="einfach"><b>In einfacher Sprache</b>Der Haushalt legt fest, wofür der Staat Geld ausgibt. Der Bundestag spricht vom 24. bis 27. November über den Haushalt für 2027. Am Freitag dieser Woche soll abgestimmt werden.</p>
       <p class="fakt"><b title="KI-Zusammenfassung">KI-Zusammenfassung</b>Der Bundestag berät den Haushalt vom 24. bis 27. November abschließend. Am Freitag der Woche ist die Schlussabstimmung geplant.</p>
       <p class="quelle"><a href="https://www.bundestag.de/dokumente/textarchiv/2026/kw34-haushalt-2027-ablauf-1187766">Bundestag</a></p>
     </article>
@@ -755,6 +769,7 @@ article details.lang .klapp p:first-child b { display: block; font: 0.7rem var(-
     <article class="papier riss" id="m6" data-lesen>
       <span class="rubrik">Nahost</span>
       <h3><mark class="kreis blau">USA</mark> greifen erneut iranische Insel an</h3>
+      <p class="einfach"><b>In einfacher Sprache</b>Die USA haben wieder Ziele im Iran angegriffen. Präsident Trump sagt: Die Angriffe waren klein. Gleichzeitig reden die USA und der Iran miteinander.</p>
       <p class="fakt"><b title="KI-Zusammenfassung">KI-Zusammenfassung</b>Trump hat neue Angriffe auf Luftabwehr auf der Insel Qeshm bestätigt. Er nennt sie „klein“ und spricht gleichzeitig von Fortschritten in Gesprächen mit Teheran.</p>
       <p class="einordnung"><b title="Einordnung">Einordnung</b>Es sind die ersten Angriffe seit den US-Wahlen am Dienstag. Fachleute halten eine schnelle Einigung mit dem Iran dadurch für weniger wahrscheinlich.</p>
       <span class="marke">Berichte über Seeminen in der Straße von Hormus unbestätigt</span>
@@ -763,6 +778,7 @@ article details.lang .klapp p:first-child b { display: block; font: 0.7rem var(-
     <article class="papier riss" id="m7" data-lesen>
       <span class="rubrik">Ukraine</span>
       <h3>Gespräche in Abu Dhabi ab Dienstag</h3>
+      <p class="einfach"><b>In einfacher Sprache</b>Russland, die Ukraine und die USA wollen am 10. und 11. November in Abu Dhabi miteinander reden. Es geht darum, den Krieg zu beenden. Kurz vorher wurde Kiew wieder mit Raketen angegriffen.</p>
       <p class="fakt"><b title="KI-Zusammenfassung">KI-Zusammenfassung</b>Russland, die Ukraine und die USA verhandeln am 10. und 11. November in Abu Dhabi. Der Kreml hat das bestätigt. Kurz zuvor wurde Kiew erneut mit Raketen angegriffen.</p>
       <p class="einordnung"><b title="Einordnung">Einordnung</b>Selenskyj sagt zu, zweifelt aber am Friedenswillen Moskaus. Streitpunkte bleiben Gebiete und Sicherheitsgarantien.</p>
       <p class="quelle"><a href="https://www.usnews.com/news/world/articles/2026-11-03/kremlin-confirms-trilateral-ukraine-peace-talks-in-abu-dhabi-next-week">US News (Reuters)</a> · <a href="https://www.axios.com/2026/11/03/us-russia-ukraine-peace-talks-uae-trump-witkoff-kushner">Axios</a></p>
@@ -770,6 +786,7 @@ article details.lang .klapp p:first-child b { display: block; font: 0.7rem var(-
     <article class="papier riss" id="m8" data-lesen>
       <span class="rubrik">USA</span>
       <h3>Demokraten holen das Repräsentantenhaus</h3>
+      <p class="einfach"><b>In einfacher Sprache</b>In den USA gab es Wahlen. Die Demokraten haben wohl die Mehrheit im Repräsentantenhaus gewonnen. Das ist ein Teil des Parlaments. Beim Senat steht das Ergebnis noch nicht fest.</p>
       <p class="fakt"><b title="KI-Zusammenfassung">KI-Zusammenfassung</b>Nach Hochrechnungen gewinnen die Demokraten die Mehrheit im Repräsentantenhaus. Laut CNBC auch im Senat, einzelne Rennen werden aber noch ausgezählt.</p>
       <p class="einordnung"><b title="Einordnung">Einordnung</b>Trump müsste dann gegen eine Mehrheit im Kongress regieren. Seine Zustimmungswerte liegen laut CBS bei 38 Prozent.</p>
       <span class="marke">Senat: Endergebnis noch offen</span>
@@ -778,6 +795,7 @@ article details.lang .klapp p:first-child b { display: block; font: 0.7rem var(-
     <article class="papier riss" id="m9" data-lesen>
       <span class="rubrik">Diplomatie</span>
       <h3>Treffen Xi, Trump und Putin im Gespräch</h3>
+      <p class="einfach"><b>In einfacher Sprache</b>China sagt: Es gibt Gespräche über ein Treffen von Xi, Trump und Putin. Ein Termin steht noch nicht fest.</p>
       <p class="fakt"><b title="KI-Zusammenfassung">KI-Zusammenfassung</b>China bestätigt, dass über ein Dreiertreffen der Staatschefs gesprochen wird. Einen Termin gibt es nicht.</p>
       <span class="marke">Nur Gespräche, nichts vereinbart</span>
       <p class="quelle"><a href="https://www.inkl.com/news/latest-news-bulletin-november-7th-2026-morning">inkl (Guardian-Briefing)</a></p>
@@ -785,6 +803,7 @@ article details.lang .klapp p:first-child b { display: block; font: 0.7rem var(-
     <article class="papier riss" id="m10" data-lesen>
       <span class="rubrik">Europa</span>
       <h3><mark class="strich">Hackerangriff</mark> auf italienischen Minister</h3>
+      <p class="einfach"><b>In einfacher Sprache</b>Bei einem Minister in Italien wurden Daten gestohlen. Es gibt einen Verdacht gegen Hacker, die Russland unterstützen. Bewiesen ist das noch nicht.</p>
       <p class="fakt"><b title="KI-Zusammenfassung">KI-Zusammenfassung</b>Bei einem italienischen Minister wurden Daten gestohlen.</p>
       <span class="marke">Verdacht: pro-russische Hacker, nicht bestätigt</span>
       <p class="quelle"><a href="https://www.zdfheute.de/newsticker/schlagzeilen-100.html">ZDFheute</a></p>
@@ -943,12 +962,12 @@ article details.lang .klapp p:first-child b { display: block; font: 0.7rem var(-
 /* Konzentrations-Modus: Gameplay-Video klein in der Ecke (Gag). YouTube lädt erst nach Klick, nocookie, stumm, in Schleife. */
 (function () {
   var ID = 'hJcv2nZ8x84', fenster = null;
-  function zu() { if (fenster) { fenster.remove(); fenster = null; } document.querySelectorAll('.surf-knopf').forEach(function (b) { b.setAttribute('aria-pressed', false); }); }
+  function zu() { if (fenster) { fenster.remove(); fenster = null; } document.querySelectorAll('[data-surf]').forEach(function (b) { b.setAttribute('aria-pressed', false); }); }
   function auf() {
     if (fenster) return;
     var start = Math.floor(Math.random() * 240);
     fenster = document.createElement('div'); fenster.className = 'surf-fenster';
-    fenster.innerHTML = '<div class="griff">Gen Z Konzentrationshilfe</div><button class="zu" type="button" aria-label="Konzentrationshilfe schließen">✕</button><div class="bild"><iframe title="Gameplay-Video" allow="autoplay; encrypted-media" src="https://www.youtube-nocookie.com/embed/' + ID + '?autoplay=1&mute=1&loop=1&playlist=' + ID + '&controls=0&playsinline=1&modestbranding=1&rel=0&iv_load_policy=3&fs=0&disablekb=1&enablejsapi=1&origin=' + encodeURIComponent(location.origin) + '&start=' + start + '"></iframe><div class="deckel">Konzentration wird geladen …</div></div>';
+    fenster.innerHTML = '<div class="griff">Gen Z</div><button class="zu" type="button" aria-label="Konzentrationshilfe schließen">✕</button><div class="bild"><iframe title="Gameplay-Video" allow="autoplay; encrypted-media" src="https://www.youtube-nocookie.com/embed/' + ID + '?autoplay=1&mute=1&loop=1&playlist=' + ID + '&controls=0&playsinline=1&modestbranding=1&rel=0&iv_load_policy=3&fs=0&disablekb=1&enablejsapi=1&origin=' + encodeURIComponent(location.origin) + '&start=' + start + '"></iframe><div class="deckel">Konzentration wird geladen …</div></div>';
     fenster.querySelector('.zu').addEventListener('click', zu);
     document.body.appendChild(fenster);
     /* Deckblatt weg, sobald das Video wirklich läuft (YouTube meldet den Zustand per postMessage); spätestens nach 6 s */
@@ -974,21 +993,20 @@ article details.lang .klapp p:first-child b { display: block; font: 0.7rem var(-
       fenster.style.top = Math.max(0, Math.min(innerHeight - h, fy + e.clientY - sy)) + 'px';
     });
     griff.addEventListener('pointerup', function () { if (fenster) fenster.classList.remove('zieht'); });
-    document.querySelectorAll('.surf-knopf').forEach(function (b) { b.setAttribute('aria-pressed', true); });
+    document.querySelectorAll('[data-surf]').forEach(function (b) { b.setAttribute('aria-pressed', true); });
   }
   /* Nie offen beim Betreten: beim Verlassen schließen, auch nach Wiederherstellung aus dem Zwischenspeicher */
   window.addEventListener('pagehide', zu);
   window.addEventListener('pageshow', function (e) { if (e.persisted) zu(); });
-  document.querySelectorAll('.wrap[data-datum] article, .wrap[data-datum] .kurz').forEach(function (a) {
-    var b = document.createElement('button'); b.type = 'button'; b.className = 'surf-knopf'; b.setAttribute('aria-pressed', false);
-    b.innerHTML = '🛹 Gen Z Konzentrationshilfe'; b.title = 'Für alle, die sich nur mit Gameplay daneben konzentrieren können';
-    b.addEventListener('pointerdown', function () {
+  /* Schalter im Hilfe-Menü */
+  var schalter = document.querySelector('[data-surf]');
+  if (schalter) {
+    schalter.addEventListener('pointerdown', function () {
       if (document.getElementById('yt-vorab')) return;
       ['https://www.youtube-nocookie.com', 'https://i.ytimg.com', 'https://www.google.com'].forEach(function (h, k) { var l = document.createElement('link'); l.rel = 'preconnect'; l.href = h; if (!k) l.id = 'yt-vorab'; document.head.appendChild(l); });
     });
-    b.addEventListener('click', function () { fenster ? zu() : auf(); });
-    var vor = a.querySelector('.quelle, .quellen-seiten, footer'); if (vor) vor.insertAdjacentElement('beforebegin', b); else a.appendChild(b);
-  });
+    schalter.addEventListener('click', function () { fenster ? zu() : auf(); });
+  }
 })();
 /* Unter den heutigen Beiträgen: weiter zu Woche, Monat, Jahr */
 (function () {
@@ -1026,7 +1044,7 @@ article details.lang .klapp p:first-child b { display: block; font: 0.7rem var(-
 (function () {
   var h = document.querySelector('.hilfe'), k = h && h.querySelector('.hilfe-knopf'), root = document.documentElement;
   if (!h) return;
-  function speichern() { try { localStorage.setItem('mz-hilfe', JSON.stringify(['gross','lesbar','kontrast','ruhig'].filter(function (c) { return root.classList.contains(c); }))); } catch (e) {} }
+  function speichern() { try { localStorage.setItem('mz-hilfe', JSON.stringify(['gross','lesbar','kontrast','ruhig','leicht'].filter(function (c) { return root.classList.contains(c); }))); } catch (e) {} }
   k.addEventListener('click', function (e) { e.stopPropagation(); var o = h.classList.toggle('hilfe-offen'); k.setAttribute('aria-expanded', o); });
   document.addEventListener('click', function (e) { if (!h.contains(e.target)) { h.classList.remove('hilfe-offen'); k.setAttribute('aria-expanded', false); } });
   h.querySelectorAll('[data-hilfe]').forEach(function (b) {

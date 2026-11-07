@@ -588,6 +588,13 @@ article details.lang { justify-self: stretch; text-align: left; border-top: 1px 
 article details.lang summary { display: block; width: max-content; margin: 0 auto; }
 article details.lang .klapp p { margin-top: 0.6rem; font-size: 0.97rem; }
 article details.lang .klapp p:first-child b { display: block; font: 0.7rem var(--maschine); color: var(--rost); margin-bottom: 0.2rem; }
+.hilfe-feld .surf-kachel { grid-column: 1 / -1; flex-direction: row !important; gap: 0.5rem !important; }
+html.ruhig .hilfe-feld .surf-kachel { display: none !important; }
+/* Einfache Sprache */
+.einfach { display: none; margin: 0; font-size: 1.02rem; line-height: 1.6; }
+.einfach b { display: block; font: 0.7rem var(--maschine); color: var(--rost); margin-bottom: 0.15rem; }
+html.leicht .einfach { display: block; }
+html.leicht article .fakt, html.leicht article .einordnung, html.leicht article .these, html.leicht article details.mehr { display: none !important; }
 </style>
 </head>
 <body>
@@ -681,7 +688,9 @@ article details.lang .klapp p:first-child b { display: block; font: 0.7rem var(-
     <button type="button" data-hilfe="lesbar" aria-pressed="false"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><path d="M12 5 C6.5 5 2.6 9.2 1.5 12 C2.6 14.8 6.5 19 12 19 C17.5 19 21.4 14.8 22.5 12 C21.4 9.2 17.5 5 12 5 Z M12 7 C16 7 19 10 20.3 12 C19 14 16 17 12 17 C8 17 5 14 3.7 12 C5 10 8 7 12 7 Z"/></svg><span>Gut lesbar</span></button>
     <button type="button" data-hilfe="kontrast" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M12 2.5 A9.5 9.5 0 1 0 12 21.5 A9.5 9.5 0 1 0 12 2.5 Z M12 4.5 V19.5 A7.5 7.5 0 0 1 12 4.5 Z"/></svg><span>Kontrast</span></button>
     <button type="button" data-hilfe="ruhig" aria-pressed="false"><svg viewBox="0 0 24 24"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg><span>Weniger Reize</span></button>
-    <p><b>Weniger Reize:</b> keine Bewegung, keine Töne, ruhigere Farben, kein Intro beim nächsten Besuch. Vorlesen: der orange Knopf an jedem Artikel.</p>
+    <button type="button" data-hilfe="leicht" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M4 4 H20 A2 2 0 0 1 22 6 V15 A2 2 0 0 1 20 17 H10 L5 21 V17 H4 A2 2 0 0 1 2 15 V6 A2 2 0 0 1 4 4 Z M6 8 V10 H18 V8 Z M6 12 V14 H14 V12 Z"/></svg><span>Einfache Sprache</span></button>
+      <button type="button" data-surf aria-pressed="false" class="surf-kachel"><span aria-hidden="true" style="font-size:1.4rem">🛹</span><span>Gen Z</span></button>
+      <p><b>Weniger Reize:</b> keine Bewegung, keine Töne, ruhigere Farben, kein Intro beim nächsten Besuch. Vorlesen: der orange Knopf an jedem Artikel.</p>
   </div>
 </div>
 </div>
@@ -883,12 +892,12 @@ article details.lang .klapp p:first-child b { display: block; font: 0.7rem var(-
 /* Konzentrations-Modus: Gameplay-Video klein in der Ecke (Gag). YouTube lädt erst nach Klick, nocookie, stumm, in Schleife. */
 (function () {
   var ID = 'hJcv2nZ8x84', fenster = null;
-  function zu() { if (fenster) { fenster.remove(); fenster = null; } document.querySelectorAll('.surf-knopf').forEach(function (b) { b.setAttribute('aria-pressed', false); }); }
+  function zu() { if (fenster) { fenster.remove(); fenster = null; } document.querySelectorAll('[data-surf]').forEach(function (b) { b.setAttribute('aria-pressed', false); }); }
   function auf() {
     if (fenster) return;
     var start = Math.floor(Math.random() * 240);
     fenster = document.createElement('div'); fenster.className = 'surf-fenster';
-    fenster.innerHTML = '<div class="griff">Gen Z Konzentrationshilfe</div><button class="zu" type="button" aria-label="Konzentrationshilfe schließen">✕</button><div class="bild"><iframe title="Gameplay-Video" allow="autoplay; encrypted-media" src="https://www.youtube-nocookie.com/embed/' + ID + '?autoplay=1&mute=1&loop=1&playlist=' + ID + '&controls=0&playsinline=1&modestbranding=1&rel=0&iv_load_policy=3&fs=0&disablekb=1&enablejsapi=1&origin=' + encodeURIComponent(location.origin) + '&start=' + start + '"></iframe><div class="deckel">Konzentration wird geladen …</div></div>';
+    fenster.innerHTML = '<div class="griff">Gen Z</div><button class="zu" type="button" aria-label="Konzentrationshilfe schließen">✕</button><div class="bild"><iframe title="Gameplay-Video" allow="autoplay; encrypted-media" src="https://www.youtube-nocookie.com/embed/' + ID + '?autoplay=1&mute=1&loop=1&playlist=' + ID + '&controls=0&playsinline=1&modestbranding=1&rel=0&iv_load_policy=3&fs=0&disablekb=1&enablejsapi=1&origin=' + encodeURIComponent(location.origin) + '&start=' + start + '"></iframe><div class="deckel">Konzentration wird geladen …</div></div>';
     fenster.querySelector('.zu').addEventListener('click', zu);
     document.body.appendChild(fenster);
     /* Deckblatt weg, sobald das Video wirklich läuft (YouTube meldet den Zustand per postMessage); spätestens nach 6 s */
@@ -914,21 +923,20 @@ article details.lang .klapp p:first-child b { display: block; font: 0.7rem var(-
       fenster.style.top = Math.max(0, Math.min(innerHeight - h, fy + e.clientY - sy)) + 'px';
     });
     griff.addEventListener('pointerup', function () { if (fenster) fenster.classList.remove('zieht'); });
-    document.querySelectorAll('.surf-knopf').forEach(function (b) { b.setAttribute('aria-pressed', true); });
+    document.querySelectorAll('[data-surf]').forEach(function (b) { b.setAttribute('aria-pressed', true); });
   }
   /* Nie offen beim Betreten: beim Verlassen schließen, auch nach Wiederherstellung aus dem Zwischenspeicher */
   window.addEventListener('pagehide', zu);
   window.addEventListener('pageshow', function (e) { if (e.persisted) zu(); });
-  document.querySelectorAll('.wrap[data-datum] article, .wrap[data-datum] .kurz').forEach(function (a) {
-    var b = document.createElement('button'); b.type = 'button'; b.className = 'surf-knopf'; b.setAttribute('aria-pressed', false);
-    b.innerHTML = '🛹 Gen Z Konzentrationshilfe'; b.title = 'Für alle, die sich nur mit Gameplay daneben konzentrieren können';
-    b.addEventListener('pointerdown', function () {
+  /* Schalter im Hilfe-Menü */
+  var schalter = document.querySelector('[data-surf]');
+  if (schalter) {
+    schalter.addEventListener('pointerdown', function () {
       if (document.getElementById('yt-vorab')) return;
       ['https://www.youtube-nocookie.com', 'https://i.ytimg.com', 'https://www.google.com'].forEach(function (h, k) { var l = document.createElement('link'); l.rel = 'preconnect'; l.href = h; if (!k) l.id = 'yt-vorab'; document.head.appendChild(l); });
     });
-    b.addEventListener('click', function () { fenster ? zu() : auf(); });
-    var vor = a.querySelector('.quelle, .quellen-seiten, footer'); if (vor) vor.insertAdjacentElement('beforebegin', b); else a.appendChild(b);
-  });
+    schalter.addEventListener('click', function () { fenster ? zu() : auf(); });
+  }
 })();
 /* Unter den heutigen Beiträgen: weiter zu Woche, Monat, Jahr */
 (function () {
@@ -966,7 +974,7 @@ article details.lang .klapp p:first-child b { display: block; font: 0.7rem var(-
 (function () {
   var h = document.querySelector('.hilfe'), k = h && h.querySelector('.hilfe-knopf'), root = document.documentElement;
   if (!h) return;
-  function speichern() { try { localStorage.setItem('mz-hilfe', JSON.stringify(['gross','lesbar','kontrast','ruhig'].filter(function (c) { return root.classList.contains(c); }))); } catch (e) {} }
+  function speichern() { try { localStorage.setItem('mz-hilfe', JSON.stringify(['gross','lesbar','kontrast','ruhig','leicht'].filter(function (c) { return root.classList.contains(c); }))); } catch (e) {} }
   k.addEventListener('click', function (e) { e.stopPropagation(); var o = h.classList.toggle('hilfe-offen'); k.setAttribute('aria-expanded', o); });
   document.addEventListener('click', function (e) { if (!h.contains(e.target)) { h.classList.remove('hilfe-offen'); k.setAttribute('aria-expanded', false); } });
   h.querySelectorAll('[data-hilfe]').forEach(function (b) {
