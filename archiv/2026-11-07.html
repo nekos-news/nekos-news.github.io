@@ -528,6 +528,18 @@ html.kontrast article h3::before, html.kontrast article h3::after { display: non
   padding: 0.8rem 0.6rem 0.72rem; filter: drop-shadow(0 3px 0 rgba(0,0,0,0.25)) drop-shadow(3px 8px 8px rgba(2,6,20,0.5)); }
 .mehr-news a:nth-child(1) { transform: rotate(-1.5deg); } .mehr-news a:nth-child(2) { transform: rotate(1deg); background-color: var(--braun); } .mehr-news a:nth-child(3) { transform: rotate(-0.6deg); background-color: var(--anthrazit); }
 html.kontrast .mehr-news a { background: #000 !important; color: #fff !important; transform: none; filter: none; }
+/* Handgemalte Markierungen in Überschriften: eingekreist oder unterstrichen, dunkelrot oder dunkelblau */
+mark.kreis, mark.strich { background: none; color: inherit; position: relative; white-space: nowrap; }
+mark.kreis::after, mark.strich::after { content: ""; position: absolute; pointer-events: none; clip-path: inset(0 100% 0 0); transition: clip-path 0.6s steps(6, end) 0.2s; }
+.sichtbar mark.kreis::after, .sichtbar mark.strich::after { clip-path: inset(0 0 0 0); }
+mark.kreis::after { left: -9%; right: -9%; top: -22%; bottom: -26%;
+  background: no-repeat center / 100% 100% url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 80' preserveAspectRatio='none'%3E%3Cpath d='M30 12 C 70 2, 150 3, 185 20 C 205 34, 190 62, 140 72 C 90 80, 25 76, 10 55 C -2 38, 15 18, 55 9 C 80 4, 110 5, 128 8' fill='none' stroke='%237E1712' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E"); }
+mark.kreis.blau::after { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 80' preserveAspectRatio='none'%3E%3Cpath d='M30 12 C 70 2, 150 3, 185 20 C 205 34, 190 62, 140 72 C 90 80, 25 76, 10 55 C -2 38, 15 18, 55 9 C 80 4, 110 5, 128 8' fill='none' stroke='%230F2554' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E"); }
+mark.strich::after { left: -3%; right: -3%; bottom: -0.32em; height: 0.5em;
+  background: no-repeat center / 100% 100% url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 14' preserveAspectRatio='none'%3E%3Cpath d='M2 6 C 25 3, 55 9, 98 5 M6 11 C 35 8, 70 12, 94 9' fill='none' stroke='%237E1712' stroke-width='2.6' stroke-linecap='round'/%3E%3C/svg%3E"); }
+mark.strich.blau::after { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 14' preserveAspectRatio='none'%3E%3Cpath d='M2 6 C 25 3, 55 9, 98 5 M6 11 C 35 8, 70 12, 94 9' fill='none' stroke='%230F2554' stroke-width='2.6' stroke-linecap='round'/%3E%3C/svg%3E"); }
+html.ruhig mark.kreis::after, html.ruhig mark.strich::after { clip-path: none; transition: none; }
+html.kontrast mark.kreis::after, html.kontrast mark.strich::after { filter: grayscale(1) brightness(0); }
 </style>
 </head>
 <body>
@@ -674,7 +686,7 @@ html.kontrast .mehr-news a { background: #000 !important; color: #fff !important
     </article>
     <article class="papier riss" id="m3" data-lesen>
       <span class="rubrik">Düsseldorf · Justiz</span>
-      <h3>Prozess gegen „Königreich Deutschland“</h3>
+      <h3>Prozess gegen <mark class="kreis">„Königreich Deutschland“</mark></h3>
       <p class="fakt"><b>KI-Zusammenfassung</b>Vor dem Oberlandesgericht Düsseldorf hat am Freitag der Prozess gegen vier mutmaßliche Anführer der verbotenen Reichsbürger-Gruppe begonnen.</p>
       <p class="these"><b>Populistische These</b>„Reichsbürger sind doch nur harmlose Spinner.“</p>
       <p class="einordnung"><b>Einordnung</b>Die Gruppe hatte einen eigenen „Staat“ ausgerufen. Der Prozess dürfte länger dauern.</p>
@@ -683,14 +695,14 @@ html.kontrast .mehr-news a { background: #000 !important; color: #fff !important
     </article>
     <article class="papier riss" id="m4" data-lesen>
       <span class="rubrik">Recht</span>
-      <h3>Härtere Strafen für K.-o.-Tropfen</h3>
+      <h3>Härtere Strafen für <mark class="kreis">K.-o.-Tropfen</mark></h3>
       <p class="fakt"><b>KI-Zusammenfassung</b>Der Bundestag sollte am Freitag ein schärferes Gesetz beschließen. Wer K.-o.-Tropfen für eine Vergewaltigung oder einen Raub nutzt, soll mindestens fünf Jahre Haft bekommen.</p>
       <span class="marke">Abstimmungsergebnis noch nicht bestätigt</span>
       <p class="quelle"><a href="https://www.news.de/panorama/860164168/6-november-2026-news-themen-des-tages-was-passiert-heute-in-deutschland-und-der-welt-das-ist-heute-am-06-11-2026-wichtig-in-den-nachrichten-aus-politik-wirtschaft-sport-und-co/1/">news.de (dpa)</a></p>
     </article>
     <article class="papier riss" id="m5" data-lesen>
       <span class="rubrik">Finanzen</span>
-      <h3>Haushalt 2027: Ende November wird abgestimmt</h3>
+      <h3><mark class="strich blau">Haushalt 2027</mark>: Ende November wird abgestimmt</h3>
       <p class="fakt"><b>KI-Zusammenfassung</b>Der Bundestag berät den Haushalt vom 24. bis 27. November abschließend. Am Freitag der Woche ist die Schlussabstimmung geplant.</p>
       <p class="quelle"><a href="https://www.bundestag.de/dokumente/textarchiv/2026/kw34-haushalt-2027-ablauf-1187766">Bundestag</a></p>
     </article>
@@ -699,7 +711,7 @@ html.kontrast .mehr-news a { background: #000 !important; color: #fff !important
   <section class="gruppe" id="welt">
     <article class="papier riss" id="m6" data-lesen>
       <span class="rubrik">Nahost</span>
-      <h3>USA greifen erneut iranische Insel an</h3>
+      <h3><mark class="kreis blau">USA</mark> greifen erneut iranische Insel an</h3>
       <p class="fakt"><b>KI-Zusammenfassung</b>Trump hat neue Angriffe auf Luftabwehr auf der Insel Qeshm bestätigt. Er nennt sie „klein“ und spricht gleichzeitig von Fortschritten in Gesprächen mit Teheran.</p>
       <p class="einordnung"><b>Einordnung</b>Es sind die ersten Angriffe seit den US-Wahlen am Dienstag. Fachleute halten eine schnelle Einigung mit dem Iran dadurch für weniger wahrscheinlich.</p>
       <span class="marke">Berichte über Seeminen in der Straße von Hormus unbestätigt</span>
@@ -729,7 +741,7 @@ html.kontrast .mehr-news a { background: #000 !important; color: #fff !important
     </article>
     <article class="papier riss" id="m10" data-lesen>
       <span class="rubrik">Europa</span>
-      <h3>Hackerangriff auf italienischen Minister</h3>
+      <h3><mark class="strich">Hackerangriff</mark> auf italienischen Minister</h3>
       <p class="fakt"><b>KI-Zusammenfassung</b>Bei einem italienischen Minister wurden Daten gestohlen.</p>
       <span class="marke">Verdacht: pro-russische Hacker, nicht bestätigt</span>
       <p class="quelle"><a href="https://www.zdfheute.de/newsticker/schlagzeilen-100.html">ZDFheute</a></p>
