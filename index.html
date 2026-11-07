@@ -172,6 +172,17 @@ footer { padding: 0.9rem 1.1rem; transform: rotate(0.4deg); --pc: var(--hellgrau
 .leiste .status { font-family: var(--maschine); font-size: 0.85rem; color: var(--anthrazit); padding-right: 0.3rem; white-space: nowrap; }
 .leiste .status:empty { display: none; }
 button:focus-visible, a:focus-visible { outline: 3px solid var(--ocker); outline-offset: 2px; }
+/* Oben: Kanäle und KI-Hinweis (außerhalb der Ausgabe, bleibt jeden Tag gleich) */
+.oben { position: relative; z-index: 2; max-width: 40rem; margin: 0.6rem auto -0.6rem; padding-inline: max(16px, env(safe-area-inset-left, 0px)); display: grid; gap: 0.7rem; }
+.kanaele { display: flex; justify-content: center; gap: 0.4rem; flex-wrap: wrap; }
+.kanaele a { font-family: var(--sans); font-weight: 800; font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none;
+  color: var(--creme); background: var(--rost); padding: 0.38rem 0.6rem 0.32rem; filter: drop-shadow(0 3px 0 rgba(0,0,0,0.25)) drop-shadow(3px 8px 8px rgba(2,6,20,0.5)); }
+.kanaele a:nth-child(2) { background: var(--anthrazit); transform: rotate(1.2deg); }
+.kanaele a:nth-child(1) { transform: rotate(-1.5deg); }
+.kanaele a:nth-child(3) { background: var(--braun); transform: rotate(-0.8deg); }
+.hinweis { font-family: var(--maschine); font-size: 0.82rem; line-height: 1.4; color: var(--anthrazit); background-color: var(--ocker); background-image: var(--faser);
+  padding: 0.6rem 0.8rem; transform: rotate(-0.4deg); filter: drop-shadow(0 3px 0 rgba(0,0,0,0.25)) drop-shadow(4px 10px 12px rgba(2,6,20,0.55)); }
+.hinweis b { font-family: var(--sans); font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; font-size: 0.7rem; margin-right: 0.3rem; }
 </style>
 </head>
 <body>
@@ -194,7 +205,7 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--ocker); outline
     </g>
     <path class="papier-erde" d="M-20 136 L5 133 L30 137 L55 132 L80 136 L105 131 L130 135 L155 131 L180 136 L220 133 L218 158 L190 161 L160 157 L130 162 L100 158 L70 162 L40 157 L10 161 L-18 158 Z" fill="#E8DCC6"/>
   </svg>
-    <div class="marke-zettel"><span class="tape"></span>Nekos<i>_</i>News</div>
+    <div class="marke-zettel"><span class="tape"></span><i>@</i>Nekos<i>_</i>News</div>
   </div>
 </div>
 <script>
@@ -238,6 +249,12 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--ocker); outline
 <nav class="sprung" aria-label="Rubriken">
   <a href="#kurz">Kurz</a><a href="#deutschland">Deutschland</a><a href="#welt">Welt</a><a href="#fuer-dich" id="sprung-tipp">Für dich</a><a href="/morgenzeitung/archiv/">Archiv</a>
 </nav>
+<div class="oben">
+  <div class="kanaele" aria-label="Nekos_news auf Social Media">
+    <a href="https://www.instagram.com/nekos_news/" rel="noopener">Instagram</a><a href="https://www.tiktok.com/@nekos_news" rel="noopener">TikTok</a><a href="https://www.youtube.com/@nekos_news" rel="noopener">YouTube</a>
+  </div>
+  <p class="hinweis"><b>Hinweis</b>Diese Zeitung stellt eine KI (Claude) jeden Morgen automatisch aus öffentlichen Quellen zusammen. Ich prüfe die Meldungen nicht selbst. Für Details bitte die verlinkten Quellen lesen.</p>
+</div>
 <!-- AUSGABE-START -->
 <div class="wrap">
   <header class="kopf papier riss">
