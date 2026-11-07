@@ -43,10 +43,11 @@ try { (JSON.parse(localStorage.getItem('mz-hilfe') || '[]')).forEach(function (k
 }
 html { background-color: var(--grund); padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
 /* Karo-Raster als feste Ebene, schiebt sich dauerhaft langsam vorbei (Wunsch Nicolas 2026-11-08); im Migräne-Modus steht es */
-body::before { content: ""; position: fixed; z-index: -1; top: -140px; left: -140px; width: calc(100vw + 280px); height: calc(100vh + 280px); pointer-events: none;
+.raster-ebene { position: fixed; z-index: -1; top: -140px; left: -140px; width: calc(100vw + 280px); height: calc(100vh + 280px); pointer-events: none;
   background-image: repeating-linear-gradient(0deg, rgba(232,220,198,0.07) 0 1px, transparent 1px 28px), repeating-linear-gradient(90deg, rgba(232,220,198,0.07) 0 1px, transparent 1px 28px),
-    repeating-linear-gradient(0deg, rgba(232,220,198,0.06) 0 2px, transparent 2px 140px), repeating-linear-gradient(90deg, rgba(232,220,198,0.06) 0 2px, transparent 2px 140px); animation: raster-zieht 40s linear infinite; will-change: transform; }
-@keyframes raster-zieht { from { transform: translate(0, 0); } to { transform: translate(140px, 140px); } }
+    repeating-linear-gradient(0deg, rgba(232,220,198,0.06) 0 2px, transparent 2px 140px), repeating-linear-gradient(90deg, rgba(232,220,198,0.06) 0 2px, transparent 2px 140px); -webkit-animation: raster-zieht 28s linear infinite; animation: raster-zieht 28s linear infinite; will-change: transform; }
+@-webkit-keyframes raster-zieht { from { -webkit-transform: translate3d(0,0,0); } to { -webkit-transform: translate3d(140px,140px,0); } }
+@keyframes raster-zieht { from { transform: translate3d(0,0,0); } to { transform: translate3d(140px,140px,0); } }
 body { margin: 0; }
 [hidden] { display: none !important; }
 img { max-width: 100%; }
@@ -738,6 +739,7 @@ details.mehr summary { margin: 0 auto; }
 </style>
 </head>
 <body>
+<div class="raster-ebene" aria-hidden="true"></div>
 <div id="intro">
   <div class="buchstaben" aria-hidden="true">
     <div class="schnipsel" style="left:1.82%;top:3.21%;width:26.06%;height:39.29%;--i:0;--p:#e6bc9e;--t:#b91f20;--d:-2deg;clip-path:polygon(0.0% 1.6%,10.0% 2.0%,20.0% 3.2%,30.0% 1.6%,40.0% 1.8%,50.0% 2.1%,60.0% 0.6%,70.0% 1.8%,80.0% 2.2%,90.0% 2.8%,100.0% 0.3%,99.1% 10.0%,99.7% 22.0%,97.6% 34.0%,97.9% 46.0%,99.9% 58.0%,97.1% 70.0%,97.1% 82.0%,98.0% 94.0%,100.0% 97.8%,90.0% 99.4%,80.0% 99.9%,70.0% 98.2%,60.0% 99.8%,50.0% 99.3%,40.0% 99.2%,30.0% 99.9%,20.0% 98.4%,10.0% 98.5%,0.0% 97.1%,1.6% 90.0%,1.9% 78.0%,1.5% 66.0%,2.0% 54.0%,1.4% 42.0%,0.8% 30.0%,3.0% 18.0%,3.0% 6.0%)"><span>N</span></div>
