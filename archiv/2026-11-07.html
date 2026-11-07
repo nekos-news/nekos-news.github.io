@@ -42,7 +42,13 @@ html { background: var(--grund); padding-top: env(safe-area-inset-top, 0px); pad
 body { margin: 0; }
 [hidden] { display: none !important; }
 img { max-width: 100%; }
-body { background: var(--grund); color: var(--anthrazit); font-family: var(--serif); font-size: 17px; line-height: 1.5; min-height: 100vh; position: relative; }
+body { background-color: var(--grund);
+  background-image: var(--faser),
+    repeating-linear-gradient(0deg, rgba(232,220,198,0.07) 0 1px, transparent 1px 28px),
+    repeating-linear-gradient(90deg, rgba(232,220,198,0.07) 0 1px, transparent 1px 28px),
+    repeating-linear-gradient(0deg, rgba(232,220,198,0.06) 0 2px, transparent 2px 140px),
+    repeating-linear-gradient(90deg, rgba(232,220,198,0.06) 0 2px, transparent 2px 140px);
+  background-attachment: fixed; color: var(--anthrazit); font-family: var(--serif); font-size: 17px; line-height: 1.5; min-height: 100vh; position: relative; }
 body::after { content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 1;
   background: var(--korn), radial-gradient(ellipse at center, transparent 55%, rgba(5,12,30,0.55) 100%); mix-blend-mode: multiply; }
 
@@ -52,7 +58,7 @@ body::after { content: ""; position: fixed; inset: 0; pointer-events: none; z-in
 
 /* Papierstück: Faser, Knitterlicht, gerissene Kante per clip-path, Schatten auf dem Blau */
 .papier { position: relative; isolation: isolate; --pc: var(--creme);
-  filter: drop-shadow(0 3px 0 rgba(0,0,0,0.18)) drop-shadow(0 10px 14px rgba(3,10,30,0.35)); }
+  filter: drop-shadow(0 4px 0 rgba(0,0,0,0.28)) drop-shadow(6px 16px 18px rgba(2,6,20,0.62)); }
 .papier::before { content: ""; position: absolute; inset: 0; z-index: -1; background-color: var(--pc);
   background-image: var(--faser), linear-gradient(115deg, rgba(255,255,255,0.18), transparent 40%, rgba(0,0,0,0.05) 70%, transparent); }
 .riss::before { clip-path: polygon(0 1.2%, 6% 0, 14% 0.9%, 23% 0.2%, 31% 1%, 42% 0, 51% 0.8%, 63% 0.1%, 72% 1.1%, 84% 0.2%, 93% 0.9%, 100% 0,
@@ -72,9 +78,6 @@ body::after { content: ""; position: fixed; inset: 0; pointer-events: none; z-in
 .erpress span:nth-child(3) { font-family: var(--serif); font-weight: 700; background: var(--hellgrau); color: var(--anthrazit); transform: rotate(-2deg); }
 .erpress span:nth-child(4) { font-family: var(--sans); font-weight: 800; background: var(--rost); color: var(--creme); transform: rotate(5deg); }
 
-.beispiel { justify-self: start; margin-top: 0.35rem; font-family: var(--sans); font-weight: 800; font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase;
-  background: var(--ocker); color: var(--anthrazit); padding: 0.25rem 0.6rem; transform: rotate(1.5deg); }
-
 .kurz { padding: 1.1rem 1.2rem; transform: rotate(0.6deg); --pc: var(--papier-3); }
 .kurz h2 { font-family: var(--sans); font-weight: 800; font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--rost); margin: 0 0 0.5rem;
   border-bottom: 3px solid var(--anthrazit); padding-bottom: 0.35rem; }
@@ -85,7 +88,7 @@ body::after { content: ""; position: fixed; inset: 0; pointer-events: none; z-in
 /* Rubrik-Zettel: einfarbig, kräftige Schrift */
 .zettel { justify-self: start; font-family: var(--sans); font-weight: 800; font-size: 1.05rem; letter-spacing: 0.12em; text-transform: uppercase;
   background: var(--rost); color: var(--creme); padding: 0.4rem 0.9rem 0.35rem; margin: 0.8rem 0 -0.3rem; transform: rotate(-1.5deg);
-  filter: drop-shadow(0 6px 8px rgba(3,10,30,0.35)); }
+  filter: drop-shadow(0 3px 0 rgba(0,0,0,0.25)) drop-shadow(4px 10px 12px rgba(2,6,20,0.6)); }
 .gruppe { display: grid; gap: 1.3rem; }
 
 article.papier { padding: 1rem 1.15rem 1.05rem; display: grid; gap: 0.5rem; scroll-margin: 6rem 0; }
@@ -107,8 +110,35 @@ article p { margin: 0; max-width: 65ch; }
 .quelle a { color: var(--braun); text-decoration-thickness: 1px; text-underline-offset: 2px; }
 article.liest { outline: 4px solid var(--ocker); outline-offset: 4px; }
 
-.ideen article h3 { font-size: 1.2rem; }
-.ideen article p { color: var(--braun); }
+.tipp { justify-self: start; font-family: var(--sans); font-weight: 800; font-size: 0.74rem; letter-spacing: 0.04em;
+  background: var(--anthrazit); color: var(--creme); padding: 0.28rem 0.6rem; transform: rotate(1deg); box-shadow: 0 2px 0 rgba(0,0,0,0.2); }
+.tipp::before { content: "★ "; color: var(--ocker); }
+section.gruppe, aside.kurz { scroll-margin-top: 4.5rem; }
+
+/* Sprungleiste oben: Papierschnipsel-Buttons */
+.sprung { position: sticky; top: 0; z-index: 4; display: flex; justify-content: center; gap: 0.3rem; flex-wrap: nowrap;
+  padding: calc(0.55rem + env(safe-area-inset-top, 0px)) 16px 0.55rem; }
+.sprung a { font-family: var(--sans); font-weight: 800; font-size: 0.66rem; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; white-space: nowrap;
+  color: var(--anthrazit); background-color: var(--creme); background-image: var(--faser); padding: 0.45rem 0.5rem 0.38rem;
+  filter: drop-shadow(0 3px 0 rgba(0,0,0,0.25)) drop-shadow(3px 8px 8px rgba(2,6,20,0.55)); }
+.sprung a:nth-child(1) { transform: rotate(-2deg); }
+.sprung a:nth-child(2) { transform: rotate(1.5deg); background-color: var(--papier-3); }
+.sprung a:nth-child(3) { transform: rotate(-1deg); background-color: var(--papier-2); }
+.sprung a:nth-child(4) { transform: rotate(2deg); background-color: var(--ocker); }
+.sprung a:nth-child(5) { transform: rotate(-1.5deg); background-color: var(--hellgrau); }
+.sprung a:active { transform: translateY(2px) rotate(0); }
+
+/* Intro: Papier-Sonne geht im Stop-Motion-Stil auf (ca. 1,4 s), dann blendet die Fläche weg */
+#intro { position: fixed; inset: 0; z-index: 20; display: grid; place-items: center; overflow: hidden; background: var(--grund);
+  background-image: var(--faser); animation: intro-weg 0.35s steps(3, end) 1.25s forwards; }
+#intro svg { width: min(62vw, 300px); height: auto; overflow: visible; }
+#intro .sonne { animation: sonne-auf 1.2s steps(7, end) both; transform-origin: 100px 120px; }
+#intro .strahlen { animation: strahlen 1.2s steps(7, end) both; transform-origin: 100px 120px; }
+#intro .papier-erde { filter: drop-shadow(0 -3px 0 rgba(0,0,0,0.25)); }
+@keyframes sonne-auf { from { transform: translateY(70px) rotate(-4deg); } to { transform: translateY(0) rotate(2deg); } }
+@keyframes strahlen { from { transform: translateY(70px) rotate(-20deg) scale(0.7); } to { transform: translateY(0) rotate(8deg) scale(1); } }
+@keyframes intro-weg { to { opacity: 0; visibility: hidden; } }
+@media (prefers-reduced-motion: reduce) { #intro { display: none; } }
 
 footer { padding: 0.9rem 1.1rem; transform: rotate(0.4deg); --pc: var(--hellgrau); font-family: var(--sans); font-size: 0.78rem; display: grid; gap: 0.3rem; }
 
@@ -124,16 +154,38 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--ocker); outline
 </style>
 </head>
 <body>
+<div id="intro" aria-hidden="true">
+  <svg viewBox="0 0 200 200">
+    <defs><clipPath id="himmel"><rect x="-60" y="-60" width="320" height="196"/></clipPath></defs>
+    <g clip-path="url(#himmel)">
+      <g class="strahlen" fill="#D99A4E">
+        <polygon points="96,40 104,40 101,18"/><polygon points="96,200 104,200 99,222"/>
+        <polygon points="20,116 20,124 -2,121"/><polygon points="180,116 180,124 203,119"/>
+        <polygon points="40,62 46,56 30,44"/><polygon points="160,62 154,56 171,45"/>
+        <polygon points="68,46 76,43 70,24"/><polygon points="132,46 124,43 131,25"/>
+        <polygon points="30,92 33,84 12,80"/><polygon points="170,92 167,84 188,79"/>
+      </g>
+      <g class="sonne">
+        <path d="M100 62 L114 64 L127 71 L136 82 L141 96 L142 110 L138 124 L130 136 L118 144 L104 147 L90 146 L77 140 L66 130 L60 117 L58 102 L62 88 L70 76 L82 67 Z" fill="#D99A4E"/>
+        <path d="M100 76 L111 78 L121 85 L127 96 L128 108 L124 120 L115 128 L103 132 L90 130 L80 123 L74 112 L73 99 L78 88 L87 80 Z" fill="#C8603A"/>
+      </g>
+    </g>
+    <path class="papier-erde" d="M-600 137 L-300 133 L-120 136 L-40 132 L-20 135 L5 137 L30 132 L55 136 L80 131 L105 135 L130 131 L155 136 L180 132 L205 135 L240 132 L320 136 L500 133 L800 136 L800 1400 L-600 1400 Z" fill="#E8DCC6"/>
+  </svg>
+</div>
+<script>setTimeout(function(){var i=document.getElementById('intro');if(i)i.remove();},2000);</script>
+<nav class="sprung" aria-label="Rubriken">
+  <a href="#kurz">Kurz</a><a href="#deutschland">Deutschland</a><a href="#welt">Welt</a><a href="#fuer-dich" id="sprung-tipp">Für dich</a><a href="/morgenzeitung/archiv/">Archiv</a>
+</nav>
 <!-- AUSGABE-START -->
 <div class="wrap">
   <header class="kopf papier riss">
     <div class="zeile"><span>Samstag, <span class="erpress" aria-label="7.11."><span>0</span><span>7</span><span>1</span><span>1</span></span></span><span>Ausgabe 7 Uhr · ca. 5 Min.</span></div>
     <h1>Nekos Morgenzeitung</h1>
     <span class="unter">Deutschland und die Welt, kurz und sachlich</span>
-    <span class="beispiel">Beispiel-Ausgabe</span>
   </header>
 
-  <aside class="kurz papier riss" data-lesen>
+  <aside class="kurz papier riss" id="kurz" data-lesen>
     <h2>Das Wichtigste in 30 Sekunden</h2>
     <ul>
       <li>USA greifen erneut Ziele im Iran an, Gespräche laufen trotzdem weiter.</li>
@@ -144,7 +196,7 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--ocker); outline
     </ul>
   </aside>
 
-  <section class="gruppe">
+  <section class="gruppe" id="deutschland">
     <h2 class="zettel">Deutschland</h2>
     <article class="papier riss" data-lesen>
       <span class="rubrik">Bundespolitik</span>
@@ -166,6 +218,7 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--ocker); outline
       <p class="fakt"><b>Fakt</b>Vor dem Oberlandesgericht Düsseldorf hat am Freitag der Prozess gegen vier mutmaßliche Anführer der verbotenen Reichsbürger-Gruppe begonnen.</p>
       <p class="einordnung"><b>Einordnung</b>Die Gruppe hatte einen eigenen „Staat“ ausgerufen. Der Prozess dürfte länger dauern.</p>
       <span class="marke">Beginn angekündigt, Verlauf noch nicht bestätigt</span>
+      <span class="tipp">Würde deinen Zuschauern vermutlich gefallen</span>
       <p class="quelle"><a href="https://www.news.de/panorama/860164168/6-november-2026-news-themen-des-tages-was-passiert-heute-in-deutschland-und-der-welt-das-ist-heute-am-06-11-2026-wichtig-in-den-nachrichten-aus-politik-wirtschaft-sport-und-co/1/">news.de (dpa)</a></p>
     </article>
     <article class="papier riss" data-lesen>
@@ -183,7 +236,7 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--ocker); outline
     </article>
   </section>
 
-  <section class="gruppe">
+  <section class="gruppe" id="welt">
     <h2 class="zettel">Welt</h2>
     <article class="papier riss" data-lesen>
       <span class="rubrik">Nahost</span>
@@ -206,6 +259,7 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--ocker); outline
       <p class="fakt"><b>Fakt</b>Nach Hochrechnungen gewinnen die Demokraten die Mehrheit im Repräsentantenhaus. Laut CNBC auch im Senat, einzelne Rennen werden aber noch ausgezählt.</p>
       <p class="einordnung"><b>Einordnung</b>Trump müsste dann gegen eine Mehrheit im Kongress regieren. Seine Zustimmungswerte liegen laut CBS bei 38 Prozent.</p>
       <span class="marke">Senat: Endergebnis noch offen</span>
+      <span class="tipp">Würde deinen Zuschauern vermutlich gefallen</span>
       <p class="quelle"><a href="https://www.cbsnews.com/live-updates/house-election-results-2026/">CBS News</a> · <a href="https://www.cnbc.com/2026/11/04/2026-midterm-election-results-live-updates.html">CNBC</a></p>
     </article>
     <article class="papier riss" data-lesen>
@@ -224,23 +278,9 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--ocker); outline
     </article>
   </section>
 
-  <section class="gruppe ideen">
-    <h2 class="zettel">Video-Ideen</h2>
-    <article class="papier riss" data-lesen>
-      <span class="rubrik">Für Nekos_news</span>
-      <h3>Reichsbürger vor Gericht, direkt in Düsseldorf</h3>
-      <p>Lokaler Aufhänger, klare Geschichte: Was ist das „Königreich Deutschland“ und warum steht es vor Gericht?</p>
-    </article>
-    <article class="papier riss" data-lesen>
-      <span class="rubrik">Für Nekos_news</span>
-      <h3>Fünf Jahre Haft für K.-o.-Tropfen</h3>
-      <p>Betrifft viele junge Leute beim Feiern. Gut erklärbar: Was ändert sich und was war vorher?</p>
-    </article>
-  </section>
-
   <footer class="papier riss">
     <span>Zusammengestellt von Claude aus Meldungen der letzten 24 Stunden. Eigene Kurzfassungen, die Details stehen in den verlinkten Quellen.</span>
-    <span>Ocker-Zettel: unbestätigt oder noch offen.</span>
+    <span>Ocker-Zettel: unbestätigt oder noch offen. ★ Schwarzer Zettel: passt vermutlich zu den Themen, die bei deinen Zuschauern gut ankommen.</span>
   </footer>
 </div>
 <!-- AUSGABE-ENDE -->
@@ -252,6 +292,10 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--ocker); outline
 </div>
 
 <script>
+(function () {
+  var t = document.querySelector('article .tipp'), a = document.getElementById('sprung-tipp');
+  if (t) { t.closest('article').id = 'fuer-dich'; } else if (a) { a.remove(); }
+})();
 (function () {
   var synth = window.speechSynthesis;
   var btn = document.getElementById('btn-lesen');
