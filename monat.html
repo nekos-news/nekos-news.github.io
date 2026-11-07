@@ -980,7 +980,9 @@ html.kontrast .leiste { background: none !important; border: 0 !important; }
 (function () {
   var raster = document.getElementById('raster'); if (!raster) return;
   fetch('/daten/content.json', { cache: 'no-cache' }).then(function (r) { return r.json(); }).then(function (alle) {
-    var themen = []; alle.forEach(function (x) { x.themen.forEach(function (t) { if (themen.indexOf(t) < 0) themen.push(t); }); });
+    /* Feste, kurze Themenliste (Wunsch Nicolas 2026-11-08: weniger Kategorien, kein „Politik“ – ist eh alles Politik) */
+    var REIHE = ['AfD & Rechts', 'Geld & Gerechtigkeit', 'Gesellschaft', 'Welt', 'Geschichte', 'Persönlich'];
+    var themen = REIHE.filter(function (t) { return alle.some(function (x) { return x.themen.indexOf(t) >= 0; }); });
     var filter = document.getElementById('filter');
     ['Alle'].concat(themen).forEach(function (t, i) {
       var b = document.createElement('button'); b.type = 'button'; b.textContent = t; b.setAttribute('aria-pressed', i === 0);
