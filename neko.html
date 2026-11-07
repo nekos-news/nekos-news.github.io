@@ -453,6 +453,11 @@ html.kontrast .erpress span:nth-child(2)::after, html.kontrast .erpress span:nth
 .kurz h2 { margin-right: 4.6rem !important; }
 .kurz .neko { position: absolute; right: 0.7rem; top: 0.4rem; width: 5.2rem; height: auto; pointer-events: none; }
 html.kontrast .kurz .zeile { color: #000; }
+/* Shop-Produkte */
+.produktbilder { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+.produktbilder.eins { grid-template-columns: 1fr; }
+.produktbilder img { display: block; width: 100%; height: auto; border: 0.25rem solid var(--creme); box-shadow: 2px 3px 0 rgba(46,43,42,0.4); }
+.produktbilder img:nth-child(1) { transform: rotate(-1.2deg); } .produktbilder img:nth-child(2) { transform: rotate(1deg); }
 </style>
 </head>
 <body>
