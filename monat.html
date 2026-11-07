@@ -609,6 +609,18 @@ html.leicht article .fakt, html.leicht article .einordnung, html.leicht article 
 .vita .vita-kanaele { margin-top: 0.6rem; gap: 0.55rem; }
 .kanaele .anfrage { background: var(--anthrazit); transform: rotate(1deg); }
 html.kontrast .kanaele .anfrage { background: #fff !important; color: #000 !important; }
+/* Drei Aufklapper */
+.leiste-oben .news { position: relative; }
+.neko-menue .news-knopf { background-color: var(--anthrazit) !important; color: var(--creme) !important; transform: rotate(-1.5deg); }
+.shop-menue .news-knopf { background-color: var(--creme) !important; color: var(--anthrazit) !important; transform: rotate(1.5deg); }
+.leiste-oben .news-wahl { left: 0; }
+.leiste-oben .shop-menue .news-wahl { left: auto; right: -2.5rem; }
+@media (max-width: 400px) { .news-knopf { padding-inline: 0.5rem !important; font-size: 0.72rem !important; } }
+/* Leiste ohne Kasten: Knöpfe schweben einzeln */
+.leiste { background: none !important; background-image: none !important; filter: none !important; padding: 0 !important; gap: 0.6rem !important; }
+.leiste button { filter: drop-shadow(0 3px 0 rgba(0,0,0,0.25)) drop-shadow(3px 8px 8px rgba(2,6,20,0.55)); }
+.leiste .status:not(:empty) { background: var(--creme); padding: 0.2rem 0.4rem; }
+html.kontrast .leiste { background: none !important; border: 0 !important; }
 </style>
 </head>
 <body>
@@ -689,14 +701,24 @@ html.kontrast .kanaele .anfrage { background: #fff !important; color: #000 !impo
 </script>
 <div class="kopfband" aria-hidden="true"></div>
 <div class="leiste-oben">
-  <a href="/neko.html" class="neko-link">Neko</a>
+<div class="news neko-menue">
+    <button class="news-knopf" type="button" aria-expanded="false">Neko ▾</button>
+    <div class="news-wahl">
+      <a href="/neko.html#neko">Über mich</a><a href="/neko.html#content">Videos</a><a href="mailto:neko.anfragen@gmail.com?subject=Anfrage%20an%20Neko">Anfragen</a>
+    </div>
+  </div>
   <div class="news">
-    <button class="news-knopf" type="button" aria-expanded="false" aria-controls="news-wahl">News ▾</button>
+    <button class="news-knopf" type="button" aria-expanded="false">News ▾</button>
     <div class="news-wahl" id="news-wahl">
       <a href="/">Heute</a><a href="/woche.html">Diese Woche</a><a href="/monat.html">Dieser Monat</a><a href="/jahr.html">Dieses Jahr</a>
     </div>
   </div>
-  <a href="/shop.html">Shop</a>
+<div class="news shop-menue">
+    <button class="news-knopf" type="button" aria-expanded="false">Shop ▾</button>
+    <div class="news-wahl">
+      <a href="/shop.html">Alle Produkte</a><a href="/shop.html#hoodie">Hoodie</a><a href="/shop.html#kappe">Kappe</a><a href="/shop.html#sticker">Sticker</a>
+    </div>
+  </div>
 </div>
 <div class="hilfe-rechts">  <div class="hilfe">
   <button class="hilfe-knopf" type="button" aria-expanded="false" aria-label="Hilfe und Barrierefreiheit"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="4.2" r="2.2"/><path d="M4 7.6 L20 7.6 L19.4 9.6 L14.2 10.4 L14.2 13.6 L16.6 21.2 L14.5 21.9 L12 15.2 L9.5 21.9 L7.4 21.2 L9.8 13.6 L9.8 10.4 L4.6 9.6 Z"/></svg></button>
@@ -1013,14 +1035,17 @@ html.kontrast .kanaele .anfrage { background: #fff !important; color: #000 !impo
     var n; do { n = Math.floor(Math.random() * 12); } while (n === letzte); letzte = n; h.classList.add('bef-' + n);
   });
 })();
-/* News-Auswahl */
+/* Aufklapp-Menüs oben (Neko, News, Shop) */
 (function () {
-  var n = document.querySelector('.news'), b = n && n.querySelector('.news-knopf');
-  if (!b) return;
-  b.addEventListener('click', function (e) { e.stopPropagation(); var o = n.classList.toggle('news-offen'); b.setAttribute('aria-expanded', o); });
-  document.addEventListener('click', function (e) { if (!n.contains(e.target)) { n.classList.remove('news-offen'); b.setAttribute('aria-expanded', false); } });
+  var alle = Array.prototype.slice.call(document.querySelectorAll('.leiste-oben .news'));
+  function zu(ausser) { alle.forEach(function (n) { if (n !== ausser) { n.classList.remove('news-offen'); n.querySelector('.news-knopf').setAttribute('aria-expanded', false); } }); }
+  alle.forEach(function (n) {
+    var b = n.querySelector('.news-knopf');
+    b.addEventListener('click', function (e) { e.stopPropagation(); zu(n); var o = n.classList.toggle('news-offen'); b.setAttribute('aria-expanded', o); });
+  });
+  document.addEventListener('click', function (e) { if (!e.target.closest('.leiste-oben .news')) zu(null); });
   var pfad = location.pathname.replace(/index\.html$/, '');
-  n.querySelectorAll('.news-wahl a').forEach(function (a) { if (a.getAttribute('href') === pfad) a.setAttribute('aria-current', 'page'); });
+  document.querySelectorAll('.news-wahl a').forEach(function (a) { if (a.getAttribute('href') === pfad) a.setAttribute('aria-current', 'page'); });
 })();
 /* Burger-Menü */
 (function () {

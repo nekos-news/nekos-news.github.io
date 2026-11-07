@@ -68,21 +68,21 @@ def shop():
     inhalt = kopf("Vorschau", "Shop", "Bald bestellbar: Hoodie, Kappe und Sticker", "neko_lupe.png") + '''
   <section class="gruppe" id="shop">
     <h2 class="zettel">Kommt bald</h2>
-    <article class="papier riss produkt">
+    <article class="papier riss produkt" id="hoodie">
       <span class="rubrik">Hoodie · Vorschau</span>
       <h3>STOP – F*cking Fascists</h3>
       <div class="produktbilder"><img src="bilder/shop/hoodie_hinten.jpg" alt="Hoodie Rückseite mit Stoppschild „STOP – F*cking Fascists“ und #NIEWIEDERISTJETZT" loading="lazy"><img src="bilder/shop/hoodie_vorne.jpg" alt="Hoodie Vorderseite, dazu Kappe „MENSCH.“" loading="lazy"></div>
       <p>Schwarzer Hoodie mit großem Stoppschild auf dem Rücken, weißen Streifen an Kapuze und Ärmeln und #NIEWIEDERISTJETZT.</p>
       <span class="marke">Noch nicht bestellbar</span>
     </article>
-    <article class="papier riss produkt">
+    <article class="papier riss produkt" id="kappe">
       <span class="rubrik">Kappe · Vorschau</span>
       <h3>MENSCH.</h3>
       <div class="produktbilder eins"><img src="bilder/shop/kappe.jpg" alt="Schwarze Kappe mit Aufschrift „MENSCH.“" loading="lazy"></div>
       <p>Schwarze Kappe mit weißer Aufschrift „MENSCH.“.</p>
       <span class="marke">Noch nicht bestellbar</span>
     </article>
-    <article class="papier riss produkt">
+    <article class="papier riss produkt" id="sticker">
       <span class="rubrik">Sticker · Vorschau</span>
       <h3>You are the product</h3>
       <div class="produktbilder eins sticker"><img src="bilder/shop/sticker_product.jpg" alt="Sticker: „You are the product“ mit Strichcode" loading="lazy"></div>
