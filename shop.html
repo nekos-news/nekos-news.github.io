@@ -155,11 +155,24 @@ body:not(.los) .logo-oben { opacity: 0; }
 #intro .buchstaben { position: relative; width: min(74vw, 320px); aspect-ratio: 330 / 280; will-change: transform;
   filter: drop-shadow(0 3px 0 rgba(0,0,0,0.3)) drop-shadow(4px 10px 12px rgba(2,6,20,0.6)); }
 #intro .buchstaben img { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0;
-  animation: buchstabe-plopp 0.3s steps(3, end) both, kochen 1s steps(1, end) infinite;
-  animation-delay: calc(var(--i) * 0.07s), calc(0.35s + var(--i) * 0.11s); }
-/* Stop-Motion: harte Bildwechsel, kein weiches Gleiten */
-@keyframes buchstabe-plopp { 0% { opacity: 0; transform: scale(0.3) rotate(-12deg); } 34% { opacity: 1; transform: scale(1.25) rotate(6deg); } 67% { opacity: 1; transform: scale(0.94) rotate(-3deg); } 100% { opacity: 1; transform: none; } }
-@keyframes kochen { 0% { opacity: 1; transform: rotate(0.8deg) translate(0.5px, -1px); } 33% { opacity: 1; transform: rotate(-0.7deg) translate(-1px, 0.5px); } 66% { opacity: 1; transform: rotate(0.3deg) translate(0.5px, 1px); } }
+  clip-path: inset(var(--t) var(--r) var(--b) var(--l));
+  animation: buchstabe-plopp 0.36s steps(1, end) both, kochen 1s steps(1, end) infinite;
+  animation-delay: calc(var(--i) * 0.07s), calc(0.4s + var(--i) * 0.11s); }
+/* Stop-Motion wie ausgetauschte Papierstücke: jedes Bild leicht andere Form (Schnittkante), Größe, Drehung und Farbton */
+@keyframes buchstabe-plopp {
+  0%   { opacity: 1; transform: scale(0.45) rotate(-11deg); filter: hue-rotate(-14deg) brightness(0.9) saturate(1.15);
+         clip-path: inset(calc(var(--t) + 3%) calc(var(--r) + 2%) calc(var(--b) + 1%) calc(var(--l) + 3%) round 6px); }
+  25%  { opacity: 1; transform: scale(1.22) rotate(6deg); filter: hue-rotate(10deg) brightness(1.08) saturate(0.9);
+         clip-path: inset(calc(var(--t) - 1%) calc(var(--r) + 1%) calc(var(--b) + 2%) calc(var(--l) - 0.5%) round 2px); }
+  50%  { opacity: 1; transform: scale(0.93) rotate(-3.5deg); filter: hue-rotate(-6deg) brightness(0.96) saturate(1.08);
+         clip-path: inset(calc(var(--t) + 1.5%) calc(var(--r) - 0.5%) calc(var(--b) - 0.5%) calc(var(--l) + 1.5%) round 4px); }
+  75%  { opacity: 1; transform: scale(1.04) rotate(1.5deg); filter: hue-rotate(5deg) brightness(1.03);
+         clip-path: inset(calc(var(--t) + 0.5%) calc(var(--r) + 1%) calc(var(--b) + 0.5%) calc(var(--l) + 0.5%)); }
+  100% { opacity: 1; transform: none; filter: none; clip-path: inset(var(--t) var(--r) var(--b) var(--l)); } }
+@keyframes kochen {
+  0%  { opacity: 1; transform: rotate(0.8deg) translate(0.5px, -1px); filter: hue-rotate(4deg) brightness(1.02); clip-path: inset(calc(var(--t) + 0.6%) var(--r) var(--b) calc(var(--l) + 0.4%)); }
+  33% { opacity: 1; transform: rotate(-0.7deg) translate(-1px, 0.5px); filter: hue-rotate(-5deg) brightness(0.97); clip-path: inset(var(--t) calc(var(--r) + 0.6%) calc(var(--b) + 0.5%) var(--l)); }
+  66% { opacity: 1; transform: rotate(0.3deg) translate(0.5px, 1px); filter: none; clip-path: inset(var(--t) var(--r) var(--b) var(--l)); } }
 @keyframes zettel-landet { 0% { opacity: 0; transform: translateY(-40px) rotate(-10deg) scale(1.25); } 40% { opacity: 1; }
   80% { transform: translateY(3px) rotate(-0.5deg) scale(0.98); } 100% { opacity: 1; transform: rotate(-1.5deg); } }
 /* Reinfliegen nach dem Intro */
@@ -351,15 +364,15 @@ html.ruhig .reel { opacity: 1; transform: none; }
 <body>
 <div id="intro" aria-hidden="true">
   <div class="buchstaben">
-    <img src="bilder/logo_buchstaben.png" alt="" style="clip-path:inset(0.00% 74.55% 52.86% 3.03%);transform-origin:14.2% 23.6%;--i:0">
-    <img src="bilder/logo_buchstaben.png" alt="" style="clip-path:inset(0.00% 57.27% 52.86% 25.45%);transform-origin:34.1% 23.6%;--i:1">
-    <img src="bilder/logo_buchstaben.png" alt="" style="clip-path:inset(0.00% 36.97% 52.86% 42.73%);transform-origin:52.9% 23.6%;--i:2">
-    <img src="bilder/logo_buchstaben.png" alt="" style="clip-path:inset(0.00% 20.30% 52.86% 63.03%);transform-origin:71.4% 23.6%;--i:3">
-    <img src="bilder/logo_buchstaben.png" alt="" style="clip-path:inset(0.00% 1.82% 52.86% 79.70%);transform-origin:88.9% 23.6%;--i:4">
-    <img src="bilder/logo_buchstaben.png" alt="" style="clip-path:inset(47.14% 74.24% 0.00% 1.82%);transform-origin:13.8% 73.6%;--i:5">
-    <img src="bilder/logo_buchstaben.png" alt="" style="clip-path:inset(47.14% 51.52% 0.00% 25.76%);transform-origin:37.1% 73.6%;--i:6">
-    <img src="bilder/logo_buchstaben.png" alt="" style="clip-path:inset(47.14% 25.76% 0.00% 48.48%);transform-origin:61.4% 73.6%;--i:7">
-    <img src="bilder/logo_buchstaben.png" alt="" style="clip-path:inset(47.14% 4.85% 0.00% 74.24%);transform-origin:84.7% 73.6%;--i:8">
+    <img src="bilder/logo_buchstaben.png" alt="" style="--t:0.00%;--r:74.55%;--b:52.86%;--l:3.03%;transform-origin:14.2% 23.6%;--i:0">
+    <img src="bilder/logo_buchstaben.png" alt="" style="--t:0.00%;--r:57.27%;--b:52.86%;--l:25.45%;transform-origin:34.1% 23.6%;--i:1">
+    <img src="bilder/logo_buchstaben.png" alt="" style="--t:0.00%;--r:36.97%;--b:52.86%;--l:42.73%;transform-origin:52.9% 23.6%;--i:2">
+    <img src="bilder/logo_buchstaben.png" alt="" style="--t:0.00%;--r:20.30%;--b:52.86%;--l:63.03%;transform-origin:71.4% 23.6%;--i:3">
+    <img src="bilder/logo_buchstaben.png" alt="" style="--t:0.00%;--r:1.82%;--b:52.86%;--l:79.70%;transform-origin:88.9% 23.6%;--i:4">
+    <img src="bilder/logo_buchstaben.png" alt="" style="--t:47.14%;--r:74.24%;--b:0.00%;--l:1.82%;transform-origin:13.8% 73.6%;--i:5">
+    <img src="bilder/logo_buchstaben.png" alt="" style="--t:47.14%;--r:51.52%;--b:0.00%;--l:25.76%;transform-origin:37.1% 73.6%;--i:6">
+    <img src="bilder/logo_buchstaben.png" alt="" style="--t:47.14%;--r:25.76%;--b:0.00%;--l:48.48%;transform-origin:61.4% 73.6%;--i:7">
+    <img src="bilder/logo_buchstaben.png" alt="" style="--t:47.14%;--r:4.85%;--b:0.00%;--l:74.24%;transform-origin:84.7% 73.6%;--i:8">
   </div>
 </div>
 <script>
