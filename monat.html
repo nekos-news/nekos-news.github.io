@@ -392,6 +392,34 @@ html.ruhig .reel { opacity: 1; transform: none; }
 .hilfe-feld button { background: transparent !important; border: 2px solid var(--anthrazit) !important; color: var(--anthrazit) !important; }
 .hilfe-feld button::after { content: none !important; }
 .hilfe-feld button[aria-pressed="true"] { background: var(--anthrazit) !important; color: var(--creme) !important; }
+/* Starker Kontrast: überall Schwarz/Weiß, keine Texturen, keine Schrägen */
+html.kontrast, html.kontrast body { background: #000 !important; background-image: none !important; }
+html.kontrast body::before { background: #000 !important; }
+html.kontrast .hinweis, html.kontrast .menue nav, html.kontrast .hilfe-feld, html.kontrast .news-wahl a, html.kontrast .leiste,
+html.kontrast .leiste-oben > a, html.kontrast .menue-knopf, html.kontrast .sicht, html.kontrast .these, html.kontrast .marke, html.kontrast .reel,
+html.kontrast .reel .aufrufe, html.kontrast .filter button, html.kontrast .kanaele a, html.kontrast footer, html.kontrast .liste-info {
+  background: #fff !important; background-image: none !important; color: #000 !important; border: 2px solid #000; transform: none !important; filter: none !important; clip-path: none !important; }
+html.kontrast .news-knopf, html.kontrast .hilfe-knopf, html.kontrast #btn-lesen, html.kontrast .zettel, html.kontrast .mitdenken,
+html.kontrast .hoeren button, html.kontrast .filter button[aria-pressed="true"], html.kontrast .hilfe-feld button[aria-pressed="true"] {
+  background: #000 !important; background-image: none !important; color: #fff !important; outline: 2px solid #fff; transform: none !important; filter: none !important; }
+html.kontrast .zettel::before { background: #000 !important; }
+html.kontrast .hoeren button::before { border-left-color: #fff !important; }
+html.kontrast .hoeren .huelle { filter: none !important; }
+html.kontrast .leiste .hoch { background: #000 !important; clip-path: none !important; width: 2.6rem; color: #fff !important; font-size: 1rem !important; }
+html.kontrast .leiste .hoch::after { content: "↑"; color: #fff; }
+html.kontrast .mitdenken b, html.kontrast .hinweis b, html.kontrast .these b, html.kontrast .gegen b, html.kontrast .fakt b, html.kontrast .einordnung b,
+html.kontrast article .rubrik, html.kontrast .kurz h2, html.kontrast .sicht h4, html.kontrast .kopf .zeile { color: #000 !important; }
+html.kontrast .mitdenken b { color: #ffd400 !important; }
+html.kontrast a { color: #000 !important; text-decoration: underline !important; }
+html.kontrast .kurz li a::after { background: #000 !important; color: #fff !important; clip-path: none !important; }
+html.kontrast .reels-kopf a, html.kontrast .leiste-oben .neko-link { color: #000 !important; }
+html.kontrast .reels-kopf a { color: #fff !important; }
+html.kontrast .logo-oben { filter: none !important; }
+html.kontrast .kanaele a { color: #000 !important; }
+html.kontrast .kanaele svg { fill: #000; filter: none !important; }
+html.kontrast .erpress span { background: #000 !important; color: #fff !important; transform: none !important; }
+html.kontrast .kopf .neko { filter: none !important; }
+html.kontrast .leiste { transform: translateX(-50%) !important; }
 </style>
 </head>
 <body>
@@ -442,6 +470,7 @@ html.ruhig .reel { opacity: 1; transform: none; }
     var y = Array.prototype.map.call(teile, function () { return 0; });
     var letzte = window.scrollY, laeuft = false;
     function schritt() {
+      if (document.documentElement.classList.contains('ruhig')) { teile.forEach(function (t, k) { y[k] = 0; t.style.translate = ''; }); laeuft = false; return; }
       var dy = window.scrollY - letzte; letzte = window.scrollY;
       var unten = dy >= 0, bewegt = Math.abs(dy) > 0.1;
       var idx = []; for (var k = 0; k < teile.length; k++) idx.push(k); if (!unten) idx.reverse();
@@ -477,8 +506,8 @@ html.ruhig .reel { opacity: 1; transform: none; }
     <button type="button" data-hilfe="gross" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M3 19 L8 5 L10 5 L15 19 L12.6 19 L11.5 15.6 L6.5 15.6 L5.4 19 Z M7.2 13.5 L10.8 13.5 L9 8 Z"/><path d="M17 9 h2 v-2 h1.6 v2 h2 v1.6 h-2 v2 h-1.6 v-2 h-2 Z"/></svg><span>Größer</span></button>
     <button type="button" data-hilfe="lesbar" aria-pressed="false"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><path d="M12 5 C6.5 5 2.6 9.2 1.5 12 C2.6 14.8 6.5 19 12 19 C17.5 19 21.4 14.8 22.5 12 C21.4 9.2 17.5 5 12 5 Z M12 7 C16 7 19 10 20.3 12 C19 14 16 17 12 17 C8 17 5 14 3.7 12 C5 10 8 7 12 7 Z"/></svg><span>Gut lesbar</span></button>
     <button type="button" data-hilfe="kontrast" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M12 2.5 A9.5 9.5 0 1 0 12 21.5 A9.5 9.5 0 1 0 12 2.5 Z M12 4.5 V19.5 A7.5 7.5 0 0 1 12 4.5 Z"/></svg><span>Kontrast</span></button>
-    <button type="button" data-hilfe="ruhig" aria-pressed="false"><svg viewBox="0 0 24 24"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg><span>Keine Bewegung</span></button>
-    <p>Vorlesen: der orange Knopf an jedem Artikel, unten „Alles anhören“.</p>
+    <button type="button" data-hilfe="ruhig" aria-pressed="false"><svg viewBox="0 0 24 24"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg><span>Animationen aus</span></button>
+    <p><b>Animationen aus</b> stoppt Intro, Wackeln und Nachziehen beim Scrollen – hilft, wenn Bewegung Schwindel macht. Vorlesen: der orange Knopf an jedem Artikel.</p>
   </div>
 </div>
 </div>
