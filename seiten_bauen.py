@@ -65,30 +65,36 @@ def bestenliste():
         seite("\n".join(teile), titel, datei)
 
 def shop():
-    inhalt = kopf("Vorschau", "Shop", "Bald bestellbar: Hoodie, Kappe und Sticker", "neko_lupe.png") + '''
+    """Shop-Vorschau (Stand 2026-11-08): kein Kopf, direkt „Kommt bald“; Bilder verpixelt wie noch nicht geladen, weißes Sprüh-„Coming Soon“ mit Tropfen und Ladebalken. Preise sind Beispielpreise."""
+    inhalt = '''<div class="wrap">
   <section class="gruppe" id="shop">
-    <h2 class="zettel">Kommt bald</h2>
+    <h2 class="zettel zettel-gross">Kommt bald</h2>
     <article class="papier riss produkt" id="hoodie">
       <h3>STOP – F*cking Fascists</h3>
-      <div class="produktbilder"><img src="bilder/shop/hoodie_hinten.jpg" alt="Hoodie Rückseite mit Stoppschild „STOP – F*cking Fascists“ und #NIEWIEDERISTJETZT" loading="lazy"><img src="bilder/shop/hoodie_vorne.jpg" alt="Hoodie Vorderseite, dazu Kappe „MENSCH.“" loading="lazy"></div>
-      <p data-einfach="Ein schwarzer Pulli mit Kapuze. Hinten ist ein großes Stopp-Schild gegen Nazis.">Schwarzer Hoodie mit großem Stoppschild auf dem Rücken, weißen Streifen an Kapuze und Ärmeln und #NIEWIEDERISTJETZT.</p>
-      <span class="marke" data-einfach="Kann man noch nicht kaufen">Noch nicht bestellbar</span>
+      HOODIE
+      <p class="slogan">Eine klare Linie. Und die überfährt man nicht.</p>
+      <p data-einfach="Ein schwarzer Pulli mit Kapuze. Hinten ist ein großes Stopp-Schild gegen Nazis. Die weißen Streifen sehen aus wie Streifen auf der Straße.">Schwarzer Hoodie mit großem Stoppschild auf dem Rücken. Die weißen Streifen an Kapuze und Ärmeln sind den Mittelstreifen auf der Straße nachempfunden: Sie markieren die Linie, die nicht überschritten wird. Dazu #NIEWIEDERISTJETZT.</p>
+      <div class="preiszeile"><span class="preis">59 €</span><span class="marke" data-einfach="Kann man noch nicht kaufen">Noch nicht bestellbar</span></div>
     </article>
     <article class="papier riss produkt" id="kappe">
       <h3>MENSCH.</h3>
-      <div class="produktbilder eins"><img src="bilder/shop/kappe.jpg" alt="Schwarze Kappe mit Aufschrift „MENSCH.“" loading="lazy"></div>
-      <p data-einfach="Eine schwarze Mütze mit Schirm. Darauf steht: MENSCH.">Schwarze Kappe mit weißer Aufschrift „MENSCH.“.</p>
-      <span class="marke" data-einfach="Kann man noch nicht kaufen">Noch nicht bestellbar</span>
+      KAPPE
+      <p class="slogan">Ein Wort. Mehr muss man nicht erklären.</p>
+      <p data-einfach="Eine schwarze Mütze mit Schirm. Darauf steht: MENSCH.">Schwarze Kappe mit weißem Schriftzug „MENSCH.“ – für alle, die nicht lange diskutieren wollen, auf welcher Seite sie stehen.</p>
+      <div class="preiszeile"><span class="preis">29 €</span><span class="marke" data-einfach="Kann man noch nicht kaufen">Noch nicht bestellbar</span></div>
     </article>
     <article class="papier riss produkt" id="sticker">
       <h3>You are the product</h3>
-      <div class="produktbilder eins sticker"><img src="bilder/shop/sticker_product.jpg" alt="Sticker: „You are the product“ mit Strichcode" loading="lazy"></div>
-      <p data-einfach="Ein Aufkleber. Darauf steht: Du bist das Produkt.">Schwarz-weißer Sticker mit Strichcode: „You are the product“.</p>
-      <span class="marke" data-einfach="Kann man noch nicht kaufen">Noch nicht bestellbar</span>
+      STICKER
+      <p class="slogan">Kostenlos ist es nur, solange du die Ware bist.</p>
+      <p data-einfach="Ein Aufkleber. Darauf steht: Du bist das Produkt.">Schwarz-weißer Sticker mit Strichcode. Klebt auf Laptop, Laterne und Handyhülle und erinnert daran, wer bei kostenlosen Apps eigentlich verkauft wird.</p>
+      <div class="preiszeile"><span class="preis">3 €</span><span class="marke" data-einfach="Kann man noch nicht kaufen">Noch nicht bestellbar</span></div>
     </article>
   </section>
   <button type="button" class="wagen" aria-label="Einkaufswagen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 3 H5 L7.4 14.2 A1.5 1.5 0 0 0 8.9 15.4 H18.6 A1.5 1.5 0 0 0 20 14.3 L21.8 7 H6.3 M9 20.5 A1.6 1.6 0 1 0 9 17.3 A1.6 1.6 0 1 0 9 20.5 Z M18 20.5 A1.6 1.6 0 1 0 18 17.3 A1.6 1.6 0 1 0 18 20.5 Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg><span class="anzahl">0</span><span class="wagen-info" hidden>Bald bestellbar</span></button>
 ''' + FUSS
+    inhalt = (inhalt.replace("HOODIE", '''HOODIEBILDER''').replace("KAPPE", '''KAPPEBILDER''').replace("STICKER", '''STICKERBILDER'''))
+    inhalt = inhalt.replace("HOODIEBILDER", '<div class="produktbilder pix" role="img" aria-label="Hoodie STOP – F*cking Fascists – Vorschau folgt"><img src="bilder/shop/pix_hoodie_hinten.png" alt="" width="22" height="22"><img src="bilder/shop/pix_hoodie_vorne.png" alt="" width="22" height="22"><div class="coming"><span class="spray">Com<span class="ipunkt">ı<b></b></span>ng<br>Soon<i style="left:9%;--h:1.1rem;--v:0s"></i><i style="left:23%;--h:1.9rem;--v:0.6s"></i><i style="left:41%;--h:0.8rem;--v:1.1s"></i><i style="left:58%;--h:2.3rem;--v:0.3s"></i><i style="left:74%;--h:1.3rem;--v:0.9s"></i><i style="left:88%;--h:0.7rem;--v:1.4s"></i></span></div></div>').replace("KAPPEBILDER", '<div class="produktbilder pix eins" role="img" aria-label="Kappe MENSCH. – Vorschau folgt"><img src="bilder/shop/pix_kappe.png" alt="" width="22" height="22"><div class="coming"><span class="spray">Com<span class="ipunkt">ı<b></b></span>ng<br>Soon<i style="left:9%;--h:1.1rem;--v:0s"></i><i style="left:23%;--h:1.9rem;--v:0.6s"></i><i style="left:41%;--h:0.8rem;--v:1.1s"></i><i style="left:58%;--h:2.3rem;--v:0.3s"></i><i style="left:74%;--h:1.3rem;--v:0.9s"></i><i style="left:88%;--h:0.7rem;--v:1.4s"></i></span></div></div>').replace("STICKERBILDER", '<div class="produktbilder pix eins" role="img" aria-label="Sticker You are the product – Vorschau folgt"><img src="bilder/shop/pix_sticker_product.png" alt="" width="22" height="22"><div class="coming"><span class="spray">Com<span class="ipunkt">ı<b></b></span>ng<br>Soon<i style="left:9%;--h:1.1rem;--v:0s"></i><i style="left:23%;--h:1.9rem;--v:0.6s"></i><i style="left:41%;--h:0.8rem;--v:1.1s"></i><i style="left:58%;--h:2.3rem;--v:0.3s"></i><i style="left:74%;--h:1.3rem;--v:0.9s"></i><i style="left:88%;--h:0.7rem;--v:1.4s"></i></span></div></div>')
     seite(inhalt, "Shop", "shop.html")
     ohne_ki("shop.html")  # Shop ist keine KI-Zusammenfassung (Wunsch Nicolas 2026-11-08)
 
