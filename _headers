@@ -1,0 +1,13 @@
+# Nur für Cloudflare Pages (GitHub Pages ignoriert diese Datei)
+/*.html
+  Cache-Control: public, max-age=300
+/
+  Cache-Control: public, max-age=300
+/daten/*
+  Cache-Control: no-cache
+/audio/*/liste.json
+  Cache-Control: no-cache
+/bilder/*
+  Cache-Control: public, max-age=86400
+/audio/*
+  Cache-Control: public, max-age=86400
