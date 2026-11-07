@@ -3,7 +3,7 @@
 - woche.html / monat.html / jahr.html: die „krassesten“ Meldungen aus daten/artikel.json (Feld krass 1–10)
 - shop.html (Platzhalter), links.html (Über mich, Kanäle, Hinweis)
 Nutzung: python3 seiten_bauen.py   (täglich nach der neuen Ausgabe)"""
-import os, json, html, datetime
+import os, re, json, html, datetime
 
 HIER = os.path.dirname(os.path.abspath(__file__))
 TAGE = ["Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag"]
@@ -106,17 +106,28 @@ def links():
 ''' + FUSS
     seite(inhalt, "Über mich & Links", "links.html")
 
-def content():
-    inhalt = kopf("Instagram · TikTok · YouTube", "Mein Content", "Meine Videos, nach Themen sortiert", "neko_zeitung.png") + '''
+def neko():
+    inhalt = '''<div class="wrap">
+  <section class="gruppe" id="neko">
+    <h2 class="zettel zettel-gross">Neko</h2>
+    <article class="papier riss vita">
+      <img class="winkt" src="bilder/neko_winken.png" alt="Neko winkt" width="260" height="360">
+      <h3>Hi, ich bin Neko.</h3>
+      <p>Ich mache Nekos_news: politische Kurzvideos auf Instagram, TikTok und YouTube. Links, antifaschistisch und mit Fakten, so dass man mich auch dann nicht schlechtreden kann, wenn man anders denkt.</p>
+      <p>Mich interessiert, was nicht zusammenpasst: Ungerechtigkeit, Doppelmoral und Politik, die am Ende ganz normale Leute trifft. Ich erzähle das so, wie ich es einem Freund erzählen würde, nicht wie eine Nachrichtensendung.</p>
+      <div class="kanaele" style="justify-content:flex-start">KANAELE</div>
+    </article>
+  </section>
   <section class="gruppe" id="content">
-    <h2 class="zettel">Videos</h2>
+    <h2 class="zettel zettel-gross">Content</h2>
     <div class="filter" id="filter" role="group" aria-label="Nach Thema filtern"></div>
     <div class="raster" id="raster"></div>
     <p class="liste-info">Antippen öffnet das Video auf Instagram.</p>
   </section>
 ''' + FUSS
-    seite(inhalt, "Mein Content", "content.html")
+    k = re.search(r'<div class="kanaele">(.*?)</div>', vorlage(), re.S).group(1).strip()
+    seite(inhalt.replace("KANAELE", k), "Neko", "neko.html")
 
 if __name__ == "__main__":
-    bestenliste(); shop(); links(); content()
-    print("Seiten gebaut: woche, monat, jahr, shop, links, content")
+    bestenliste(); shop(); neko()
+    print("Seiten gebaut: woche, monat, jahr, shop, neko")
