@@ -591,11 +591,35 @@ html.ruhig .reel { opacity: 1; transform: none; }
     var f = ac.createBiquadFilter(); f.type = 'bandpass'; f.frequency.value = 1300 + Math.random() * 700; f.Q.value = 0.9;
     var lp = ac.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 3200;
     var g = ac.createGain(); g.gain.value = laut || 0.045; s.connect(f); f.connect(lp); lp.connect(g); g.connect(ac.destination); s.start(); }
-  function harfe(nr) { var ac = c(); if (!ac) return;
-    var toene = [392, 440, 523.25, 587.33, 659.25, 783.99, 880, 1046.5, 1174.66], t = ac.currentTime, fq = toene[nr % toene.length];
-    [1, 2, 3].forEach(function (h, k) { var o = ac.createOscillator(), g = ac.createGain(); o.type = k ? 'sine' : 'triangle'; o.frequency.value = fq * h;
-      g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(0.022 / (k + 1), t + 0.008); g.gain.exponentialRampToValueAtTime(0.0001, t + 1.4 / (k + 1));
-      o.connect(g); g.connect(ac.destination); o.start(t); o.stop(t + 1.5); }); }
+  /* Sonnenaufgang: warme, elfenhafte Harfen-Glissando mit viel Hall (Hall wird im Browser berechnet) */
+  var hall = null;
+  function hallraum(ac) {
+    if (hall) return hall;
+    var len = Math.floor(ac.sampleRate * 3.2), ir = ac.createBuffer(2, len, ac.sampleRate);
+    for (var ch = 0; ch < 2; ch++) { var d = ir.getChannelData(ch); for (var i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, 2.6); }
+    var conv = ac.createConvolver(); conv.buffer = ir;
+    var warm = ac.createBiquadFilter(); warm.type = 'lowpass'; warm.frequency.value = 2600; warm.Q.value = 0.3;
+    var nass = ac.createGain(); nass.gain.value = 0.75; var trocken = ac.createGain(); trocken.gain.value = 0.35;
+    var bus = ac.createGain(); bus.connect(warm); warm.connect(conv); conv.connect(nass); warm.connect(trocken);
+    nass.connect(ac.destination); trocken.connect(ac.destination);
+    hall = bus; return hall;
+  }
+  function sonnenaufgang() { var ac = c(); if (!ac) return;
+    var ziel = hallraum(ac), t0 = ac.currentTime + 0.05;
+    var toene = [261.63, 293.66, 329.63, 392.0, 440.0, 523.25, 587.33, 659.25, 783.99, 880.0, 1046.5];
+    toene.forEach(function (fq, n) {
+      var t = t0 + n * 0.085 + Math.random() * 0.012;
+      [-5, 6].forEach(function (cent) {
+        var o = ac.createOscillator(), g = ac.createGain(); o.type = 'sine'; o.frequency.value = fq; o.detune.value = cent;
+        var lauter = 0.011 * (1 - n / 16);
+        g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(lauter, t + 0.025); g.gain.exponentialRampToValueAtTime(0.0001, t + 2.6);
+        o.connect(g); g.connect(ziel); o.start(t); o.stop(t + 2.7);
+      });
+      var ob = ac.createOscillator(), gb = ac.createGain(); ob.type = 'triangle'; ob.frequency.value = fq / 2;
+      gb.gain.setValueAtTime(0, t); gb.gain.linearRampToValueAtTime(0.004, t + 0.03); gb.gain.exponentialRampToValueAtTime(0.0001, t + 1.8);
+      ob.connect(gb); gb.connect(ziel); ob.start(t); ob.stop(t + 1.9);
+    });
+  }
   function papier() { var ac = c(); if (!ac) return;
     var s = rauschen(ac, 0.22, function (x) { return Math.sin(Math.PI * x) * (0.6 + 0.4 * Math.random()); });
     var f = ac.createBiquadFilter(); f.type = 'bandpass'; f.Q.value = 0.7; var t = ac.currentTime;
@@ -603,7 +627,7 @@ html.ruhig .reel { opacity: 1; transform: none; }
     var g = ac.createGain(); g.gain.value = 0.035; s.connect(f); f.connect(g); g.connect(ac.destination); s.start(); }
   window.mzKlick = tipp;
   document.addEventListener('click', function (e) { if (e.target.closest('a, button, summary, .reel')) papier(); }, true);
-  if (document.getElementById('intro')) for (var i = 0; i < 9; i++) (function (n) { setTimeout(function () { tipp(0.035); harfe(n); }, 40 + n * 70); })(i);
+  if (document.getElementById('intro')) { sonnenaufgang(); for (var i = 0; i < 9; i++) (function (n) { setTimeout(function () { tipp(0.03); }, 40 + n * 70); })(i); }
 })();
 /* Neueste Uploads unter „Das Wichtigste“ (Daten: daten/content.json, Klick führt zu Instagram) */
 (function () {
