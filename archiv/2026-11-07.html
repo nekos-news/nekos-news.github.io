@@ -550,6 +550,17 @@ mark.strich::after, mark.strich.blau::after { background-image: url("data:image/
 .fakt b::after, .einordnung b::after { content: none !important; }
 html.kontrast .fakt b, html.kontrast .einordnung b { filter: grayscale(1) brightness(0); }
 .kurz .neko { -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 98%); mask-image: linear-gradient(to bottom, #000 55%, transparent 98%); }
+/* Konzentrations-Modus (Gag): kleines Gameplay-Fenster, lädt YouTube erst auf Klick (nocookie) */
+.surf-knopf { justify-self: start; display: inline-flex; align-items: center; gap: 0.3rem; font: 700 0.66rem var(--maschine); color: var(--anthrazit); background: transparent;
+  border: 1.5px dashed var(--mittelgrau); padding: 0.18rem 0.45rem; cursor: pointer; transform: rotate(-1deg); }
+.surf-knopf[aria-pressed="true"] { background: var(--anthrazit); color: var(--creme); border-style: solid; }
+.surf-fenster { position: fixed; z-index: 8; left: max(0.6rem, env(safe-area-inset-left, 0px)); bottom: calc(5.2rem + env(safe-area-inset-bottom, 0px));
+  width: min(34vw, 150px); aspect-ratio: 9 / 16; padding: 0.3rem 0.3rem 1.4rem; background-color: var(--creme); background-image: var(--faser); transform: rotate(-2deg);
+  filter: drop-shadow(0 3px 0 rgba(0,0,0,0.25)) drop-shadow(4px 10px 12px rgba(2,6,20,0.55)); }
+.surf-fenster iframe { width: 100%; height: 100%; border: 0; display: block; background: #000; }
+.surf-fenster .zu { position: absolute; top: -0.7rem; right: -0.6rem; width: 1.7rem; height: 1.7rem; border: 0; border-radius: 50%; background: var(--rost); color: var(--creme); font: 800 0.9rem var(--sans); cursor: pointer; }
+.surf-fenster small { position: absolute; left: 0.4rem; right: 0.4rem; bottom: 0.25rem; font: 0.6rem var(--maschine); color: var(--anthrazit); text-align: center; }
+html.ruhig .surf-knopf { display: none; }
 </style>
 </head>
 <body>
@@ -906,6 +917,26 @@ html.kontrast .fakt b, html.kontrast .einordnung b { filter: grayscale(1) bright
   if (!('IntersectionObserver' in window)) { ziele.forEach(function (z) { z.classList.add('sichtbar'); }); return; }
   var io = new IntersectionObserver(function (e) { e.forEach(function (x) { if (x.isIntersecting) { x.target.classList.add('sichtbar'); io.unobserve(x.target); } }); }, { threshold: 0.35 });
   ziele.forEach(function (z) { io.observe(z); });
+})();
+/* Konzentrations-Modus: Gameplay-Video klein in der Ecke (Gag). YouTube lädt erst nach Klick, nocookie, stumm, in Schleife. */
+(function () {
+  var ID = 'hJcv2nZ8x84', fenster = null;
+  function zu() { if (fenster) { fenster.remove(); fenster = null; } document.querySelectorAll('.surf-knopf').forEach(function (b) { b.setAttribute('aria-pressed', false); }); }
+  function auf() {
+    if (fenster) return;
+    var start = Math.floor(Math.random() * 3000);
+    fenster = document.createElement('div'); fenster.className = 'surf-fenster';
+    fenster.innerHTML = '<button class="zu" type="button" aria-label="Konzentrations-Modus schließen">✕</button><iframe title="Gameplay-Video" allow="autoplay; encrypted-media" src="https://www.youtube-nocookie.com/embed/' + ID + '?autoplay=1&mute=1&loop=1&playlist=' + ID + '&controls=0&playsinline=1&modestbranding=1&rel=0&iv_load_policy=3&fs=0&start=' + start + '"></iframe><small>Konzentrations-Modus</small>';
+    fenster.querySelector('.zu').addEventListener('click', zu);
+    document.body.appendChild(fenster);
+    document.querySelectorAll('.surf-knopf').forEach(function (b) { b.setAttribute('aria-pressed', true); });
+  }
+  document.querySelectorAll('.wrap[data-datum] article, .wrap[data-datum] .kurz').forEach(function (a) {
+    var b = document.createElement('button'); b.type = 'button'; b.className = 'surf-knopf'; b.setAttribute('aria-pressed', false);
+    b.innerHTML = '🛹 Konzentrations-Modus'; b.title = 'Für alle, die sich nur mit Gameplay daneben konzentrieren können';
+    b.addEventListener('click', function () { fenster ? zu() : auf(); });
+    var vor = a.querySelector('.quelle, .quellen-seiten, footer'); if (vor) vor.insertAdjacentElement('beforebegin', b); else a.appendChild(b);
+  });
 })();
 /* Unter den heutigen Beiträgen: weiter zu Woche, Monat, Jahr */
 (function () {
