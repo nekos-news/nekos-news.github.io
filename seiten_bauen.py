@@ -70,19 +70,19 @@ def shop():
     <h2 class="zettel">Kommt bald</h2>
     <article class="papier riss produkt" id="hoodie">
       <h3>STOP – F*cking Fascists</h3>
-      <div class="produktbilder" data-galerie><img src="bilder/shop/hoodie_hinten.jpg" alt="Hoodie Rückseite mit Stoppschild „STOP – F*cking Fascists“ und #NIEWIEDERISTJETZT" loading="lazy"><img src="bilder/shop/hoodie_vorne.jpg" alt="Hoodie Vorderseite, dazu Kappe „MENSCH.“" loading="lazy"></div>
+      <div class="produktbilder"><img src="bilder/shop/hoodie_hinten.jpg" alt="Hoodie Rückseite mit Stoppschild „STOP – F*cking Fascists“ und #NIEWIEDERISTJETZT" loading="lazy"><img src="bilder/shop/hoodie_vorne.jpg" alt="Hoodie Vorderseite, dazu Kappe „MENSCH.“" loading="lazy"></div>
       <p data-einfach="Ein schwarzer Pulli mit Kapuze. Hinten ist ein großes Stopp-Schild gegen Nazis.">Schwarzer Hoodie mit großem Stoppschild auf dem Rücken, weißen Streifen an Kapuze und Ärmeln und #NIEWIEDERISTJETZT.</p>
       <span class="marke" data-einfach="Kann man noch nicht kaufen">Noch nicht bestellbar</span>
     </article>
     <article class="papier riss produkt" id="kappe">
       <h3>MENSCH.</h3>
-      <div class="produktbilder eins" data-galerie><img src="bilder/shop/kappe.jpg" alt="Schwarze Kappe mit Aufschrift „MENSCH.“" loading="lazy"></div>
+      <div class="produktbilder eins"><img src="bilder/shop/kappe.jpg" alt="Schwarze Kappe mit Aufschrift „MENSCH.“" loading="lazy"></div>
       <p data-einfach="Eine schwarze Mütze mit Schirm. Darauf steht: MENSCH.">Schwarze Kappe mit weißer Aufschrift „MENSCH.“.</p>
       <span class="marke" data-einfach="Kann man noch nicht kaufen">Noch nicht bestellbar</span>
     </article>
     <article class="papier riss produkt" id="sticker">
       <h3>You are the product</h3>
-      <div class="produktbilder eins sticker" data-galerie><img src="bilder/shop/sticker_product.jpg" alt="Sticker: „You are the product“ mit Strichcode" loading="lazy"></div>
+      <div class="produktbilder eins sticker"><img src="bilder/shop/sticker_product.jpg" alt="Sticker: „You are the product“ mit Strichcode" loading="lazy"></div>
       <p data-einfach="Ein Aufkleber. Darauf steht: Du bist das Produkt.">Schwarz-weißer Sticker mit Strichcode: „You are the product“.</p>
       <span class="marke" data-einfach="Kann man noch nicht kaufen">Noch nicht bestellbar</span>
     </article>
