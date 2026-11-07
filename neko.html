@@ -871,12 +871,19 @@ article details.lang .klapp p:first-child b { display: block; font: 0.7rem var(-
   function zu() { if (fenster) { fenster.remove(); fenster = null; } document.querySelectorAll('.surf-knopf').forEach(function (b) { b.setAttribute('aria-pressed', false); }); }
   function auf() {
     if (fenster) return;
-    var start = Math.floor(Math.random() * 3000);
+    var start = Math.floor(Math.random() * 240);
     fenster = document.createElement('div'); fenster.className = 'surf-fenster';
-    fenster.innerHTML = '<div class="griff">Gen Z Konzentrationshilfe</div><button class="zu" type="button" aria-label="Konzentrationshilfe schließen">✕</button><div class="bild"><iframe title="Gameplay-Video" allow="autoplay; encrypted-media" src="https://www.youtube-nocookie.com/embed/' + ID + '?autoplay=1&mute=1&loop=1&playlist=' + ID + '&controls=0&playsinline=1&modestbranding=1&rel=0&iv_load_policy=3&fs=0&disablekb=1&start=' + start + '"></iframe><div class="deckel">Konzentration wird geladen …</div></div>';
+    fenster.innerHTML = '<div class="griff">Gen Z Konzentrationshilfe</div><button class="zu" type="button" aria-label="Konzentrationshilfe schließen">✕</button><div class="bild"><iframe title="Gameplay-Video" allow="autoplay; encrypted-media" src="https://www.youtube-nocookie.com/embed/' + ID + '?autoplay=1&mute=1&loop=1&playlist=' + ID + '&controls=0&playsinline=1&modestbranding=1&rel=0&iv_load_policy=3&fs=0&disablekb=1&enablejsapi=1&origin=' + encodeURIComponent(location.origin) + '&start=' + start + '"></iframe><div class="deckel">Konzentration wird geladen …</div></div>';
     fenster.querySelector('.zu').addEventListener('click', zu);
     document.body.appendChild(fenster);
-    setTimeout(function () { var d = fenster && fenster.querySelector('.deckel'); if (d) d.classList.add('weg'); }, 3800);
+    /* Deckblatt weg, sobald das Video wirklich läuft (YouTube meldet den Zustand per postMessage); spätestens nach 6 s */
+    var ifr = fenster.querySelector('iframe'), deckelWeg = function () { var d = fenster && fenster.querySelector('.deckel'); if (d) d.classList.add('weg'); };
+    ifr.addEventListener('load', function () { try { ifr.contentWindow.postMessage(JSON.stringify({ event: 'listening', id: 1 }), '*'); } catch (e) {} });
+    window.addEventListener('message', function lausch(e) {
+      if (!/youtube/.test(e.origin)) return;
+      try { var d = JSON.parse(e.data); if ((d.event === 'onStateChange' && d.info === 1) || (d.info && d.info.playerState === 1)) { deckelWeg(); window.removeEventListener('message', lausch); } } catch (x) {}
+    });
+    setTimeout(deckelWeg, 6000);
     fenster.addEventListener('animationend', function () { if (fenster) { fenster.style.animation = 'none'; fenster.style.transform = 'rotate(-2deg)'; } });
     /* Ziehen an der Titelleiste (Maus und Finger) */
     var griff = fenster.querySelector('.griff'), sx, sy, fx, fy;
@@ -897,6 +904,10 @@ article details.lang .klapp p:first-child b { display: block; font: 0.7rem var(-
   document.querySelectorAll('.wrap[data-datum] article, .wrap[data-datum] .kurz').forEach(function (a) {
     var b = document.createElement('button'); b.type = 'button'; b.className = 'surf-knopf'; b.setAttribute('aria-pressed', false);
     b.innerHTML = '🛹 Gen Z Konzentrationshilfe'; b.title = 'Für alle, die sich nur mit Gameplay daneben konzentrieren können';
+    b.addEventListener('pointerdown', function () {
+      if (document.getElementById('yt-vorab')) return;
+      ['https://www.youtube-nocookie.com', 'https://i.ytimg.com', 'https://www.google.com'].forEach(function (h, k) { var l = document.createElement('link'); l.rel = 'preconnect'; l.href = h; if (!k) l.id = 'yt-vorab'; document.head.appendChild(l); });
+    });
     b.addEventListener('click', function () { fenster ? zu() : auf(); });
     var vor = a.querySelector('.quelle, .quellen-seiten, footer'); if (vor) vor.insertAdjacentElement('beforebegin', b); else a.appendChild(b);
   });
