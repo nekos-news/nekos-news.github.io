@@ -65,7 +65,7 @@ def bestenliste():
         seite("\n".join(teile), titel, datei)
 
 def shop():
-    inhalt = kopf("Vorschau", "Shop", "Bald bestellbar: Hoodie, Kappe und antifaschistische Sticker", "neko_lupe.png") + '''
+    inhalt = kopf("Vorschau", "Shop", "Bald bestellbar: Hoodie, Kappe und Sticker", "neko_lupe.png") + '''
   <section class="gruppe" id="shop">
     <h2 class="zettel">Kommt bald</h2>
     <article class="papier riss produkt">
@@ -82,11 +82,12 @@ def shop():
       <p>Schwarze Kappe mit weißer Aufschrift „MENSCH.“.</p>
       <span class="marke">Noch nicht bestellbar</span>
     </article>
-    <article class="papier riss">
-      <span class="rubrik">In Arbeit</span>
-      <h3>Antifaschistische Sticker</h3>
-      <p>Sticker im Papiercollage-Look. Infos folgen auf Instagram.</p>
-      <p class="quelle"><a href="https://www.instagram.com/nekos_news/">@nekos_news auf Instagram</a></p>
+    <article class="papier riss produkt">
+      <span class="rubrik">Sticker · Vorschau</span>
+      <h3>You are the product</h3>
+      <div class="produktbilder eins sticker"><img src="bilder/shop/sticker_product.jpg" alt="Sticker: „You are the product“ mit Strichcode" loading="lazy"></div>
+      <p>Schwarz-weißer Sticker mit Strichcode: „You are the product“.</p>
+      <span class="marke">Noch nicht bestellbar</span>
     </article>
   </section>
 ''' + FUSS

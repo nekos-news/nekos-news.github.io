@@ -457,6 +457,12 @@ html.kontrast .kurz .zeile { color: #000; }
 .produktbilder.eins { grid-template-columns: 1fr; }
 .produktbilder img { display: block; width: 100%; height: auto; border: 0.25rem solid var(--creme); box-shadow: 2px 3px 0 rgba(46,43,42,0.4); }
 .produktbilder img:nth-child(1) { transform: rotate(-1.2deg); } .produktbilder img:nth-child(2) { transform: rotate(1deg); }
+/* Nach oben orange */
+.leiste .hoch { width: 2.5rem !important; height: 2.4rem !important; background-color: var(--rost) !important; background-image: var(--faser) !important; color: var(--creme) !important;
+  font: 800 1.25rem/1 var(--sans) !important; display: grid !important; place-items: center; transform: rotate(-3deg) !important;
+  clip-path: polygon(4% 8%, 50% 0, 96% 6%, 100% 52%, 95% 96%, 46% 100%, 3% 93%, 0 48%) !important; }
+
+.produktbilder.sticker img { max-width: 70%; margin: 0 auto; background: #fff; }
 </style>
 </head>
 <body>
