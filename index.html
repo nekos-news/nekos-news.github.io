@@ -476,6 +476,24 @@ html.ruhig article h3 { background-image: none; transform: none; }
 .sichtbar .zahl:nth-of-type(2)::after { transition-delay: 0.25s; } .sichtbar .zahl:nth-of-type(3)::after { transition-delay: 0.5s; }
 html.ruhig .zahl::after { clip-path: none; transition: none; }
 html.kontrast .zahl::after { filter: grayscale(1) brightness(0); }
+/* Überarbeitung: helle Überschrift, Rubrik als Stempel, kein schwarzer Balken, Tape auf der Überschrift */
+article h3 { color: var(--creme) !important; position: relative; overflow: visible; margin-top: 0.35rem !important; }
+article h3::after { content: ""; position: absolute; top: -0.55rem; left: 0.9rem; width: 3.2rem; height: 1rem; background: rgba(217,154,78,0.72);
+  transform: rotate(-6deg); box-shadow: 0 1px 1px rgba(0,0,0,0.12); pointer-events: none; }
+article:nth-of-type(even) h3::after { left: auto; right: 0.9rem; transform: rotate(5deg); background: rgba(232,220,198,0.8); }
+article h3 { clip-path: none !important; }
+article .rubrik { border-bottom: 0 !important; padding: 0 !important; justify-self: start; font-family: var(--maschine) !important; font-weight: 400 !important;
+  font-size: 0.78rem !important; letter-spacing: 0.04em !important; text-transform: none !important; color: var(--anthrazit) !important; display: inline-flex; align-items: center; gap: 0.35rem; }
+article .rubrik::before { content: ""; width: 0.55rem; height: 0.55rem; border-radius: 50%; background: var(--rost); flex: none; }
+html.kontrast article h3::after { display: none; }
+html.ruhig article h3::after { transform: none; }
+/* Feinschliff */
+article h3::after { top: -0.7rem !important; width: 2.6rem !important; height: 0.85rem !important; background: rgba(217,154,78,0.6) !important; }
+article:nth-of-type(even) h3::after { background: rgba(46,43,42,0.28) !important; }
+.fakt b, .einordnung b, .these b, .gegen b { font-family: var(--maschine) !important; font-weight: 400 !important; font-size: 0.72rem !important; letter-spacing: 0.02em !important;
+  text-transform: none !important; color: var(--rost) !important; margin-right: 0.4rem; }
+.fakt b::after, .einordnung b::after, .these b::after { content: ":"; }
+html.kontrast .fakt b, html.kontrast .einordnung b, html.kontrast .these b { color: #000 !important; }
 </style>
 </head>
 <body>
