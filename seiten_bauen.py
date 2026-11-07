@@ -123,8 +123,8 @@ def neko():
     <article class="papier riss vita">
       <span class="profil"><img src="bilder/profilbild.jpg" alt="Nekos Instagram-Profilbild" width="220" height="220"></span>
       <h3>Hi, ich bin Neko.</h3>
-      <p>Ich mache Nekos_news: politische Kurzvideos auf Instagram, TikTok und YouTube. Links, antifaschistisch und mit Fakten, so dass man mich auch dann nicht schlechtreden kann, wenn man anders denkt.</p>
-      <p>Mich interessiert, was nicht zusammenpasst: Ungerechtigkeit, Doppelmoral und Politik, die am Ende ganz normale Leute trifft. Ich erzähle das so, wie ich es einem Freund erzählen würde, nicht wie eine Nachrichtensendung.</p>
+      <p>Ich mache <mark class="strich">Nekos_news</mark>: politische Kurzvideos auf Instagram, TikTok und YouTube. Links, antifaschistisch und mit Fakten, so dass man mich auch dann nicht schlechtreden kann, wenn man anders denkt.</p>
+      <p>Mich interessiert, was <mark class="kreis">nicht zusammenpasst</mark>: Ungerechtigkeit, Doppelmoral und Politik, die am Ende ganz normale Leute trifft. Ich erzähle das so, wie ich es einem Freund erzählen würde, nicht wie eine Nachrichtensendung.</p>
       <div class="kanaele vita-kanaele">KANAELE<a class="anfrage" href="mailto:neko.anfragen@gmail.com?subject=Anfrage%20an%20Neko"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5 H21 A1 1 0 0 1 22 6 V18 A1 1 0 0 1 21 19 H3 A1 1 0 0 1 2 18 V6 A1 1 0 0 1 3 5 Z M4 7.2 V17 H20 V7.2 L12 12.6 Z M5.6 7 L12 11.2 L18.4 7 Z"/></svg>Anfragen</a></div>
     </article>
   </section>
