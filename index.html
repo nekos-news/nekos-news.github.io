@@ -425,6 +425,15 @@ html.ruhig .papier, html.ruhig .zettel, html.ruhig article.papier, html.ruhig .r
 html.ruhig .hinweis, html.ruhig .kurz li a::after, html.ruhig .marke, html.ruhig .mitdenken, html.ruhig .logo-oben, html.ruhig .hoeren button { transform: none !important; }
 html.ruhig .papier::before, html.ruhig .zettel::before, html.ruhig .hinweis, html.ruhig .reel { background-image: none !important; }
 html.ruhig .vita .winkt, html.ruhig .vita .profil { animation: none !important; transform: none !important; }
+/* Quellen nach Darstellung getrennt (wenn es zwei Lager gibt) */
+.quellen-seiten { display: grid; gap: 0.3rem; font-family: var(--sans); font-size: 0.78rem; }
+.quellen-seiten p { margin: 0; color: var(--mittelgrau); }
+.quellen-seiten b { font-weight: 800; font-size: 0.64rem; letter-spacing: 0.05em; text-transform: uppercase; margin-right: 0.35rem; }
+.quellen-seiten .pos b { color: #4f7a3a; } .quellen-seiten .neg b { color: var(--rost); }
+.quellen-seiten a { color: var(--braun); }
+/* Aufrufe orange */
+.reel .aufrufe { background-color: var(--rost) !important; color: var(--creme) !important; }
+.reel .aufrufe::before { color: var(--creme) !important; }
 </style>
 </head>
 <body>
@@ -562,21 +571,21 @@ html.ruhig .vita .winkt, html.ruhig .vita .profil { animation: none !important; 
     <article class="papier riss" id="m1" data-lesen>
       <span class="rubrik">Bundespolitik</span>
       <h3>Streit in der Koalition: Kritik aus der eigenen SPD</h3>
-      <p class="fakt"><b>Fakt</b>Die SPD im Ruhrgebiet wirft der schwarz-roten Bundesregierung vor, uneinig aufzutreten und öffentlich zu streiten.</p>
+      <p class="fakt"><b>KI-Zusammenfassung</b>Die SPD im Ruhrgebiet wirft der schwarz-roten Bundesregierung vor, uneinig aufzutreten und öffentlich zu streiten.</p>
       <p class="einordnung"><b>Einordnung</b>Kanzler Merz hatte noch am Mittwoch die Zusammenarbeit mit der SPD gelobt. Die Kritik zeigt, dass die Basis unruhig bleibt.</p>
       <p class="quelle"><a href="https://www.zdfheute.de/newsticker/schlagzeilen-100.html">ZDFheute</a> · <a href="https://de.investing.com/news/general-news/merz-lobt-spd-fur-zusammenarbeit-in-der-koalition-3747149">dpa-AFX</a></p>
     </article>
     <article class="papier riss" id="m2" data-lesen>
       <span class="rubrik">Soziales</span>
       <h3>Rentenreform verzögert sich bis ins Frühjahr</h3>
-      <p class="fakt"><b>Fakt</b>Das Kabinett will den Entwurf noch vor Weihnachten beschließen. Im Bundestag ist die Reform aber erst für das erste Quartal 2027 geplant.</p>
+      <p class="fakt"><b>KI-Zusammenfassung</b>Das Kabinett will den Entwurf noch vor Weihnachten beschließen. Im Bundestag ist die Reform aber erst für das erste Quartal 2027 geplant.</p>
       <p class="einordnung"><b>Einordnung</b>Schon beschlossen ist die Frühstart-Rente: Sie gilt ab 1. Januar 2027.</p>
       <p class="quelle"><a href="https://www.t-online.de/nachrichten/deutschland/innenpolitik/id_101473498/rentenreform-merz-erwartet-bundestagsbeschluss-wohl-erst-2027.html">t-online</a> · <a href="https://www.ad-hoc-news.de/wissenschaft/rentenreform-kabinett-plant-beschluss-vor-weihnachten-kapitalrente-folgt-2027/70460882">ad-hoc-news</a></p>
     </article>
     <article class="papier riss" id="m3" data-lesen>
       <span class="rubrik">Düsseldorf · Justiz</span>
       <h3>Prozess gegen „Königreich Deutschland“</h3>
-      <p class="fakt"><b>Fakt</b>Vor dem Oberlandesgericht Düsseldorf hat am Freitag der Prozess gegen vier mutmaßliche Anführer der verbotenen Reichsbürger-Gruppe begonnen.</p>
+      <p class="fakt"><b>KI-Zusammenfassung</b>Vor dem Oberlandesgericht Düsseldorf hat am Freitag der Prozess gegen vier mutmaßliche Anführer der verbotenen Reichsbürger-Gruppe begonnen.</p>
       <p class="these"><b>Populistische These</b>„Reichsbürger sind doch nur harmlose Spinner.“</p>
       <p class="einordnung"><b>Einordnung</b>Die Gruppe hatte einen eigenen „Staat“ ausgerufen. Der Prozess dürfte länger dauern.</p>
       <span class="marke">Beginn angekündigt, Verlauf noch nicht bestätigt</span>
@@ -585,14 +594,14 @@ html.ruhig .vita .winkt, html.ruhig .vita .profil { animation: none !important; 
     <article class="papier riss" id="m4" data-lesen>
       <span class="rubrik">Recht</span>
       <h3>Härtere Strafen für K.-o.-Tropfen</h3>
-      <p class="fakt"><b>Fakt</b>Der Bundestag sollte am Freitag ein schärferes Gesetz beschließen. Wer K.-o.-Tropfen für eine Vergewaltigung oder einen Raub nutzt, soll mindestens fünf Jahre Haft bekommen.</p>
+      <p class="fakt"><b>KI-Zusammenfassung</b>Der Bundestag sollte am Freitag ein schärferes Gesetz beschließen. Wer K.-o.-Tropfen für eine Vergewaltigung oder einen Raub nutzt, soll mindestens fünf Jahre Haft bekommen.</p>
       <span class="marke">Abstimmungsergebnis noch nicht bestätigt</span>
       <p class="quelle"><a href="https://www.news.de/panorama/860164168/6-november-2026-news-themen-des-tages-was-passiert-heute-in-deutschland-und-der-welt-das-ist-heute-am-06-11-2026-wichtig-in-den-nachrichten-aus-politik-wirtschaft-sport-und-co/1/">news.de (dpa)</a></p>
     </article>
     <article class="papier riss" id="m5" data-lesen>
       <span class="rubrik">Finanzen</span>
       <h3>Haushalt 2027: Ende November wird abgestimmt</h3>
-      <p class="fakt"><b>Fakt</b>Der Bundestag berät den Haushalt vom 24. bis 27. November abschließend. Am Freitag der Woche ist die Schlussabstimmung geplant.</p>
+      <p class="fakt"><b>KI-Zusammenfassung</b>Der Bundestag berät den Haushalt vom 24. bis 27. November abschließend. Am Freitag der Woche ist die Schlussabstimmung geplant.</p>
       <p class="quelle"><a href="https://www.bundestag.de/dokumente/textarchiv/2026/kw34-haushalt-2027-ablauf-1187766">Bundestag</a></p>
     </article>
   </section>
@@ -602,7 +611,7 @@ html.ruhig .vita .winkt, html.ruhig .vita .profil { animation: none !important; 
     <article class="papier riss" id="m6" data-lesen>
       <span class="rubrik">Nahost</span>
       <h3>USA greifen erneut iranische Insel an</h3>
-      <p class="fakt"><b>Fakt</b>Trump hat neue Angriffe auf Luftabwehr auf der Insel Qeshm bestätigt. Er nennt sie „klein“ und spricht gleichzeitig von Fortschritten in Gesprächen mit Teheran.</p>
+      <p class="fakt"><b>KI-Zusammenfassung</b>Trump hat neue Angriffe auf Luftabwehr auf der Insel Qeshm bestätigt. Er nennt sie „klein“ und spricht gleichzeitig von Fortschritten in Gesprächen mit Teheran.</p>
       <p class="einordnung"><b>Einordnung</b>Es sind die ersten Angriffe seit den US-Wahlen am Dienstag. Fachleute halten eine schnelle Einigung mit dem Iran dadurch für weniger wahrscheinlich.</p>
       <span class="marke">Berichte über Seeminen in der Straße von Hormus unbestätigt</span>
       <p class="quelle"><a href="https://aljazeera.com/amp/news/2026/11/7/trump-confirms-new-us-strikes-on-irans-qeshm-island">Al Jazeera</a> · <a href="https://foreignpolicy.com/2026/11/03/us-iran-strikes-midterms-israel-aid-ukraine-russia-agoa-australia/">Foreign Policy</a></p>
@@ -610,14 +619,14 @@ html.ruhig .vita .winkt, html.ruhig .vita .profil { animation: none !important; 
     <article class="papier riss" id="m7" data-lesen>
       <span class="rubrik">Ukraine</span>
       <h3>Gespräche in Abu Dhabi ab Dienstag</h3>
-      <p class="fakt"><b>Fakt</b>Russland, die Ukraine und die USA verhandeln am 10. und 11. November in Abu Dhabi. Der Kreml hat das bestätigt. Kurz zuvor wurde Kiew erneut mit Raketen angegriffen.</p>
+      <p class="fakt"><b>KI-Zusammenfassung</b>Russland, die Ukraine und die USA verhandeln am 10. und 11. November in Abu Dhabi. Der Kreml hat das bestätigt. Kurz zuvor wurde Kiew erneut mit Raketen angegriffen.</p>
       <p class="einordnung"><b>Einordnung</b>Selenskyj sagt zu, zweifelt aber am Friedenswillen Moskaus. Streitpunkte bleiben Gebiete und Sicherheitsgarantien.</p>
       <p class="quelle"><a href="https://www.usnews.com/news/world/articles/2026-11-03/kremlin-confirms-trilateral-ukraine-peace-talks-in-abu-dhabi-next-week">US News (Reuters)</a> · <a href="https://www.axios.com/2026/11/03/us-russia-ukraine-peace-talks-uae-trump-witkoff-kushner">Axios</a></p>
     </article>
     <article class="papier riss" id="m8" data-lesen>
       <span class="rubrik">USA</span>
       <h3>Demokraten holen das Repräsentantenhaus</h3>
-      <p class="fakt"><b>Fakt</b>Nach Hochrechnungen gewinnen die Demokraten die Mehrheit im Repräsentantenhaus. Laut CNBC auch im Senat, einzelne Rennen werden aber noch ausgezählt.</p>
+      <p class="fakt"><b>KI-Zusammenfassung</b>Nach Hochrechnungen gewinnen die Demokraten die Mehrheit im Repräsentantenhaus. Laut CNBC auch im Senat, einzelne Rennen werden aber noch ausgezählt.</p>
       <p class="einordnung"><b>Einordnung</b>Trump müsste dann gegen eine Mehrheit im Kongress regieren. Seine Zustimmungswerte liegen laut CBS bei 38 Prozent.</p>
       <span class="marke">Senat: Endergebnis noch offen</span>
       <p class="quelle"><a href="https://www.cbsnews.com/live-updates/house-election-results-2026/">CBS News</a> · <a href="https://www.cnbc.com/2026/11/04/2026-midterm-election-results-live-updates.html">CNBC</a></p>
@@ -625,14 +634,14 @@ html.ruhig .vita .winkt, html.ruhig .vita .profil { animation: none !important; 
     <article class="papier riss" id="m9" data-lesen>
       <span class="rubrik">Diplomatie</span>
       <h3>Treffen Xi, Trump und Putin im Gespräch</h3>
-      <p class="fakt"><b>Fakt</b>China bestätigt, dass über ein Dreiertreffen der Staatschefs gesprochen wird. Einen Termin gibt es nicht.</p>
+      <p class="fakt"><b>KI-Zusammenfassung</b>China bestätigt, dass über ein Dreiertreffen der Staatschefs gesprochen wird. Einen Termin gibt es nicht.</p>
       <span class="marke">Nur Gespräche, nichts vereinbart</span>
       <p class="quelle"><a href="https://www.inkl.com/news/latest-news-bulletin-november-7th-2026-morning">inkl (Guardian-Briefing)</a></p>
     </article>
     <article class="papier riss" id="m10" data-lesen>
       <span class="rubrik">Europa</span>
       <h3>Hackerangriff auf italienischen Minister</h3>
-      <p class="fakt"><b>Fakt</b>Bei einem italienischen Minister wurden Daten gestohlen.</p>
+      <p class="fakt"><b>KI-Zusammenfassung</b>Bei einem italienischen Minister wurden Daten gestohlen.</p>
       <span class="marke">Verdacht: pro-russische Hacker, nicht bestätigt</span>
       <p class="quelle"><a href="https://www.zdfheute.de/newsticker/schlagzeilen-100.html">ZDFheute</a></p>
     </article>
@@ -821,7 +830,7 @@ html.ruhig .vita .winkt, html.ruhig .vita .profil { animation: none !important; 
     btn.hidden = false;
     liste.forEach(function (x, i) {
       var d = document.createElement('div'); d.className = 'hoeren';
-      d.innerHTML = '<span class="huelle"><button type="button" aria-pressed="false" aria-label="Anhören"></button></span><small>Anhören · Nekos KI-Stimme</small>';
+      d.innerHTML = '<span class="huelle"><button type="button" aria-pressed="false" aria-label="Anhören"></button></span><small>Anhören · KI-Stimme</small>';
       var ziel = x.el.querySelector('.rubrik, h2'); ziel.insertAdjacentElement('afterend', d);
       x.knopf = d.querySelector('button');
       var punkte = [], n = 16 + (i % 3) * 2;

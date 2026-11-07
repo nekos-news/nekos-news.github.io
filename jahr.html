@@ -425,6 +425,15 @@ html.ruhig .papier, html.ruhig .zettel, html.ruhig article.papier, html.ruhig .r
 html.ruhig .hinweis, html.ruhig .kurz li a::after, html.ruhig .marke, html.ruhig .mitdenken, html.ruhig .logo-oben, html.ruhig .hoeren button { transform: none !important; }
 html.ruhig .papier::before, html.ruhig .zettel::before, html.ruhig .hinweis, html.ruhig .reel { background-image: none !important; }
 html.ruhig .vita .winkt, html.ruhig .vita .profil { animation: none !important; transform: none !important; }
+/* Quellen nach Darstellung getrennt (wenn es zwei Lager gibt) */
+.quellen-seiten { display: grid; gap: 0.3rem; font-family: var(--sans); font-size: 0.78rem; }
+.quellen-seiten p { margin: 0; color: var(--mittelgrau); }
+.quellen-seiten b { font-weight: 800; font-size: 0.64rem; letter-spacing: 0.05em; text-transform: uppercase; margin-right: 0.35rem; }
+.quellen-seiten .pos b { color: #4f7a3a; } .quellen-seiten .neg b { color: var(--rost); }
+.quellen-seiten a { color: var(--braun); }
+/* Aufrufe orange */
+.reel .aufrufe { background-color: var(--rost) !important; color: var(--creme) !important; }
+.reel .aufrufe::before { color: var(--creme) !important; }
 </style>
 </head>
 <body>
@@ -791,7 +800,7 @@ html.ruhig .vita .winkt, html.ruhig .vita .profil { animation: none !important; 
     btn.hidden = false;
     liste.forEach(function (x, i) {
       var d = document.createElement('div'); d.className = 'hoeren';
-      d.innerHTML = '<span class="huelle"><button type="button" aria-pressed="false" aria-label="Anhören"></button></span><small>Anhören · Nekos KI-Stimme</small>';
+      d.innerHTML = '<span class="huelle"><button type="button" aria-pressed="false" aria-label="Anhören"></button></span><small>Anhören · KI-Stimme</small>';
       var ziel = x.el.querySelector('.rubrik, h2'); ziel.insertAdjacentElement('afterend', d);
       x.knopf = d.querySelector('button');
       var punkte = [], n = 16 + (i % 3) * 2;
