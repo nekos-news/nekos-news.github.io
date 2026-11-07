@@ -15,9 +15,9 @@
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=3"><link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png?v=3"><link rel="icon" type="image/png" sizes="192x192" href="/favicon.png?v=3">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Libre+Franklin:wght@500;700;800&family=Abril+Fatface&family=Special+Elite&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Libre+Franklin:wght@500;700;800&family=Abril+Fatface&family=Special+Elite&family=Caveat:wght@700&display=swap">
 <script>
-try { (JSON.parse(localStorage.getItem('mz-hilfe') || '[]')).forEach(function (k) { document.documentElement.classList.add(k); }); } catch (e) {}
+try { (JSON.parse(localStorage.getItem('mz-hilfe') || '[]')).forEach(function (k) { if (k !== 'lesbar') document.documentElement.classList.add(k); }); } catch (e) {}
 </script>
 <style>
 /* Layout: App-Aufbau (großer Titel, eine Spalte, schwebende Vorlese-Leiste) im Nekos_news-Papiercollage-Look.
@@ -648,6 +648,49 @@ html.kontrast .kanaele .anfrage { background: #fff !important; color: #000 !impo
 .leiste button { filter: drop-shadow(0 3px 0 rgba(0,0,0,0.25)) drop-shadow(3px 8px 8px rgba(2,6,20,0.55)); }
 .leiste .status:not(:empty) { background: var(--creme); background-image: var(--faser); padding: 0.3rem 0.55rem; font: 800 0.78rem var(--sans) !important; letter-spacing: 0.02em; color: var(--anthrazit); transform: rotate(1.2deg); filter: drop-shadow(0 3px 0 rgba(0,0,0,0.25)); }
 html.kontrast .leiste { background: none !important; border: 0 !important; }
+
+/* ===== 2026-11-08: Neko-Kopf, Shop-Galerie, Einkaufswagen, Migräne-Modus, Einfache Sprache, Gen-Z-Hinweis ===== */
+.vita-kopf { display: flex; align-items: center; gap: 0.7rem; margin-bottom: 0.4rem; }
+.vita-kopf .profil { flex: 0 0 auto; width: min(7.6rem, 36vw) !important; margin: 0.3rem 0 0 !important; }
+.vita-gruss { display: grid; justify-items: start; gap: 0.55rem; min-width: 0; }
+.vita .vita-gruss h3 { justify-self: start; text-align: left; font-size: 1.25rem; margin: 0 !important; }
+.beruf { font: 0.74rem/1.25 var(--maschine); color: var(--anthrazit); background-color: #fbf8f1; background-image: var(--faser); padding: 0.38rem 0.55rem 0.32rem;
+  transform: rotate(1.8deg); filter: drop-shadow(1px 2px 0 rgba(46,43,42,0.3)); clip-path: polygon(0 4%, 30% 0, 62% 5%, 100% 1%, 98% 52%, 100% 96%, 66% 100%, 33% 95%, 2% 100%, 0 50%); }
+.kanaele .patreon { background: #FF424D; transform: rotate(-1deg); }
+.kanaele .patreon svg circle, .kanaele .patreon svg rect { fill: currentColor; }
+/* Shop: Bild antippen = Vollbild mit allen Bildern dieses Produkts */
+[data-galerie] img { cursor: zoom-in; }
+.galerie { position: fixed; inset: 0; z-index: 30; background: rgba(6,14,38,0.92); display: grid; grid-template-rows: 1fr auto; align-items: center; justify-items: center; padding: 3.2rem 0.8rem 1rem; }
+.galerie[hidden] { display: none; }
+.galerie .gross { max-width: 100%; max-height: 100%; object-fit: contain; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+.galerie .daumen { display: flex; gap: 0.5rem; justify-content: center; padding-top: 0.8rem; }
+.galerie .daumen img { width: 3.6rem; height: 3.6rem; object-fit: cover; opacity: 0.55; cursor: pointer; border: 2px solid transparent; }
+.galerie .daumen img.an { opacity: 1; border-color: var(--creme); }
+.galerie .zu { position: absolute; top: calc(0.7rem + env(safe-area-inset-top, 0px)); right: 0.8rem; font: 800 1.2rem var(--sans); color: var(--anthrazit); background: var(--creme); border: 0; width: 2.4rem; height: 2.4rem; cursor: pointer; }
+/* Einkaufswagen unten links auf orangem Papier (nur Shop) */
+.wagen { position: fixed; z-index: 5; left: max(0.9rem, env(safe-area-inset-left, 0px)); bottom: calc(16px + env(safe-area-inset-bottom, 0px)); display: flex; align-items: center; gap: 0.35rem;
+  border: 0; cursor: pointer; padding: 0.6rem 0.75rem 0.55rem; color: var(--creme); background-color: var(--rost); background-image: var(--faser); font: 800 0.85rem var(--sans);
+  transform: rotate(-2deg); clip-path: polygon(2% 6%, 40% 0, 98% 4%, 100% 50%, 96% 97%, 55% 100%, 3% 95%, 0 45%); filter: drop-shadow(0 3px 0 rgba(0,0,0,0.25)); }
+.wagen svg { width: 1.5rem; height: 1.5rem; }
+.wagen .anzahl { background: var(--creme); color: var(--rost); border-radius: 50%; width: 1.25rem; height: 1.25rem; display: grid; place-items: center; font-size: 0.72rem; }
+.wagen .wagen-info { font-size: 0.75rem; }
+/* Gen Z? – handgeschrieben mit Pfeil zum Hilfe-Knopf, nur ganz oben */
+.genz-tipp { position: fixed; z-index: 6; top: calc(4.3rem + env(safe-area-inset-top, 0px)); right: calc(max(0.8rem, env(safe-area-inset-right, 0px)) + 0.2rem); pointer-events: none;
+  font: 700 1.3rem/1 "Caveat", cursive; color: var(--creme); transform: rotate(6deg); transition: opacity 0.25s; display: flex; align-items: flex-start; gap: 0.1rem; }
+.genz-tipp svg { width: 2rem; height: 2rem; margin-top: -1.1rem; transform: scaleX(-1); order: -1; }
+.genz-tipp.weg { opacity: 0; }
+.hilfe-offen ~ .genz-tipp, html.kontrast .genz-tipp { display: none; }
+/* Migräne-Modus: alles grau-weiß, ganz leicht warm, weich (kein harter Kontrast), keine Bewegung, keine Töne */
+html.ruhig::after { content: ""; position: fixed; inset: 0; z-index: 2147483000; pointer-events: none;
+  -webkit-backdrop-filter: grayscale(1) sepia(0.14) contrast(0.82) brightness(1.04); backdrop-filter: grayscale(1) sepia(0.14) contrast(0.82) brightness(1.04); }
+html.ruhig .genz-tipp { display: none; }
+/* Einfache Sprache: Artikel zeigen nur noch die einfache Fassung; andere Texte werden ausgetauscht (data-einfach) */
+html.leicht article .gegen, html.leicht article .sichten, html.leicht article details, html.leicht article .mitdenken, html.leicht article .marke:not([data-einfach]) { display: none !important; }
+html.leicht article .einfach { font-size: 1.08rem; }
+html.leicht article .einfach b { display: none; }
+/* Thema (Rubrik) oben rechts in die Ecke, etwas über der Höhe von „KI-Stimme“ (Wunsch Nicolas 2026-11-08) */
+article:has(.hoeren) { position: relative; }
+article:has(.hoeren) > .rubrik { position: absolute; top: 0.95rem; right: 1rem; margin: 0 !important; transform: rotate(1.5deg); max-width: 55%; text-align: right; }
 </style>
 </head>
 <body>
@@ -769,9 +812,8 @@ html.kontrast .leiste { background: none !important; border: 0 !important; }
   <button class="hilfe-knopf" type="button" aria-expanded="false" aria-label="Hilfe und Barrierefreiheit"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="4.2" r="2.2"/><path d="M4 7.6 L20 7.6 L19.4 9.6 L14.2 10.4 L14.2 13.6 L16.6 21.2 L14.5 21.9 L12 15.2 L9.5 21.9 L7.4 21.2 L9.8 13.6 L9.8 10.4 L4.6 9.6 Z"/></svg></button>
   <div class="hilfe-feld" role="group" aria-label="Darstellung anpassen">
     <button type="button" data-hilfe="gross" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M3 19 L8 5 L10 5 L15 19 L12.6 19 L11.5 15.6 L6.5 15.6 L5.4 19 Z M7.2 13.5 L10.8 13.5 L9 8 Z"/><path d="M17 9 h2 v-2 h1.6 v2 h2 v1.6 h-2 v2 h-1.6 v-2 h-2 Z"/></svg><span>Größer</span></button>
-    <button type="button" data-hilfe="lesbar" aria-pressed="false"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><path d="M12 5 C6.5 5 2.6 9.2 1.5 12 C2.6 14.8 6.5 19 12 19 C17.5 19 21.4 14.8 22.5 12 C21.4 9.2 17.5 5 12 5 Z M12 7 C16 7 19 10 20.3 12 C19 14 16 17 12 17 C8 17 5 14 3.7 12 C5 10 8 7 12 7 Z"/></svg><span>Gut lesbar</span></button>
     <button type="button" data-hilfe="kontrast" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M12 2.5 A9.5 9.5 0 1 0 12 21.5 A9.5 9.5 0 1 0 12 2.5 Z M12 4.5 V19.5 A7.5 7.5 0 0 1 12 4.5 Z"/></svg><span>Kontrast</span></button>
-    <button type="button" data-hilfe="ruhig" aria-pressed="false"><svg viewBox="0 0 24 24"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg><span>Weniger Reize</span></button>
+    <button type="button" data-hilfe="ruhig" aria-pressed="false"><svg viewBox="0 0 24 24"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg><span>Migräne-Modus</span></button>
     <button type="button" data-hilfe="leicht" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M4 4 H20 A2 2 0 0 1 22 6 V15 A2 2 0 0 1 20 17 H10 L5 21 V17 H4 A2 2 0 0 1 2 15 V6 A2 2 0 0 1 4 4 Z M6 8 V10 H18 V8 Z M6 12 V14 H14 V12 Z"/></svg><span>Einfache Sprache</span></button>
       <button type="button" data-surf aria-pressed="false" class="surf-kachel"><span aria-hidden="true" style="font-size:1.4rem">🛹</span><span>Gen Z</span></button>
       <p><b>Weniger Reize:</b> keine Bewegung, keine Töne, ruhigere Farben, kein Intro beim nächsten Besuch. Vorlesen: der orange Knopf an jedem Artikel.</p>
@@ -795,12 +837,16 @@ html.kontrast .leiste { background: none !important; border: 0 !important; }
 <!-- AUSGABE-START -->
 <div class="wrap">
   <section class="gruppe" id="neko">
-    <h2 class="zettel zettel-gross">Neko</h2>
     <article class="papier riss vita">
-      <span class="profil"><img src="bilder/profilbild.jpg" alt="Nekos Instagram-Profilbild" width="220" height="220"></span>
-      <h3>Hi, ich bin Neko.</h3>
-      <p>Ich mache <mark class="strich">Nekos_news</mark>: politische Kurzvideos auf Instagram, TikTok und YouTube. Links, antifaschistisch und mit Fakten, so dass man mich auch dann nicht schlechtreden kann, wenn man anders denkt.</p>
-      <p>Mich interessiert, was <mark class="kreis">nicht zusammenpasst</mark>: Ungerechtigkeit, Doppelmoral und Politik, die am Ende ganz normale Leute trifft. Ich erzähle das so, wie ich es einem Freund erzählen würde, nicht wie eine Nachrichtensendung.</p>
+      <div class="vita-kopf">
+        <span class="profil"><img src="bilder/profilbild.jpg" alt="Nekos Instagram-Profilbild" width="220" height="220"></span>
+        <div class="vita-gruss">
+          <h3>Hi, ich bin [Neko]</h3>
+          <span class="beruf" data-einfach="Ich habe Design studiert">Studierter Kommunikationsdesigner</span>
+        </div>
+      </div>
+      <p data-einfach="Ich mache kurze Videos über Politik. Auf Instagram, TikTok und YouTube. Ich bin gegen Nazis. Ich sage nur Sachen, die stimmen.">Ich mache <mark class="strich">Nekos_news</mark>: politische Kurzvideos auf Instagram, TikTok und YouTube. Links, antifaschistisch und mit Fakten, so dass man mich auch dann nicht schlechtreden kann, wenn man anders denkt.</p>
+      <p data-einfach="Mich interessiert, wenn etwas nicht fair ist. Zum Beispiel, wenn Politik normalen Menschen schadet. Ich erkläre das so, wie man es einem Freund erklärt.">Mich interessiert, was <mark class="kreis">nicht zusammenpasst</mark>: Ungerechtigkeit, Doppelmoral und Politik, die am Ende ganz normale Leute trifft. Ich erzähle das so, wie ich es einem Freund erzählen würde, nicht wie eine Nachrichtensendung.</p>
       <div class="kanaele vita-kanaele"><a class="ig" href="https://www.instagram.com/nekos_news/" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077"/></svg>Instagram</a><a class="tt" href="https://www.tiktok.com/@nekos_news" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>TikTok</a><a class="yt" href="https://www.youtube.com/@nekos_news" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>YouTube</a><a class="anfrage" href="mailto:neko.anfragen@gmail.com?subject=Anfrage%20an%20Neko"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5 H21 A1 1 0 0 1 22 6 V18 A1 1 0 0 1 21 19 H3 A1 1 0 0 1 2 18 V6 A1 1 0 0 1 3 5 Z M4 7.2 V17 H20 V7.2 L12 12.6 Z M5.6 7 L12 11.2 L18.4 7 Z"/></svg>Anfragen</a></div>
     </article>
   </section>
@@ -1045,7 +1091,7 @@ html.kontrast .leiste { background: none !important; border: 0 !important; }
 (function () {
   var h = document.querySelector('.hilfe'), k = h && h.querySelector('.hilfe-knopf'), root = document.documentElement;
   if (!h) return;
-  function speichern() { try { localStorage.setItem('mz-hilfe', JSON.stringify(['gross','lesbar','kontrast','ruhig','leicht'].filter(function (c) { return root.classList.contains(c); }))); } catch (e) {} }
+  function speichern() { try { localStorage.setItem('mz-hilfe', JSON.stringify(['gross','kontrast','ruhig','leicht'].filter(function (c) { return root.classList.contains(c); }))); } catch (e) {} }
   k.addEventListener('click', function (e) { e.stopPropagation(); var o = h.classList.toggle('hilfe-offen'); k.setAttribute('aria-expanded', o); });
   document.addEventListener('click', function (e) { if (!h.contains(e.target)) { h.classList.remove('hilfe-offen'); k.setAttribute('aria-expanded', false); } });
   h.querySelectorAll('[data-hilfe]').forEach(function (b) {
@@ -1074,9 +1120,12 @@ html.kontrast .leiste { background: none !important; border: 0 !important; }
     btn.hidden = false;
     liste.forEach(function (x, i) {
       var d = document.createElement('div'); d.className = 'hoeren';
-      d.innerHTML = '<span class="huelle"><button type="button" aria-pressed="false" aria-label="Anhören"></button></span><small>Anhören · KI-Stimme</small>';
+      d.innerHTML = '<span class="huelle"><button type="button" aria-pressed="false" aria-label="Anhören"></button></span><small>KI-Stimme</small>';
       var ziel = x.el.querySelector('.rubrik, h2'); ziel.insertAdjacentElement('afterend', d);
       x.knopf = d.querySelector('button');
+      (function (klein) { var a = new Audio(); a.preload = 'metadata'; a.src = x.url;
+        a.addEventListener('loadedmetadata', function () { var s = Math.round(a.duration); if (!isFinite(s)) return;
+          klein.textContent = (s < 60 ? s + ' Sek.' : Math.floor(s / 60) + ':' + ('0' + s % 60).slice(-2) + ' Min.') + ' · KI-Stimme'; }); })(d.querySelector('small'));
       var punkte = [], n = 16 + (i % 3) * 2;
       for (var k = 0; k < n; k++) { var w = k / n * Math.PI * 2, r = 50 - ((Math.sin(i * 12.9898 + k * 78.233) * 43758.5453) % 1 + 1) % 1 * 6;
         punkte.push((50 + r * Math.cos(w)).toFixed(1) + '% ' + (50 + r * Math.sin(w)).toFixed(1) + '%'); }
@@ -1097,6 +1146,43 @@ html.kontrast .leiste { background: none !important; border: 0 !important; }
     if (pos >= 0 && player.paused) { player.play(); knoepfe(pos); return; }
     alles = true; spiele(0);
   });
+})();
+/* Einfache Sprache für alle sichtbaren Texte mit data-einfach (Wunsch Nicolas 2026-11-08) */
+(function () {
+  var root = document.documentElement, el = document.querySelectorAll('[data-einfach]');
+  el.forEach(function (e) { e._normal = e.innerHTML; });
+  function setzen() { var an = root.classList.contains('leicht'); el.forEach(function (e) { e.innerHTML = an ? e.getAttribute('data-einfach') : e._normal; }); }
+  setzen(); new MutationObserver(setzen).observe(root, { attributes: true, attributeFilter: ['class'] });
+})();
+/* Shop: Bild antippen -> Vollbild mit den Bildern nur dieses Produkts */
+(function () {
+  var boxen = document.querySelectorAll('[data-galerie]'); if (!boxen.length) return;
+  var g = document.createElement('div'); g.className = 'galerie'; g.hidden = true; g.setAttribute('role', 'dialog');
+  g.innerHTML = '<button class="zu" type="button" aria-label="Schließen">✕</button><img class="gross" alt=""><div class="daumen"></div>';
+  document.body.appendChild(g);
+  var gross = g.querySelector('.gross'), daumen = g.querySelector('.daumen');
+  function zeig(bilder, i) {
+    gross.src = bilder[i].src; gross.alt = bilder[i].alt; daumen.innerHTML = '';
+    if (bilder.length > 1) bilder.forEach(function (b, n) { var d = document.createElement('img'); d.src = b.src; d.alt = ''; if (n === i) d.className = 'an';
+      d.addEventListener('click', function (e) { e.stopPropagation(); zeig(bilder, n); }); daumen.appendChild(d); });
+    g.hidden = false; document.body.style.overflow = 'hidden';
+  }
+  function zu() { g.hidden = true; document.body.style.overflow = ''; }
+  boxen.forEach(function (box) { var bilder = Array.prototype.slice.call(box.querySelectorAll('img'));
+    bilder.forEach(function (b, i) { b.addEventListener('click', function () { zeig(bilder, i); }); }); });
+  g.addEventListener('click', function (e) { if (e.target === g || e.target.closest('.zu') || e.target === gross) zu(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') zu(); });
+  var w = document.querySelector('.wagen');
+  if (w) w.addEventListener('click', function () { var i = w.querySelector('.wagen-info'); i.hidden = !i.hidden; });
+})();
+/* „Gen Z?“ mit Pfeil zum Hilfe-Knopf, nur solange man ganz oben ist */
+(function () {
+  var h = document.querySelector('.hilfe-rechts'); if (!h) return;
+  var t = document.createElement('div'); t.className = 'genz-tipp'; t.setAttribute('aria-hidden', 'true');
+  t.innerHTML = '<span>Gen Z?</span><svg viewBox="0 0 40 40"><path d="M6 34 C 10 20, 20 12, 33 7 M33 7 L24 6 M33 7 L29 15" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  h.insertAdjacentElement('afterend', t);
+  function pruefen() { t.classList.toggle('weg', window.scrollY > 40 || h.querySelector('.hilfe-offen, [aria-expanded="true"]') !== null); }
+  window.addEventListener('scroll', pruefen, { passive: true }); document.addEventListener('click', function () { setTimeout(pruefen, 0); }); pruefen();
 })();
 </script>
 </body>

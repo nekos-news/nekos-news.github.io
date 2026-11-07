@@ -15,9 +15,9 @@
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=3"><link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png?v=3"><link rel="icon" type="image/png" sizes="192x192" href="/favicon.png?v=3">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Libre+Franklin:wght@500;700;800&family=Abril+Fatface&family=Special+Elite&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Libre+Franklin:wght@500;700;800&family=Abril+Fatface&family=Special+Elite&family=Caveat:wght@700&display=swap">
 <script>
-try { (JSON.parse(localStorage.getItem('mz-hilfe') || '[]')).forEach(function (k) { document.documentElement.classList.add(k); }); } catch (e) {}
+try { (JSON.parse(localStorage.getItem('mz-hilfe') || '[]')).forEach(function (k) { if (k !== 'lesbar') document.documentElement.classList.add(k); }); } catch (e) {}
 </script>
 <style>
 /* Layout: App-Aufbau (großer Titel, eine Spalte, schwebende Vorlese-Leiste) im Nekos_news-Papiercollage-Look.
@@ -648,6 +648,49 @@ html.kontrast .kanaele .anfrage { background: #fff !important; color: #000 !impo
 .leiste button { filter: drop-shadow(0 3px 0 rgba(0,0,0,0.25)) drop-shadow(3px 8px 8px rgba(2,6,20,0.55)); }
 .leiste .status:not(:empty) { background: var(--creme); background-image: var(--faser); padding: 0.3rem 0.55rem; font: 800 0.78rem var(--sans) !important; letter-spacing: 0.02em; color: var(--anthrazit); transform: rotate(1.2deg); filter: drop-shadow(0 3px 0 rgba(0,0,0,0.25)); }
 html.kontrast .leiste { background: none !important; border: 0 !important; }
+
+/* ===== 2026-11-08: Neko-Kopf, Shop-Galerie, Einkaufswagen, Migräne-Modus, Einfache Sprache, Gen-Z-Hinweis ===== */
+.vita-kopf { display: flex; align-items: center; gap: 0.7rem; margin-bottom: 0.4rem; }
+.vita-kopf .profil { flex: 0 0 auto; width: min(7.6rem, 36vw) !important; margin: 0.3rem 0 0 !important; }
+.vita-gruss { display: grid; justify-items: start; gap: 0.55rem; min-width: 0; }
+.vita .vita-gruss h3 { justify-self: start; text-align: left; font-size: 1.25rem; margin: 0 !important; }
+.beruf { font: 0.74rem/1.25 var(--maschine); color: var(--anthrazit); background-color: #fbf8f1; background-image: var(--faser); padding: 0.38rem 0.55rem 0.32rem;
+  transform: rotate(1.8deg); filter: drop-shadow(1px 2px 0 rgba(46,43,42,0.3)); clip-path: polygon(0 4%, 30% 0, 62% 5%, 100% 1%, 98% 52%, 100% 96%, 66% 100%, 33% 95%, 2% 100%, 0 50%); }
+.kanaele .patreon { background: #FF424D; transform: rotate(-1deg); }
+.kanaele .patreon svg circle, .kanaele .patreon svg rect { fill: currentColor; }
+/* Shop: Bild antippen = Vollbild mit allen Bildern dieses Produkts */
+[data-galerie] img { cursor: zoom-in; }
+.galerie { position: fixed; inset: 0; z-index: 30; background: rgba(6,14,38,0.92); display: grid; grid-template-rows: 1fr auto; align-items: center; justify-items: center; padding: 3.2rem 0.8rem 1rem; }
+.galerie[hidden] { display: none; }
+.galerie .gross { max-width: 100%; max-height: 100%; object-fit: contain; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+.galerie .daumen { display: flex; gap: 0.5rem; justify-content: center; padding-top: 0.8rem; }
+.galerie .daumen img { width: 3.6rem; height: 3.6rem; object-fit: cover; opacity: 0.55; cursor: pointer; border: 2px solid transparent; }
+.galerie .daumen img.an { opacity: 1; border-color: var(--creme); }
+.galerie .zu { position: absolute; top: calc(0.7rem + env(safe-area-inset-top, 0px)); right: 0.8rem; font: 800 1.2rem var(--sans); color: var(--anthrazit); background: var(--creme); border: 0; width: 2.4rem; height: 2.4rem; cursor: pointer; }
+/* Einkaufswagen unten links auf orangem Papier (nur Shop) */
+.wagen { position: fixed; z-index: 5; left: max(0.9rem, env(safe-area-inset-left, 0px)); bottom: calc(16px + env(safe-area-inset-bottom, 0px)); display: flex; align-items: center; gap: 0.35rem;
+  border: 0; cursor: pointer; padding: 0.6rem 0.75rem 0.55rem; color: var(--creme); background-color: var(--rost); background-image: var(--faser); font: 800 0.85rem var(--sans);
+  transform: rotate(-2deg); clip-path: polygon(2% 6%, 40% 0, 98% 4%, 100% 50%, 96% 97%, 55% 100%, 3% 95%, 0 45%); filter: drop-shadow(0 3px 0 rgba(0,0,0,0.25)); }
+.wagen svg { width: 1.5rem; height: 1.5rem; }
+.wagen .anzahl { background: var(--creme); color: var(--rost); border-radius: 50%; width: 1.25rem; height: 1.25rem; display: grid; place-items: center; font-size: 0.72rem; }
+.wagen .wagen-info { font-size: 0.75rem; }
+/* Gen Z? – handgeschrieben mit Pfeil zum Hilfe-Knopf, nur ganz oben */
+.genz-tipp { position: fixed; z-index: 6; top: calc(4.3rem + env(safe-area-inset-top, 0px)); right: calc(max(0.8rem, env(safe-area-inset-right, 0px)) + 0.2rem); pointer-events: none;
+  font: 700 1.3rem/1 "Caveat", cursive; color: var(--creme); transform: rotate(6deg); transition: opacity 0.25s; display: flex; align-items: flex-start; gap: 0.1rem; }
+.genz-tipp svg { width: 2rem; height: 2rem; margin-top: -1.1rem; transform: scaleX(-1); order: -1; }
+.genz-tipp.weg { opacity: 0; }
+.hilfe-offen ~ .genz-tipp, html.kontrast .genz-tipp { display: none; }
+/* Migräne-Modus: alles grau-weiß, ganz leicht warm, weich (kein harter Kontrast), keine Bewegung, keine Töne */
+html.ruhig::after { content: ""; position: fixed; inset: 0; z-index: 2147483000; pointer-events: none;
+  -webkit-backdrop-filter: grayscale(1) sepia(0.14) contrast(0.82) brightness(1.04); backdrop-filter: grayscale(1) sepia(0.14) contrast(0.82) brightness(1.04); }
+html.ruhig .genz-tipp { display: none; }
+/* Einfache Sprache: Artikel zeigen nur noch die einfache Fassung; andere Texte werden ausgetauscht (data-einfach) */
+html.leicht article .gegen, html.leicht article .sichten, html.leicht article details, html.leicht article .mitdenken, html.leicht article .marke:not([data-einfach]) { display: none !important; }
+html.leicht article .einfach { font-size: 1.08rem; }
+html.leicht article .einfach b { display: none; }
+/* Thema (Rubrik) oben rechts in die Ecke, etwas über der Höhe von „KI-Stimme“ (Wunsch Nicolas 2026-11-08) */
+article:has(.hoeren) { position: relative; }
+article:has(.hoeren) > .rubrik { position: absolute; top: 0.95rem; right: 1rem; margin: 0 !important; transform: rotate(1.5deg); max-width: 55%; text-align: right; }
 </style>
 </head>
 <body>
@@ -769,9 +812,8 @@ html.kontrast .leiste { background: none !important; border: 0 !important; }
   <button class="hilfe-knopf" type="button" aria-expanded="false" aria-label="Hilfe und Barrierefreiheit"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="4.2" r="2.2"/><path d="M4 7.6 L20 7.6 L19.4 9.6 L14.2 10.4 L14.2 13.6 L16.6 21.2 L14.5 21.9 L12 15.2 L9.5 21.9 L7.4 21.2 L9.8 13.6 L9.8 10.4 L4.6 9.6 Z"/></svg></button>
   <div class="hilfe-feld" role="group" aria-label="Darstellung anpassen">
     <button type="button" data-hilfe="gross" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M3 19 L8 5 L10 5 L15 19 L12.6 19 L11.5 15.6 L6.5 15.6 L5.4 19 Z M7.2 13.5 L10.8 13.5 L9 8 Z"/><path d="M17 9 h2 v-2 h1.6 v2 h2 v1.6 h-2 v2 h-1.6 v-2 h-2 Z"/></svg><span>Größer</span></button>
-    <button type="button" data-hilfe="lesbar" aria-pressed="false"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><path d="M12 5 C6.5 5 2.6 9.2 1.5 12 C2.6 14.8 6.5 19 12 19 C17.5 19 21.4 14.8 22.5 12 C21.4 9.2 17.5 5 12 5 Z M12 7 C16 7 19 10 20.3 12 C19 14 16 17 12 17 C8 17 5 14 3.7 12 C5 10 8 7 12 7 Z"/></svg><span>Gut lesbar</span></button>
     <button type="button" data-hilfe="kontrast" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M12 2.5 A9.5 9.5 0 1 0 12 21.5 A9.5 9.5 0 1 0 12 2.5 Z M12 4.5 V19.5 A7.5 7.5 0 0 1 12 4.5 Z"/></svg><span>Kontrast</span></button>
-    <button type="button" data-hilfe="ruhig" aria-pressed="false"><svg viewBox="0 0 24 24"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg><span>Weniger Reize</span></button>
+    <button type="button" data-hilfe="ruhig" aria-pressed="false"><svg viewBox="0 0 24 24"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg><span>Migräne-Modus</span></button>
     <button type="button" data-hilfe="leicht" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M4 4 H20 A2 2 0 0 1 22 6 V15 A2 2 0 0 1 20 17 H10 L5 21 V17 H4 A2 2 0 0 1 2 15 V6 A2 2 0 0 1 4 4 Z M6 8 V10 H18 V8 Z M6 12 V14 H14 V12 Z"/></svg><span>Einfache Sprache</span></button>
       <button type="button" data-surf aria-pressed="false" class="surf-kachel"><span aria-hidden="true" style="font-size:1.4rem">🛹</span><span>Gen Z</span></button>
       <p><b>Weniger Reize:</b> keine Bewegung, keine Töne, ruhigere Farben, kein Intro beim nächsten Besuch. Vorlesen: der orange Knopf an jedem Artikel.</p>
@@ -791,13 +833,13 @@ html.kontrast .leiste { background: none !important; border: 0 !important; }
 </div>
 <div class="oben">
   <img class="logo-oben" src="bilder/logo_buchstaben.png" alt="Nekos News" width="330" height="280">
-  <p class="hinweis"><svg class="schild" viewBox="0 0 64 56" aria-hidden="true"><path d="M32 3 L61 52 L3 52 Z" fill="#D99A4E" stroke="#2E2B2A" stroke-width="5" stroke-linejoin="round"/><text x="32" y="45" text-anchor="middle" font-family="Libre Franklin, Arial, sans-serif" font-weight="800" font-size="19" fill="#2E2B2A">KI</text></svg><span><b>Kein Journalismus:</b> Hier fasst eine KI nur Berichte echter Journalist:innen zusammen und verlinkt sie. Ich prüfe nichts selbst, lies im Zweifel die Originale.</span></p>
+  <p class="hinweis"><svg class="schild" viewBox="0 0 64 56" aria-hidden="true"><path d="M32 3 L61 52 L3 52 Z" fill="#D99A4E" stroke="#2E2B2A" stroke-width="5" stroke-linejoin="round"/><text x="32" y="45" text-anchor="middle" font-family="Libre Franklin, Arial, sans-serif" font-weight="800" font-size="19" fill="#2E2B2A">KI</text></svg><span><b>Kein Journalismus:</b> Hier fasst eine KI nur Berichte echter Journalist:innen zusammen und verlinkt sie. Automatisch zweimal am Tag, um 7 und um 17 Uhr. Ich prüfe nichts selbst, lies im Zweifel die Originale.</span></p>
 </div>
 <!-- AUSGABE-START -->
 <div class="wrap" data-datum="2026-11-07">
 
   <aside class="kurz papier riss" id="kurz" data-lesen>
-    <div class="zeile"><span>Samstag<span class="erpress" aria-label="7.11."><span>0</span><span>7</span><span>1</span><span>1</span></span></span><span>7 Uhr · 5 Min.</span></div>
+    <div class="zeile"><span>Samstag<span class="erpress" aria-label="7.11."><span>0</span><span>7</span><span>1</span><span>1</span></span></span></div>
     <img class="neko" src="bilder/neko_zeitung.png" alt="" width="110" height="150">
     <h2>Das Wichtigste in 30 Sekunden</h2>
     <ul>
@@ -1138,7 +1180,7 @@ html.kontrast .leiste { background: none !important; border: 0 !important; }
 (function () {
   var h = document.querySelector('.hilfe'), k = h && h.querySelector('.hilfe-knopf'), root = document.documentElement;
   if (!h) return;
-  function speichern() { try { localStorage.setItem('mz-hilfe', JSON.stringify(['gross','lesbar','kontrast','ruhig','leicht'].filter(function (c) { return root.classList.contains(c); }))); } catch (e) {} }
+  function speichern() { try { localStorage.setItem('mz-hilfe', JSON.stringify(['gross','kontrast','ruhig','leicht'].filter(function (c) { return root.classList.contains(c); }))); } catch (e) {} }
   k.addEventListener('click', function (e) { e.stopPropagation(); var o = h.classList.toggle('hilfe-offen'); k.setAttribute('aria-expanded', o); });
   document.addEventListener('click', function (e) { if (!h.contains(e.target)) { h.classList.remove('hilfe-offen'); k.setAttribute('aria-expanded', false); } });
   h.querySelectorAll('[data-hilfe]').forEach(function (b) {
@@ -1167,9 +1209,12 @@ html.kontrast .leiste { background: none !important; border: 0 !important; }
     btn.hidden = false;
     liste.forEach(function (x, i) {
       var d = document.createElement('div'); d.className = 'hoeren';
-      d.innerHTML = '<span class="huelle"><button type="button" aria-pressed="false" aria-label="Anhören"></button></span><small>Anhören · KI-Stimme</small>';
+      d.innerHTML = '<span class="huelle"><button type="button" aria-pressed="false" aria-label="Anhören"></button></span><small>KI-Stimme</small>';
       var ziel = x.el.querySelector('.rubrik, h2'); ziel.insertAdjacentElement('afterend', d);
       x.knopf = d.querySelector('button');
+      (function (klein) { var a = new Audio(); a.preload = 'metadata'; a.src = x.url;
+        a.addEventListener('loadedmetadata', function () { var s = Math.round(a.duration); if (!isFinite(s)) return;
+          klein.textContent = (s < 60 ? s + ' Sek.' : Math.floor(s / 60) + ':' + ('0' + s % 60).slice(-2) + ' Min.') + ' · KI-Stimme'; }); })(d.querySelector('small'));
       var punkte = [], n = 16 + (i % 3) * 2;
       for (var k = 0; k < n; k++) { var w = k / n * Math.PI * 2, r = 50 - ((Math.sin(i * 12.9898 + k * 78.233) * 43758.5453) % 1 + 1) % 1 * 6;
         punkte.push((50 + r * Math.cos(w)).toFixed(1) + '% ' + (50 + r * Math.sin(w)).toFixed(1) + '%'); }
@@ -1190,6 +1235,43 @@ html.kontrast .leiste { background: none !important; border: 0 !important; }
     if (pos >= 0 && player.paused) { player.play(); knoepfe(pos); return; }
     alles = true; spiele(0);
   });
+})();
+/* Einfache Sprache für alle sichtbaren Texte mit data-einfach (Wunsch Nicolas 2026-11-08) */
+(function () {
+  var root = document.documentElement, el = document.querySelectorAll('[data-einfach]');
+  el.forEach(function (e) { e._normal = e.innerHTML; });
+  function setzen() { var an = root.classList.contains('leicht'); el.forEach(function (e) { e.innerHTML = an ? e.getAttribute('data-einfach') : e._normal; }); }
+  setzen(); new MutationObserver(setzen).observe(root, { attributes: true, attributeFilter: ['class'] });
+})();
+/* Shop: Bild antippen -> Vollbild mit den Bildern nur dieses Produkts */
+(function () {
+  var boxen = document.querySelectorAll('[data-galerie]'); if (!boxen.length) return;
+  var g = document.createElement('div'); g.className = 'galerie'; g.hidden = true; g.setAttribute('role', 'dialog');
+  g.innerHTML = '<button class="zu" type="button" aria-label="Schließen">✕</button><img class="gross" alt=""><div class="daumen"></div>';
+  document.body.appendChild(g);
+  var gross = g.querySelector('.gross'), daumen = g.querySelector('.daumen');
+  function zeig(bilder, i) {
+    gross.src = bilder[i].src; gross.alt = bilder[i].alt; daumen.innerHTML = '';
+    if (bilder.length > 1) bilder.forEach(function (b, n) { var d = document.createElement('img'); d.src = b.src; d.alt = ''; if (n === i) d.className = 'an';
+      d.addEventListener('click', function (e) { e.stopPropagation(); zeig(bilder, n); }); daumen.appendChild(d); });
+    g.hidden = false; document.body.style.overflow = 'hidden';
+  }
+  function zu() { g.hidden = true; document.body.style.overflow = ''; }
+  boxen.forEach(function (box) { var bilder = Array.prototype.slice.call(box.querySelectorAll('img'));
+    bilder.forEach(function (b, i) { b.addEventListener('click', function () { zeig(bilder, i); }); }); });
+  g.addEventListener('click', function (e) { if (e.target === g || e.target.closest('.zu') || e.target === gross) zu(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') zu(); });
+  var w = document.querySelector('.wagen');
+  if (w) w.addEventListener('click', function () { var i = w.querySelector('.wagen-info'); i.hidden = !i.hidden; });
+})();
+/* „Gen Z?“ mit Pfeil zum Hilfe-Knopf, nur solange man ganz oben ist */
+(function () {
+  var h = document.querySelector('.hilfe-rechts'); if (!h) return;
+  var t = document.createElement('div'); t.className = 'genz-tipp'; t.setAttribute('aria-hidden', 'true');
+  t.innerHTML = '<span>Gen Z?</span><svg viewBox="0 0 40 40"><path d="M6 34 C 10 20, 20 12, 33 7 M33 7 L24 6 M33 7 L29 15" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  h.insertAdjacentElement('afterend', t);
+  function pruefen() { t.classList.toggle('weg', window.scrollY > 40 || h.querySelector('.hilfe-offen, [aria-expanded="true"]') !== null); }
+  window.addEventListener('scroll', pruefen, { passive: true }); document.addEventListener('click', function () { setTimeout(pruefen, 0); }); pruefen();
 })();
 </script>
 </body>

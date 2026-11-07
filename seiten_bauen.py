@@ -69,27 +69,25 @@ def shop():
   <section class="gruppe" id="shop">
     <h2 class="zettel">Kommt bald</h2>
     <article class="papier riss produkt" id="hoodie">
-      <span class="rubrik">Hoodie · Vorschau</span>
       <h3>STOP – F*cking Fascists</h3>
-      <div class="produktbilder"><img src="bilder/shop/hoodie_hinten.jpg" alt="Hoodie Rückseite mit Stoppschild „STOP – F*cking Fascists“ und #NIEWIEDERISTJETZT" loading="lazy"><img src="bilder/shop/hoodie_vorne.jpg" alt="Hoodie Vorderseite, dazu Kappe „MENSCH.“" loading="lazy"></div>
-      <p>Schwarzer Hoodie mit großem Stoppschild auf dem Rücken, weißen Streifen an Kapuze und Ärmeln und #NIEWIEDERISTJETZT.</p>
-      <span class="marke">Noch nicht bestellbar</span>
+      <div class="produktbilder" data-galerie><img src="bilder/shop/hoodie_hinten.jpg" alt="Hoodie Rückseite mit Stoppschild „STOP – F*cking Fascists“ und #NIEWIEDERISTJETZT" loading="lazy"><img src="bilder/shop/hoodie_vorne.jpg" alt="Hoodie Vorderseite, dazu Kappe „MENSCH.“" loading="lazy"></div>
+      <p data-einfach="Ein schwarzer Pulli mit Kapuze. Hinten ist ein großes Stopp-Schild gegen Nazis.">Schwarzer Hoodie mit großem Stoppschild auf dem Rücken, weißen Streifen an Kapuze und Ärmeln und #NIEWIEDERISTJETZT.</p>
+      <span class="marke" data-einfach="Kann man noch nicht kaufen">Noch nicht bestellbar</span>
     </article>
     <article class="papier riss produkt" id="kappe">
-      <span class="rubrik">Kappe · Vorschau</span>
       <h3>MENSCH.</h3>
-      <div class="produktbilder eins"><img src="bilder/shop/kappe.jpg" alt="Schwarze Kappe mit Aufschrift „MENSCH.“" loading="lazy"></div>
-      <p>Schwarze Kappe mit weißer Aufschrift „MENSCH.“.</p>
-      <span class="marke">Noch nicht bestellbar</span>
+      <div class="produktbilder eins" data-galerie><img src="bilder/shop/kappe.jpg" alt="Schwarze Kappe mit Aufschrift „MENSCH.“" loading="lazy"></div>
+      <p data-einfach="Eine schwarze Mütze mit Schirm. Darauf steht: MENSCH.">Schwarze Kappe mit weißer Aufschrift „MENSCH.“.</p>
+      <span class="marke" data-einfach="Kann man noch nicht kaufen">Noch nicht bestellbar</span>
     </article>
     <article class="papier riss produkt" id="sticker">
-      <span class="rubrik">Sticker · Vorschau</span>
       <h3>You are the product</h3>
-      <div class="produktbilder eins sticker"><img src="bilder/shop/sticker_product.jpg" alt="Sticker: „You are the product“ mit Strichcode" loading="lazy"></div>
-      <p>Schwarz-weißer Sticker mit Strichcode: „You are the product“.</p>
-      <span class="marke">Noch nicht bestellbar</span>
+      <div class="produktbilder eins sticker" data-galerie><img src="bilder/shop/sticker_product.jpg" alt="Sticker: „You are the product“ mit Strichcode" loading="lazy"></div>
+      <p data-einfach="Ein Aufkleber. Darauf steht: Du bist das Produkt.">Schwarz-weißer Sticker mit Strichcode: „You are the product“.</p>
+      <span class="marke" data-einfach="Kann man noch nicht kaufen">Noch nicht bestellbar</span>
     </article>
   </section>
+  <button type="button" class="wagen" aria-label="Einkaufswagen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 3 H5 L7.4 14.2 A1.5 1.5 0 0 0 8.9 15.4 H18.6 A1.5 1.5 0 0 0 20 14.3 L21.8 7 H6.3 M9 20.5 A1.6 1.6 0 1 0 9 17.3 A1.6 1.6 0 1 0 9 20.5 Z M18 20.5 A1.6 1.6 0 1 0 18 17.3 A1.6 1.6 0 1 0 18 20.5 Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg><span class="anzahl">0</span><span class="wagen-info" hidden>Bald bestellbar</span></button>
 ''' + FUSS
     seite(inhalt, "Shop", "shop.html")
     ohne_ki("shop.html")  # Shop ist keine KI-Zusammenfassung (Wunsch Nicolas 2026-11-08)
@@ -124,16 +122,23 @@ def ohne_ki(datei):
     t = re.sub(r'\s*<footer class="papier riss">\s*<span>Kein Journalismus.*?</footer>', '', t, count=1, flags=re.S)
     open(pfad, "w", encoding="utf-8").write(t)
 
+PATREON = ""  # Link zu Nekos Patreon, sobald bekannt (leer = Knopf ausgeblendet)
+
 def neko():
+    patreon = (f'<a class="patreon" href="{PATREON}" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="15" cy="9.5" r="6.5"/><rect x="2.5" y="3" width="3.6" height="18"/></svg>Patreon</a>' if PATREON else "")
     inhalt = '''<div class="wrap">
   <section class="gruppe" id="neko">
-    <h2 class="zettel zettel-gross">Neko</h2>
     <article class="papier riss vita">
-      <span class="profil"><img src="bilder/profilbild.jpg" alt="Nekos Instagram-Profilbild" width="220" height="220"></span>
-      <h3>Hi, ich bin Neko.</h3>
-      <p>Ich mache <mark class="strich">Nekos_news</mark>: politische Kurzvideos auf Instagram, TikTok und YouTube. Links, antifaschistisch und mit Fakten, so dass man mich auch dann nicht schlechtreden kann, wenn man anders denkt.</p>
-      <p>Mich interessiert, was <mark class="kreis">nicht zusammenpasst</mark>: Ungerechtigkeit, Doppelmoral und Politik, die am Ende ganz normale Leute trifft. Ich erzähle das so, wie ich es einem Freund erzählen würde, nicht wie eine Nachrichtensendung.</p>
-      <div class="kanaele vita-kanaele">KANAELE<a class="anfrage" href="mailto:neko.anfragen@gmail.com?subject=Anfrage%20an%20Neko"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5 H21 A1 1 0 0 1 22 6 V18 A1 1 0 0 1 21 19 H3 A1 1 0 0 1 2 18 V6 A1 1 0 0 1 3 5 Z M4 7.2 V17 H20 V7.2 L12 12.6 Z M5.6 7 L12 11.2 L18.4 7 Z"/></svg>Anfragen</a></div>
+      <div class="vita-kopf">
+        <span class="profil"><img src="bilder/profilbild.jpg" alt="Nekos Instagram-Profilbild" width="220" height="220"></span>
+        <div class="vita-gruss">
+          <h3>Hi, ich bin [Neko]</h3>
+          <span class="beruf" data-einfach="Ich habe Design studiert">Studierter Kommunikationsdesigner</span>
+        </div>
+      </div>
+      <p data-einfach="Ich mache kurze Videos über Politik. Auf Instagram, TikTok und YouTube. Ich bin gegen Nazis. Ich sage nur Sachen, die stimmen.">Ich mache <mark class="strich">Nekos_news</mark>: politische Kurzvideos auf Instagram, TikTok und YouTube. Links, antifaschistisch und mit Fakten, so dass man mich auch dann nicht schlechtreden kann, wenn man anders denkt.</p>
+      <p data-einfach="Mich interessiert, wenn etwas nicht fair ist. Zum Beispiel, wenn Politik normalen Menschen schadet. Ich erkläre das so, wie man es einem Freund erklärt.">Mich interessiert, was <mark class="kreis">nicht zusammenpasst</mark>: Ungerechtigkeit, Doppelmoral und Politik, die am Ende ganz normale Leute trifft. Ich erzähle das so, wie ich es einem Freund erzählen würde, nicht wie eine Nachrichtensendung.</p>
+      <div class="kanaele vita-kanaele">KANAELEPATREON<a class="anfrage" href="mailto:neko.anfragen@gmail.com?subject=Anfrage%20an%20Neko"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5 H21 A1 1 0 0 1 22 6 V18 A1 1 0 0 1 21 19 H3 A1 1 0 0 1 2 18 V6 A1 1 0 0 1 3 5 Z M4 7.2 V17 H20 V7.2 L12 12.6 Z M5.6 7 L12 11.2 L18.4 7 Z"/></svg>Anfragen</a></div>
     </article>
   </section>
   <section class="gruppe" id="content">
@@ -143,12 +148,9 @@ def neko():
   </section>
 ''' + FUSS
     k = re.search(r'<div class="kanaele">(.*?)</div>', vorlage(), re.S).group(1).strip()
-    seite(inhalt.replace("KANAELE", k), "Neko", "neko.html")
+    seite(inhalt.replace("KANAELE", k).replace("PATREON", patreon), "Neko", "neko.html")
     # Auf der Profilseite kein „Kein Journalismus“-Hinweis (Wunsch Nicolas)
-    pfad = os.path.join(HIER, "neko.html"); t = open(pfad, encoding="utf-8").read()
-    t = re.sub(r'\s*<p class="hinweis">.*?</p>', '', t, count=1, flags=re.S)
-    t = re.sub(r'\s*<footer class="papier riss">\s*<span>Kein Journalismus.*?</footer>', '', t, count=1, flags=re.S)
-    open(pfad, "w", encoding="utf-8").write(t)
+    ohne_ki("neko.html")
 
 if __name__ == "__main__":
     bestenliste(); shop(); neko()

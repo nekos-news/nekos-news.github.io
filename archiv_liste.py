@@ -32,7 +32,7 @@ h1 { justify-self: start; margin: 0 0 0.6rem; font-family: "Libre Caslon Text", 
 </style></head><body><div class="wrap">
   <h1>Archiv</h1>
 """ + "\n".join(zeilen) + """
-  <a class="zurueck" href="../">← Heutige Ausgabe</a>
+  <a class="zurueck" href="../">← Zurück</a>
 </div></body></html>
 """
 open(os.path.join(ORDNER, "index.html"), "w", encoding="utf-8").write(html)
