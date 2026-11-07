@@ -9,7 +9,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Nekos News">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="theme-color" content="#0A1C44">
+<meta name="theme-color" content="#081636">
 <meta name="robots" content="noindex">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=3"><link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png?v=3"><link rel="icon" type="image/png" sizes="192x192" href="/favicon.png?v=3">
@@ -23,7 +23,7 @@ try { (JSON.parse(localStorage.getItem('mz-hilfe') || '[]')).forEach(function (k
    Dunkelblaues Papier als Grund, jede Meldung ein leicht schräger Zeitungsschnipsel. Bewusst ein einziges Farbschema. */
 :root {
   color-scheme: light;
-  --grund: #0A1C44;
+  --grund: #081636;
   --rost: #C8603A;
   --ocker: #D99A4E;
   --braun: #7A4B32;
@@ -43,11 +43,11 @@ try { (JSON.parse(localStorage.getItem('mz-hilfe') || '[]')).forEach(function (k
 }
 html { background-color: var(--grund); padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
 /* Karo-Raster als feste Ebene, schiebt sich dauerhaft langsam vorbei (Wunsch Nicolas 2026-11-08); im Migräne-Modus steht es */
-.raster-ebene { position: fixed; z-index: -1; top: -140px; left: -140px; width: calc(100vw + 280px); height: calc(100vh + 280px); pointer-events: none;
+.raster-ebene { position: fixed; z-index: -1; top: 0; left: 0; width: calc(100vw + 280px); height: 100vh; pointer-events: none;
   background-image: repeating-linear-gradient(0deg, rgba(232,220,198,0.07) 0 1px, transparent 1px 28px), repeating-linear-gradient(90deg, rgba(232,220,198,0.07) 0 1px, transparent 1px 28px),
     repeating-linear-gradient(0deg, rgba(232,220,198,0.06) 0 2px, transparent 2px 140px), repeating-linear-gradient(90deg, rgba(232,220,198,0.06) 0 2px, transparent 2px 140px); -webkit-animation: raster-zieht 28s linear infinite; animation: raster-zieht 28s linear infinite; will-change: transform; }
-@-webkit-keyframes raster-zieht { from { -webkit-transform: translate3d(0,0,0); } to { -webkit-transform: translate3d(140px,140px,0); } }
-@keyframes raster-zieht { from { transform: translate3d(0,0,0); } to { transform: translate3d(140px,140px,0); } }
+@-webkit-keyframes raster-zieht { from { -webkit-transform: translate3d(0,0,0); } to { -webkit-transform: translate3d(-140px,0,0); } }
+@keyframes raster-zieht { from { transform: translate3d(0,0,0); } to { transform: translate3d(-140px,0,0); } }
 body { margin: 0; }
 [hidden] { display: none !important; }
 img { max-width: 100%; }
