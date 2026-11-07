@@ -92,6 +92,7 @@ def shop():
   </section>
 ''' + FUSS
     seite(inhalt, "Shop", "shop.html")
+    ohne_ki("shop.html")  # Shop ist keine KI-Zusammenfassung (Wunsch Nicolas 2026-11-08)
 
 def links():
     s = vorlage()
@@ -115,6 +116,13 @@ def links():
   </section>
 ''' + FUSS
     seite(inhalt, "Über mich & Links", "links.html")
+
+def ohne_ki(datei):
+    """Entfernt den „Kein Journalismus“-Hinweis oben und die KI-Fußzeile (Neko- und Shop-Seite)."""
+    pfad = os.path.join(HIER, datei); t = open(pfad, encoding="utf-8").read()
+    t = re.sub(r'\s*<p class="hinweis">.*?</p>', '', t, count=1, flags=re.S)
+    t = re.sub(r'\s*<footer class="papier riss">\s*<span>Kein Journalismus.*?</footer>', '', t, count=1, flags=re.S)
+    open(pfad, "w", encoding="utf-8").write(t)
 
 def neko():
     inhalt = '''<div class="wrap">
