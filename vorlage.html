@@ -9,7 +9,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Nekos News">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="theme-color" content="#13306B">
+<meta name="theme-color" content="#0E2556">
 <meta name="robots" content="noindex">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=3"><link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png?v=3"><link rel="icon" type="image/png" sizes="192x192" href="/favicon.png?v=3">
@@ -24,7 +24,7 @@ try { (JSON.parse(localStorage.getItem('mz-hilfe') || '[]')).forEach(function (k
    Dunkelblaues Papier als Grund, jede Meldung ein leicht schräger Zeitungsschnipsel. Bewusst ein einziges Farbschema. */
 :root {
   color-scheme: light;
-  --grund: #13306B;
+  --grund: #0E2556;
   --rost: #C8603A;
   --ocker: #D99A4E;
   --braun: #7A4B32;
@@ -42,9 +42,12 @@ try { (JSON.parse(localStorage.getItem('mz-hilfe') || '[]')).forEach(function (k
   --korn: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.5 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
   --faser: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.02 0.6' numOctaves='2' seed='4'/%3E%3CfeColorMatrix values='0 0 0 0 0.3 0 0 0 0 0.22 0 0 0 0 0.15 0 0 0 0.22 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");
 }
-html { background-color: var(--grund); padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px);
+html { background-color: var(--grund); padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+/* Karo-Raster als feste Ebene, schiebt sich dauerhaft langsam vorbei (Wunsch Nicolas 2026-11-08); im Migräne-Modus steht es */
+body::before { content: ""; position: fixed; z-index: -1; top: -140px; left: -140px; width: calc(100vw + 280px); height: calc(100vh + 280px); pointer-events: none;
   background-image: repeating-linear-gradient(0deg, rgba(232,220,198,0.07) 0 1px, transparent 1px 28px), repeating-linear-gradient(90deg, rgba(232,220,198,0.07) 0 1px, transparent 1px 28px),
-    repeating-linear-gradient(0deg, rgba(232,220,198,0.06) 0 2px, transparent 2px 140px), repeating-linear-gradient(90deg, rgba(232,220,198,0.06) 0 2px, transparent 2px 140px); }
+    repeating-linear-gradient(0deg, rgba(232,220,198,0.06) 0 2px, transparent 2px 140px), repeating-linear-gradient(90deg, rgba(232,220,198,0.06) 0 2px, transparent 2px 140px); animation: raster-zieht 70s linear infinite; will-change: transform; }
+@keyframes raster-zieht { from { transform: translate(0, 0); } to { transform: translate(140px, 140px); } }
 body { margin: 0; }
 [hidden] { display: none !important; }
 img { max-width: 100%; }
