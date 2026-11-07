@@ -11,8 +11,8 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#13306B">
 <meta name="robots" content="noindex">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png"><link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png"><link rel="icon" type="image/png" sizes="192x192" href="/favicon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=3"><link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png?v=3"><link rel="icon" type="image/png" sizes="192x192" href="/favicon.png?v=3">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Libre+Franklin:wght@500;700;800&family=Abril+Fatface&family=Special+Elite&display=swap">
@@ -453,6 +453,11 @@ html.kontrast .erpress span:nth-child(2)::after, html.kontrast .erpress span:nth
 .kurz h2 { margin-right: 4.6rem !important; }
 .kurz .neko { position: absolute; right: 0.7rem; top: 0.4rem; width: 5.2rem; height: auto; pointer-events: none; }
 html.kontrast .kurz .zeile { color: #000; }
+/* Shop-Produkte */
+.produktbilder { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+.produktbilder.eins { grid-template-columns: 1fr; }
+.produktbilder img { display: block; width: 100%; height: auto; border: 0.25rem solid var(--creme); box-shadow: 2px 3px 0 rgba(46,43,42,0.4); }
+.produktbilder img:nth-child(1) { transform: rotate(-1.2deg); } .produktbilder img:nth-child(2) { transform: rotate(1deg); }
 /* Nach oben orange */
 .leiste .hoch { width: 2.5rem !important; height: 2.4rem !important; background-color: var(--rost) !important; background-image: var(--faser) !important; color: var(--creme) !important;
   font: 800 1.25rem/1 var(--sans) !important; display: grid !important; place-items: center; transform: rotate(-3deg) !important;
@@ -494,7 +499,8 @@ article h3::after { top: -0.7rem !important; width: 2.6rem !important; height: 0
 html.kontrast .fakt b, html.kontrast .einordnung b, html.kontrast .these b { color: #000 !important; }
 /* Befestigungen: 12 Varianten (Tape, Nadeln), per Zufall je Überschrift */
 article h3::after { all: unset; }
-article h3::before, article h3::after { content: ""; position: absolute; pointer-events: none; }
+article h3::before, article h3::after { content: ""; position: absolute; pointer-events: none; z-index: 3; }
+mark.kreis::after, mark.strich::after { z-index: 1; }
 article h3:not([class*="bef-"])::after { display: none; }
 article h3.bef-0::after { top:-0.7rem;left:0.9rem;width:2.6rem;height:0.85rem;background:rgba(217,154,78,0.62);transform:rotate(-6deg); }
 article h3.bef-0::before { display: none; }
@@ -522,7 +528,9 @@ article h3.bef-11::after { top:-0.6rem;left:0.4rem;width:0.95rem;height:0.95rem;
 article h3.bef-11::before { bottom:-0.45rem;right:0.5rem;width:2.3rem;height:0.8rem;background:rgba(217,154,78,0.62);transform:rotate(-30deg); }
 html.kontrast article h3::before, html.kontrast article h3::after { display: none !important; }
 /* Weiter-Knöpfe unter den Beiträgen */
-.mehr-news { display: grid; gap: 0.7rem; }
+.mehr-news { display: grid; gap: 1.8rem; justify-items: center; margin-top: 2.6rem; }
+.mehr-news .knoepfe { width: 100%; }
+.mehr-news .zettel { justify-self: center; margin-inline: auto; }
 .mehr-news .knoepfe { display: flex; flex-wrap: wrap; gap: 0.6rem; }
 .mehr-news a { flex: 1 1 8rem; text-align: center; text-decoration: none; font: 800 0.85rem var(--sans); color: var(--creme); background-color: var(--rost); background-image: var(--faser);
   padding: 0.8rem 0.6rem 0.72rem; filter: drop-shadow(0 3px 0 rgba(0,0,0,0.25)) drop-shadow(3px 8px 8px rgba(2,6,20,0.5)); }
@@ -614,7 +622,7 @@ html.kontrast .kanaele .anfrage { background: #fff !important; color: #000 !impo
 /* Leiste ohne Kasten: Knöpfe schweben einzeln */
 .leiste { background: none !important; background-image: none !important; filter: none !important; padding: 0 !important; gap: 0.6rem !important; }
 .leiste button { filter: drop-shadow(0 3px 0 rgba(0,0,0,0.25)) drop-shadow(3px 8px 8px rgba(2,6,20,0.55)); }
-.leiste .status:not(:empty) { background: var(--creme); padding: 0.2rem 0.4rem; }
+.leiste .status:not(:empty) { background: var(--creme); background-image: var(--faser); padding: 0.3rem 0.55rem; font: 800 0.78rem var(--sans) !important; letter-spacing: 0.02em; color: var(--anthrazit); transform: rotate(1.2deg); filter: drop-shadow(0 3px 0 rgba(0,0,0,0.25)); }
 html.kontrast .leiste { background: none !important; border: 0 !important; }
 </style>
 </head>
@@ -851,14 +859,12 @@ html.kontrast .leiste { background: none !important; border: 0 !important; }
 
   <footer class="papier riss">
     <span><b>Kein Journalismus.</b> Eine KI fasst hier jeden Morgen Berichte echter Journalist:innen zusammen. Die Originale sind immer verlinkt.</span>
-    <span>Ocker = noch unbestätigt.</span>
   </footer>
 </div>
 <!-- AUSGABE-ENDE -->
 
 <div class="leiste" aria-label="Vorlesen und Navigation">
   <button id="btn-lesen" type="button" hidden>▶ Alles anhören</button>
-  <button id="btn-stopp" type="button" class="leise" hidden aria-label="Stopp">■</button>
   <span class="status" id="lese-status" aria-live="polite"></span>
   <button type="button" class="hoch" aria-label="Nach oben" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
 </div>
@@ -1103,15 +1109,15 @@ html.kontrast .leiste { background: none !important; border: 0 !important; }
   var wrap = document.querySelector('.wrap[data-datum]'); if (!wrap) return;
   var basis = '/audio/' + wrap.getAttribute('data-datum') + '/';
   var player = new Audio(), liste = [], pos = -1, alles = false;
-  var leiste = document.querySelector('.leiste'), btn = document.getElementById('btn-lesen'), stopp = document.getElementById('btn-stopp'), status = document.getElementById('lese-status');
+  var leiste = document.querySelector('.leiste'), btn = document.getElementById('btn-lesen'), status = document.getElementById('lese-status');
   var teile = Array.prototype.slice.call(document.querySelectorAll('#kurz, article[id]'));
   function knoepfe(aktiv) { liste.forEach(function (x, i) { x.knopf.setAttribute('aria-pressed', i === aktiv); x.knopf.setAttribute('aria-label', i === aktiv ? 'Pause' : 'Anhören'); x.el.classList.toggle('liest', i === aktiv); }); }
   function spiele(i) {
     pos = i; var x = liste[i]; if (!x) { ende(); return; }
-    player.src = x.url; player.play().catch(function () {}); knoepfe(i);
-    if (alles) { x.el.scrollIntoView({ block: 'center', behavior: 'smooth' }); status.textContent = (i + 1) + '/' + liste.length; }
+    player.src = x.url; player.play().catch(function () {}); knoepfe(i); btn.textContent = 'Ⅱ Pause';
+    if (alles) { x.el.scrollIntoView({ block: 'center', behavior: 'smooth' }); status.textContent = (i + 1) + ' von ' + liste.length; }
   }
-  function ende() { player.pause(); pos = -1; alles = false; knoepfe(-1); btn.textContent = '▶ Alles anhören'; stopp.hidden = true; status.textContent = ''; }
+  function ende() { player.pause(); pos = -1; alles = false; knoepfe(-1); btn.textContent = '▶ Alles anhören'; status.textContent = ''; }
   player.addEventListener('ended', function () { if (alles) spiele(pos + 1); else ende(); });
   fetch(basis + 'liste.json').then(function (r) { return r.ok ? r.json() : []; }).catch(function () { return []; }).then(function (ids) {
     liste = teile.filter(function (el) { return ids.indexOf(el.id) >= 0; }).map(function (el) { return { el: el, url: basis + el.id + '.mp3' }; });
@@ -1128,18 +1134,20 @@ html.kontrast .leiste { background: none !important; border: 0 !important; }
       x.knopf.style.setProperty('clip-path', 'polygon(' + punkte.join(',') + ')', 'important');
       x.knopf.style.transform = 'rotate(' + ((i * 37) % 11 - 5) + 'deg)';
       x.knopf.addEventListener('click', function () {
-        if (pos === i && !player.paused) { player.pause(); x.knopf.setAttribute('aria-pressed', false); return; }
+        if (pos === i && !player.paused) { player.pause(); knoepfe(-1); return; }
         if (pos === i && player.paused) { player.play(); knoepfe(i); return; }
         alles = false; spiele(i);
       });
     });
   });
+  // Unten zeigt immer, was gerade läuft: Pause, solange irgendetwas abgespielt wird
+  player.addEventListener('play', function () { btn.textContent = 'Ⅱ Pause'; });
+  player.addEventListener('pause', function () { if (pos >= 0 && !player.ended) btn.textContent = '▶ Weiter'; });
   btn.addEventListener('click', function () {
-    if (alles && !player.paused) { player.pause(); btn.textContent = '▶ Weiter'; return; }
-    if (alles && player.paused) { player.play(); btn.textContent = 'Ⅱ Pause'; return; }
-    alles = true; btn.textContent = 'Ⅱ Pause'; stopp.hidden = false; spiele(0);
+    if (pos >= 0 && !player.paused) { player.pause(); knoepfe(-1); return; }
+    if (pos >= 0 && player.paused) { player.play(); knoepfe(pos); return; }
+    alles = true; spiele(0);
   });
-  stopp.addEventListener('click', ende);
 })();
 </script>
 </body>
