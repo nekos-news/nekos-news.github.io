@@ -388,6 +388,10 @@ html.ruhig .reel { opacity: 1; transform: none; }
 .hilfe-feld button { flex-direction: column; align-items: center; justify-content: center; gap: 0.3rem; text-align: center; padding: 0.7rem 0.4rem 0.55rem; position: relative; }
 .hilfe-feld button svg { width: 1.6rem; height: 1.6rem; fill: currentColor; }
 .hilfe-feld button::after { position: absolute; top: 0.3rem; right: 0.4rem; font-size: 0.6rem; }
+/* Hilfe-Kacheln: aus = nur Rahmen, an = dunkelgrau gefüllt */
+.hilfe-feld button { background: transparent !important; border: 2px solid var(--anthrazit) !important; color: var(--anthrazit) !important; }
+.hilfe-feld button::after { content: none !important; }
+.hilfe-feld button[aria-pressed="true"] { background: var(--anthrazit) !important; color: var(--creme) !important; }
 </style>
 </head>
 <body>
