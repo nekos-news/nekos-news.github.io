@@ -545,6 +545,16 @@ mark.strich::after { left: -3%; right: -3%; bottom: -0.32em; height: 0.5em;
 mark.strich.blau::after { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 14' preserveAspectRatio='none'%3E%3Cpath d='M2 6 C 25 3, 55 9, 98 5 M6 11 C 35 8, 70 12, 94 9' fill='none' stroke='%230F2554' stroke-width='2.6' stroke-linecap='round'/%3E%3C/svg%3E"); }
 html.ruhig mark.kreis::after, html.ruhig mark.strich::after { clip-path: none; transition: none; }
 html.kontrast mark.kreis::after, html.kontrast mark.strich::after { filter: grayscale(1) brightness(0); }
+/* Runde 6: dezentere Markierungen, Symbole statt Labels, Figur blendet aus */
+mark.kreis::after, mark.kreis.blau::after { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 80' preserveAspectRatio='none'%3E%3Cpath d='M30 12 C 70 2, 150 3, 185 20 C 205 34, 190 62, 140 72 C 90 80, 25 76, 10 55 C -2 38, 15 18, 55 9 C 80 4, 110 5, 128 8' fill='none' stroke='%238F3A22' stroke-width='3.4' stroke-linecap='round'/%3E%3C/svg%3E") !important; opacity: 0.85; }
+mark.strich::after, mark.strich.blau::after { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 14' preserveAspectRatio='none'%3E%3Cpath d='M2 7 C 25 4, 55 10, 98 6' fill='none' stroke='%238F3A22' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E") !important; height: 0.4em !important; bottom: -0.25em !important; opacity: 0.85; }
+.fakt b, .einordnung b { display: inline-block; width: 1.15em; height: 1.15em; margin-right: 0.4rem !important; vertical-align: -0.18em; overflow: hidden; color: transparent !important;
+  font-size: 1rem !important; text-indent: 2em; white-space: nowrap; background: no-repeat center / contain; }
+.fakt b { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2 L13.8 9.2 L21 11 L13.8 12.8 L12 20 L10.2 12.8 L3 11 L10.2 9.2 Z' fill='%23C8603A'/%3E%3Cpath d='M19 2.5 L19.7 4.8 L22 5.5 L19.7 6.2 L19 8.5 L18.3 6.2 L16 5.5 L18.3 4.8 Z' fill='%23C8603A'/%3E%3C/svg%3E"); }
+.einordnung b { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%237A4B32' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 3 V20 M7 20 H17 M4 7 H20 M12 5 L12 7'/%3E%3Cpath d='M4 7 L1.5 13 A3 3 0 0 0 6.5 13 Z M20 7 L17.5 13 A3 3 0 0 0 22.5 13 Z' fill='%23D99A4E' fill-opacity='0.5'/%3E%3C/svg%3E"); }
+.fakt b::after, .einordnung b::after { content: none !important; }
+html.kontrast .fakt b, html.kontrast .einordnung b { filter: grayscale(1) brightness(0); }
+.kurz .neko { -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 98%); mask-image: linear-gradient(to bottom, #000 55%, transparent 98%); }
 </style>
 </head>
 <body>
@@ -678,37 +688,37 @@ html.kontrast mark.kreis::after, html.kontrast mark.strich::after { filter: gray
     <article class="papier riss" id="m1" data-lesen>
       <span class="rubrik">Bundespolitik</span>
       <h3>Streit in der Koalition: Kritik aus der eigenen SPD</h3>
-      <p class="fakt"><b>KI-Zusammenfassung</b>Die SPD im Ruhrgebiet wirft der schwarz-roten Bundesregierung vor, uneinig aufzutreten und öffentlich zu streiten.</p>
-      <p class="einordnung"><b>Einordnung</b>Kanzler Merz hatte noch am Mittwoch die Zusammenarbeit mit der SPD gelobt. Die Kritik zeigt, dass die Basis unruhig bleibt.</p>
+      <p class="fakt"><b title="KI-Zusammenfassung">KI-Zusammenfassung</b>Die SPD im Ruhrgebiet wirft der schwarz-roten Bundesregierung vor, uneinig aufzutreten und öffentlich zu streiten.</p>
+      <p class="einordnung"><b title="Einordnung">Einordnung</b>Kanzler Merz hatte noch am Mittwoch die Zusammenarbeit mit der SPD gelobt. Die Kritik zeigt, dass die Basis unruhig bleibt.</p>
       <p class="quelle"><a href="https://www.zdfheute.de/newsticker/schlagzeilen-100.html">ZDFheute</a> · <a href="https://de.investing.com/news/general-news/merz-lobt-spd-fur-zusammenarbeit-in-der-koalition-3747149">dpa-AFX</a></p>
     </article>
     <article class="papier riss" id="m2" data-lesen>
       <span class="rubrik">Soziales</span>
       <h3>Rentenreform verzögert sich bis ins Frühjahr</h3>
-      <p class="fakt"><b>KI-Zusammenfassung</b>Das Kabinett will den Entwurf noch vor Weihnachten beschließen. Im Bundestag ist die Reform aber erst für das erste Quartal 2027 geplant.</p>
-      <p class="einordnung"><b>Einordnung</b>Schon beschlossen ist die Frühstart-Rente: Sie gilt ab 1. Januar 2027.</p>
+      <p class="fakt"><b title="KI-Zusammenfassung">KI-Zusammenfassung</b>Das Kabinett will den Entwurf noch vor Weihnachten beschließen. Im Bundestag ist die Reform aber erst für das erste Quartal 2027 geplant.</p>
+      <p class="einordnung"><b title="Einordnung">Einordnung</b>Schon beschlossen ist die Frühstart-Rente: Sie gilt ab 1. Januar 2027.</p>
       <p class="quelle"><a href="https://www.t-online.de/nachrichten/deutschland/innenpolitik/id_101473498/rentenreform-merz-erwartet-bundestagsbeschluss-wohl-erst-2027.html">t-online</a> · <a href="https://www.ad-hoc-news.de/wissenschaft/rentenreform-kabinett-plant-beschluss-vor-weihnachten-kapitalrente-folgt-2027/70460882">ad-hoc-news</a></p>
     </article>
     <article class="papier riss" id="m3" data-lesen>
       <span class="rubrik">Düsseldorf · Justiz</span>
       <h3>Prozess gegen <mark class="kreis">„Königreich Deutschland“</mark></h3>
-      <p class="fakt"><b>KI-Zusammenfassung</b>Vor dem Oberlandesgericht Düsseldorf hat am Freitag der Prozess gegen vier mutmaßliche Anführer der verbotenen Reichsbürger-Gruppe begonnen.</p>
+      <p class="fakt"><b title="KI-Zusammenfassung">KI-Zusammenfassung</b>Vor dem Oberlandesgericht Düsseldorf hat am Freitag der Prozess gegen vier mutmaßliche Anführer der verbotenen Reichsbürger-Gruppe begonnen.</p>
       <p class="these"><b>Populistische These</b>„Reichsbürger sind doch nur harmlose Spinner.“</p>
-      <p class="einordnung"><b>Einordnung</b>Die Gruppe hatte einen eigenen „Staat“ ausgerufen. Der Prozess dürfte länger dauern.</p>
+      <p class="einordnung"><b title="Einordnung">Einordnung</b>Die Gruppe hatte einen eigenen „Staat“ ausgerufen. Der Prozess dürfte länger dauern.</p>
       <span class="marke">Beginn angekündigt, Verlauf noch nicht bestätigt</span>
       <p class="quelle"><a href="https://www.news.de/panorama/860164168/6-november-2026-news-themen-des-tages-was-passiert-heute-in-deutschland-und-der-welt-das-ist-heute-am-06-11-2026-wichtig-in-den-nachrichten-aus-politik-wirtschaft-sport-und-co/1/">news.de (dpa)</a></p>
     </article>
     <article class="papier riss" id="m4" data-lesen>
       <span class="rubrik">Recht</span>
       <h3>Härtere Strafen für <mark class="kreis">K.-o.-Tropfen</mark></h3>
-      <p class="fakt"><b>KI-Zusammenfassung</b>Der Bundestag sollte am Freitag ein schärferes Gesetz beschließen. Wer K.-o.-Tropfen für eine Vergewaltigung oder einen Raub nutzt, soll mindestens fünf Jahre Haft bekommen.</p>
+      <p class="fakt"><b title="KI-Zusammenfassung">KI-Zusammenfassung</b>Der Bundestag sollte am Freitag ein schärferes Gesetz beschließen. Wer K.-o.-Tropfen für eine Vergewaltigung oder einen Raub nutzt, soll mindestens fünf Jahre Haft bekommen.</p>
       <span class="marke">Abstimmungsergebnis noch nicht bestätigt</span>
       <p class="quelle"><a href="https://www.news.de/panorama/860164168/6-november-2026-news-themen-des-tages-was-passiert-heute-in-deutschland-und-der-welt-das-ist-heute-am-06-11-2026-wichtig-in-den-nachrichten-aus-politik-wirtschaft-sport-und-co/1/">news.de (dpa)</a></p>
     </article>
     <article class="papier riss" id="m5" data-lesen>
       <span class="rubrik">Finanzen</span>
       <h3><mark class="strich blau">Haushalt 2027</mark>: Ende November wird abgestimmt</h3>
-      <p class="fakt"><b>KI-Zusammenfassung</b>Der Bundestag berät den Haushalt vom 24. bis 27. November abschließend. Am Freitag der Woche ist die Schlussabstimmung geplant.</p>
+      <p class="fakt"><b title="KI-Zusammenfassung">KI-Zusammenfassung</b>Der Bundestag berät den Haushalt vom 24. bis 27. November abschließend. Am Freitag der Woche ist die Schlussabstimmung geplant.</p>
       <p class="quelle"><a href="https://www.bundestag.de/dokumente/textarchiv/2026/kw34-haushalt-2027-ablauf-1187766">Bundestag</a></p>
     </article>
   </section>
@@ -717,37 +727,37 @@ html.kontrast mark.kreis::after, html.kontrast mark.strich::after { filter: gray
     <article class="papier riss" id="m6" data-lesen>
       <span class="rubrik">Nahost</span>
       <h3><mark class="kreis blau">USA</mark> greifen erneut iranische Insel an</h3>
-      <p class="fakt"><b>KI-Zusammenfassung</b>Trump hat neue Angriffe auf Luftabwehr auf der Insel Qeshm bestätigt. Er nennt sie „klein“ und spricht gleichzeitig von Fortschritten in Gesprächen mit Teheran.</p>
-      <p class="einordnung"><b>Einordnung</b>Es sind die ersten Angriffe seit den US-Wahlen am Dienstag. Fachleute halten eine schnelle Einigung mit dem Iran dadurch für weniger wahrscheinlich.</p>
+      <p class="fakt"><b title="KI-Zusammenfassung">KI-Zusammenfassung</b>Trump hat neue Angriffe auf Luftabwehr auf der Insel Qeshm bestätigt. Er nennt sie „klein“ und spricht gleichzeitig von Fortschritten in Gesprächen mit Teheran.</p>
+      <p class="einordnung"><b title="Einordnung">Einordnung</b>Es sind die ersten Angriffe seit den US-Wahlen am Dienstag. Fachleute halten eine schnelle Einigung mit dem Iran dadurch für weniger wahrscheinlich.</p>
       <span class="marke">Berichte über Seeminen in der Straße von Hormus unbestätigt</span>
       <p class="quelle"><a href="https://aljazeera.com/amp/news/2026/11/7/trump-confirms-new-us-strikes-on-irans-qeshm-island">Al Jazeera</a> · <a href="https://foreignpolicy.com/2026/11/03/us-iran-strikes-midterms-israel-aid-ukraine-russia-agoa-australia/">Foreign Policy</a></p>
     </article>
     <article class="papier riss" id="m7" data-lesen>
       <span class="rubrik">Ukraine</span>
       <h3>Gespräche in Abu Dhabi ab Dienstag</h3>
-      <p class="fakt"><b>KI-Zusammenfassung</b>Russland, die Ukraine und die USA verhandeln am 10. und 11. November in Abu Dhabi. Der Kreml hat das bestätigt. Kurz zuvor wurde Kiew erneut mit Raketen angegriffen.</p>
-      <p class="einordnung"><b>Einordnung</b>Selenskyj sagt zu, zweifelt aber am Friedenswillen Moskaus. Streitpunkte bleiben Gebiete und Sicherheitsgarantien.</p>
+      <p class="fakt"><b title="KI-Zusammenfassung">KI-Zusammenfassung</b>Russland, die Ukraine und die USA verhandeln am 10. und 11. November in Abu Dhabi. Der Kreml hat das bestätigt. Kurz zuvor wurde Kiew erneut mit Raketen angegriffen.</p>
+      <p class="einordnung"><b title="Einordnung">Einordnung</b>Selenskyj sagt zu, zweifelt aber am Friedenswillen Moskaus. Streitpunkte bleiben Gebiete und Sicherheitsgarantien.</p>
       <p class="quelle"><a href="https://www.usnews.com/news/world/articles/2026-11-03/kremlin-confirms-trilateral-ukraine-peace-talks-in-abu-dhabi-next-week">US News (Reuters)</a> · <a href="https://www.axios.com/2026/11/03/us-russia-ukraine-peace-talks-uae-trump-witkoff-kushner">Axios</a></p>
     </article>
     <article class="papier riss" id="m8" data-lesen>
       <span class="rubrik">USA</span>
       <h3>Demokraten holen das Repräsentantenhaus</h3>
-      <p class="fakt"><b>KI-Zusammenfassung</b>Nach Hochrechnungen gewinnen die Demokraten die Mehrheit im Repräsentantenhaus. Laut CNBC auch im Senat, einzelne Rennen werden aber noch ausgezählt.</p>
-      <p class="einordnung"><b>Einordnung</b>Trump müsste dann gegen eine Mehrheit im Kongress regieren. Seine Zustimmungswerte liegen laut CBS bei 38 Prozent.</p>
+      <p class="fakt"><b title="KI-Zusammenfassung">KI-Zusammenfassung</b>Nach Hochrechnungen gewinnen die Demokraten die Mehrheit im Repräsentantenhaus. Laut CNBC auch im Senat, einzelne Rennen werden aber noch ausgezählt.</p>
+      <p class="einordnung"><b title="Einordnung">Einordnung</b>Trump müsste dann gegen eine Mehrheit im Kongress regieren. Seine Zustimmungswerte liegen laut CBS bei 38 Prozent.</p>
       <span class="marke">Senat: Endergebnis noch offen</span>
       <p class="quelle"><a href="https://www.cbsnews.com/live-updates/house-election-results-2026/">CBS News</a> · <a href="https://www.cnbc.com/2026/11/04/2026-midterm-election-results-live-updates.html">CNBC</a></p>
     </article>
     <article class="papier riss" id="m9" data-lesen>
       <span class="rubrik">Diplomatie</span>
       <h3>Treffen Xi, Trump und Putin im Gespräch</h3>
-      <p class="fakt"><b>KI-Zusammenfassung</b>China bestätigt, dass über ein Dreiertreffen der Staatschefs gesprochen wird. Einen Termin gibt es nicht.</p>
+      <p class="fakt"><b title="KI-Zusammenfassung">KI-Zusammenfassung</b>China bestätigt, dass über ein Dreiertreffen der Staatschefs gesprochen wird. Einen Termin gibt es nicht.</p>
       <span class="marke">Nur Gespräche, nichts vereinbart</span>
       <p class="quelle"><a href="https://www.inkl.com/news/latest-news-bulletin-november-7th-2026-morning">inkl (Guardian-Briefing)</a></p>
     </article>
     <article class="papier riss" id="m10" data-lesen>
       <span class="rubrik">Europa</span>
       <h3><mark class="strich">Hackerangriff</mark> auf italienischen Minister</h3>
-      <p class="fakt"><b>KI-Zusammenfassung</b>Bei einem italienischen Minister wurden Daten gestohlen.</p>
+      <p class="fakt"><b title="KI-Zusammenfassung">KI-Zusammenfassung</b>Bei einem italienischen Minister wurden Daten gestohlen.</p>
       <span class="marke">Verdacht: pro-russische Hacker, nicht bestätigt</span>
       <p class="quelle"><a href="https://www.zdfheute.de/newsticker/schlagzeilen-100.html">ZDFheute</a></p>
     </article>
