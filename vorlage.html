@@ -434,6 +434,16 @@ html.ruhig .vita .winkt, html.ruhig .vita .profil { animation: none !important; 
 /* Aufrufe orange */
 .reel .aufrufe { background-color: var(--rost) !important; color: var(--creme) !important; }
 .reel .aufrufe::before { color: var(--creme) !important; }
+/* Datum neu: Wochentag klein darüber, Datum als Erpresserbrief mit Punkten, Dauer rechts */
+.kopf .zeile { display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 0.2rem 0.8rem; margin-right: -5.6rem; }
+.kopf .zeile > span:first-child { display: grid; gap: 0.35rem; }
+.kopf .zeile > span:last-child { align-self: end; white-space: nowrap; color: var(--mittelgrau); font-size: 0.66rem; }
+.erpress { gap: 2px; }
+.erpress span { font-size: 1.35rem !important; padding: 0.14rem 0.34rem 0.1rem !important; }
+.erpress span:nth-child(2), .erpress span:nth-child(4) { margin-right: 0.62rem; position: relative; }
+.erpress span:nth-child(2)::after, .erpress span:nth-child(4)::after { content: ""; position: absolute; right: -0.5rem; bottom: 0.1rem; width: 0.32rem; height: 0.32rem;
+  background: var(--anthrazit); transform: rotate(12deg); }
+html.kontrast .erpress span:nth-child(2)::after, html.kontrast .erpress span:nth-child(4)::after { background: #000; }
 </style>
 </head>
 <body>
@@ -549,7 +559,7 @@ html.ruhig .vita .winkt, html.ruhig .vita .profil { animation: none !important; 
 <!-- AUSGABE-START -->
 <div class="wrap" data-datum="2026-11-07">
   <header class="kopf papier riss">
-    <div class="zeile"><span>Samstag, <span class="erpress" aria-label="7.11."><span>0</span><span>7</span><span>1</span><span>1</span></span></span><span>7 Uhr · 5 Min.</span></div>
+    <div class="zeile"><span>Samstag<span class="erpress" aria-label="7.11."><span>0</span><span>7</span><span>1</span><span>1</span></span></span><span>7 Uhr · 5 Min.</span></div>
     <h1 class="titel">Morgenzeitung</h1>
     <span class="unter">Deutschland und die Welt, zusammengefasst</span>
     <img class="neko" src="bilder/neko_zeitung.png" alt="" width="110" height="150">
