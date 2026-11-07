@@ -464,6 +464,23 @@ html.kontrast .kurz .zeile { color: #000; }
   clip-path: polygon(4% 8%, 50% 0, 96% 6%, 100% 52%, 95% 96%, 46% 100%, 3% 93%, 0 48%) !important; }
 
 .produktbilder.sticker img { max-width: 70%; margin: 0 auto; background: #fff; }
+/* Überschriften im Negativ-Raum: dunkles Orange, Schrift in Hintergrund-Dunkelblau, wie ausgeschnitten */
+:root { --orange-dunkel: #B4532F; }
+article h3 { display: inline-block; justify-self: start; color: var(--grund) !important; background-color: var(--orange-dunkel); background-image: var(--faser);
+  padding: 0.28rem 0.55rem 0.32rem; margin: 0.15rem 0 0.1rem -0.2rem; border-bottom: 0 !important; transform: rotate(-0.8deg);
+  clip-path: polygon(0 4%, 18% 0, 47% 3%, 76% 0, 100% 5%, 99% 52%, 100% 96%, 70% 100%, 38% 97%, 9% 100%, 1% 94%); line-height: 1.12; }
+article:nth-of-type(even) h3 { transform: rotate(0.6deg); }
+html.kontrast article h3 { background: #000 !important; color: #fff !important; clip-path: none; transform: none; }
+html.ruhig article h3 { background-image: none; transform: none; }
+/* Zahlen: per Hand unterstrichen, Strich zeichnet sich beim Reinscrollen */
+.zahl { position: relative; white-space: nowrap; }
+.zahl::after { content: ""; position: absolute; left: -2%; right: -2%; bottom: -0.28em; height: 0.42em; pointer-events: none;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 12' preserveAspectRatio='none'%3E%3Cpath d='M2 8 C 18 5, 32 10, 50 6 S 82 4, 98 7' fill='none' stroke='%23B4532F' stroke-width='3.2' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat left center / 100% 100%;
+  clip-path: inset(0 100% 0 0); transition: clip-path 0.55s steps(5, end); }
+.sichtbar .zahl::after { clip-path: inset(0 0 0 0); }
+.sichtbar .zahl:nth-of-type(2)::after { transition-delay: 0.25s; } .sichtbar .zahl:nth-of-type(3)::after { transition-delay: 0.5s; }
+html.ruhig .zahl::after { clip-path: none; transition: none; }
+html.kontrast .zahl::after { filter: grayscale(1) brightness(0); }
 </style>
 </head>
 <body>
@@ -723,6 +740,23 @@ html.kontrast .kurz .zeile { color: #000; }
       raster.appendChild(a);
     });
   });
+})();
+/* Zahlen in den Texten markieren und beim Reinscrollen unterstreichen */
+(function () {
+  var muster = /(\d[\d.,]*\s?(?:%|Prozent|Euro|€|Mio\.?|Millionen|Milliarden|Mrd\.?|Jahre|Jahren)?)/g;
+  document.querySelectorAll('article .fakt, article .einordnung, article .these, .kurz li').forEach(function (p) {
+    var w = document.createTreeWalker(p, NodeFilter.SHOW_TEXT), knoten = [];
+    while (w.nextNode()) if (!w.currentNode.parentNode.closest('b, a, .zahl')) knoten.push(w.currentNode);
+    knoten.forEach(function (t) {
+      if (!muster.test(t.nodeValue)) return; muster.lastIndex = 0;
+      var f = document.createElement('span'); f.innerHTML = t.nodeValue.replace(/[&<>]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]; }).replace(muster, '<span class="zahl">$1</span>');
+      t.parentNode.replaceChild(f, t);
+    });
+  });
+  var ziele = document.querySelectorAll('article, .kurz');
+  if (!('IntersectionObserver' in window)) { ziele.forEach(function (z) { z.classList.add('sichtbar'); }); return; }
+  var io = new IntersectionObserver(function (e) { e.forEach(function (x) { if (x.isIntersecting) { x.target.classList.add('sichtbar'); io.unobserve(x.target); } }); }, { threshold: 0.35 });
+  ziele.forEach(function (z) { io.observe(z); });
 })();
 /* News-Auswahl */
 (function () {
