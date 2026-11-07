@@ -566,6 +566,19 @@ html.kontrast .fakt b, html.kontrast .einordnung b { filter: grayscale(1) bright
 .surf-fenster .zu { position: absolute; top: -0.7rem; right: -0.6rem; width: 1.7rem; height: 1.7rem; border: 0; border-radius: 50%; background: var(--rost); color: var(--creme); font: 800 0.9rem var(--sans); cursor: pointer; }
 .surf-fenster small { position: absolute; left: 0.4rem; right: 0.4rem; bottom: 0.25rem; font: 0.6rem var(--maschine); color: var(--anthrazit); text-align: center; }
 html.ruhig .surf-knopf { display: none; }
+/* Konzentrationshilfe v2: Titelleiste zum Ziehen, gleitet rein, YouTube-Einblendungen weggeschnitten */
+.surf-fenster { padding: 1.55rem 0.3rem 0.3rem !important; touch-action: none; animation: surf-rein 0.45s cubic-bezier(0.2, 0.9, 0.25, 1.15) both; }
+@keyframes surf-rein { from { transform: translateX(-130%) rotate(-8deg); } to { transform: rotate(-2deg); } }
+.surf-fenster .griff { position: absolute; left: 0; right: 0; top: 0; height: 1.45rem; display: flex; align-items: center; justify-content: center; gap: 0.25rem;
+  font: 700 0.58rem var(--maschine); color: var(--anthrazit); cursor: grab; user-select: none; -webkit-user-select: none; }
+.surf-fenster .griff::before { content: "⠿"; color: var(--rost); font-size: 0.8rem; }
+.surf-fenster.zieht { cursor: grabbing; animation: none; }
+.surf-fenster .bild { position: relative; width: 100%; height: 100%; overflow: hidden; background: #000; }
+.surf-fenster .bild iframe { position: absolute; left: 50%; top: 50%; width: 150% !important; height: 150% !important; transform: translate(-50%, -50%); }
+.surf-fenster .deckel { position: absolute; inset: 0; display: grid; place-items: center; background-color: var(--rost); background-image: var(--faser); color: var(--creme);
+  font: 800 0.7rem var(--sans); text-align: center; padding: 0.4rem; transition: opacity 0.3s steps(3, end); }
+.surf-fenster .deckel.weg { opacity: 0; pointer-events: none; }
+.surf-fenster small { display: none; }
 </style>
 </head>
 <body>
@@ -888,14 +901,30 @@ html.ruhig .surf-knopf { display: none; }
     if (fenster) return;
     var start = Math.floor(Math.random() * 3000);
     fenster = document.createElement('div'); fenster.className = 'surf-fenster';
-    fenster.innerHTML = '<button class="zu" type="button" aria-label="Konzentrations-Modus schließen">✕</button><iframe title="Gameplay-Video" allow="autoplay; encrypted-media" src="https://www.youtube-nocookie.com/embed/' + ID + '?autoplay=1&mute=1&loop=1&playlist=' + ID + '&controls=0&playsinline=1&modestbranding=1&rel=0&iv_load_policy=3&fs=0&start=' + start + '"></iframe><small>Konzentrations-Modus</small>';
+    fenster.innerHTML = '<div class="griff">Gen Z Konzentrationshilfe</div><button class="zu" type="button" aria-label="Konzentrationshilfe schließen">✕</button><div class="bild"><iframe title="Gameplay-Video" allow="autoplay; encrypted-media" src="https://www.youtube-nocookie.com/embed/' + ID + '?autoplay=1&mute=1&loop=1&playlist=' + ID + '&controls=0&playsinline=1&modestbranding=1&rel=0&iv_load_policy=3&fs=0&disablekb=1&start=' + start + '"></iframe><div class="deckel">Konzentration wird geladen …</div></div>';
     fenster.querySelector('.zu').addEventListener('click', zu);
     document.body.appendChild(fenster);
+    setTimeout(function () { var d = fenster && fenster.querySelector('.deckel'); if (d) d.classList.add('weg'); }, 3800);
+    fenster.addEventListener('animationend', function () { if (fenster) { fenster.style.animation = 'none'; fenster.style.transform = 'rotate(-2deg)'; } });
+    /* Ziehen an der Titelleiste (Maus und Finger) */
+    var griff = fenster.querySelector('.griff'), sx, sy, fx, fy;
+    griff.addEventListener('pointerdown', function (e) {
+      var r = fenster.getBoundingClientRect(); sx = e.clientX; sy = e.clientY; fx = r.left; fy = r.top;
+      fenster.classList.add('zieht'); fenster.style.bottom = 'auto'; fenster.style.left = fx + 'px'; fenster.style.top = fy + 'px';
+      griff.setPointerCapture(e.pointerId); e.preventDefault();
+    });
+    griff.addEventListener('pointermove', function (e) {
+      if (!fenster || !fenster.classList.contains('zieht')) return;
+      var w = fenster.offsetWidth, h = fenster.offsetHeight;
+      fenster.style.left = Math.max(0, Math.min(innerWidth - w, fx + e.clientX - sx)) + 'px';
+      fenster.style.top = Math.max(0, Math.min(innerHeight - h, fy + e.clientY - sy)) + 'px';
+    });
+    griff.addEventListener('pointerup', function () { if (fenster) fenster.classList.remove('zieht'); });
     document.querySelectorAll('.surf-knopf').forEach(function (b) { b.setAttribute('aria-pressed', true); });
   }
   document.querySelectorAll('.wrap[data-datum] article, .wrap[data-datum] .kurz').forEach(function (a) {
     var b = document.createElement('button'); b.type = 'button'; b.className = 'surf-knopf'; b.setAttribute('aria-pressed', false);
-    b.innerHTML = '🛹 Konzentrations-Modus'; b.title = 'Für alle, die sich nur mit Gameplay daneben konzentrieren können';
+    b.innerHTML = '🛹 Gen Z Konzentrationshilfe'; b.title = 'Für alle, die sich nur mit Gameplay daneben konzentrieren können';
     b.addEventListener('click', function () { fenster ? zu() : auf(); });
     var vor = a.querySelector('.quelle, .quellen-seiten, footer'); if (vor) vor.insertAdjacentElement('beforebegin', b); else a.appendChild(b);
   });
