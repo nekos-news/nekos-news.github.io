@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nekos Morgenzeitung</title>
+<meta name="description" content="Jeden Morgen die wichtigsten Nachrichten, kurz und sachlich.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Morgenzeitung">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#13306B">
+<meta name="robots" content="noindex">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" href="icon-192.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Libre+Franklin:wght@500;700;800&family=Abril+Fatface&family=Special+Elite&display=swap">
+<style>
+/* Layout: App-Aufbau (großer Titel, eine Spalte, schwebende Vorlese-Leiste) im Nekos_news-Papiercollage-Look.
+   Dunkelblaues Papier als Grund, jede Meldung ein leicht schräger Zeitungsschnipsel. Bewusst ein einziges Farbschema. */
+:root {
+  color-scheme: light;
+  --grund: #13306B;
+  --rost: #C8603A;
+  --ocker: #D99A4E;
+  --braun: #7A4B32;
+  --creme: #E8DCC6;
+  --hellgrau: #B9B2A8;
+  --mittelgrau: #7D7A78;
+  --anthrazit: #2E2B2A;
+  --papier-2: #E2D6BE;
+  --papier-3: #EDE4D2;
+  --serif: "Libre Caslon Text", "Big Caslon", "Bodoni 72", Georgia, serif;
+  --sans: "Libre Franklin", "Helvetica Neue", Arial, sans-serif;
+  --fett: "Abril Fatface", "Bodoni 72", Georgia, serif;
+  --maschine: "Special Elite", "Courier New", monospace;
+  --korn: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.5 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+  --faser: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.02 0.6' numOctaves='2' seed='4'/%3E%3CfeColorMatrix values='0 0 0 0 0.3 0 0 0 0 0.22 0 0 0 0 0.15 0 0 0 0.22 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");
+}
+html { background: var(--grund); padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+body { margin: 0; }
+[hidden] { display: none !important; }
+img { max-width: 100%; }
+body { background: var(--grund); color: var(--anthrazit); font-family: var(--serif); font-size: 17px; line-height: 1.5; min-height: 100vh; position: relative; }
+body::after { content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 1;
+  background: var(--korn), radial-gradient(ellipse at center, transparent 55%, rgba(5,12,30,0.55) 100%); mix-blend-mode: multiply; }
+
+.wrap { position: relative; z-index: 2; max-width: 40rem; margin: 0 auto; padding-block: 2rem 7.5rem;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid; gap: 1.6rem; }
+
+/* Papierstück: Faser, Knitterlicht, gerissene Kante per clip-path, Schatten auf dem Blau */
+.papier { position: relative; isolation: isolate; --pc: var(--creme);
+  filter: drop-shadow(0 3px 0 rgba(0,0,0,0.18)) drop-shadow(0 10px 14px rgba(3,10,30,0.35)); }
+.papier::before { content: ""; position: absolute; inset: 0; z-index: -1; background-color: var(--pc);
+  background-image: var(--faser), linear-gradient(115deg, rgba(255,255,255,0.18), transparent 40%, rgba(0,0,0,0.05) 70%, transparent); }
+.riss::before { clip-path: polygon(0 1.2%, 6% 0, 14% 0.9%, 23% 0.2%, 31% 1%, 42% 0, 51% 0.8%, 63% 0.1%, 72% 1.1%, 84% 0.2%, 93% 0.9%, 100% 0,
+  100% 98.8%, 94% 100%, 86% 99.1%, 75% 99.9%, 66% 99%, 55% 100%, 46% 99.2%, 35% 100%, 26% 99%, 15% 99.8%, 7% 99%, 0 100%); }
+
+.kopf { padding: 1.4rem 1.3rem 1.2rem; transform: rotate(-0.8deg); display: grid; gap: 0.35rem; }
+.kopf .zeile { font-family: var(--sans); font-weight: 700; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--rost);
+  display: flex; justify-content: space-between; gap: 0.6rem; flex-wrap: wrap; border-bottom: 4px solid var(--anthrazit); padding-bottom: 0.45rem; }
+.kopf h1 { font-family: var(--serif); font-weight: 700; font-size: clamp(2.1rem, 8.5vw, 3.2rem); line-height: 1.02; letter-spacing: -0.015em; margin: 0.5rem 0 0.2rem; text-wrap: balance; }
+.kopf .unter { font-style: italic; color: var(--braun); border-top: 1px solid var(--anthrazit); padding-top: 0.4rem; }
+
+/* Erpresserbrief-Datum: jede Ziffer ein anderer Schnipsel */
+.erpress { display: inline-flex; gap: 3px; align-items: center; vertical-align: middle; }
+.erpress span { display: inline-block; line-height: 1; padding: 0.12rem 0.32rem 0.08rem; font-size: 1.05rem; letter-spacing: 0; text-transform: none; }
+.erpress span:nth-child(1) { font-family: var(--fett); background: var(--anthrazit); color: var(--creme); transform: rotate(-4deg); }
+.erpress span:nth-child(2) { font-family: var(--maschine); background: var(--ocker); color: var(--anthrazit); transform: rotate(3deg); }
+.erpress span:nth-child(3) { font-family: var(--serif); font-weight: 700; background: var(--hellgrau); color: var(--anthrazit); transform: rotate(-2deg); }
+.erpress span:nth-child(4) { font-family: var(--sans); font-weight: 800; background: var(--rost); color: var(--creme); transform: rotate(5deg); }
+
+.beispiel { justify-self: start; margin-top: 0.35rem; font-family: var(--sans); font-weight: 800; font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase;
+  background: var(--ocker); color: var(--anthrazit); padding: 0.25rem 0.6rem; transform: rotate(1.5deg); }
+
+.kurz { padding: 1.1rem 1.2rem; transform: rotate(0.6deg); --pc: var(--papier-3); }
+.kurz h2 { font-family: var(--sans); font-weight: 800; font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--rost); margin: 0 0 0.5rem;
+  border-bottom: 3px solid var(--anthrazit); padding-bottom: 0.35rem; }
+.kurz ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 0.45rem; }
+.kurz li { padding-left: 1.1rem; position: relative; }
+.kurz li::before { content: "■"; position: absolute; left: 0; top: 0.05rem; font-size: 0.6rem; color: var(--rost); }
+
+/* Rubrik-Zettel: einfarbig, kräftige Schrift */
+.zettel { justify-self: start; font-family: var(--sans); font-weight: 800; font-size: 1.05rem; letter-spacing: 0.12em; text-transform: uppercase;
+  background: var(--rost); color: var(--creme); padding: 0.4rem 0.9rem 0.35rem; margin: 0.8rem 0 -0.3rem; transform: rotate(-1.5deg);
+  filter: drop-shadow(0 6px 8px rgba(3,10,30,0.35)); }
+.gruppe { display: grid; gap: 1.3rem; }
+
+article.papier { padding: 1rem 1.15rem 1.05rem; display: grid; gap: 0.5rem; scroll-margin: 6rem 0; }
+.gruppe article:nth-of-type(3n+1) { transform: rotate(-0.7deg); }
+.gruppe article:nth-of-type(3n+2) { transform: rotate(0.5deg); --pc: var(--papier-2); }
+.gruppe article:nth-of-type(3n) { transform: rotate(-0.3deg); --pc: var(--papier-3); }
+article .rubrik { font-family: var(--sans); font-weight: 700; font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--rost);
+  border-bottom: 4px solid var(--anthrazit); padding-bottom: 0.3rem; }
+article h3 { font-family: var(--serif); font-weight: 700; font-size: 1.42rem; line-height: 1.18; margin: 0.1rem 0 0; text-wrap: balance;
+  border-bottom: 1px solid var(--anthrazit); padding-bottom: 0.5rem; }
+article p { margin: 0; max-width: 65ch; }
+.fakt b, .einordnung b { font-family: var(--sans); font-weight: 800; font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; margin-right: 0.35rem; }
+.fakt b { color: var(--anthrazit); }
+.einordnung { color: var(--braun); font-style: italic; font-size: 0.97rem; }
+.einordnung b { color: var(--braun); font-style: normal; }
+.marke { justify-self: start; font-family: var(--sans); font-weight: 800; font-size: 0.74rem; letter-spacing: 0.04em;
+  background: var(--ocker); color: var(--anthrazit); padding: 0.25rem 0.55rem; transform: rotate(-1deg); box-shadow: 0 2px 0 rgba(0,0,0,0.15); }
+.quelle { font-family: var(--sans); font-size: 0.78rem; color: var(--mittelgrau); }
+.quelle a { color: var(--braun); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+article.liest { outline: 4px solid var(--ocker); outline-offset: 4px; }
+
+.ideen article h3 { font-size: 1.2rem; }
+.ideen article p { color: var(--braun); }
+
+footer { padding: 0.9rem 1.1rem; transform: rotate(0.4deg); --pc: var(--hellgrau); font-family: var(--sans); font-size: 0.78rem; display: grid; gap: 0.3rem; }
+
+.leiste { position: fixed; z-index: 5; left: 50%; transform: translateX(-50%) rotate(-0.6deg); bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+  max-width: calc(100% - 32px); display: flex; align-items: center; gap: 0.55rem; padding: 0.5rem 0.6rem;
+  background-color: var(--creme); background-image: var(--faser); filter: drop-shadow(0 10px 14px rgba(3,10,30,0.5)); }
+.leiste button { font-family: var(--sans); font-weight: 800; font-size: 0.9rem; letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer;
+  border: 0; padding: 0.5rem 0.95rem; background: var(--rost); color: var(--creme); }
+.leiste button.leise { background: var(--anthrazit); padding-inline: 0.8rem; }
+.leiste .status { font-family: var(--maschine); font-size: 0.85rem; color: var(--anthrazit); padding-right: 0.3rem; white-space: nowrap; }
+.leiste .status:empty { display: none; }
+button:focus-visible, a:focus-visible { outline: 3px solid var(--ocker); outline-offset: 2px; }
+</style>
+</head>
+<body>
+<!-- AUSGABE-START -->
+<div class="wrap">
+  <header class="kopf papier riss">
+    <div class="zeile"><span>Samstag, <span class="erpress" aria-label="7.11."><span>0</span><span>7</span><span>1</span><span>1</span></span></span><span>Ausgabe 7 Uhr · ca. 5 Min.</span></div>
+    <h1>Nekos Morgenzeitung</h1>
+    <span class="unter">Deutschland und die Welt, kurz und sachlich</span>
+    <span class="beispiel">Beispiel-Ausgabe</span>
+  </header>
+
+  <aside class="kurz papier riss" data-lesen>
+    <h2>Das Wichtigste in 30 Sekunden</h2>
+    <ul>
+      <li>USA greifen erneut Ziele im Iran an, Gespräche laufen trotzdem weiter.</li>
+      <li>Ukraine, Russland und USA verhandeln ab Dienstag in Abu Dhabi.</li>
+      <li>Demokraten gewinnen bei den US-Zwischenwahlen das Repräsentantenhaus.</li>
+      <li>In Düsseldorf hat der Prozess gegen das „Königreich Deutschland“ begonnen.</li>
+      <li>Die Rentenreform kommt wohl erst im Frühjahr 2027 in den Bundestag.</li>
+    </ul>
+  </aside>
+
+  <section class="gruppe">
+    <h2 class="zettel">Deutschland</h2>
+    <article class="papier riss" data-lesen>
+      <span class="rubrik">Bundespolitik</span>
+      <h3>Streit in der Koalition: Kritik aus der eigenen SPD</h3>
+      <p class="fakt"><b>Fakt</b>Die SPD im Ruhrgebiet wirft der schwarz-roten Bundesregierung vor, uneinig aufzutreten und öffentlich zu streiten.</p>
+      <p class="einordnung"><b>Einordnung</b>Kanzler Merz hatte noch am Mittwoch die Zusammenarbeit mit der SPD gelobt. Die Kritik zeigt, dass die Basis unruhig bleibt.</p>
+      <p class="quelle"><a href="https://www.zdfheute.de/newsticker/schlagzeilen-100.html">ZDFheute</a> · <a href="https://de.investing.com/news/general-news/merz-lobt-spd-fur-zusammenarbeit-in-der-koalition-3747149">dpa-AFX</a></p>
+    </article>
+    <article class="papier riss" data-lesen>
+      <span class="rubrik">Soziales</span>
+      <h3>Rentenreform verzögert sich bis ins Frühjahr</h3>
+      <p class="fakt"><b>Fakt</b>Das Kabinett will den Entwurf noch vor Weihnachten beschließen. Im Bundestag ist die Reform aber erst für das erste Quartal 2027 geplant.</p>
+      <p class="einordnung"><b>Einordnung</b>Schon beschlossen ist die Frühstart-Rente: Sie gilt ab 1. Januar 2027.</p>
+      <p class="quelle"><a href="https://www.t-online.de/nachrichten/deutschland/innenpolitik/id_101473498/rentenreform-merz-erwartet-bundestagsbeschluss-wohl-erst-2027.html">t-online</a> · <a href="https://www.ad-hoc-news.de/wissenschaft/rentenreform-kabinett-plant-beschluss-vor-weihnachten-kapitalrente-folgt-2027/70460882">ad-hoc-news</a></p>
+    </article>
+    <article class="papier riss" data-lesen>
+      <span class="rubrik">Düsseldorf · Justiz</span>
+      <h3>Prozess gegen „Königreich Deutschland“</h3>
+      <p class="fakt"><b>Fakt</b>Vor dem Oberlandesgericht Düsseldorf hat am Freitag der Prozess gegen vier mutmaßliche Anführer der verbotenen Reichsbürger-Gruppe begonnen.</p>
+      <p class="einordnung"><b>Einordnung</b>Die Gruppe hatte einen eigenen „Staat“ ausgerufen. Der Prozess dürfte länger dauern.</p>
+      <span class="marke">Beginn angekündigt, Verlauf noch nicht bestätigt</span>
+      <p class="quelle"><a href="https://www.news.de/panorama/860164168/6-november-2026-news-themen-des-tages-was-passiert-heute-in-deutschland-und-der-welt-das-ist-heute-am-06-11-2026-wichtig-in-den-nachrichten-aus-politik-wirtschaft-sport-und-co/1/">news.de (dpa)</a></p>
+    </article>
+    <article class="papier riss" data-lesen>
+      <span class="rubrik">Recht</span>
+      <h3>Härtere Strafen für K.-o.-Tropfen</h3>
+      <p class="fakt"><b>Fakt</b>Der Bundestag sollte am Freitag ein schärferes Gesetz beschließen. Wer K.-o.-Tropfen für eine Vergewaltigung oder einen Raub nutzt, soll mindestens fünf Jahre Haft bekommen.</p>
+      <span class="marke">Abstimmungsergebnis noch nicht bestätigt</span>
+      <p class="quelle"><a href="https://www.news.de/panorama/860164168/6-november-2026-news-themen-des-tages-was-passiert-heute-in-deutschland-und-der-welt-das-ist-heute-am-06-11-2026-wichtig-in-den-nachrichten-aus-politik-wirtschaft-sport-und-co/1/">news.de (dpa)</a></p>
+    </article>
+    <article class="papier riss" data-lesen>
+      <span class="rubrik">Finanzen</span>
+      <h3>Haushalt 2027: Ende November wird abgestimmt</h3>
+      <p class="fakt"><b>Fakt</b>Der Bundestag berät den Haushalt vom 24. bis 27. November abschließend. Am Freitag der Woche ist die Schlussabstimmung geplant.</p>
+      <p class="quelle"><a href="https://www.bundestag.de/dokumente/textarchiv/2026/kw34-haushalt-2027-ablauf-1187766">Bundestag</a></p>
+    </article>
+  </section>
+
+  <section class="gruppe">
+    <h2 class="zettel">Welt</h2>
+    <article class="papier riss" data-lesen>
+      <span class="rubrik">Nahost</span>
+      <h3>USA greifen erneut iranische Insel an</h3>
+      <p class="fakt"><b>Fakt</b>Trump hat neue Angriffe auf Luftabwehr auf der Insel Qeshm bestätigt. Er nennt sie „klein“ und spricht gleichzeitig von Fortschritten in Gesprächen mit Teheran.</p>
+      <p class="einordnung"><b>Einordnung</b>Es sind die ersten Angriffe seit den US-Wahlen am Dienstag. Fachleute halten eine schnelle Einigung mit dem Iran dadurch für weniger wahrscheinlich.</p>
+      <span class="marke">Berichte über Seeminen in der Straße von Hormus unbestätigt</span>
+      <p class="quelle"><a href="https://aljazeera.com/amp/news/2026/11/7/trump-confirms-new-us-strikes-on-irans-qeshm-island">Al Jazeera</a> · <a href="https://foreignpolicy.com/2026/11/03/us-iran-strikes-midterms-israel-aid-ukraine-russia-agoa-australia/">Foreign Policy</a></p>
+    </article>
+    <article class="papier riss" data-lesen>
+      <span class="rubrik">Ukraine</span>
+      <h3>Gespräche in Abu Dhabi ab Dienstag</h3>
+      <p class="fakt"><b>Fakt</b>Russland, die Ukraine und die USA verhandeln am 10. und 11. November in Abu Dhabi. Der Kreml hat das bestätigt. Kurz zuvor wurde Kiew erneut mit Raketen angegriffen.</p>
+      <p class="einordnung"><b>Einordnung</b>Selenskyj sagt zu, zweifelt aber am Friedenswillen Moskaus. Streitpunkte bleiben Gebiete und Sicherheitsgarantien.</p>
+      <p class="quelle"><a href="https://www.usnews.com/news/world/articles/2026-11-03/kremlin-confirms-trilateral-ukraine-peace-talks-in-abu-dhabi-next-week">US News (Reuters)</a> · <a href="https://www.axios.com/2026/11/03/us-russia-ukraine-peace-talks-uae-trump-witkoff-kushner">Axios</a></p>
+    </article>
+    <article class="papier riss" data-lesen>
+      <span class="rubrik">USA</span>
+      <h3>Demokraten holen das Repräsentantenhaus</h3>
+      <p class="fakt"><b>Fakt</b>Nach Hochrechnungen gewinnen die Demokraten die Mehrheit im Repräsentantenhaus. Laut CNBC auch im Senat, einzelne Rennen werden aber noch ausgezählt.</p>
+      <p class="einordnung"><b>Einordnung</b>Trump müsste dann gegen eine Mehrheit im Kongress regieren. Seine Zustimmungswerte liegen laut CBS bei 38 Prozent.</p>
+      <span class="marke">Senat: Endergebnis noch offen</span>
+      <p class="quelle"><a href="https://www.cbsnews.com/live-updates/house-election-results-2026/">CBS News</a> · <a href="https://www.cnbc.com/2026/11/04/2026-midterm-election-results-live-updates.html">CNBC</a></p>
+    </article>
+    <article class="papier riss" data-lesen>
+      <span class="rubrik">Diplomatie</span>
+      <h3>Treffen Xi, Trump und Putin im Gespräch</h3>
+      <p class="fakt"><b>Fakt</b>China bestätigt, dass über ein Dreiertreffen der Staatschefs gesprochen wird. Einen Termin gibt es nicht.</p>
+      <span class="marke">Nur Gespräche, nichts vereinbart</span>
+      <p class="quelle"><a href="https://www.inkl.com/news/latest-news-bulletin-november-7th-2026-morning">inkl (Guardian-Briefing)</a></p>
+    </article>
+    <article class="papier riss" data-lesen>
+      <span class="rubrik">Europa</span>
+      <h3>Hackerangriff auf italienischen Minister</h3>
+      <p class="fakt"><b>Fakt</b>Bei einem italienischen Minister wurden Daten gestohlen.</p>
+      <span class="marke">Verdacht: pro-russische Hacker, nicht bestätigt</span>
+      <p class="quelle"><a href="https://www.zdfheute.de/newsticker/schlagzeilen-100.html">ZDFheute</a></p>
+    </article>
+  </section>
+
+  <section class="gruppe ideen">
+    <h2 class="zettel">Video-Ideen</h2>
+    <article class="papier riss" data-lesen>
+      <span class="rubrik">Für Nekos_news</span>
+      <h3>Reichsbürger vor Gericht, direkt in Düsseldorf</h3>
+      <p>Lokaler Aufhänger, klare Geschichte: Was ist das „Königreich Deutschland“ und warum steht es vor Gericht?</p>
+    </article>
+    <article class="papier riss" data-lesen>
+      <span class="rubrik">Für Nekos_news</span>
+      <h3>Fünf Jahre Haft für K.-o.-Tropfen</h3>
+      <p>Betrifft viele junge Leute beim Feiern. Gut erklärbar: Was ändert sich und was war vorher?</p>
+    </article>
+  </section>
+
+  <footer class="papier riss">
+    <span>Zusammengestellt von Claude aus Meldungen der letzten 24 Stunden. Eigene Kurzfassungen, die Details stehen in den verlinkten Quellen.</span>
+    <span>Ocker-Zettel: unbestätigt oder noch offen.</span>
+  </footer>
+</div>
+<!-- AUSGABE-ENDE -->
+
+<div class="leiste" aria-label="Vorlesen">
+  <button id="btn-lesen" type="button">▶ Vorlesen</button>
+  <button id="btn-stopp" type="button" class="leise" hidden aria-label="Stopp">■</button>
+  <span class="status" id="lese-status" aria-live="polite"></span>
+</div>
+
+<script>
+(function () {
+  var synth = window.speechSynthesis;
+  var btn = document.getElementById('btn-lesen');
+  var stopp = document.getElementById('btn-stopp');
+  var status = document.getElementById('lese-status');
+  if (!synth || typeof SpeechSynthesisUtterance === 'undefined') {
+    btn.disabled = true; status.textContent = 'Vorlesen geht hier nicht.'; return;
+  }
+  var bloecke = Array.prototype.slice.call(document.querySelectorAll('[data-lesen]'));
+  var i = 0, laeuft = false, pausiert = false, lauf = 0;
+  function abbrechen() { lauf++; synth.cancel(); }
+  function stimme() {
+    var v = synth.getVoices().filter(function (s) { return /^de/i.test(s.lang); });
+    return v.find(function (s) { return /anna|petra|helena|katja/i.test(s.name); }) || v[0] || null;
+  }
+  function text(el) {
+    var teile = [];
+    var gruppe = el.closest('.gruppe');
+    if (gruppe && el === gruppe.querySelector('[data-lesen]')) teile.push(gruppe.querySelector('.zettel').textContent);
+    Array.prototype.forEach.call(el.querySelectorAll('h2,h3,li,p:not(.quelle),.marke'), function (n) {
+      var t = n.textContent.trim();
+      if (n.classList.contains('marke')) t = 'Hinweis: ' + t;
+      teile.push(t.replace(/^Fakt/, '').replace(/^Einordnung/, 'Einordnung: '));
+    });
+    return teile.join('. ');
+  }
+  function markiere(el) {
+    bloecke.forEach(function (b) { b.classList.remove('liest'); });
+    if (el) { el.classList.add('liest'); el.scrollIntoView({ block: 'center', behavior: 'smooth' }); }
+  }
+  function weiter() {
+    if (!laeuft) return;
+    if (i >= bloecke.length) { ende(); status.textContent = 'Fertig'; return; }
+    var el = bloecke[i];
+    markiere(el);
+    var u = new SpeechSynthesisUtterance(text(el));
+    u.lang = 'de-DE'; u.rate = 1.0;
+    var s = stimme(); if (s) u.voice = s;
+    var meinLauf = lauf;
+    u.onend = u.onerror = function () { if (meinLauf !== lauf) return; i++; weiter(); };
+    status.textContent = (i + 1) + '/' + bloecke.length;
+    synth.speak(u);
+  }
+  function starte(ab) {
+    abbrechen(); i = ab; laeuft = true; pausiert = false;
+    btn.textContent = 'Ⅱ Pause'; stopp.hidden = false; weiter();
+  }
+  function ende() {
+    laeuft = false; pausiert = false; abbrechen(); markiere(null);
+    btn.textContent = '▶ Vorlesen'; stopp.hidden = true;
+  }
+  btn.addEventListener('click', function () {
+    if (!laeuft) starte(0);
+    else if (!pausiert) { synth.pause(); pausiert = true; btn.textContent = '▶ Weiter'; status.textContent = 'Pause'; }
+    else { synth.resume(); pausiert = false; btn.textContent = 'Ⅱ Pause'; status.textContent = (i + 1) + '/' + bloecke.length; }
+  });
+  stopp.addEventListener('click', function () { ende(); status.textContent = ''; });
+  bloecke.forEach(function (b, n) { b.addEventListener('dblclick', function () { starte(n); }); });
+})();
+</script>
+</body>
+</html>
