@@ -152,6 +152,25 @@ def neko():
     # Auf der Profilseite kein „Kein Journalismus“-Hinweis (Wunsch Nicolas)
     ohne_ki("neko.html")
 
+def datenschutz():
+    """Datenschutzerklärung (Entwurf 2026-11-08, ohne Gewähr; vor dem Shop von Rechtstext-Anbieter prüfen lassen)."""
+    abschnitte = [
+        ("Kurz gesagt", "Diese Seite setzt keine Cookies, nutzt kein Tracking und keine Analyse-Werkzeuge. Schriften, Bilder und Audios liegen auf dieser Seite selbst. Daten an Dritte gehen nur, wenn du selbst etwas antippst, das ausdrücklich zu einem anderen Anbieter führt."),
+        ("Verantwortlich", "Verantwortlich für diese Seite ist der Betreiber, siehe Impressum. Kontakt: <a href=\"mailto:neko.anfragen@gmail.com\">neko.anfragen@gmail.com</a>."),
+        ("Hosting", "Die Seite liegt bei GitHub Pages (GitHub Inc., USA) und Cloudflare Pages (Cloudflare Inc., USA). Beim Aufruf verarbeiten diese Anbieter technisch nötige Daten wie IP-Adresse, Zeitpunkt und aufgerufene Datei, um die Seite auszuliefern und vor Angriffen zu schützen. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einer sicheren, funktionierenden Seite). Für die Übermittlung in die USA stützen sich die Anbieter auf das EU-US Data Privacy Framework bzw. Standardvertragsklauseln."),
+        ("Einstellungen im Browser", "Was du im Hilfe-Menü einstellst (z. B. Größer, Kontrast, Migräne-Modus) und ob du das Intro schon gesehen hast, wird nur in deinem eigenen Browser gespeichert (localStorage/sessionStorage) und nicht an uns übertragen. Das ist für die von dir gewünschte Funktion unbedingt nötig (§ 25 Abs. 2 Nr. 2 TDDDG). Du kannst es jederzeit in deinem Browser löschen."),
+        ("YouTube-Video (Gen Z)", "Das Gameplay-Video im Hilfe-Menü lädt erst, wenn du nach einem Hinweis auf „Video laden“ tippst. Dann wird es über youtube-nocookie.com von Google Ireland Ltd. geladen; dabei gehen Daten wie deine IP-Adresse an Google, auch in die USA. Rechtsgrundlage ist deine Einwilligung (Art. 6 Abs. 1 lit. a DSGVO), die du durch das Antippen erteilst. Schließt du das Fenster, wird nichts weiter geladen."),
+        ("Links zu anderen Seiten", "Links zu Instagram, TikTok, YouTube und zu den Originalartikeln der Medien führen auf deren Seiten. Erst dort gelten deren Datenschutzregeln."),
+        ("Anfragen per E-Mail", "Schreibst du an neko.anfragen@gmail.com, werden deine Nachricht und deine Adresse genutzt, um dir zu antworten. Das Postfach liegt bei Google (Gmail). Rechtsgrundlage ist Art. 6 Abs. 1 lit. b bzw. f DSGVO. Die Mails werden gelöscht, wenn sie nicht mehr gebraucht werden."),
+        ("Deine Rechte", "Du hast das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit und Widerspruch sowie das Recht, eine erteilte Einwilligung zu widerrufen. Außerdem kannst du dich bei einer Datenschutz-Aufsichtsbehörde beschweren, z. B. bei der Landesbeauftragten für Datenschutz und Informationsfreiheit Nordrhein-Westfalen."),
+    ]
+    teile = ['<div class="wrap">\n  <section class="gruppe" id="datenschutz">\n    <h2 class="zettel zettel-gross">Datenschutz</h2>']
+    for titel, text in abschnitte:
+        teile.append(f'    <article class="papier riss"><h3>{titel}</h3><p>{text}</p></article>')
+    teile.append('    <p class="liste-info papier riss" style="padding:0.6rem 0.8rem">Stand: November 2026</p>\n  </section>\n</div>')
+    seite("\n".join(teile), "Datenschutz", "datenschutz.html")
+    ohne_ki("datenschutz.html")
+
 if __name__ == "__main__":
-    bestenliste(); shop(); neko()
+    bestenliste(); shop(); neko(); datenschutz()
     print("Seiten gebaut: woche, monat, jahr, shop, neko")

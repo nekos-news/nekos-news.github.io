@@ -13,7 +13,7 @@ html = """<!doctype html>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Archiv · Nekos Morgenzeitung</title><meta name="robots" content="noindex"><meta name="theme-color" content="#13306B">
 <link rel="icon" type="image/png" href="../icon-192.png">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:wght@700&family=Libre+Franklin:wght@700;800&display=swap">
+<link rel="stylesheet" href="/schriften/schriften.css">
 <style>
 body { margin: 0; min-height: 100vh; background-color: #13306B; color: #2E2B2A; font-family: "Libre Franklin", Arial, sans-serif;
   background-image: repeating-linear-gradient(0deg, rgba(232,220,198,0.07) 0 1px, transparent 1px 28px),
