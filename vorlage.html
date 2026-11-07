@@ -152,11 +152,14 @@ section.gruppe, aside.kurz { scroll-margin-top: 4.5rem; }
 #intro.fliegt { -webkit-backdrop-filter: none; backdrop-filter: none; background: transparent; transition: background 0.45s ease; }
 #intro.fliegt::before { opacity: 0; transition: opacity 0.45s ease; }
 body:not(.los) .logo-oben { opacity: 0; }
-#intro .buchstaben { position: relative; width: min(74vw, 320px); aspect-ratio: 330 / 280; will-change: transform; }
+#intro .buchstaben { position: relative; width: min(74vw, 320px); aspect-ratio: 330 / 280; will-change: transform;
+  filter: drop-shadow(0 3px 0 rgba(0,0,0,0.3)) drop-shadow(4px 10px 12px rgba(2,6,20,0.6)); }
 #intro .buchstaben img { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0;
-  filter: drop-shadow(0 3px 0 rgba(0,0,0,0.3)) drop-shadow(4px 10px 12px rgba(2,6,20,0.6));
-  animation: buchstabe-plopp 0.34s steps(4, end) both; animation-delay: calc(var(--i) * 0.065s); }
-@keyframes buchstabe-plopp { 0% { opacity: 0; transform: scale(0.2) rotate(-14deg); } 55% { opacity: 1; transform: scale(1.22) rotate(5deg); } 100% { opacity: 1; transform: scale(1) rotate(0); } }
+  animation: buchstabe-plopp 0.3s steps(3, end) both, kochen 1s steps(1, end) infinite;
+  animation-delay: calc(var(--i) * 0.07s), calc(0.35s + var(--i) * 0.11s); }
+/* Stop-Motion: harte Bildwechsel, kein weiches Gleiten */
+@keyframes buchstabe-plopp { 0% { opacity: 0; transform: scale(0.3) rotate(-12deg); } 34% { opacity: 1; transform: scale(1.25) rotate(6deg); } 67% { opacity: 1; transform: scale(0.94) rotate(-3deg); } 100% { opacity: 1; transform: none; } }
+@keyframes kochen { 0% { opacity: 1; transform: rotate(0.8deg) translate(0.5px, -1px); } 33% { opacity: 1; transform: rotate(-0.7deg) translate(-1px, 0.5px); } 66% { opacity: 1; transform: rotate(0.3deg) translate(0.5px, 1px); } }
 @keyframes zettel-landet { 0% { opacity: 0; transform: translateY(-40px) rotate(-10deg) scale(1.25); } 40% { opacity: 1; }
   80% { transform: translateY(3px) rotate(-0.5deg) scale(0.98); } 100% { opacity: 1; transform: rotate(-1.5deg); } }
 /* Reinfliegen nach dem Intro */
@@ -216,6 +219,8 @@ details.mehr[open] summary::after { content: " ▴"; }
   filter: drop-shadow(0 3px 0 rgba(0,0,0,0.25)) drop-shadow(3px 8px 8px rgba(2,6,20,0.55)); }
 .news-knopf { background-color: var(--rost); color: var(--creme); transform: rotate(-2deg); }
 .leiste-oben > a { transform: rotate(1.5deg); }
+.leiste-oben > a + a { transform: rotate(-1deg); background-color: var(--papier-2); }
+@media (max-width: 400px) { .leiste-oben > a, .news-knopf { padding-inline: 0.55rem; font-size: 0.72rem; } }
 .news-wahl { position: absolute; top: 2.9rem; left: 0; display: grid; gap: 0.4rem; min-width: 11rem; pointer-events: none; }
 .news-wahl a { font-family: var(--sans); font-weight: 800; font-size: 0.78rem; letter-spacing: 0.05em; text-transform: uppercase; text-decoration: none; color: var(--anthrazit);
   background-color: var(--papier-3); background-image: var(--faser); padding: 0.55rem 0.75rem 0.5rem; opacity: 0; transform: translateY(-14px) rotate(-6deg);
@@ -313,6 +318,27 @@ article.angepinnt { margin-top: 0.6rem; --pc: var(--creme); }
 article.angepinnt::after { content: ""; position: absolute; top: -0.75rem; left: 50%; width: 1.1rem; height: 1.1rem; margin-left: -0.55rem; border-radius: 50%;
   background: radial-gradient(circle at 35% 30%, #f08a6a, var(--rost) 55%, #7a2f18); box-shadow: 0 3px 4px rgba(0,0,0,0.45); z-index: 3; }
 article.angepinnt .rubrik::before { content: "Angepinnt · "; color: var(--anthrazit); }
+/* Reels-Leiste (neueste Uploads) und Content-Raster */
+.reels { display: grid; gap: 0.7rem; }
+.reels-kopf { display: flex; justify-content: space-between; align-items: baseline; }
+.reels-kopf a { font: 800 0.72rem var(--sans); color: var(--creme); text-decoration: none; }
+.reels-leiste { display: flex; gap: 0.9rem; overflow-x: auto; scroll-snap-type: x mandatory; padding: 0.6rem 0.3rem 1rem; margin-inline: -0.3rem; scrollbar-width: none; }
+.reels-leiste::-webkit-scrollbar { display: none; }
+.reel { flex: 0 0 29%; scroll-snap-align: start; display: block; position: relative; text-decoration: none; padding: 0.22rem; background-color: var(--creme); background-image: var(--faser);
+  filter: drop-shadow(0 3px 0 rgba(0,0,0,0.25)) drop-shadow(3px 8px 8px rgba(2,6,20,0.55)); opacity: 0; transform: translateY(18px) scale(0.85) rotate(-4deg); }
+.reel img { display: block; width: 100%; aspect-ratio: 240 / 377; object-fit: cover; }
+.reel.da { animation: reel-plopp 0.38s steps(4, end) both; animation-delay: calc(var(--n, 0) * 0.12s); }
+.reel:nth-child(odd).da { --dreh: -1.8deg; } .reel:nth-child(even).da { --dreh: 1.5deg; }
+@keyframes reel-plopp { 0% { opacity: 0; transform: translateY(18px) scale(0.85) rotate(-6deg); } 60% { opacity: 1; transform: translateY(-4px) scale(1.06) rotate(2deg); } 100% { opacity: 1; transform: rotate(var(--dreh, 0deg)); } }
+.raster { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.55rem; }
+.raster .reel { flex: none; opacity: 1; transform: none; }
+.raster .reel[hidden] { display: none; }
+.reel .pin { position: absolute; top: -0.45rem; left: 50%; width: 0.9rem; height: 0.9rem; margin-left: -0.45rem; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #f08a6a, var(--rost) 55%, #7a2f18); box-shadow: 0 2px 3px rgba(0,0,0,0.45); }
+.filter { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.filter button { font: 800 0.72rem var(--sans); border: 0; cursor: pointer; padding: 0.42rem 0.6rem 0.36rem; color: var(--anthrazit); background-color: var(--papier-2); background-image: var(--faser); transform: rotate(-1deg); }
+.filter button:nth-child(even) { transform: rotate(1.2deg); }
+.filter button[aria-pressed="true"] { background-color: var(--rost); color: var(--creme); }
+html.ruhig .reel { opacity: 1; transform: none; }
 </style>
 </head>
 <body>
@@ -343,7 +369,7 @@ article.angepinnt .rubrik::before { content: "Angepinnt · "; color: var(--anthr
       var dx = (z.left + z.width / 2) - (q.left + q.width / 2), dy = (z.top + z.height / 2) - (q.top + q.height / 2);
       intro.classList.add('fliegt'); document.body.classList.add('karten');
       gruppe.animate([{ transform: 'none' }, { transform: 'translate(' + dx + 'px,' + dy + 'px) scale(' + k + ') rotate(-1.5deg)' }],
-        { duration: 520, easing: 'cubic-bezier(0.6, 0, 0.25, 1)', fill: 'forwards' }).onfinish = los;
+        { duration: 540, easing: 'steps(6, end)', fill: 'forwards' }).onfinish = los;
     }, 950);
   }
   document.addEventListener('DOMContentLoaded', function () {
@@ -388,6 +414,7 @@ article.angepinnt .rubrik::before { content: "Angepinnt · "; color: var(--anthr
       <a href="/morgenzeitung/">Heute</a><a href="/morgenzeitung/woche.html">Diese Woche</a><a href="/morgenzeitung/monat.html">Dieser Monat</a><a href="/morgenzeitung/jahr.html">Dieses Jahr</a>
     </div>
   </div>
+  <a href="/morgenzeitung/content.html">Content</a>
   <a href="/morgenzeitung/shop.html">Shop</a>
 </div>
 <div class="hilfe-rechts">  <div class="hilfe">
@@ -543,6 +570,45 @@ article.angepinnt .rubrik::before { content: "Angepinnt · "; color: var(--anthr
     else if (n < y - 6) b.classList.remove('versteckt');
     y = n;
   }, { passive: true });
+})();
+/* Neueste Uploads unter „Das Wichtigste“ (Daten: daten/content.json, Klick führt zu Instagram) */
+(function () {
+  var kurz = document.getElementById('kurz'); if (!kurz || !window.fetch) return;
+  fetch('/morgenzeitung/daten/content.json').then(function (r) { return r.ok ? r.json() : []; }).then(function (alle) {
+    var neu = alle.filter(function (x) { return !x.angepinnt; }).slice(0, 8); if (!neu.length) return;
+    var sek = document.createElement('section'); sek.className = 'reels';
+    sek.innerHTML = '<div class="reels-kopf"><h2 class="zettel">Neu von Neko</h2><a href="/morgenzeitung/content.html">Alle Videos →</a></div><div class="reels-leiste"></div>';
+    var leiste = sek.querySelector('.reels-leiste');
+    neu.forEach(function (x, i) {
+      var a = document.createElement('a'); a.className = 'reel'; a.href = 'https://www.instagram.com/reel/' + x.code + '/'; a.rel = 'noopener'; a.style.setProperty('--n', i);
+      a.innerHTML = '<img loading="lazy" alt="' + x.titel.replace(/"/g, '&quot;') + '" src="/morgenzeitung/' + x.bild + '">';
+      leiste.appendChild(a);
+    });
+    kurz.insertAdjacentElement('afterend', sek);
+    var zeigen = function () { leiste.querySelectorAll('.reel').forEach(function (a) { a.classList.add('da'); }); };
+    if ('IntersectionObserver' in window) { var io = new IntersectionObserver(function (e) { if (e[0].isIntersecting) { zeigen(); io.disconnect(); } }, { threshold: 0.3 }); io.observe(leiste); } else zeigen();
+  }).catch(function () {});
+})();
+/* Content-Seite: Raster mit Themenfilter */
+(function () {
+  var raster = document.getElementById('raster'); if (!raster) return;
+  fetch('/morgenzeitung/daten/content.json').then(function (r) { return r.json(); }).then(function (alle) {
+    var themen = []; alle.forEach(function (x) { x.themen.forEach(function (t) { if (themen.indexOf(t) < 0) themen.push(t); }); });
+    var filter = document.getElementById('filter');
+    ['Alle'].concat(themen).forEach(function (t, i) {
+      var b = document.createElement('button'); b.type = 'button'; b.textContent = t; b.setAttribute('aria-pressed', i === 0);
+      b.addEventListener('click', function () {
+        filter.querySelectorAll('button').forEach(function (y) { y.setAttribute('aria-pressed', y === b); });
+        raster.querySelectorAll('.reel').forEach(function (a) { a.hidden = !(t === 'Alle' || a.dataset.themen.split('|').indexOf(t) >= 0); });
+      });
+      filter.appendChild(b);
+    });
+    alle.forEach(function (x) {
+      var a = document.createElement('a'); a.className = 'reel'; a.href = 'https://www.instagram.com/reel/' + x.code + '/'; a.rel = 'noopener'; a.dataset.themen = x.themen.join('|');
+      a.innerHTML = (x.angepinnt ? '<span class="pin" aria-hidden="true"></span>' : '') + '<img loading="lazy" alt="' + x.titel.replace(/"/g, '&quot;') + '" src="/morgenzeitung/' + x.bild + '">';
+      raster.appendChild(a);
+    });
+  });
 })();
 /* News-Auswahl */
 (function () {

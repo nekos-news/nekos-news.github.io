@@ -106,6 +106,17 @@ def links():
 ''' + FUSS
     seite(inhalt, "Über mich & Links", "links.html")
 
+def content():
+    inhalt = kopf("Instagram · TikTok · YouTube", "Mein Content", "Meine Videos, nach Themen sortiert", "neko_zeitung.png") + '''
+  <section class="gruppe" id="content">
+    <h2 class="zettel">Videos</h2>
+    <div class="filter" id="filter" role="group" aria-label="Nach Thema filtern"></div>
+    <div class="raster" id="raster"></div>
+    <p class="liste-info">Antippen öffnet das Video auf Instagram.</p>
+  </section>
+''' + FUSS
+    seite(inhalt, "Mein Content", "content.html")
+
 if __name__ == "__main__":
-    bestenliste(); shop(); links()
-    print("Seiten gebaut: woche, monat, jahr, shop, links")
+    bestenliste(); shop(); links(); content()
+    print("Seiten gebaut: woche, monat, jahr, shop, links, content")
