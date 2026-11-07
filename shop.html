@@ -46,15 +46,17 @@ html { background: var(--grund); padding-top: env(safe-area-inset-top, 0px); pad
 body { margin: 0; }
 [hidden] { display: none !important; }
 img { max-width: 100%; }
-body { background-color: var(--grund);
+body { background-color: var(--grund); color: var(--anthrazit); font-family: var(--lesen); font-size: 15.5px; line-height: 1.55; min-height: 100vh; position: relative; }
+/* Hintergrund als eigene feste Ebene (stabil auf dem iPhone, kein background-attachment: fixed, kein Mischmodus) */
+body::before { content: ""; position: fixed; inset: 0; z-index: 0; pointer-events: none; transform: translateZ(0);
+  background-color: var(--grund);
   background-image: var(--faser),
     repeating-linear-gradient(0deg, rgba(232,220,198,0.07) 0 1px, transparent 1px 28px),
     repeating-linear-gradient(90deg, rgba(232,220,198,0.07) 0 1px, transparent 1px 28px),
     repeating-linear-gradient(0deg, rgba(232,220,198,0.06) 0 2px, transparent 2px 140px),
-    repeating-linear-gradient(90deg, rgba(232,220,198,0.06) 0 2px, transparent 2px 140px);
-  background-attachment: fixed; color: var(--anthrazit); font-family: var(--lesen); font-size: 15.5px; line-height: 1.55; min-height: 100vh; position: relative; }
-body::after { content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 1;
-  background: var(--korn), radial-gradient(ellipse at center, transparent 55%, rgba(5,12,30,0.55) 100%); mix-blend-mode: multiply; }
+    repeating-linear-gradient(90deg, rgba(232,220,198,0.06) 0 2px, transparent 2px 140px); }
+body::after { content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 1; transform: translateZ(0);
+  background: radial-gradient(ellipse at center, transparent 55%, rgba(5,12,30,0.45) 100%); }
 
 .wrap { position: relative; z-index: 2; width: min(33rem, 84vw); margin: 0 auto; padding-block: 2.2rem 7.5rem; display: grid; gap: 2.4rem; }
 
@@ -283,6 +285,11 @@ html.ruhig #intro { display: none !important; }
   border: 0; padding: 0.35rem 0.6rem 0.3rem; cursor: pointer; transform: rotate(-1.5deg); }
 .hoeren button[aria-pressed="true"] { background-color: var(--rost); }
 .hoeren small { font: italic 0.7rem var(--sans); color: var(--mittelgrau); }
+/* Kopfband: dunkler Verlauf hinter Leiste und Burger, beim Runterscrollen ausgeblendet */
+.kopfband { position: fixed; z-index: 5; left: 0; right: 0; top: 0; height: calc(4.4rem + env(safe-area-inset-top, 0px)); pointer-events: none;
+  background: linear-gradient(to bottom, rgba(12,26,61,0.96) 0%, rgba(12,26,61,0.85) 60%, rgba(12,26,61,0) 100%); }
+.kopfband, .leiste-oben, .menue-knopf { transition: transform 0.28s ease, opacity 0.28s ease; }
+body.versteckt .kopfband, body.versteckt .leiste-oben, body.versteckt .menue-knopf { transform: translateY(-120%); opacity: 0; }
 </style>
 </head>
 <body>
@@ -334,6 +341,7 @@ html.ruhig #intro { display: none !important; }
   });
 })();
 </script>
+<div class="kopfband" aria-hidden="true"></div>
 <div class="leiste-oben">
   <div class="news">
     <button class="news-knopf" type="button" aria-expanded="false" aria-controls="news-wahl">News ▾</button>
@@ -403,6 +411,17 @@ html.ruhig #intro { display: none !important; }
 </div>
 
 <script>
+/* Kopfleiste beim Runterscrollen ausblenden, beim Hochscrollen zeigen */
+(function () {
+  var y = window.scrollY, b = document.body;
+  window.addEventListener('scroll', function () {
+    var n = window.scrollY, offen = document.querySelector('.news-offen, .hilfe-offen, .menue.offen');
+    if (offen || n < 80) b.classList.remove('versteckt');
+    else if (n > y + 6) b.classList.add('versteckt');
+    else if (n < y - 6) b.classList.remove('versteckt');
+    y = n;
+  }, { passive: true });
+})();
 /* News-Auswahl */
 (function () {
   var n = document.querySelector('.news'), b = n && n.querySelector('.news-knopf');
