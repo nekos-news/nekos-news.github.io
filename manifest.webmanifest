@@ -3,8 +3,8 @@
  "short_name": "Nekos News",
  "start_url": "./",
  "display": "standalone",
- "background_color": "#0E2556",
- "theme_color": "#0E2556",
+ "background_color": "#0A1C44",
+ "theme_color": "#0A1C44",
  "lang": "de",
  "icons": [
   {

@@ -9,7 +9,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Nekos News">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="theme-color" content="#0E2556">
+<meta name="theme-color" content="#0A1C44">
 <meta name="robots" content="noindex">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=3"><link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png?v=3"><link rel="icon" type="image/png" sizes="192x192" href="/favicon.png?v=3">
@@ -23,7 +23,7 @@ try { (JSON.parse(localStorage.getItem('mz-hilfe') || '[]')).forEach(function (k
    Dunkelblaues Papier als Grund, jede Meldung ein leicht schräger Zeitungsschnipsel. Bewusst ein einziges Farbschema. */
 :root {
   color-scheme: light;
-  --grund: #0E2556;
+  --grund: #0A1C44;
   --rost: #C8603A;
   --ocker: #D99A4E;
   --braun: #7A4B32;
@@ -45,7 +45,7 @@ html { background-color: var(--grund); padding-top: env(safe-area-inset-top, 0px
 /* Karo-Raster als feste Ebene, schiebt sich dauerhaft langsam vorbei (Wunsch Nicolas 2026-11-08); im Migräne-Modus steht es */
 body::before { content: ""; position: fixed; z-index: -1; top: -140px; left: -140px; width: calc(100vw + 280px); height: calc(100vh + 280px); pointer-events: none;
   background-image: repeating-linear-gradient(0deg, rgba(232,220,198,0.07) 0 1px, transparent 1px 28px), repeating-linear-gradient(90deg, rgba(232,220,198,0.07) 0 1px, transparent 1px 28px),
-    repeating-linear-gradient(0deg, rgba(232,220,198,0.06) 0 2px, transparent 2px 140px), repeating-linear-gradient(90deg, rgba(232,220,198,0.06) 0 2px, transparent 2px 140px); animation: raster-zieht 70s linear infinite; will-change: transform; }
+    repeating-linear-gradient(0deg, rgba(232,220,198,0.06) 0 2px, transparent 2px 140px), repeating-linear-gradient(90deg, rgba(232,220,198,0.06) 0 2px, transparent 2px 140px); animation: raster-zieht 40s linear infinite; will-change: transform; }
 @keyframes raster-zieht { from { transform: translate(0, 0); } to { transform: translate(140px, 140px); } }
 body { margin: 0; }
 [hidden] { display: none !important; }
@@ -699,7 +699,42 @@ article:has(.hoeren) > .rubrik { position: absolute; top: 0.95rem; right: 1rem; 
 .surf-fenster .deckel.frage .laden { font: 800 0.66rem var(--sans); color: var(--rost); background: var(--creme); border: 0; padding: 0.4rem 0.3rem; cursor: pointer; }
 /* Designer-Zettel: klein, überlappt die orange Überschrift (Wunsch Nicolas 2026-11-08) */
 .vita-gruss { gap: 0 !important; }
-.beruf { position: relative; z-index: 4; font-size: 0.56rem !important; padding: 0.22rem 0.4rem 0.18rem !important; margin: -0.45rem 0 0 1.2rem; }
+.beruf { position: relative; z-index: 4; font-size: 0.56rem !important; padding: 0.22rem 0.4rem 0.18rem !important; margin: -0.15rem 0 0 1.2rem; }
+/* Aufbau ab 2026-11-08 (Wunsch Nicolas): Überschrift, KI-Zusammenfassung, „Mehr anzeigen“, Originalartikel. Keine Einordnung/These/Gegenüberstellung mehr */
+article .einordnung, article .these, article .sichten, article .mitdenken, article .quellen-seiten, article .gegen { display: none !important; }
+details.mehr p { margin: 0.45rem 0 0; }
+/* Originalartikel: anklickbare Kärtchen mit neutralem Zeitungs-Piktogramm (bewusst keine Medien-Logos: Markenrecht) */
+article .quelle { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.4rem; font-size: 0; }
+article .quelle { justify-self: stretch !important; align-self: stretch !important; width: 100%; max-width: none !important; box-sizing: border-box; }
+article .quelle::before { content: "Originalartikel" !important; flex-basis: 100%; text-align: center; font-size: 0.68rem; }
+article .quelle a { white-space: nowrap; }
+article .quelle a { display: inline-flex; align-items: center; gap: 0.35rem; font: 700 0.74rem var(--sans); color: var(--anthrazit); text-decoration: none; background: var(--papier-2); background-image: var(--faser);
+  padding: 0.38rem 0.6rem 0.34rem; filter: drop-shadow(1px 2px 0 rgba(46,43,42,0.25)); transform: rotate(-1deg); }
+article .quelle a:nth-child(even) { transform: rotate(1.2deg); }
+article .quelle a::before { content: ""; width: 1rem; height: 1rem; flex: none; background: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 4h13v15a1 1 0 0 0 2 0V8h2v11a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V5a1 1 0 0 1 1-1zm2 3v4h4V7H6zm6 0v1.5h3V7h-3zm0 3v1.5h3V10h-3zM6 13v1.5h9V13H6zm0 3v1.5h9V16H6z'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 4h13v15a1 1 0 0 0 2 0V8h2v11a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V5a1 1 0 0 1 1-1zm2 3v4h4V7H6zm6 0v1.5h3V7h-3zm0 3v1.5h3V10h-3zM6 13v1.5h9V13H6zm0 3v1.5h9V16H6z'/%3E%3C/svg%3E") center / contain no-repeat; color: var(--rost); }
+article .quelle a::after { content: "↗"; font-size: 0.7rem; color: var(--rost); }
+html.kontrast article .quelle a { background: #fff !important; color: #000 !important; border: 1px solid #000; }
+/* Orange Blöcke mit leichtem Schlagschatten wie das Profilbild (2026-11-08) */
+article h3 { filter: drop-shadow(2px 3px 0 rgba(20,14,10,0.4)); }
+html.kontrast article h3 { filter: none; }
+/* „Mehr anzeigen“ = großer Papierbogen über dunklem, unscharfem Hintergrund (Wunsch Nicolas 2026-11-08) */
+details.mehr > p { display: none; }
+.bogen-grund { position: fixed; inset: 0; z-index: 25; display: grid; place-items: center; padding: 3.6rem 0.9rem 1.2rem; overflow-y: auto;
+  background: rgba(4,8,20,0.72); -webkit-backdrop-filter: blur(16px) brightness(0.7); backdrop-filter: blur(16px) brightness(0.7); }
+.bogen-grund[hidden] { display: none; }
+.bogen { position: relative; box-sizing: border-box; width: min(34rem, calc(100vw - 1.8rem)); padding: 1.6rem 1.3rem 1.4rem; display: grid; gap: 0.8rem; transform: rotate(-0.6deg); animation: bogen-rein 0.35s cubic-bezier(0.2, 0.9, 0.25, 1.1) both; }
+@keyframes bogen-rein { from { opacity: 0; transform: translateY(30px) rotate(-3deg) scale(0.96); } }
+.bogen h3 { margin: 0; }
+.bogen .bogen-text { font-size: 1.02rem; line-height: 1.65; margin: 0; }
+.bogen .zu { position: absolute; top: -0.8rem; right: -0.4rem; width: 2.3rem; height: 2.3rem; border: 0; border-radius: 50%; background: var(--rost); color: var(--creme); font: 800 1rem var(--sans); cursor: pointer; filter: drop-shadow(0 3px 0 rgba(0,0,0,0.3)); }
+html.ruhig .bogen { animation: none; transform: none; }
+/* Mehr Luft im Artikel, „Mehr anzeigen“ mittig (2026-11-08) */
+article.papier { gap: 0.85rem !important; padding: 1.2rem 1.2rem 1.25rem !important; }
+details.mehr { justify-self: stretch; text-align: center; }
+details.mehr summary { margin: 0 auto; }
+.bogen-grund article.bogen { gap: 1rem !important; }
 </style>
 </head>
 <body>
@@ -1250,6 +1285,29 @@ article:has(.hoeren) > .rubrik { position: absolute; top: 0.95rem; right: 1rem; 
   h.insertAdjacentElement('afterend', t);
   function pruefen() { t.classList.toggle('weg', window.scrollY > 40 || h.querySelector('.hilfe-offen, [aria-expanded="true"]') !== null); }
   window.addEventListener('scroll', pruefen, { passive: true }); document.addEventListener('click', function () { setTimeout(pruefen, 0); }); pruefen();
+})();
+/* „Mehr anzeigen“ öffnet einen Papierbogen mit der ausführlicheren Zusammenfassung */
+(function () {
+  var mehr = document.querySelectorAll('article details.mehr'); if (!mehr.length) return;
+  var g = document.createElement('div'); g.className = 'bogen-grund'; g.hidden = true; g.setAttribute('role', 'dialog'); g.setAttribute('aria-modal', 'true');
+  document.body.appendChild(g);
+  function zu() { g.hidden = true; g.innerHTML = ''; document.body.style.overflow = ''; }
+  mehr.forEach(function (d) {
+    var s = d.querySelector('summary');
+    s.addEventListener('click', function (e) {
+      e.preventDefault();
+      var art = d.closest('article'), h = art.querySelector('h3'), fakt = art.querySelector('.fakt'), q = art.querySelector('.quelle');
+      var text = Array.prototype.map.call(d.querySelectorAll('p'), function (p) { return p.innerHTML; }).join(' ');
+      g.innerHTML = '<article class="bogen papier riss"><button class="zu" type="button" aria-label="Schließen">✕</button>' +
+        '<h3>' + (h ? h.innerHTML : '') + '</h3>' + (fakt ? '<p class="fakt">' + fakt.innerHTML + '</p>' : '') +
+        '<p class="bogen-text">' + text + '</p>' + (q ? '<p class="quelle">' + q.innerHTML + '</p>' : '') + '</article>';
+      g.querySelectorAll('mark').forEach(function (m) { m.parentNode.classList.add('sichtbar'); });
+      g.querySelector('.bogen').classList.add('sichtbar');
+      g.hidden = false; document.body.style.overflow = 'hidden';
+    });
+  });
+  g.addEventListener('click', function (e) { if (e.target === g || e.target.closest('.zu')) zu(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !g.hidden) zu(); });
 })();
 </script>
 </body>
