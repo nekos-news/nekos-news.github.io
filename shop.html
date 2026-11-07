@@ -444,6 +444,15 @@ html.ruhig .vita .winkt, html.ruhig .vita .profil { animation: none !important; 
 .erpress span:nth-child(2)::after, .erpress span:nth-child(4)::after { content: ""; position: absolute; right: -0.5rem; bottom: 0.1rem; width: 0.32rem; height: 0.32rem;
   background: var(--anthrazit); transform: rotate(12deg); }
 html.kontrast .erpress span:nth-child(2)::after, html.kontrast .erpress span:nth-child(4)::after { background: #000; }
+/* Datum im Kurz-Kasten, Figur oben rechts im Kasten */
+.kurz { position: relative; }
+.kurz .zeile { display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 0.2rem 0.8rem; margin: 0 0 0.6rem; padding-right: 5.2rem;
+  font-family: var(--sans); font-weight: 700; font-size: 0.72rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--rost); }
+.kurz .zeile > span:first-child { display: grid; gap: 0.35rem; }
+.kurz .zeile > span:last-child { white-space: nowrap; color: var(--mittelgrau); font-size: 0.66rem; }
+.kurz h2 { margin-right: 4.6rem !important; }
+.kurz .neko { position: absolute; right: 0.7rem; top: 0.4rem; width: 5.2rem; height: auto; pointer-events: none; }
+html.kontrast .kurz .zeile { color: #000; }
 </style>
 </head>
 <body>
