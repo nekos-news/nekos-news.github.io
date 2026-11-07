@@ -579,6 +579,15 @@ html.ruhig .surf-knopf { display: none; }
   font: 800 0.7rem var(--sans); text-align: center; padding: 0.4rem; transition: opacity 0.3s steps(3, end); }
 .surf-fenster .deckel.weg { opacity: 0; pointer-events: none; }
 .surf-fenster small { display: none; }
+/* Artikel-Ende zentriert, Originalartikel beschriftet, „Mehr anzeigen“ mit ausführlicher Zusammenfassung */
+article .surf-knopf { justify-self: center; }
+article .quelle, article .quellen-seiten { text-align: center; justify-self: center; }
+article .quelle::before { content: "Originalartikel · Direktlink"; display: block; font: 0.68rem var(--maschine); color: var(--rost); margin-bottom: 0.15rem; }
+article .quellen-seiten::before { content: "Originalartikel · Direktlinks"; display: block; font: 0.68rem var(--maschine); color: var(--rost); }
+article details.lang { justify-self: stretch; text-align: left; border-top: 1px dashed var(--mittelgrau); padding-top: 0.5rem; }
+article details.lang summary { display: block; width: max-content; margin: 0 auto; }
+article details.lang .klapp p { margin-top: 0.6rem; font-size: 0.97rem; }
+article details.lang .klapp p:first-child b { display: block; font: 0.7rem var(--maschine); color: var(--rost); margin-bottom: 0.2rem; }
 </style>
 </head>
 <body>
