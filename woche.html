@@ -149,16 +149,17 @@ section.gruppe, aside.kurz { scroll-margin-top: 4.5rem; }
 body:not(.los) .logo-oben { opacity: 0; }
 #intro .buchstaben { position: relative; width: min(74vw, 320px); aspect-ratio: 330 / 280; will-change: transform; }
 #intro .buchstaben img { position: absolute; opacity: 0;
-  animation: buchstabe-plopp 0.4s steps(1, end) both; animation-delay: calc(var(--i) * 0.07s); }
+  animation: buchstabe-plopp 0.45s steps(1, end) forwards; animation-delay: calc(var(--i) * 0.08s); }
 #intro .buchstaben img.ganz { inset: 0; width: 100%; height: 100%; animation: ganz-da 0.01s steps(1, end) 0.98s both, kochen 1s steps(1, end) 0.98s infinite; }
 @keyframes ganz-da { to { opacity: 1; } }
 /* Stop-Motion wie ausgetauschte Papierstücke: je Bild leicht anders verzogen, gekippt, getönt (keine Beschnitte) */
 @keyframes buchstabe-plopp {
-  0%   { opacity: 1; transform: scale(0.5, 0.42) rotate(-12deg) skew(6deg, -3deg); filter: hue-rotate(-16deg) brightness(0.88) saturate(1.2) contrast(1.08); }
-  20%  { opacity: 1; transform: scale(1.18, 1.26) rotate(7deg) skew(-4deg, 2deg); filter: hue-rotate(12deg) brightness(1.1) saturate(0.85); }
-  40%  { opacity: 1; transform: scale(0.9, 0.96) rotate(-4deg) skew(3deg, -1deg); filter: hue-rotate(-7deg) brightness(0.95) saturate(1.1) sepia(0.12); }
-  60%  { opacity: 1; transform: scale(1.06, 1.02) rotate(2.5deg) skew(-2deg, 0); filter: hue-rotate(5deg) brightness(1.04) contrast(0.95); }
-  80%  { opacity: 1; transform: scale(0.98, 1.01) rotate(-1deg) skew(1deg, 0.5deg); filter: hue-rotate(-3deg) brightness(0.98) sepia(0.06); }
+  0%   { opacity: 0; transform: perspective(500px) rotateY(88deg) scale(0.35); }
+  16%  { opacity: 1; transform: perspective(500px) rotateY(72deg) rotateZ(-10deg) scale(0.55); filter: hue-rotate(-14deg) brightness(0.85) saturate(1.2); }
+  33%  { opacity: 1; transform: perspective(500px) rotateY(38deg) rotateZ(6deg) scale(0.9); filter: hue-rotate(10deg) brightness(1.08) saturate(0.88); }
+  50%  { opacity: 1; transform: perspective(500px) rotateY(-14deg) rotateZ(-3deg) scale(1.18); filter: hue-rotate(-6deg) brightness(0.95) sepia(0.1); }
+  67%  { opacity: 1; transform: perspective(500px) rotateY(6deg) rotateZ(1.5deg) scale(0.96); filter: hue-rotate(4deg) brightness(1.03); }
+  84%  { opacity: 1; transform: perspective(500px) rotateY(-2deg) scale(1.02); filter: hue-rotate(-2deg); }
   100% { opacity: 1; transform: none; filter: none; } }
 @keyframes kochen {
   0%  { opacity: 1; transform: rotate(0.9deg) skew(-0.8deg, 0) translate(0.5px, -1px); filter: hue-rotate(4deg) brightness(1.03); }
