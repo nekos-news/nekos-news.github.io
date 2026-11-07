@@ -139,7 +139,7 @@ section.gruppe, aside.kurz { scroll-margin-top: 4.5rem; }
 .menue .zu { justify-self: end; border: 0; background: none; font: 800 1.3rem var(--sans); color: var(--rost); cursor: pointer; padding: 0; line-height: 1; }
 .menue .kanaele { justify-content: flex-start; }
 
-/* Intro (~2 s): weich unscharfer, dunkler Grund -> „Nekos News“-Buchstaben landen -> Papiersonne geht dahinter auf (Stop-Motion)
+/* Intro (~1 s): weich unscharfer, dunkler Grund -> „Nekos News“-Buchstaben landen (Stop-Motion)
    -> Grund blendet weg, Papierstücke fliegen rein. Bei „Bewegung reduzieren“ entfällt alles. */
 #intro { position: fixed; inset: 0; z-index: 20; display: grid; place-items: center; overflow: hidden;
   background: rgba(6,14,38,0.62); -webkit-backdrop-filter: blur(18px) brightness(0.7); backdrop-filter: blur(18px) brightness(0.7);
@@ -150,8 +150,8 @@ section.gruppe, aside.kurz { scroll-margin-top: 4.5rem; }
 #intro svg { position: absolute; left: 0; top: 0; width: 100%; height: auto; overflow: visible; }
 #intro .sonne { animation: sonne-auf 0.9s steps(6, end) 0.35s both; transform-origin: 100px 120px; }
 #intro .strahlen { animation: strahlen 0.9s steps(6, end) 0.35s both; transform-origin: 100px 120px; }
-#intro .intro-logo { position: absolute; left: 0; top: 47%; width: 100%; height: auto; z-index: 2;
-  filter: drop-shadow(0 4px 0 rgba(0,0,0,0.3)) drop-shadow(6px 16px 18px rgba(2,6,20,0.7)); animation: zettel-landet 0.45s steps(5, end) both; }
+#intro .intro-logo { position: absolute; left: 0; top: 50%; translate: 0 -50%; width: 100%; height: auto; z-index: 2;
+  filter: drop-shadow(0 4px 0 rgba(0,0,0,0.3)) drop-shadow(6px 16px 18px rgba(2,6,20,0.7)); animation: zettel-landet 0.4s steps(5, end) both; }
 @keyframes sonne-auf { from { transform: translateY(80px) rotate(-4deg); } to { transform: translateY(0) rotate(2deg); } }
 @keyframes strahlen { from { transform: translateY(80px) rotate(-20deg) scale(0.7); } to { transform: translateY(0) rotate(8deg) scale(1); } }
 @keyframes zettel-landet { 0% { opacity: 0; transform: translateY(-40px) rotate(-10deg) scale(1.25); } 40% { opacity: 1; }
@@ -288,21 +288,6 @@ html.ruhig #intro { display: none !important; }
 <body>
 <div id="intro" aria-hidden="true">
   <div class="buehne">
-    <svg viewBox="0 0 200 200">
-      <defs><clipPath id="himmel"><rect x="-80" y="-80" width="360" height="215"/></clipPath></defs>
-      <g clip-path="url(#himmel)">
-      <g class="strahlen" fill="#D99A4E">
-        <polygon points="96,40 104,40 101,18"/><polygon points="20,116 20,124 -2,121"/><polygon points="180,116 180,124 203,119"/>
-        <polygon points="40,62 46,56 30,44"/><polygon points="160,62 154,56 171,45"/>
-        <polygon points="68,46 76,43 70,24"/><polygon points="132,46 124,43 131,25"/>
-        <polygon points="30,92 33,84 12,80"/><polygon points="170,92 167,84 188,79"/>
-      </g>
-      <g class="sonne">
-        <path d="M100 62 L114 64 L127 71 L136 82 L141 96 L142 110 L138 124 L130 136 L118 144 L104 147 L90 146 L77 140 L66 130 L60 117 L58 102 L62 88 L70 76 L82 67 Z" fill="#D99A4E"/>
-        <path d="M100 76 L111 78 L121 85 L127 96 L128 108 L124 120 L115 128 L103 132 L90 130 L80 123 L74 112 L73 99 L78 88 L87 80 Z" fill="#C8603A"/>
-      </g>
-      </g>
-    </svg>
     <img class="intro-logo" src="bilder/logo_buchstaben.png" alt="" width="330" height="280">
   </div>
 </div>
@@ -313,7 +298,7 @@ html.ruhig #intro { display: none !important; }
   function los() { if (fertig) return; fertig = true; document.body.classList.add('los'); if (intro) { intro.classList.add('weg'); setTimeout(function () { intro.remove(); }, 400); } }
   if (still) { if (intro) intro.remove(); document.addEventListener('DOMContentLoaded', function () { document.body.classList.add('los'); }); }
   else {
-    setTimeout(los, 1900);
+    setTimeout(los, 950);
   }
   document.addEventListener('DOMContentLoaded', function () {
     var teile = document.querySelectorAll('.wrap > header, .wrap > aside, .gruppe > *, .wrap > footer');
