@@ -473,7 +473,7 @@ html.kontrast .erpress span:nth-child(2)::after, html.kontrast .erpress span:nth
 .kurz .zeile > span:first-child { display: grid; gap: 0.35rem; }
 .kurz .zeile > span:last-child { white-space: nowrap; color: var(--mittelgrau); font-size: 0.66rem; }
 .kurz h2 { margin-right: 4.6rem !important; }
-.kurz .neko { position: absolute; right: 0.25rem; top: 0.3rem; width: 6.3rem; height: auto; pointer-events: none; }
+.kurz .neko { position: absolute; right: 0.9rem; top: 0.85rem; width: 7.2rem; height: auto; pointer-events: none; }
 html.kontrast .kurz .zeile { color: #000; }
 /* Shop-Produkte */
 .produktbilder { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
@@ -695,7 +695,7 @@ html.leicht article .einfach { font-size: 1.08rem; }
 html.leicht article .einfach b { display: none; }
 /* Thema (Rubrik) oben rechts in die Ecke, etwas über der Höhe von „KI-Stimme“ (Wunsch Nicolas 2026-11-08) */
 article:has(.hoeren) { position: relative; }
-article:has(.hoeren) > .rubrik { position: absolute; top: 0.95rem; right: 1rem; margin: 0 !important; transform: rotate(1.5deg); max-width: 55%; text-align: right; }
+article:has(.hoeren) > .rubrik { position: absolute; top: 1.4rem; right: 1rem; margin: 0 !important; transform: rotate(1.5deg); max-width: 55%; text-align: right; }
 .surf-fenster .deckel.frage { display: flex; flex-direction: column; justify-content: center; gap: 0.5rem; padding: 0.5rem; font: 0.58rem/1.3 var(--sans); text-align: center; }
 .surf-fenster .deckel.frage .laden { font: 800 0.66rem var(--sans); color: var(--rost); background: var(--creme); border: 0; padding: 0.4rem 0.3rem; cursor: pointer; }
 /* Designer-Zettel: klein, überlappt die orange Überschrift (Wunsch Nicolas 2026-11-08) */
@@ -809,6 +809,11 @@ html.ruhig .menue-dunkel { transition: none; }
 .spray .ipunkt b { top: -0.3em !important; }
 .spray .strich { position: absolute; left: 22%; right: 18%; bottom: 0.1em; height: 0.09em; background: #fff; border-radius: 1em; transform: rotate(-1.5deg); box-shadow: 0 2px 0 rgba(0,0,0,0.45); }
 .spray i { display: none !important; }
+/* 2026-11-08: Feinschliff */
+.fakt b { text-indent: 0 !important; }
+.hoeren small { display: grid; line-height: 1.15; font-weight: 700; color: var(--anthrazit); }
+.hoeren small .stimme-name { font-size: 0.58rem; font-weight: 400; color: var(--mittelgrau); letter-spacing: 0.02em; }
+article .marke { font-size: 0.64rem !important; padding: 0.28rem 0.55rem 0.24rem !important; line-height: 1.3; }
 </style>
 </head>
 <body>
@@ -1248,12 +1253,12 @@ html.ruhig .menue-dunkel { transition: none; }
     btn.hidden = false;
     liste.forEach(function (x, i) {
       var d = document.createElement('div'); d.className = 'hoeren';
-      d.innerHTML = '<span class="huelle"><button type="button" aria-pressed="false" aria-label="Anhören"></button></span><small>Google KI-Stimme</small>';
+      d.innerHTML = '<span class="huelle"><button type="button" aria-pressed="false" aria-label="Anhören"></button></span><small><span class="stimme-name">Google KI-Stimme</span></small>';
       var ziel = x.el.querySelector('.rubrik, h2'); ziel.insertAdjacentElement('afterend', d);
       x.knopf = d.querySelector('button');
       (function (klein) { var a = new Audio(); a.preload = 'metadata'; a.src = x.url;
         a.addEventListener('loadedmetadata', function () { var s = Math.round(a.duration); if (!isFinite(s)) return;
-          klein.textContent = (s < 60 ? s + ' Sek.' : Math.floor(s / 60) + ':' + ('0' + s % 60).slice(-2) + ' Min.') + ' · Google KI-Stimme'; }); })(d.querySelector('small'));
+          klein.innerHTML = (s < 60 ? s + ' Sek.' : Math.floor(s / 60) + ':' + ('0' + s % 60).slice(-2) + ' Min.') + '<span class="stimme-name">Google KI-Stimme</span>'; }); })(d.querySelector('small'));
       var punkte = [], n = 16 + (i % 3) * 2;
       for (var k = 0; k < n; k++) { var w = k / n * Math.PI * 2, r = 50 - ((Math.sin(i * 12.9898 + k * 78.233) * 43758.5453) % 1 + 1) % 1 * 6;
         punkte.push((50 + r * Math.cos(w)).toFixed(1) + '% ' + (50 + r * Math.sin(w)).toFixed(1) + '%'); }
