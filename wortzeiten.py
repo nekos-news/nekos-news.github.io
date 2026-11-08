@@ -42,7 +42,7 @@ def ausgabe(datum, neu=False):
         return 0
     n = 0
     for f in sorted(os.listdir(ordner)):
-        if not f.endswith(".mp3") or f == "kurz.mp3":
+        if not f.endswith(".mp3"):
             continue
         ziel = os.path.join(ordner, f[:-4] + ".woerter.json")
         if os.path.exists(ziel) and not neu:
