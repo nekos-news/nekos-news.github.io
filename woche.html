@@ -1020,6 +1020,8 @@ html.ruhig { scroll-snap-type: none; }
 /* Neu von Neko: Zettel mittig, ohne „Alle Videos“, ein Video rechts angeschnitten (2026-11-08) */
 .reels-kopf { justify-content: center !important; }
 .reels-leiste .reel { flex: 0 0 37% !important; }
+.genz-tipp .frage { font: 900 1.05em/1 var(--sans); margin-left: 0.08em; }
+.genz-tipp svg { transform: translate(11px, -7px); }
 </style>
 </head>
 <body>
@@ -1559,7 +1561,7 @@ html.ruhig { scroll-snap-type: none; }
 (function () {
   var h = document.querySelector('.hilfe-rechts'); if (!h) return;
   var t = document.createElement('div'); t.className = 'genz-tipp'; t.setAttribute('aria-hidden', 'true');
-  t.innerHTML = '<span>Gen Z?</span><svg viewBox="0 0 40 40"><path d="M32 36 C 30 22, 22 12, 17 4 M17 4 L10.5 10 M17 4 L24 8.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  t.innerHTML = '<span>Gen Z<b class="frage">?</b></span><svg viewBox="0 0 40 40"><path d="M9 37 C 12 24, 21 13, 31 5 M31 5 L22.5 6.5 M31 5 L30 14" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   h.insertAdjacentElement('afterend', t);
   function pruefen() { t.classList.toggle('weg', window.scrollY > 40 || h.querySelector('.hilfe-offen, [aria-expanded="true"]') !== null); }
   window.addEventListener('scroll', pruefen, { passive: true }); document.addEventListener('click', function () { setTimeout(pruefen, 0); }); pruefen();
