@@ -1760,9 +1760,11 @@ function mzVideoZeit(code, i) {
     folien.forEach(function (f, n) { f.classList.toggle('aktiv', n === i); });
     w.style.height = (arts[i].offsetHeight + 18) + 'px';
     nav.querySelector('.karussell-zaehler').textContent = (i + 1) + ' / ' + arts.length;
-    nav.querySelector('.zurueck').disabled = i === 0; nav.querySelector('.weiter').disabled = i === arts.length - 1;
+    /* Endlos: nach der letzten kommt wieder die erste (Wunsch Nicolas 2026-11-08) – Pfeile nie ausgegraut */
   }
-  function geh(n) { i = Math.max(0, Math.min(arts.length - 1, n)); dx = 0; setzen(true); }
+  function geh(n) { var rum = n < 0 || n > arts.length - 1; i = (n + arts.length) % arts.length; dx = 0;
+    if (rum) { setzen(false); var f = folien[i]; if (f.animate && !document.documentElement.classList.contains('ruhig')) f.animate([{ opacity: 0, transform: 'translateX(' + (n < 0 ? -24 : 24) + 'px)' }, { opacity: 1, transform: 'none' }], { duration: 260, easing: 'ease-out' }); }
+    else setzen(true); }
   window.mzZeigeMeldung = function (el) { var n = arts.indexOf(el); if (n >= 0) geh(n); };
   nav.querySelector('.zurueck').addEventListener('click', function () { geh(i - 1); });
   nav.querySelector('.weiter').addEventListener('click', function () { geh(i + 1); });
@@ -1770,7 +1772,7 @@ function mzVideoZeit(code, i) {
   w.addEventListener('touchstart', function (e) { sx = e.touches[0].clientX; sy = e.touches[0].clientY; quer = null; dx = 0; }, { passive: true });
   w.addEventListener('touchmove', function (e) { if (sx == null) return; var mx = e.touches[0].clientX - sx, my = e.touches[0].clientY - sy;
     if (quer == null && (Math.abs(mx) > 8 || Math.abs(my) > 8)) quer = Math.abs(mx) > Math.abs(my);
-    if (quer) { e.preventDefault(); dx = mx * ((i === 0 && mx > 0) || (i === arts.length - 1 && mx < 0) ? 0.3 : 1); setzen(false); } }, { passive: false });
+    if (quer) { e.preventDefault(); dx = mx; setzen(false); } }, { passive: false });
   w.addEventListener('touchend', function () { if (quer) { var n = dx < -50 ? i + 1 : (dx > 50 ? i - 1 : i); geh(n); } sx = null; quer = null; });
   w.addEventListener('scroll', function () { w.scrollLeft = 0; });
   document.addEventListener('click', function (e) { var a = e.target.closest('a[href^="#m"]'); if (!a) return; var z = document.getElementById(a.getAttribute('href').slice(1)); if (z && arts.indexOf(z) >= 0) { e.preventDefault(); geh(arts.indexOf(z)); w.scrollIntoView({ block: 'start', behavior: 'smooth' }); } }, true);
