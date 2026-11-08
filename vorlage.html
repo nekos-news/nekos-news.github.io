@@ -1048,8 +1048,14 @@ article > .andere-sicht { display: none; }
 #neko { gap: 1.4rem !important; }
 .folgen { display: grid; justify-items: center; justify-self: center; width: fit-content; max-width: 100%; gap: 0.2rem; margin-top: 0.6rem; }
 .folgen .vita-kanaele { justify-content: center !important; margin: 0 !important; }
-.folgen-tipp { justify-self: start; margin-left: -0.4rem; display: flex; align-items: flex-end; gap: 0.2rem; font: 700 1.45rem/1 "Caveat", cursive; color: var(--creme); transform: rotate(-5deg); }
-.folgen-tipp svg { width: 2rem; height: 2rem; margin-bottom: -0.9rem; }
+/* „Folgen!“ hängt am Instagram-Knopf: Text oben links, Pfeilspitze endet knapp über der Knopfkante (Ursache des alten Fehlers: Ausrichtung am ganzen Block + negativer Abstand) */
+.folgen { padding-top: 2.3rem; }
+.folgen-anker { position: relative; display: inline-flex; }
+.folgen-tipp { position: absolute; z-index: 2; left: -0.7rem; bottom: calc(100% - 0.15rem); pointer-events: none; display: flex; align-items: flex-start; gap: 0.1rem; white-space: nowrap;
+  font: 700 1.45rem/1 "Caveat", cursive; color: var(--creme); transform: rotate(-5deg); transform-origin: left bottom; }
+.folgen-tipp svg { width: 1.9rem; height: 1.9rem; margin-top: 0.55rem; filter: drop-shadow(0 1px 0 rgba(0,0,0,0.35)); }
+html.gross .folgen-tipp { font-size: 1.45rem !important; font-weight: 700 !important; }
+html.kontrast .folgen-tipp { color: #fff; }
 html.ruhig .folgen-tipp { transform: none; }
 /* Hinweis etwas tiefer, Zeitung liegt leicht über der blauen Kante (2026-11-08) */
 .oben:has(.hinweis) .hinweis { position: relative; z-index: 1; translate: 0 1.6rem; }

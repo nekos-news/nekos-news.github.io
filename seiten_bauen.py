@@ -131,6 +131,8 @@ def ohne_ki(datei):
 
 PATREON = ""  # Link zu Nekos Patreon, sobald bekannt (leer = Knopf ausgeblendet)
 
+FOLGEN_TIPP = '<span class="folgen-tipp" aria-hidden="true"><span>Folgen!</span><svg viewBox="0 0 40 40"><path d="M6 6 C 10 18, 18 28, 31 34 M31 34 L22 34.5 M31 34 L28.5 25.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>'
+
 def neko():
     patreon = (f'<a class="patreon" href="{PATREON}" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="15" cy="9.5" r="6.5"/><rect x="2.5" y="3" width="3.6" height="18"/></svg>Patreon</a>' if PATREON else "")
     inhalt = '''<div class="wrap">
@@ -147,7 +149,6 @@ def neko():
       <p data-einfach="Ich will, dass mehr Menschen Lust auf Politik haben. Ich erkläre es einfach. Und ich zeige, wenn Firmen sich Politik kaufen wollen.">Ich bin ein Typ, der versucht, Leute für Politik zu begeistern: die Einstiegshürden kleiner machen, zeigen, was <mark class="kreis">nicht zusammenpasst</mark>, und ein bisschen gegen Lobbyarbeit halten. Ehrlich, mit Fakten und ohne Nachrichtensprecher-Ton.</p>
     </article>
   <div class="folgen">
-    <span class="folgen-tipp" aria-hidden="true"><span>Folgen!</span><svg viewBox="0 0 40 40"><path d="M6 6 C 10 18, 18 28, 31 34 M31 34 L22 34.5 M31 34 L28.5 25.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
     <div class="kanaele vita-kanaele">KANAELEPATREON<a class="anfrage" href="mailto:neko.anfragen@gmail.com?subject=Anfrage%20an%20Neko"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5 H21 A1 1 0 0 1 22 6 V18 A1 1 0 0 1 21 19 H3 A1 1 0 0 1 2 18 V6 A1 1 0 0 1 3 5 Z M4 7.2 V17 H20 V7.2 L12 12.6 Z M5.6 7 L12 11.2 L18.4 7 Z"/></svg>Anfragen</a></div>
   </div>
   </section>
@@ -170,6 +171,9 @@ def neko():
   </section>
 ''' + FUSS
     k = open(os.path.join(HIER, "daten", "kanaele.html"), encoding="utf-8").read().strip()  # Kanal-Knöpfe (nicht mehr im Menü)
+    # „Folgen!“-Pfeil hängt fest am Instagram-Knopf (nicht am ganzen Block), damit er bei jeder Breite und Schrift auf die Kanäle zeigt (Fehler kam 2026-11-08 zum zweiten Mal)
+    k = re.sub(r'(<a class="ig".*?</a>)', lambda m: '<span class="folgen-anker">' + FOLGEN_TIPP + m.group(1) + '</span>', k, count=1, flags=re.S)
+    assert 'folgen-anker' in k, "Instagram-Knopf für den Folgen-Pfeil nicht gefunden"
     seite(inhalt.replace("KANAELE", k).replace("PATREON", patreon), "Neko", "neko.html")
     # Auf der Profilseite kein „Kein Journalismus“-Hinweis (Wunsch Nicolas)
     ohne_ki("neko.html")
