@@ -845,7 +845,7 @@ html.kontrast .hinweis { background: #000 !important; color: #fff !important; }
 .hinweis .schild { width: 2.5rem !important; }
 .hinweis b { font-size: 0.72rem !important; }
 /* Platz, weil die Figur oben aus dem Kasten ragt */
-.wrap > .kurz { margin-top: 4.6rem; }
+.wrap > .kurz { margin-top: 1.4rem; }
 /* Mehr Luft im 30-Sekunden-Zettel (2026-11-08) */
 .kurz h2 { margin-bottom: 0.9rem !important; }
 .kurz .hoeren { margin: 0.4rem 0 1.1rem !important; }
@@ -954,6 +954,45 @@ html.ruhig article.papier:active, html.ruhig .kurz:active, html.ruhig .reel:acti
 .karussell-nav .pfeil:disabled { opacity: 0.3; cursor: default; }
 .karussell-nav .karussell-zaehler { font: 400 0.85rem var(--maschine); color: var(--creme); min-width: 3.5rem; text-align: center; }
 .mehr-news { margin-top: 3.5rem !important; }
+/* Hinweis kleiner, teils hinter Neko; Logo links neben dem Datum (2026-11-08) */
+.oben .hinweis { max-width: 84% !important; font-size: 0.52rem !important; padding: 0.4rem 0.5rem 0.4rem 0.45rem !important; }
+.oben .hinweis .schild { width: 1.9rem !important; }
+.oben .hinweis b { font-size: 0.56rem !important; }
+.kurz .zeile { display: flex !important; align-items: center !important; justify-content: flex-start !important; gap: 0.65rem !important; flex-wrap: nowrap !important; }
+.kurz .zeile > span:first-of-type { display: flex; flex-direction: column; align-items: flex-start; gap: 0.3rem; }
+.kurz .zeile > span:empty { display: none; }
+.kurz .kurz-logo { width: 4.2rem; height: auto; flex: none; transform: rotate(-2deg); filter: drop-shadow(0 2px 0 rgba(0,0,0,0.25)); }
+/* Story im 30-Sekunden-Zettel */
+.kurz ul.story-liste { display: none; }
+html.leicht .kurz ul.story-liste { display: block; } html.leicht .story-inline { display: none; }
+.story-inline { display: grid; gap: 0.8rem; margin-top: 0.3rem; cursor: pointer; user-select: none; -webkit-user-select: none; min-height: 9.5rem; align-content: start; }
+.story-inline .balken { display: flex; gap: 4px; }
+.story-inline .balken span { flex: 1; height: 4px; background: rgba(46,43,42,0.18); border-radius: 2px; overflow: hidden; }
+.story-inline .balken b { display: block; height: 100%; background: var(--rost); transform-origin: left; transform: scaleX(0); }
+.story-inline .balken span.voll b { transform: scaleX(1); }
+.story-inline .balken span.jetzt b { animation: story-lauf 5.5s linear forwards; }
+.story-inline.pausiert .balken span.jetzt b { animation: none; transform: scaleX(0.15); }
+.story-inline .folie { display: grid; gap: 0.6rem; animation: folie-rein 0.35s ease both; }
+@keyframes folie-rein { from { opacity: 0; transform: translateX(18px); } }
+.story-inline .folie p { margin: 0; font: 700 1.28rem/1.35 var(--serif); color: var(--anthrazit); }
+.story-inline .folie a { justify-self: start; font: 800 0.72rem var(--sans); letter-spacing: 0.06em; text-transform: uppercase; color: var(--creme); background: var(--rost); background-image: var(--faser); padding: 0.4rem 0.65rem; text-decoration: none; transform: rotate(-1.5deg); }
+html.ruhig .story-inline .folie { animation: none; }
+.kurz .erpress span { font-size: 1.12rem !important; }
+.kurz .neko-wrap { right: -0.5rem !important; }
+/* Wischer */
+.wischer { position: relative; overflow: hidden; margin-inline: calc(50% - 50vw); width: 100vw; padding-top: 3.2rem; box-sizing: content-box; transition: height 0.3s ease; touch-action: pan-y; }
+.wischer .spur { display: flex; align-items: flex-start; will-change: transform; }
+.wischer .w-folie { flex: 0 0 100vw; box-sizing: border-box; padding-inline: calc((100vw - min(33rem, 84vw)) / 2); }
+.wischer .w-folie > article { width: 100%; box-sizing: border-box; }
+@media (min-width: 900px) {
+  .wischer .w-folie { flex-basis: calc(min(33rem, 84vw) + 3rem); padding-inline: 1.5rem; }
+  .wischer .w-folie:not(.aktiv) { filter: grayscale(0.7) blur(2.5px); opacity: 0.45; transition: filter 0.3s, opacity 0.3s; cursor: pointer; }
+}
+html.ruhig .wischer .spur { transition: none !important; }
+/* Neko-Seite: mehr Luft über dem Logo, weniger darunter (2026-11-08) */
+#content { gap: 1rem !important; margin-top: 2.2rem; }
+#content .content-logo { margin-bottom: 0.2rem; }
+#content .filter { margin-bottom: 0.2rem; }
 </style>
 </head>
 <body>
@@ -1381,7 +1420,7 @@ html.ruhig article.papier:active, html.ruhig .kurz:active, html.ruhig .reel:acti
   function spiele(i) {
     pos = i; var x = liste[i]; if (!x) { ende(); return; }
     player.src = x.url; player.play().catch(function () {}); knoepfe(i); btn.textContent = 'Ⅱ Pause';
-    if (alles) { x.el.scrollIntoView({ block: 'center', behavior: 'smooth' }); var nM = liste.filter(function (y) { return y.el.id !== 'kurz'; }).length, iM = liste.slice(0, i + 1).filter(function (y) { return y.el.id !== 'kurz'; }).length; status.textContent = x.el.id === 'kurz' ? 'Das Wichtigste' : 'Meldung ' + iM + ' von ' + nM; }
+    if (alles) { if (window.mzZeigeMeldung) window.mzZeigeMeldung(x.el); (x.el.closest('.wischer') || x.el).scrollIntoView({ block: x.el.closest('.wischer') ? 'start' : 'center', behavior: 'smooth' }); var nM = liste.filter(function (y) { return y.el.id !== 'kurz'; }).length, iM = liste.slice(0, i + 1).filter(function (y) { return y.el.id !== 'kurz'; }).length; status.textContent = x.el.id === 'kurz' ? 'Das Wichtigste' : 'Meldung ' + iM + ' von ' + nM; }
   }
   function ende() { player.pause(); pos = -1; alles = false; knoepfe(-1); btn.textContent = '\u25B6\uFE0E Alles anhören'; status.textContent = ''; }
   player.addEventListener('ended', function () { if (alles) spiele(pos + 1); else ende(); });
@@ -1492,53 +1531,67 @@ html.ruhig article.papier:active, html.ruhig .kurz:active, html.ruhig .reel:acti
 (function () { var n = document.querySelector('.kurz .neko'); if (!n) return;
   var w = document.createElement('span'); w.className = 'neko-wrap'; n.parentNode.insertBefore(w, n); w.appendChild(n);
   var z = document.createElement('img'); z.className = 'zl'; z.src = '/bilder/logo_buchstaben.png'; z.alt = ''; w.appendChild(z); })();
-/* „Heute“: alle Meldungen in ein Wisch-Karussell, darunter Pfeile ← 1 / 10 → */
+/* „Heute“: Wischer – immer genau EINE Meldung pro Wisch; Handy: Nachbarn unsichtbar, Desktop: Nachbarn grau und unscharf (Wunsch Nicolas 2026-11-08) */
 (function () {
   var wrap = document.querySelector('.wrap[data-datum]'); if (!wrap) return;
   var erste = wrap.querySelector('section.gruppe'); if (!erste) return;
   var arts = Array.prototype.slice.call(wrap.querySelectorAll('section.gruppe > article[id]')); if (arts.length < 2) return;
-  var k = document.createElement('div'); k.className = 'karussell'; k.setAttribute('aria-label', 'Meldungen, zur Seite wischen');
-  arts.forEach(function (a) { k.appendChild(a); });
+  var w = document.createElement('div'); w.className = 'wischer'; w.setAttribute('aria-label', 'Meldungen, zur Seite wischen');
+  var spur = document.createElement('div'); spur.className = 'spur'; w.appendChild(spur);
+  var folien = arts.map(function (a) { var d = document.createElement('div'); d.className = 'w-folie'; d.appendChild(a); spur.appendChild(d); return d; });
   wrap.querySelectorAll('section.gruppe').forEach(function (s) { if (s !== erste && !s.querySelector('article, .zettel')) s.remove(); });
   var nav = document.createElement('div'); nav.className = 'karussell-nav';
-  nav.innerHTML = '<button type="button" class="pfeil zurueck" aria-label="Vorherige Meldung">←</button><span class="karussell-zaehler">1 / ' + arts.length + '</span><button type="button" class="pfeil weiter" aria-label="Nächste Meldung">→</button>';
-  erste.appendChild(k); erste.appendChild(nav);
-  var jetzt = 0, zaehler = nav.querySelector('.karussell-zaehler');
-  function geh(n) { n = Math.max(0, Math.min(arts.length - 1, n)); var a = arts[n]; k.scrollTo({ left: a.offsetLeft - k.offsetLeft - (k.clientWidth - a.offsetWidth) / 2, behavior: 'smooth' }); }
-  nav.querySelector('.zurueck').addEventListener('click', function () { geh(jetzt - 1); });
-  nav.querySelector('.weiter').addEventListener('click', function () { geh(jetzt + 1); });
-  function aktuell() { var mitte = k.scrollLeft + k.clientWidth / 2, d = 1e9;
-    arts.forEach(function (a, n) { var c = a.offsetLeft - k.offsetLeft + a.offsetWidth / 2; if (Math.abs(c - mitte) < d) { d = Math.abs(c - mitte); jetzt = n; } });
-    zaehler.textContent = (jetzt + 1) + ' / ' + arts.length;
-    var cs = getComputedStyle(k); k.style.height = (arts[jetzt].offsetHeight + parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom)) + 'px';
-    nav.querySelector('.zurueck').disabled = jetzt === 0; nav.querySelector('.weiter').disabled = jetzt === arts.length - 1; }
-  k.addEventListener('scroll', function () { requestAnimationFrame(aktuell); }, { passive: true }); aktuell();
-  addEventListener('load', aktuell); addEventListener('resize', aktuell); arts.forEach(function (a) { a.addEventListener('toggle', aktuell, true); });
+  nav.innerHTML = '<button type="button" class="pfeil zurueck" aria-label="Vorherige Meldung">←</button><span class="karussell-zaehler"></span><button type="button" class="pfeil weiter" aria-label="Nächste Meldung">→</button>';
+  erste.appendChild(w); erste.appendChild(nav);
+  var i = 0, dx = 0;
+  function breite() { return folien[0].getBoundingClientRect().width; }
+  function setzen(animiert) {
+    var off = (w.clientWidth - breite()) / 2 - i * breite() + dx;
+    spur.style.transition = animiert ? 'transform 0.35s cubic-bezier(0.2, 0.8, 0.25, 1)' : 'none';
+    spur.style.transform = 'translate3d(' + off + 'px,0,0)';
+    folien.forEach(function (f, n) { f.classList.toggle('aktiv', n === i); });
+    w.style.height = (arts[i].offsetHeight + 56) + 'px';
+    nav.querySelector('.karussell-zaehler').textContent = (i + 1) + ' / ' + arts.length;
+    nav.querySelector('.zurueck').disabled = i === 0; nav.querySelector('.weiter').disabled = i === arts.length - 1;
+  }
+  function geh(n) { i = Math.max(0, Math.min(arts.length - 1, n)); dx = 0; setzen(true); }
+  window.mzZeigeMeldung = function (el) { var n = arts.indexOf(el); if (n >= 0) geh(n); };
+  nav.querySelector('.zurueck').addEventListener('click', function () { geh(i - 1); });
+  nav.querySelector('.weiter').addEventListener('click', function () { geh(i + 1); });
+  var sx = null, sy = null, quer = null;
+  w.addEventListener('touchstart', function (e) { sx = e.touches[0].clientX; sy = e.touches[0].clientY; quer = null; dx = 0; }, { passive: true });
+  w.addEventListener('touchmove', function (e) { if (sx == null) return; var mx = e.touches[0].clientX - sx, my = e.touches[0].clientY - sy;
+    if (quer == null && (Math.abs(mx) > 8 || Math.abs(my) > 8)) quer = Math.abs(mx) > Math.abs(my);
+    if (quer) { e.preventDefault(); dx = mx * ((i === 0 && mx > 0) || (i === arts.length - 1 && mx < 0) ? 0.3 : 1); setzen(false); } }, { passive: false });
+  w.addEventListener('touchend', function () { if (quer) { var n = dx < -50 ? i + 1 : (dx > 50 ? i - 1 : i); geh(n); } sx = null; quer = null; });
+  w.addEventListener('scroll', function () { w.scrollLeft = 0; });
+  document.addEventListener('click', function (e) { var a = e.target.closest('a[href^="#m"]'); if (!a) return; var z = document.getElementById(a.getAttribute('href').slice(1)); if (z && arts.indexOf(z) >= 0) { e.preventDefault(); geh(arts.indexOf(z)); w.scrollIntoView({ block: 'start', behavior: 'smooth' }); } }, true);
+  arts.forEach(function (a) { a.addEventListener('toggle', function () { setzen(false); }, true); });
+  folien.forEach(function (f, n) { f.addEventListener('click', function (e) { if (n !== i) { e.preventDefault(); e.stopPropagation(); geh(n); } }, true); });
+  addEventListener('resize', function () { setzen(false); }); addEventListener('load', function () { setzen(false); });
+  setzen(false);
 })();
-/* Story-Karten: „Das Wichtigste“ zum Durchtippen */
+/* „Das Wichtigste“ als Story direkt im Zettel: ein Punkt nach dem anderen, läuft von selbst, tippen/wischen (Wunsch Nicolas 2026-11-08) */
 (function () {
   var kurz = document.querySelector('#kurz'); if (!kurz) return;
-  var punkte = Array.prototype.slice.call(kurz.querySelectorAll('li a')); if (!punkte.length) return;
-  var knopf = document.createElement('button'); knopf.type = 'button'; knopf.className = 'story-knopf'; knopf.innerHTML = '<i>&#x25B6;&#xFE0E;</i>Als Story ansehen';
-  var h2 = kurz.querySelector('h2'); h2.insertAdjacentElement('afterend', knopf);
-  var s = document.createElement('div'); s.className = 'story'; s.hidden = true; s.setAttribute('role', 'dialog');
-  s.innerHTML = '<div class="balken">' + punkte.map(function () { return '<span><b></b></span>'; }).join('') + '</div><div class="buehne"></div><div class="story-hinweis">Tippen: weiter · links tippen: zurück</div><button class="zu" type="button" aria-label="Schließen">✕</button>';
-  document.body.appendChild(s);
-  var i = 0, uhr = null, ruhig = function () { return document.documentElement.classList.contains('ruhig'); };
+  var ul = kurz.querySelector('ul'), punkte = Array.prototype.slice.call(kurz.querySelectorAll('li a')); if (!ul || punkte.length < 2) return;
+  var box = document.createElement('div'); box.className = 'story-inline'; box.setAttribute('aria-live', 'polite');
+  box.innerHTML = '<div class="balken">' + punkte.map(function () { return '<span><b></b></span>'; }).join('') + '</div><div class="folie"></div>';
+  ul.insertAdjacentElement('afterend', box); ul.classList.add('story-liste');
+  var i = 0, uhr = null, sichtbar = false, ruhig = function () { return document.documentElement.classList.contains('ruhig'); };
   function zeig(n) {
-    if (n < 0) n = 0; if (n >= punkte.length) { zu(); return; } i = n; clearTimeout(uhr);
-    s.querySelectorAll('.balken span').forEach(function (sp, k) { sp.className = k < i ? 'voll' : (k === i ? 'jetzt' : ''); sp.firstChild.style.animation = 'none'; sp.firstChild.offsetWidth; sp.firstChild.style.animation = ''; });
-    var p = punkte[i], ziel = p.getAttribute('href');
-    s.querySelector('.buehne').innerHTML = '<div class="karte papier riss r-' + (i % 12) + '" style="--r:' + (i % 2 ? '1.2deg' : '-1.2deg') + '"><span class="nr">' + (i + 1) + ' / ' + punkte.length + '</span><p>' + p.textContent + '</p><a href="' + ziel + '">Zum Artikel</a></div>';
-    s.querySelector('.karte a').addEventListener('click', function (e) { e.stopPropagation(); zu(); });
-    if (!ruhig()) uhr = setTimeout(function () { zeig(i + 1); }, 6000);
+    i = (n + punkte.length) % punkte.length; clearTimeout(uhr);
+    box.querySelectorAll('.balken span').forEach(function (sp, k) { sp.className = k < i ? 'voll' : (k === i ? 'jetzt' : ''); var b = sp.firstChild; b.style.animation = 'none'; b.offsetWidth; b.style.animation = ''; });
+    var p = punkte[i];
+    box.querySelector('.folie').innerHTML = '<p>' + p.textContent + '</p><a href="' + p.getAttribute('href') + '">Zum Artikel →</a>';
+    box.classList.toggle('pausiert', ruhig() || !sichtbar);
+    if (!ruhig() && sichtbar) uhr = setTimeout(function () { zeig(i + 1); }, 5500);
   }
-  function zu() { clearTimeout(uhr); s.hidden = true; document.body.style.overflow = ''; }
-  knopf.addEventListener('click', function () { s.hidden = false; document.body.style.overflow = 'hidden'; zeig(0); });
-  s.addEventListener('click', function (e) { if (e.target.closest('.zu')) { zu(); return; } if (e.target.closest('a')) return; zeig(e.clientX < innerWidth * 0.33 ? i - 1 : i + 1); });
-  var sx = null; s.addEventListener('touchstart', function (e) { sx = e.touches[0].clientX; }, { passive: true });
-  s.addEventListener('touchend', function (e) { if (sx == null) return; var dx = e.changedTouches[0].clientX - sx; sx = null; if (Math.abs(dx) > 50) { e.preventDefault(); zeig(dx < 0 ? i + 1 : i - 1); } });
-  document.addEventListener('keydown', function (e) { if (s.hidden) return; if (e.key === 'Escape') zu(); if (e.key === 'ArrowRight') zeig(i + 1); if (e.key === 'ArrowLeft') zeig(i - 1); });
+  box.addEventListener('click', function (e) { if (e.target.closest('a')) return; var r = box.getBoundingClientRect(); zeig(e.clientX < r.left + r.width * 0.33 ? i - 1 : i + 1); });
+  var sx = null; box.addEventListener('touchstart', function (e) { sx = e.touches[0].clientX; }, { passive: true });
+  box.addEventListener('touchend', function (e) { if (sx == null) return; var dx = e.changedTouches[0].clientX - sx; sx = null; if (Math.abs(dx) > 40) zeig(dx < 0 ? i + 1 : i - 1); });
+  if ('IntersectionObserver' in window) new IntersectionObserver(function (es) { sichtbar = es[0].isIntersecting; zeig(i); }, { threshold: 0.5 }).observe(box); else { sichtbar = true; }
+  zeig(0);
 })();
 /* Stift-Strich oben zeigt, wie weit man gelesen hat */
 (function () {
@@ -1556,6 +1609,8 @@ html.ruhig article.papier:active, html.ruhig .kurz:active, html.ruhig .reel:acti
   if (schonDa) arts.forEach(function (a, k) { if (alt.indexOf(schluessel[k]) < 0) { var st = document.createElement('span'); st.className = 'neu-stempel'; st.textContent = 'NEU'; a.appendChild(st); } });
   try { localStorage.setItem('mz-gesehen', JSON.stringify(schluessel.concat((alt || []).filter(function (x) { return x.indexOf(datum) !== 0; })).slice(0, 200))); } catch (e) {}
 })();
+/* Logo links neben „Samstag 7.11.“ */
+(function () { var z = document.querySelector('.kurz .zeile'); if (!z) return; var l = document.createElement('img'); l.className = 'kurz-logo'; l.src = '/bilder/logo_buchstaben.png'; l.alt = 'Nekos News'; z.insertBefore(l, z.firstChild); })();
 </script>
 </body>
 </html>
