@@ -1007,7 +1007,7 @@ html.ruhig .wischer .spur { transition: none !important; }
 .lesefluss .punkte { display: flex; gap: 0.32rem; align-items: center; }
 .lesefluss .punkte button { width: 1.05rem; height: 0.32rem; padding: 0; border: 0; cursor: pointer; border-radius: 2px; background: rgba(244,236,220,0.28); transform: rotate(-4deg); transition: background 0.25s, width 0.25s; }
 .lesefluss .punkte button.jetzt { width: 1.7rem; background: var(--creme); } /* nur die aktuelle Meldung leuchtet (Nicolas 2026-11-08) */
-.lesefluss .durch { justify-self: center; font: 700 1.6rem/1.1 "Caveat", cursive; color: var(--anthrazit); background: #F2D45C; background-image: var(--faser); padding: 0.55rem 1rem 0.5rem; transform: rotate(-2deg); filter: drop-shadow(0 3px 0 rgba(0,0,0,0.25)) drop-shadow(4px 10px 12px rgba(2,6,20,0.5)); text-align: center; animation: durch-rein 0.4s cubic-bezier(0.2, 0.9, 0.25, 1.3) both; }
+.lesefluss .durch { justify-self: center; font: 700 1.6rem/1.1 "Caveat", cursive; color: var(--anthrazit); background: var(--ocker); background-image: var(--faser); padding: 0.55rem 1rem 0.5rem; transform: rotate(-2deg); filter: drop-shadow(0 3px 0 rgba(0,0,0,0.25)) drop-shadow(4px 10px 12px rgba(2,6,20,0.5)); text-align: center; animation: durch-rein 0.4s cubic-bezier(0.2, 0.9, 0.25, 1.3) both; }
 .lesefluss:has(.durch) { margin-bottom: 7.5rem; } /* „Du bist durch“ ganz lesbar über der Abspiel-Leiste hochschieben (Nicolas 2026-11-08) */
 .lesefluss .durch { margin-top: 0.6rem; }
 .lesefluss .durch small { display: block; font: 400 0.68rem var(--maschine); letter-spacing: 0.04em; margin-top: 0.2rem; }
@@ -1018,6 +1018,20 @@ html.ruhig .lesefluss .durch { animation: none; }
 .gelesen-haken svg { width: 1.45rem; height: 1.1rem; overflow: visible; }
 .gelesen-haken path { fill: none; stroke: #9b958d; stroke-width: 2.8; stroke-linecap: round; stroke-linejoin: round; transition: stroke 0.3s, opacity 0.3s; }
 .gelesen-haken .h2 { opacity: 0; }
+/* Kacheln aufgeräumt (Wunsch Nicolas 2026-11-08) */
+/* Originalartikel: kleiner und ruhiger, bleiben gut antippbar */
+article .quelle { gap: 0.3rem 0.35rem !important; }
+article .quelle::before { font-size: 0.6rem !important; margin-bottom: 0.05rem; }
+article .quelle a { font-size: 0.64rem !important; gap: 0.25rem !important; padding: 0.3rem 0.45rem 0.26rem !important; filter: drop-shadow(1px 1px 0 rgba(46,43,42,0.2)) !important; }
+article .quelle a::before { width: 0.8rem !important; height: 0.8rem !important; }
+article .quelle a::after { font-size: 0.6rem !important; }
+/* Randnotiz („Offizielle Nominierung erst am Montag“) nur unter „Mehr anzeigen“, nicht auf der Karte; in Einfacher Sprache bleibt sie, weil es dort kein „Mehr anzeigen“ gibt */
+html:not(.leicht) article:has(> details.mehr) > .marke { display: none !important; }
+/* Vollbild: Knopfleiste klar über der Überschrift statt hineinzuragen; beim Scrollen mit dunklem Hintergrund */
+.bogen-leiste { margin-bottom: 1.5rem !important; padding: 0.4rem 0.2rem 0.5rem; background: linear-gradient(rgba(8,22,54,0.96) 72%, rgba(8,22,54,0)); }
+.bogen-grund .bogen { margin-top: 0 !important; }
+html.kontrast .bogen-leiste { background: #000; }
+
 /* Kontrast-Modus: letzte orange Reste schwarz-weiß (Bugtest 2026-11-08) */
 html.kontrast details.mehr summary { background: #000 !important; color: #fff !important; transform: none; }
 html.kontrast article .quelle::before { color: #000 !important; }
@@ -1035,7 +1049,7 @@ html.lofi-spielt .welle b:nth-child(3) { animation-duration: 1.1s; animation-del
 html.lofi-spielt .welle b:nth-child(4) { animation-duration: 0.8s; animation-delay: -0.15s; }
 @keyframes welle { from { height: 20%; } to { height: 100%; } }
 .hilfe-knopf { position: relative; }
-.hilfe-knopf .welle { position: absolute; right: -0.35rem; bottom: -0.3rem; height: 0.8rem; padding: 0.18rem 0.2rem; gap: 1.5px; color: var(--anthrazit); background: #F2D45C; transform: rotate(-4deg); filter: drop-shadow(0 2px 0 rgba(0,0,0,0.3)); }
+.hilfe-knopf .welle { position: absolute; right: -0.35rem; bottom: -0.3rem; height: 0.8rem; padding: 0.18rem 0.2rem; gap: 1.5px; color: var(--anthrazit); background: var(--ocker); transform: rotate(-4deg); filter: drop-shadow(0 2px 0 rgba(0,0,0,0.3)); }
 .hilfe-knopf .welle b { width: 2px; }
 html.lofi-spielt .hilfe-knopf .welle { display: inline-flex; }
 html.ruhig.lofi-spielt .welle b { animation: none; height: 70%; } html.ruhig.lofi-spielt .welle b:nth-child(odd) { height: 40%; }
