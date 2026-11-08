@@ -1033,7 +1033,7 @@ html.kontrast .bogen-leiste .zu, html.kontrast .bogen-leiste .bogen-play { backg
 .bogen-leiste > * { pointer-events: auto; }
 .bogen-leiste .zu, .bogen-leiste .bogen-play { position: static !important; top: auto !important; left: auto !important; right: auto !important; width: 2.6rem !important; height: 2.6rem !important; }
 /* Mitlesen: gesprochenes Wort dicker + leichter Farbwechsel (Nicolas 2026-11-08: stärker) */
-.w.jetzt { -webkit-text-stroke: 1.15px currentColor; paint-order: stroke fill; } /* nur dicker, Textfarbe bleibt (Nicolas 2026-11-08) */
+.w.jetzt { -webkit-text-stroke: 0.075em currentColor; paint-order: stroke fill; } /* nur dicker, Textfarbe bleibt (Nicolas 2026-11-08) */
 /* „Mehr anzeigen“ pulsiert leicht, wenn gerade vorgelesen wird, was nur im Vollbild steht */
 @keyframes mehr-puls { 0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(184,64,31,0); } 50% { transform: scale(1.06); box-shadow: 0 0 0 6px rgba(184,64,31,0.22); } }
 details.mehr summary.puls { animation: mehr-puls 1.3s ease-in-out infinite; }
@@ -1043,7 +1043,7 @@ article h3 mark.kreis::after, .bogen h3 mark.kreis::after { background-image: ur
 article h3 mark.strich::after, .bogen h3 mark.strich::after { filter: brightness(2.2) saturate(0.6); }
 .zurueck10 { position: relative; width: 2.1rem; height: 2.1rem; padding: 0; border: 0; border-radius: 50%; cursor: pointer; display: grid; place-items: center; color: var(--anthrazit); background: rgba(46,43,42,0.1); flex: none; }
 .zurueck10 svg { position: absolute; inset: 0.18rem; width: auto; height: auto; }
-.zurueck10 b { position: relative; font: 800 0.52rem/1 var(--sans); margin-top: 0.22rem; letter-spacing: -0.02em; }
+
 .bogen-links { display: flex; align-items: center; gap: 0.5rem; }
 .bogen-leiste .zurueck10 { width: 2.4rem; height: 2.4rem; color: var(--creme); background: rgba(244,236,220,0.16); }
 html.kontrast .zurueck10 { background: #fff; color: #000; outline: 2px solid #000; }
@@ -1640,7 +1640,7 @@ function mzVideoZeit(code, i) {
       });
       /* 10 Sekunden zurück (Wunsch Nicolas 2026-11-08); läuft die Meldung noch nicht, startet sie */
       var z10 = document.createElement('button'); z10.type = 'button'; z10.className = 'zurueck10'; z10.setAttribute('aria-label', '10 Sekunden zurück');
-      z10.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.2V0.6L7.4 4.4 12 8.2V5.6a7 7 0 1 1-7 7H2.6a9.4 9.4 0 1 0 9.4-9.4z" fill="currentColor"/></svg><b>10</b>';
+      z10.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.2V0.6L7.4 4.4 12 8.2V5.6a7 7 0 1 1-7 7H2.6a9.4 9.4 0 1 0 9.4-9.4z" fill="currentColor"/><text x="12" y="15.9" text-anchor="middle" font-family="Libre Franklin, Arial, sans-serif" font-weight="800" font-size="7.6" fill="currentColor">10</text></svg>';
       z10.addEventListener('click', function (e) { e.stopPropagation(); if (pos === i) { player.currentTime = Math.max(0, player.currentTime - 10); if (player.paused) { player.play(); knoepfe(i); } } else x.knopf.click(); });
       d.querySelector('.huelle').insertAdjacentElement('afterend', z10);
     });
@@ -1887,7 +1887,7 @@ function mzVideoZeit(code, i) {
 (function () {
   var cache = {}, laeuft = false, jetztId = null, jetztSrc = null, an = [];
   function norm(t) { return t.toLowerCase().replace(/[^0-9a-zäöüß]/g, ''); }
-  function laden(src) { var u = src.replace(/\.mp3$/, '.woerter.json'); if (!(u in cache)) { cache[u] = null; fetch(u).then(function (r) { return r.ok ? r.json() : null; }).then(function (w) { cache[u] = w || false; }).catch(function () { cache[u] = false; }); } return cache[u]; }
+  function laden(src) { var u = src.replace(/\.mp3$/, '.woerter.json') + '?v=2'; /* ?v: alte „nicht gefunden“-Antworten im Handy-Speicher umgehen */ if (!(u in cache)) { cache[u] = null; fetch(u).then(function (r) { return r.ok ? r.json() : null; }).then(function (w) { cache[u] = w || false; }).catch(function () { cache[u] = false; }); } return cache[u]; }
   function einpacken(root, sel) {
     var spans = [];
     (sel ? root.querySelectorAll(sel) : [root]).forEach(function (el) {

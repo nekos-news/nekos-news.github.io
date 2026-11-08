@@ -7,6 +7,8 @@
   Cache-Control: no-cache
 /audio/*/liste.json
   Cache-Control: no-cache
+/audio/*/*.woerter.json
+  Cache-Control: no-cache
 /bilder/*
   Cache-Control: public, max-age=86400
 /audio/*
