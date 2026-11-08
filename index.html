@@ -734,7 +734,9 @@ html.kontrast article h3 { filter: none; }
 /* „Mehr anzeigen“ = großer Papierbogen über dunklem, unscharfem Hintergrund (Wunsch Nicolas 2026-11-08) */
 details.mehr > p { display: none; }
 .bogen-grund { position: fixed; inset: 0; z-index: 25; display: grid; place-items: center; padding: 3.6rem 0.9rem 1.2rem; overflow-y: auto;
-  background: rgba(4,8,20,0.72); -webkit-backdrop-filter: blur(16px) brightness(0.7); backdrop-filter: blur(16px) brightness(0.7); }
+  background: rgba(4,8,20,0.72); }
+/* Unschärfe als eigene Ebene: direkt am Vollbild würde sie verhindern, dass die Knopfleiste fest oben bleibt (Fehler 2026-11-08) */
+.bogen-grund::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none; -webkit-backdrop-filter: blur(16px) brightness(0.7); backdrop-filter: blur(16px) brightness(0.7); }
 .bogen-grund[hidden] { display: none; }
 .bogen { position: relative; box-sizing: border-box; width: min(34rem, calc(100vw - 3.4rem)); padding: 1.6rem 1.3rem 1.4rem; display: grid; gap: 0.8rem; transform: rotate(-0.6deg); animation: bogen-rein 0.35s cubic-bezier(0.2, 0.9, 0.25, 1.1) both; }
 @keyframes bogen-rein { from { opacity: 0; transform: translateY(30px) rotate(-3deg) scale(0.96); } }
@@ -1009,7 +1011,7 @@ html.ruhig .wischer .spur { transition: none !important; }
 .lesefluss .punkte button.jetzt { width: 1.7rem; background: var(--creme); } /* nur die aktuelle Meldung leuchtet (Nicolas 2026-11-08) */
 .lesefluss .durch { justify-self: center; font: 700 1.6rem/1.1 "Caveat", cursive; color: var(--anthrazit); background: var(--ocker); background-image: var(--faser); padding: 0.55rem 1rem 0.5rem; transform: rotate(-2deg); filter: drop-shadow(0 3px 0 rgba(0,0,0,0.25)) drop-shadow(4px 10px 12px rgba(2,6,20,0.5)); text-align: center; animation: durch-rein 0.4s cubic-bezier(0.2, 0.9, 0.25, 1.3) both; }
 .lesefluss:has(.durch) { margin-bottom: 7.5rem; } /* „Du bist durch“ ganz lesbar über der Abspiel-Leiste hochschieben (Nicolas 2026-11-08) */
-.lesefluss .durch { margin-top: 0.6rem; }
+.lesefluss .durch { margin-top: 2.6rem; } /* tiefer (Nicolas 2026-11-08) */
 .lesefluss .durch small { display: block; font: 400 0.68rem var(--maschine); letter-spacing: 0.04em; margin-top: 0.2rem; }
 @keyframes durch-rein { from { opacity: 0; transform: rotate(-8deg) scale(0.8); } }
 html.ruhig .lesefluss .durch { animation: none; }
@@ -1028,7 +1030,9 @@ article .quelle a::after { font-size: 0.6rem !important; }
 /* Randnotiz („Offizielle Nominierung erst am Montag“) nur unter „Mehr anzeigen“, nicht auf der Karte; in Einfacher Sprache bleibt sie, weil es dort kein „Mehr anzeigen“ gibt */
 html:not(.leicht) article:has(> details.mehr) > .marke { display: none !important; }
 /* Vollbild: Knopfleiste klar über der Überschrift statt hineinzuragen; beim Scrollen mit dunklem Hintergrund */
-.bogen-leiste { margin-bottom: 1.5rem !important; } /* ohne eigenen Hintergrund: der blaue Streifen stand fest im Bild (Fehler 2026-11-08) */
+.bogen-leiste { position: fixed !important; top: calc(env(safe-area-inset-top, 0px) + 0.6rem) !important; left: 50% !important; transform: translateX(-50%); margin: 0 !important; z-index: 30; } /* fest oben, nie über der Überschrift (Nicolas 2026-11-08) */
+html body div.bogen-grund { padding-top: calc(env(safe-area-inset-top, 0px) + 5.8rem) !important; }
+.bogen-leiste .zu, .bogen-leiste .bogen-play, .bogen-leiste .zurueck10 { filter: drop-shadow(0 3px 0 rgba(0,0,0,0.3)) drop-shadow(0 6px 14px rgba(2,6,20,0.55)); } /* ohne eigenen Hintergrund: der blaue Streifen stand fest im Bild (Fehler 2026-11-08) */
 .bogen-grund .bogen { margin-top: 0 !important; }
 
 /* Kontrast-Modus: letzte orange Reste schwarz-weiß (Bugtest 2026-11-08) */
@@ -1899,12 +1903,7 @@ function mzVideoZeit(code, i) {
       bl.appendChild(links); if (zuk) bl.appendChild(zuk);
       g.insertBefore(bl, g.firstChild);
       g.querySelector('.bogen').dataset.fuer = art.id;
-      /* Unten im Vollbild direkt zur nächsten Meldung (2026-11-08) */
-      var alle = Array.prototype.slice.call(document.querySelectorAll('.wrap[data-datum] article[id]')).filter(function (x) { return x.querySelector('details.mehr summary'); });
-      var nx = alle[alle.indexOf(art) + 1], fb = document.createElement('button'); fb.type = 'button'; fb.className = 'bogen-weiter';
-      fb.innerHTML = nx ? '<span>Weiter</span><b>→</b>' : '<span>Zurück zur Übersicht</span><b>✕</b>'; /* ohne Titel der nächsten Meldung (Nicolas 2026-11-08) */
-      fb.addEventListener('click', function (e) { e.stopPropagation(); if (!nx) { zu(); return; } if (window.mzZeigeMeldung) window.mzZeigeMeldung(nx); nx.querySelector('details.mehr summary').click(); g.scrollTop = 0; requestAnimationFrame(function () { g.scrollTop = 0; }); });
-      g.appendChild(fb);
+      /* Kein „Weiter →“-Knopf unten mehr (Wunsch Nicolas 2026-11-08) */
       g.hidden = false; g.scrollTop = 0; document.body.style.overflow = 'hidden';
     });
   });
@@ -1941,7 +1940,7 @@ function mzVideoZeit(code, i) {
   function breite() { return folien[0].getBoundingClientRect().width; }
   function setzen(animiert) {
     var off = (w.clientWidth - breite()) / 2 - i * breite() + dx;
-    spur.style.transition = animiert ? 'transform 0.35s cubic-bezier(0.2, 0.8, 0.25, 1)' : 'none';
+    spur.style.transition = animiert ? 'transform 0.38s cubic-bezier(0.22, 0.75, 0.2, 1)' : 'none';
     spur.style.transform = 'translate3d(' + off + 'px,0,0)';
     folien.forEach(function (f, n) { f.classList.toggle('aktiv', n === i); });
     w.style.height = (arts[i].offsetHeight + 18) + 'px';
@@ -1955,11 +1954,19 @@ function mzVideoZeit(code, i) {
   nav.querySelector('.zurueck').addEventListener('click', function () { geh(i - 1); });
   nav.querySelector('.weiter').addEventListener('click', function () { geh(i + 1); });
   var sx = null, sy = null, quer = null;
-  w.addEventListener('touchstart', function (e) { sx = e.touches[0].clientX; sy = e.touches[0].clientY; quer = null; dx = 0; }, { passive: true });
+  /* Flüssiger wischen (Wunsch Nicolas 2026-11-08): beim Ziehen nur verschieben (kein Neuberechnen pro Bewegung), einmal pro Bild;
+     schneller Wisch reicht schon ab 25 px; senkrecht scrollt der Browser selbst (touch-action: pan-y), die Richtung wird erst nach 10 px festgelegt */
+  var t0 = 0, zug = false, basis = 0, spurV = [];
+  function ziehen() { zug = false; spur.style.transform = 'translate3d(' + (basis + dx) + 'px,0,0)'; }
+  w.addEventListener('touchstart', function (e) { sx = e.touches[0].clientX; sy = e.touches[0].clientY; quer = null; dx = 0; spurV = []; }, { passive: true });
   w.addEventListener('touchmove', function (e) { if (sx == null) return; var mx = e.touches[0].clientX - sx, my = e.touches[0].clientY - sy;
-    if (quer == null && (Math.abs(mx) > 8 || Math.abs(my) > 8)) quer = Math.abs(mx) > Math.abs(my);
-    if (quer) { e.preventDefault(); dx = mx; setzen(false); } }, { passive: false });
-  w.addEventListener('touchend', function () { if (quer) { var n = dx < -50 ? i + 1 : (dx > 50 ? i - 1 : i); geh(n); } sx = null; quer = null; });
+    if (quer == null && (Math.abs(mx) > 10 || Math.abs(my) > 10)) { quer = Math.abs(mx) > Math.abs(my) * 1.15;
+      if (quer) { spur.style.transition = 'none'; basis = (w.clientWidth - breite()) / 2 - i * breite(); } }
+    if (quer) { e.preventDefault(); dx = mx; spurV.push([e.timeStamp, mx]); if (spurV.length > 5) spurV.shift(); if (!zug) { zug = true; requestAnimationFrame(ziehen); } } }, { passive: false });
+  function loslassen() { if (quer) { var v = 0; if (spurV.length > 1) { var a = spurV[0], b = spurV[spurV.length - 1]; v = (b[1] - a[1]) / Math.max(1, b[0] - a[0]); }
+      var weit = Math.abs(dx) > breite() * 0.22, schnell = Math.abs(dx) > 25 && Math.abs(v) > 0.35;
+      var n = (weit || schnell) ? (dx < 0 ? i + 1 : i - 1) : i; geh(n); } sx = null; quer = null; }
+  w.addEventListener('touchend', loslassen); w.addEventListener('touchcancel', loslassen);
   w.addEventListener('scroll', function () { w.scrollLeft = 0; });
   document.addEventListener('click', function (e) { var a = e.target.closest('a[href^="#m"]'); if (!a) return; var z = document.getElementById(a.getAttribute('href').slice(1)); if (z && arts.indexOf(z) >= 0) { e.preventDefault(); geh(arts.indexOf(z)); w.scrollIntoView({ block: 'start', behavior: 'smooth' }); } }, true);
   arts.forEach(function (a) { a.addEventListener('toggle', function () { setzen(false); }, true); });
