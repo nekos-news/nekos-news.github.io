@@ -1303,12 +1303,12 @@ html.ruhig .menue-dunkel { transition: none; }
     btn.hidden = false;
     liste.forEach(function (x, i) {
       var d = document.createElement('div'); d.className = 'hoeren';
-      d.innerHTML = '<span class="huelle"><button type="button" aria-pressed="false" aria-label="Anhören"></button></span><small>KI-Stimme</small>';
+      d.innerHTML = '<span class="huelle"><button type="button" aria-pressed="false" aria-label="Anhören"></button></span><small>Google KI-Stimme</small>';
       var ziel = x.el.querySelector('.rubrik, h2'); ziel.insertAdjacentElement('afterend', d);
       x.knopf = d.querySelector('button');
       (function (klein) { var a = new Audio(); a.preload = 'metadata'; a.src = x.url;
         a.addEventListener('loadedmetadata', function () { var s = Math.round(a.duration); if (!isFinite(s)) return;
-          klein.textContent = (s < 60 ? s + ' Sek.' : Math.floor(s / 60) + ':' + ('0' + s % 60).slice(-2) + ' Min.') + ' · KI-Stimme'; }); })(d.querySelector('small'));
+          klein.textContent = (s < 60 ? s + ' Sek.' : Math.floor(s / 60) + ':' + ('0' + s % 60).slice(-2) + ' Min.') + ' · Google KI-Stimme'; }); })(d.querySelector('small'));
       var punkte = [], n = 16 + (i % 3) * 2;
       for (var k = 0; k < n; k++) { var w = k / n * Math.PI * 2, r = 50 - ((Math.sin(i * 12.9898 + k * 78.233) * 43758.5453) % 1 + 1) % 1 * 6;
         punkte.push((50 + r * Math.cos(w)).toFixed(1) + '% ' + (50 + r * Math.sin(w)).toFixed(1) + '%'); }
