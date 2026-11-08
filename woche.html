@@ -819,6 +819,11 @@ article .marke { font-size: 0.64rem !important; padding: 0.28rem 0.55rem 0.24rem
 html { overflow-x: clip; }
 /* Kein Zähler unten, nur Anhören/Weiter und Pfeil (Wunsch Nicolas 2026-11-08) */
 .leiste .status { display: none !important; }
+/* Reihenfolge: Überschrift zuerst (ragt oben aus dem Papier), darunter Anhören + Thema (Wunsch Nicolas 2026-11-08) */
+article.papier > h3 { order: -2; margin-top: -2.8rem !important; }
+article.papier > .hoeren { order: -1; }
+article .hoeren .rubrik { position: static !important; margin: 0 0 0 auto !important; transform: rotate(1.5deg); max-width: 55%; text-align: right; }
+article:has(.hoeren) { padding-top: 1.2rem; }
 </style>
 </head>
 <body>
@@ -1298,6 +1303,7 @@ html { overflow-x: clip; }
       d.innerHTML = '<span class="huelle"><button type="button" aria-pressed="false" aria-label="Anhören"></button></span><small><span class="stimme-name">Google KI-Stimme</span></small>';
       var ziel = x.el.querySelector('.rubrik, h2'); ziel.insertAdjacentElement('afterend', d);
       x.knopf = d.querySelector('button');
+      var rub = x.el.querySelector(':scope > .rubrik'); if (rub && x.el.tagName === 'ARTICLE') d.appendChild(rub); /* Thema rechts in die Zeile unter der Überschrift */
       (function (klein) { var a = new Audio(); a.preload = 'metadata'; a.src = x.url;
         a.addEventListener('loadedmetadata', function () { var s = Math.round(a.duration); if (!isFinite(s)) return;
           klein.innerHTML = (s < 60 ? s + ' Sek.' : Math.floor(s / 60) + ':' + ('0' + s % 60).slice(-2) + ' Min.') + '<span class="stimme-name">Google KI-Stimme</span>'; }); })(d.querySelector('small'));
