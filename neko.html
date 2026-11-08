@@ -1044,6 +1044,9 @@ article > .andere-sicht { display: none; }
 .folgen-tipp { justify-self: start; margin-left: 12%; display: flex; align-items: flex-end; gap: 0.2rem; font: 700 1.45rem/1 "Caveat", cursive; color: var(--creme); transform: rotate(-5deg); }
 .folgen-tipp svg { width: 2rem; height: 2rem; margin-bottom: -0.9rem; }
 html.ruhig .folgen-tipp { transform: none; }
+/* Hinweis etwas tiefer, Zeitung liegt leicht über der blauen Kante (2026-11-08) */
+.oben:has(.hinweis) .hinweis { position: relative; z-index: 1; translate: 0 1.6rem; }
+.wrap > .kurz { margin-top: 1.7rem !important; }
 </style>
 </head>
 <body>
