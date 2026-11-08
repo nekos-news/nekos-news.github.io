@@ -832,6 +832,14 @@ article:has(.hoeren) { padding-top: 1.2rem; }
 /* Mehr Abstand, weil die Überschriften oben aus dem Papier ragen (2026-11-08) */
 .gruppe { gap: 4.6rem !important; }
 .gruppe > .zettel + article { margin-top: 0.8rem; }
+/* Kein-Journalismus-Zettel auf blauem Papier, größeres KI-Warnschild (2026-11-08) */
+.hinweis { background-color: #1F4E9A !important; background-image: var(--faser), linear-gradient(115deg, rgba(255,255,255,0.12), transparent 45%) !important; color: #EEF2FA !important;
+  font-size: 0.74rem !important; line-height: 1.4 !important; gap: 0.85rem !important; padding: 0.85rem 1rem 0.85rem 0.85rem !important; transform: rotate(-0.8deg);
+  clip-path: polygon(0 3%, 18% 0, 47% 2.5%, 76% 0, 100% 3%, 99% 52%, 100% 97%, 70% 100%, 38% 97.5%, 12% 100%, 0 96%, 1% 50%);
+  filter: drop-shadow(0 4px 0 rgba(0,0,0,0.3)) drop-shadow(5px 14px 16px rgba(2,6,20,0.6)) !important; }
+.hinweis .schild { width: 3.4rem !important; transform: rotate(-6deg) !important; filter: drop-shadow(1px 3px 0 rgba(0,0,0,0.35)); }
+.hinweis b { color: #FFD08A !important; display: block; font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 0.15rem; }
+html.kontrast .hinweis { background: #000 !important; color: #fff !important; }
 </style>
 </head>
 <body>
