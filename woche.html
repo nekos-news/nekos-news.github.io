@@ -995,9 +995,8 @@ html.ruhig .wischer .spur { transition: none !important; }
 #btn-lesen, .leiste .hoch { background-color: #1F4E9A !important; }
 .hilfe-knopf { width: 2.2rem !important; height: 2.2rem !important; }
 .hilfe-knopf svg { width: 1.2rem !important; height: 1.2rem !important; }
-html { scroll-snap-type: y proximity; }
-#deutschland { scroll-snap-align: start; scroll-margin-top: 3.6rem; }
-html.ruhig { scroll-snap-type: none; }
+/* Kein Einrasten der ganzen Seite mehr (Fehler 2026-11-08: Einrastpunkt kurz vor dem Ende zog beim Scrollen zurück, unten kam man nicht hoch/runter) */
+#deutschland { scroll-margin-top: 3.6rem; }
 .wischer article.papier { padding: 1rem 1rem 1.05rem !important; gap: 0.7rem !important; }
 .wischer article h3 { font-size: 1.15rem !important; }
 .wischer article .fakt, .wischer article p:not(.quelle) { font-size: 0.94rem; line-height: 1.5; }
@@ -1359,11 +1358,11 @@ html.kontrast .hinweis b { color: #fff !important; }
       <p class="fakt"><b title="KI-Zusammenfassung">KI-Zusammenfassung</b>Russland hat Kiew und die Region in der Nacht zu Samstag laut ukrainischer Luftwaffe mit Raketen und 172 Drohnen angegriffen. Getroffen wurde vor allem Energie-Infrastruktur, in Kiew gab es laut Bürgermeister Klitschko fünf Verletzte.</p>
       <p class="quelle"><a href="https://www.criticalthreats.org/analysis/russian-offensive-campaign-assessment-november-7-2026-6aefc4cc503e5">ISW</a> · <a href="https://www.ukrinform.net/">Ukrinform</a> · <a href="https://www.usnews.com/news/world/articles/2026-11-03/kremlin-confirms-trilateral-ukraine-peace-talks-in-abu-dhabi-next-week">US News (Reuters)</a> · <a href="archiv/2026-11-08.html#m9">Zur Ausgabe</a></p>
     </article>
-    <article class="papier riss" id="w7" data-audio="/audio/2026-11-07/m4.mp3">
-      <h3>Wer mit K.-o.-Tropfen vergewaltigt, soll härter bestraft werden</h3>
-      <span class="rubrik">Recht · 07.11.</span>
-      <p class="fakt"><b title="KI-Zusammenfassung">KI-Zusammenfassung</b>Der Bundestag sollte am Freitag ein schärferes Gesetz beschließen. Wer K.-o.-Tropfen für eine Vergewaltigung oder einen Raub nutzt, soll mindestens fünf Jahre Haft bekommen.</p>
-      <p class="quelle"><a href="https://www.news.de/panorama/860164168/6-november-2026-news-themen-des-tages-was-passiert-heute-in-deutschland-und-der-welt-das-ist-heute-am-06-11-2026-wichtig-in-den-nachrichten-aus-politik-wirtschaft-sport-und-co/1/">news.de (dpa)</a> · <a href="archiv/2026-11-07.html#m4">Zur Ausgabe</a></p>
+    <article class="papier riss" id="w7">
+      <h3>Nicht Netanjahu: Ex-Armeechef Eisenkot soll Israels Regierung bilden</h3>
+      <span class="rubrik">Israel · 08.11.</span>
+      <p class="fakt"><b title="KI-Zusammenfassung">KI-Zusammenfassung</b>Israels Präsident Izchak Herzog hat Oppositionspolitiker Gadi Eisenkot mit der Regierungsbildung beauftragt, nicht Regierungschef Benjamin Netanjahu. Eisenkot bekam die Empfehlung von Parteien mit 67 der 120 Abgeordneten, eine feste Mehrheit hat er aber noch nicht.</p>
+      <p class="quelle"><a href="https://www.tagesspiegel.de/internationales/dpa-netanjahu-vor-dem-aus-ex-militar-eisenkot-soll-regierung-in-israel-bilden-16258719.html">Tagesspiegel (dpa)</a> · <a href="https://www.aljazeera.com/news/2026/11/7/israels-president-picks-eisenkot-over-netanyahu-to-form-next-government">Al Jazeera</a> · <a href="https://www.timesofisrael.com/president-herzog-taps-eisenkot-to-form-coalition-but-path-remains-fraught/">Times of Israel</a> · <a href="archiv/2026-11-08.html#m10">Zur Ausgabe</a></p>
     </article>
   </section>
   <p class="hinweis liste-hinweis"><svg class="schild" viewBox="0 0 64 56" aria-hidden="true"><path d="M32 3 L61 52 L3 52 Z" fill="#D99A4E" stroke="#2E2B2A" stroke-width="5" stroke-linejoin="round"/><text x="32" y="45" text-anchor="middle" font-family="Libre Franklin, Arial, sans-serif" font-weight="800" font-size="19" fill="#2E2B2A">KI</text></svg><span><b>Achtung, KI-Auswahl:</b> Welche Meldungen hier stehen, entscheidet eine KI, nicht Neko. Sie schätzt Tragweite, Betroffene, Ungerechtigkeit und Überraschung ein. Das ist eine Einschätzung, keine Messung.</span></p>

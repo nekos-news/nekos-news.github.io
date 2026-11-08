@@ -995,9 +995,8 @@ html.ruhig .wischer .spur { transition: none !important; }
 #btn-lesen, .leiste .hoch { background-color: #1F4E9A !important; }
 .hilfe-knopf { width: 2.2rem !important; height: 2.2rem !important; }
 .hilfe-knopf svg { width: 1.2rem !important; height: 1.2rem !important; }
-html { scroll-snap-type: y proximity; }
-#deutschland { scroll-snap-align: start; scroll-margin-top: 3.6rem; }
-html.ruhig { scroll-snap-type: none; }
+/* Kein Einrasten der ganzen Seite mehr (Fehler 2026-11-08: Einrastpunkt kurz vor dem Ende zog beim Scrollen zurück, unten kam man nicht hoch/runter) */
+#deutschland { scroll-margin-top: 3.6rem; }
 .wischer article.papier { padding: 1rem 1rem 1.05rem !important; gap: 0.7rem !important; }
 .wischer article h3 { font-size: 1.15rem !important; }
 .wischer article .fakt, .wischer article p:not(.quelle) { font-size: 0.94rem; line-height: 1.5; }
@@ -1330,8 +1329,8 @@ html.kontrast .hinweis b { color: #fff !important; }
       <li><a href="#m6">In Krakau erschießt ein Mann sechs Menschen auf dem Marktplatz, Tusk spricht von Terror.</a></li>
       <li><a href="#m1">Die Union will Ilse Aigner als erste Bundespräsidentin, die SPD ist dabei.</a></li>
       <li><a href="#m2">Klingbeil fordert von der Union, ein AfD-Verbot auf den Weg zu bringen.</a></li>
-      <li><a href="#m7">Nach der Wahlschlappe macht Trump Stephen Miller zum Stabschef.</a></li>
-      <li><a href="#m10">Beschlossen: Mindestens fünf Jahre Haft für Taten mit K.-o.-Tropfen.</a></li>
+      <li><a href="#m10">In Israel soll Ex-Armeechef Eisenkot die Regierung bilden, nicht Netanjahu.</a></li>
+      <li><a href="#m11">Beschlossen: Mindestens fünf Jahre Haft für Taten mit K.-o.-Tropfen.</a></li>
     </ul>
   </aside>
 
@@ -1401,12 +1400,12 @@ html.kontrast .hinweis b { color: #fff !important; }
     </article>
     <article class="papier riss" id="m8" data-lesen>
       <span class="rubrik">USA</span>
-      <h3>Der UFC-Boss als Regierungssprecher? Trump bietet <mark class="kreis">Dana White</mark> den Job an</h3>
-      <p class="einfach"><b>In einfacher Sprache</b>Im Weißen Haus fehlt ein Sprecher für die Regierung. Trump hat Dana White gefragt, ob er das machen will. Dana White ist Chef von UFC. Das ist eine bekannte Kampfsport-Firma. Ob er zusagt, ist noch offen.</p>
-      <p class="fakt"><b title="KI-Zusammenfassung">KI-Zusammenfassung</b>Trump hat auf Truth Social erklärt, er habe UFC-Chef Dana White den Posten des Pressesprechers im Weißen Haus angeboten. White will am Montag mit Trump sprechen, zugesagt hat er noch nicht.</p>
-      <details class="mehr"><summary>Mehr anzeigen</summary><p>Laut CBS schrieb Trump am Samstag, White solle als Assistenten auch UFC-Kämpfer mitbringen. Sie sollten das Land gegen die „Lunatic Left“ verteidigen, also die aus seiner Sicht verrückte Linke. Das Weiße Haus bestätigte das Angebot zunächst nicht, CBS hielt es auch für möglich, dass der Post ironisch gemeint war. Trump sprach laut CNBC vom „Press Secretary of the United States“, offiziell heißt das Amt Pressesprecher des Weißen Hauses.</p><p>White selbst sagte auf einer Pressekonferenz in London, er fliege jetzt nach Washington, am Montag gebe es ein Treffen. In seiner Instagram-Story zeigte er laut CBS ein Bild von sich am Rednerpult im Presseraum des Weißen Hauses. Laut NBC ist offen, ob er den Job annimmt.</p><p>Der Posten ist laut CBS <mark class="strich">seit dem 16. Oktober unbesetzt</mark>. Karoline Leavitt war im August ausgeschieden, ihre Nachfolgerin Katie Zacharia wurde nach fünf Tagen und einer einzigen kurzen Pressekonferenz entlassen.</p></details>
-      <span class="marke">Zusage offen, Angebot nur von Trump selbst bestätigt</span>
-      <p class="quelle"><a href="https://www.cbsnews.com/news/trump-offers-white-house-press-secretary-role-dana-white/">CBS News</a> · <a href="https://www.nbcnews.com/politics/white-house/trump-offers-press-secretary-job-ufc-ceo-dana-white-rcna608039">NBC News</a> · <a href="https://www.cnbc.com/2026/11/07/trump-ufc-dana-white-press-secretary-offer.html">CNBC</a></p>
+      <h3>Trump will den UFC-Boss als Sprecher, <mark class="kreis">Dana White</mark> soll abgesagt haben</h3>
+      <p class="einfach"><b>In einfacher Sprache</b>Im Weißen Haus fehlt ein Sprecher für die Regierung. Trump hat Dana White gefragt, ob er das machen will. Dana White ist Chef von UFC. Das ist eine bekannte Kampfsport-Firma. Ein Fernsehsender berichtet: Er hat wohl Nein gesagt. Ganz sicher ist das noch nicht.</p>
+      <p class="fakt"><b title="KI-Zusammenfassung">KI-Zusammenfassung</b>Trump hat auf Truth Social erklärt, er habe UFC-Chef Dana White den Posten des Pressesprechers im Weißen Haus angeboten. Laut CNN soll White abgelehnt haben, berufen auf eine einzelne Quelle; offiziell bestätigt ist das nicht.</p>
+      <details class="mehr"><summary>Mehr anzeigen</summary><p>Laut CBS schrieb Trump am Samstag, White solle als Assistenten auch UFC-Kämpfer mitbringen. Sie sollten das Land gegen die „Lunatic Left“ verteidigen, also die aus seiner Sicht verrückte Linke. Das Weiße Haus bestätigte das Angebot zunächst nicht, CBS hielt es auch für möglich, dass der Post ironisch gemeint war. Trump sprach laut CNBC vom „Press Secretary of the United States“, offiziell heißt das Amt Pressesprecher des Weißen Hauses.</p><p>White selbst sagte auf einer Pressekonferenz in London, er fliege jetzt nach Washington, am Montag gebe es ein Treffen. In seiner Instagram-Story zeigte er laut CBS ein Bild von sich am Rednerpult im Presseraum des Weißen Hauses. Laut NBC war zunächst offen, ob er den Job annimmt. Inzwischen berichtet CNN unter Berufung auf eine Quelle, <mark class="strich">White habe das Angebot abgelehnt</mark>; ein Mitarbeiter sagte dem Sender, das Bild am Rednerpult sei ein Scherz gewesen. Eine Bestätigung vom Weißen Haus oder von der UFC gibt es bisher nicht.</p><p>Der Posten ist laut CBS <mark class="strich">seit dem 16. Oktober unbesetzt</mark>. Karoline Leavitt war im August ausgeschieden, ihre Nachfolgerin Katie Zacharia wurde nach fünf Tagen und einer einzigen kurzen Pressekonferenz entlassen.</p></details>
+      <span class="marke">Absage nur über eine Quelle bei CNN, nicht offiziell bestätigt</span>
+      <p class="quelle"><a href="https://www.cbsnews.com/news/trump-offers-white-house-press-secretary-role-dana-white/">CBS News</a> · <a href="https://www.nbcnews.com/politics/white-house/trump-offers-press-secretary-job-ufc-ceo-dana-white-rcna608039">NBC News</a> · <a href="https://kvia.com/politics/cnn-us-politics/2026/11/07/ufc-ceo-dana-white-declines-trumps-offer-to-become-press-secretary-source-says/">CNN (via KVIA)</a></p>
     </article>
     <article class="papier riss" id="m9" data-lesen>
       <span class="rubrik">Ukraine</span>
@@ -1418,6 +1417,15 @@ html.kontrast .hinweis b { color: #fff !important; }
       <p class="quelle"><a href="https://www.criticalthreats.org/analysis/russian-offensive-campaign-assessment-november-7-2026-6aefc4cc503e5">ISW</a> · <a href="https://www.ukrinform.net/">Ukrinform</a> · <a href="https://www.usnews.com/news/world/articles/2026-11-03/kremlin-confirms-trilateral-ukraine-peace-talks-in-abu-dhabi-next-week">US News (Reuters)</a></p>
     </article>
     <article class="papier riss" id="m10" data-lesen>
+      <span class="rubrik">Israel</span>
+      <h3>Nicht Netanjahu: Ex-Armeechef <mark class="kreis">Eisenkot</mark> soll Israels Regierung bilden</h3>
+      <p class="einfach"><b>In einfacher Sprache</b>In Israel war vor kurzem eine Wahl. Jetzt muss jemand eine Regierung bilden. Der Präsident hat damit Gadi Eisenkot beauftragt. Er war früher Chef der Armee. Benjamin Netanjahu hat den Auftrag nicht bekommen. Ob Eisenkot genug Partner findet, ist noch offen.</p>
+      <p class="fakt"><b title="KI-Zusammenfassung">KI-Zusammenfassung</b>Israels Präsident Izchak Herzog hat Oppositionspolitiker Gadi Eisenkot mit der Regierungsbildung beauftragt, nicht Regierungschef Benjamin Netanjahu. Eisenkot bekam die Empfehlung von Parteien mit 67 der 120 Abgeordneten, eine feste Mehrheit hat er aber noch nicht.</p>
+      <details class="mehr"><summary>Mehr anzeigen</summary><p>Bei der Wahl am 27. Oktober kam Netanjahus Likud laut Berliner Zeitung auf 27 Sitze, Eisenkots neue Partei Jaschar auf 21. In den Gesprächen beim Präsidenten empfahlen Parteien mit zusammen <mark class="strich">67 Abgeordneten Eisenkot</mark>, Netanjahu kam laut Al Jazeera auf 46. Den formellen Auftrag sollte Eisenkot am Sonntagnachmittag bekommen. Er hat dann 28 Tage Zeit, Herzog kann um bis zu 14 Tage verlängern. Scheitert er, kann der Präsident jemand anderen beauftragen, laut Tagesspiegel gilt dann Netanjahu als möglicher Kandidat.</p><p>Das Problem: Zu den 67 Empfehlungen gehören auch arabisch geprägte Parteien. Eine Regierung mit ihnen hat Eisenkot laut Al Jazeera ausgeschlossen, und diese Parteien haben laut Times of Israel auch nicht zugesagt, eine Regierung von ihm dauerhaft zu stützen. Laut Times of Israel könnte er auch mit weniger als 61 Sitzen regieren, wenn er eine Vertrauensabstimmung im Parlament gewinnt.</p><p>Eisenkot wirbt für eine nationale Notstandsregierung. Netanjahu fordert eine Einheitsregierung und warnte laut Al Jazeera davor, eilig eine Regierung mit „Unterstützern des Terrors“ zu vereidigen, was als Anspielung auf die arabischen Parteien verstanden wurde. Eisenkot nannte Netanjahus Vorstoß laut Berliner Zeitung eine PR-Masche.</p></details>
+      <span class="marke">Mehrheit offen, Regierungsbildung kann scheitern</span>
+      <p class="quelle"><a href="https://www.tagesspiegel.de/internationales/dpa-netanjahu-vor-dem-aus-ex-militar-eisenkot-soll-regierung-in-israel-bilden-16258719.html">Tagesspiegel (dpa)</a> · <a href="https://www.aljazeera.com/news/2026/11/7/israels-president-picks-eisenkot-over-netanyahu-to-form-next-government">Al Jazeera</a> · <a href="https://www.timesofisrael.com/president-herzog-taps-eisenkot-to-form-coalition-but-path-remains-fraught/">Times of Israel</a></p>
+    </article>
+    <article class="papier riss" id="m11" data-lesen>
       <span class="rubrik">Recht</span>
       <h3>Jetzt beschlossen: Mindestens <mark class="strich">fünf Jahre Haft</mark> für Taten mit K.-o.-Tropfen</h3>
       <p class="einfach"><b>In einfacher Sprache</b>Manche Täter geben Menschen heimlich K.-o.-Tropfen. Dann können sich die Opfer nicht wehren. Der Bundestag hat jetzt ein neues Gesetz beschlossen. Wer so etwas für eine Vergewaltigung oder einen Raub macht, muss mindestens fünf Jahre ins Gefängnis.</p>

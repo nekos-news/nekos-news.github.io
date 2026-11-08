@@ -995,9 +995,8 @@ html.ruhig .wischer .spur { transition: none !important; }
 #btn-lesen, .leiste .hoch { background-color: #1F4E9A !important; }
 .hilfe-knopf { width: 2.2rem !important; height: 2.2rem !important; }
 .hilfe-knopf svg { width: 1.2rem !important; height: 1.2rem !important; }
-html { scroll-snap-type: y proximity; }
-#deutschland { scroll-snap-align: start; scroll-margin-top: 3.6rem; }
-html.ruhig { scroll-snap-type: none; }
+/* Kein Einrasten der ganzen Seite mehr (Fehler 2026-11-08: Einrastpunkt kurz vor dem Ende zog beim Scrollen zurück, unten kam man nicht hoch/runter) */
+#deutschland { scroll-margin-top: 3.6rem; }
 .wischer article.papier { padding: 1rem 1rem 1.05rem !important; gap: 0.7rem !important; }
 .wischer article h3 { font-size: 1.15rem !important; }
 .wischer article .fakt, .wischer article p:not(.quelle) { font-size: 0.94rem; line-height: 1.5; }

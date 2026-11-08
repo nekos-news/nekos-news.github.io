@@ -156,9 +156,9 @@
   "datum": "2026-11-08",
   "id": "m8",
   "rubrik": "USA",
-  "titel": "Der UFC-Boss als Regierungssprecher? Trump bietet Dana White den Job an",
-  "fakt": "Trump hat auf Truth Social erklärt, er habe UFC-Chef Dana White den Posten des Pressesprechers im Weißen Haus angeboten. White will am Montag mit Trump sprechen, zugesagt hat er noch nicht.",
-  "quellen_html": "<a href=\"https://www.cbsnews.com/news/trump-offers-white-house-press-secretary-role-dana-white/\">CBS News</a> · <a href=\"https://www.nbcnews.com/politics/white-house/trump-offers-press-secretary-job-ufc-ceo-dana-white-rcna608039\">NBC News</a> · <a href=\"https://www.cnbc.com/2026/11/07/trump-ufc-dana-white-press-secretary-offer.html\">CNBC</a>",
+  "titel": "Trump will den UFC-Boss als Sprecher, Dana White soll abgesagt haben",
+  "fakt": "Trump hat auf Truth Social erklärt, er habe UFC-Chef Dana White den Posten des Pressesprechers im Weißen Haus angeboten. Laut CNN soll White abgelehnt haben, berufen auf eine einzelne Quelle; offiziell bestätigt ist das nicht.",
+  "quellen_html": "<a href=\"https://www.cbsnews.com/news/trump-offers-white-house-press-secretary-role-dana-white/\">CBS News</a> · <a href=\"https://www.nbcnews.com/politics/white-house/trump-offers-press-secretary-job-ufc-ceo-dana-white-rcna608039\">NBC News</a> · <a href=\"https://kvia.com/politics/cnn-us-politics/2026/11/07/ufc-ceo-dana-white-declines-trumps-offer-to-become-press-secretary-source-says/\">CNN (via KVIA)</a>",
   "krass": 4
  },
  {
@@ -173,6 +173,15 @@
  {
   "datum": "2026-11-08",
   "id": "m10",
+  "rubrik": "Israel",
+  "titel": "Nicht Netanjahu: Ex-Armeechef Eisenkot soll Israels Regierung bilden",
+  "fakt": "Israels Präsident Izchak Herzog hat Oppositionspolitiker Gadi Eisenkot mit der Regierungsbildung beauftragt, nicht Regierungschef Benjamin Netanjahu. Eisenkot bekam die Empfehlung von Parteien mit 67 der 120 Abgeordneten, eine feste Mehrheit hat er aber noch nicht.",
+  "quellen_html": "<a href=\"https://www.tagesspiegel.de/internationales/dpa-netanjahu-vor-dem-aus-ex-militar-eisenkot-soll-regierung-in-israel-bilden-16258719.html\">Tagesspiegel (dpa)</a> · <a href=\"https://www.aljazeera.com/news/2026/11/7/israels-president-picks-eisenkot-over-netanyahu-to-form-next-government\">Al Jazeera</a> · <a href=\"https://www.timesofisrael.com/president-herzog-taps-eisenkot-to-form-coalition-but-path-remains-fraught/\">Times of Israel</a>",
+  "krass": 6
+ },
+ {
+  "datum": "2026-11-08",
+  "id": "m11",
   "rubrik": "Recht",
   "titel": "Jetzt beschlossen: Mindestens fünf Jahre Haft für Taten mit K.-o.-Tropfen",
   "fakt": "Der Bundestag hat am Freitag härtere Strafen für den Einsatz von K.-o.-Tropfen beschlossen. Wer sie bei einer Vergewaltigung oder einem Raub einsetzt, bekommt künftig mindestens fünf Jahre Haft statt bisher drei.",
