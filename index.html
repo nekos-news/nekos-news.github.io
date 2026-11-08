@@ -158,7 +158,7 @@ section.gruppe, aside.kurz { scroll-margin-top: 4.5rem; }
 #intro.fliegt { -webkit-backdrop-filter: none; backdrop-filter: none; background: transparent; transition: background 0.45s ease; }
 #intro.fliegt::before { opacity: 0; transition: opacity 0.45s ease; }
 body:not(.los) .logo-oben { opacity: 0; }
-#intro .buchstaben { position: relative; width: min(55vw, 240px); aspect-ratio: 330 / 280; will-change: transform; translate: 0 -2.6rem; } /* 25 % kleiner, vorab schon etwas hoch, damit nichts springt */
+#intro .buchstaben { position: relative; width: min(55vw, 240px); aspect-ratio: 330 / 280; will-change: transform; translate: 0 -3.3rem; } /* 25 % kleiner, vorab schon etwas hoch, damit nichts springt */
 #intro .buchstaben img { position: absolute; opacity: 0;
   animation: buchstabe-plopp 0.45s steps(1, end) forwards; animation-delay: calc(var(--i) * 0.08s); }
 #intro .buchstaben img.ganz { inset: 0; width: 100%; height: 100%; animation: ganz-da 0.01s steps(1, end) 0.98s both, kochen 1s steps(1, end) 0.98s infinite; }
@@ -1099,7 +1099,7 @@ html.kontrast .hinweis b { color: #fff !important; }
       /* Logo + Datum als EINE Gruppe waagerecht und senkrecht mittig (Wunsch Nicolas 2026-11-08) */
       gruppe.style.translate = '0 0'; var g = gruppe.getBoundingClientRect();
       datum.style.top = g.bottom + 'px'; intro.appendChild(datum);
-      var d0 = datum.getBoundingClientRect(), oben = g.bottom + 24 - d0.top;
+      var d0 = datum.getBoundingClientRect(), oben = g.bottom + 46 - d0.top; /* Abstand Logo–Datum (Nicolas 2026-11-08: etwas tiefer) */
       var hoehe = d0.bottom + oben - g.top, shift = Math.round((innerHeight - hoehe) / 2 - g.top);
       gruppe.style.translate = '0 ' + shift + 'px'; datum.style.top = (g.bottom + oben + shift) + 'px';
       Array.prototype.forEach.call(datum.children, function (s, n) {
