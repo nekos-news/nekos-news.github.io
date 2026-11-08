@@ -857,8 +857,18 @@ html.ruhig .raster-ebene { filter: grayscale(1); }
 .oben .hinweis { max-width: 54% !important; font-size: 0.6rem !important; padding: 0.5rem 0.6rem 0.5rem 0.55rem !important; gap: 0.45rem !important; }
 .oben .hinweis .schild { width: 1.9rem !important; }
 .oben .hinweis b { font-size: 0.64rem !important; }
-.logo-oben { margin-top: 0.3rem !important; margin-bottom: 0.3rem !important; }
-.oben { margin-top: 0.2rem !important; }
+.logo-oben { margin-bottom: 0.3rem !important; }
+/* „Größer“: deutlich größer und fett (Wunsch Nicolas 2026-11-08) */
+html.gross { font-size: 125%; }
+html.gross body { font-size: 20px; }
+html.gross p, html.gross li, html.gross .fakt, html.gross details.mehr p, html.gross .bogen-text, html.gross .vita p { font-weight: 700 !important; }
+html.gross .leiste-oben, html.gross .hilfe-rechts, html.gross .menue-knopf, html.gross .genz-tipp, html.gross .leiste { zoom: 0.8; }
+article.papier, .kurz { grid-template-columns: minmax(0, 1fr); min-width: 0; }
+.wrap { grid-template-columns: minmax(0, 1fr); }
+html.gross article .quelle a { white-space: normal; }
+article h3 { max-width: 100%; box-sizing: border-box; overflow-wrap: break-word; hyphens: auto; }
+html.gross mark.kreis, html.gross mark.strich { white-space: normal; }
+html.gross .hoeren .rubrik { white-space: normal; }
 </style>
 </head>
 <body>
