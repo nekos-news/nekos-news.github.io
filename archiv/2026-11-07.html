@@ -1017,6 +1017,21 @@ html.ruhig .lesefluss .durch { animation: none; }
 .gelesen-haken svg { width: 1.45rem; height: 1.1rem; overflow: visible; }
 .gelesen-haken path { fill: none; stroke: #9b958d; stroke-width: 2.8; stroke-linecap: round; stroke-linejoin: round; transition: stroke 0.3s, opacity 0.3s; }
 .gelesen-haken .h2 { opacity: 0; }
+/* Lo-Fi-Welle (2026-11-08): flach = an, wartet aufs Vorlesen; bewegt = läuft gerade */
+.welle { display: none; align-items: flex-end; gap: 2px; height: 0.85rem; }
+.welle b { display: block; width: 3px; height: 30%; border-radius: 1px; background: currentColor; }
+html.lofi-an .lofi-kachel .welle { display: inline-flex; margin-left: 0.15rem; }
+html.lofi-spielt .welle b { animation: welle 0.9s ease-in-out infinite alternate; }
+html.lofi-spielt .welle b:nth-child(2) { animation-duration: 0.7s; animation-delay: -0.3s; }
+html.lofi-spielt .welle b:nth-child(3) { animation-duration: 1.1s; animation-delay: -0.6s; }
+html.lofi-spielt .welle b:nth-child(4) { animation-duration: 0.8s; animation-delay: -0.15s; }
+@keyframes welle { from { height: 20%; } to { height: 100%; } }
+.hilfe-knopf { position: relative; }
+.hilfe-knopf .welle { position: absolute; right: -0.35rem; bottom: -0.3rem; height: 0.8rem; padding: 0.18rem 0.2rem; gap: 1.5px; color: var(--anthrazit); background: #F2D45C; transform: rotate(-4deg); filter: drop-shadow(0 2px 0 rgba(0,0,0,0.3)); }
+.hilfe-knopf .welle b { width: 2px; }
+html.lofi-spielt .hilfe-knopf .welle { display: inline-flex; }
+html.ruhig.lofi-spielt .welle b { animation: none; height: 70%; } html.ruhig.lofi-spielt .welle b:nth-child(odd) { height: 40%; }
+
 /* Teilen-Knopf unten links in der Haken-Zeile (2026-11-08) */
 article .teilen { display: flex; align-items: center; gap: 0.35rem; border: 0; background: none; padding: 0.25rem 0.3rem 0.25rem 0; margin: -0.25rem 0; cursor: pointer; color: var(--rost); font: 400 0.66rem/1 var(--maschine); letter-spacing: 0.04em; }
 article .teilen svg { width: 1.1rem; height: 1.1rem; fill: none; stroke: currentColor; stroke-width: 2.1; stroke-linecap: round; stroke-linejoin: round; }
@@ -2040,103 +2055,37 @@ function mzFuss(a) { var f = a.querySelector(':scope > .karten-fuss'); if (!f) {
     mzFuss(a).insertBefore(b, mzFuss(a).firstChild);
   });
 })();
-/* Lo-Fi im Hintergrund beim Vorlesen (Wunsch Nicolas 2026-11-08). Komplett im Browser erzeugt (Web Audio): eigene Akkorde, Beat und Plattenknistern,
-   keine fremden Aufnahmen, also frei nutzbar. Wiederholt sich nie genau: Akkordfolgen, Tonart, Melodie und Beat wechseln zufällig. */
+/* Lo-Fi im Hintergrund beim Vorlesen (Wunsch Nicolas 2026-11-08). Selbst erzeugte Musik (Generator: ~/NekoTools/lofi, keine fremden Aufnahmen, frei nutzbar),
+   als 10-Minuten-Schleife audio/lofi.m4a. Als Datei, damit sie wie die Stimme auch bei minimierter App weiterläuft. Der Schalter bleibt gespeichert. */
 (function () {
   var knopf = document.querySelector('[data-lofi]'); if (!knopf) return;
   if (!document.querySelector('.wrap[data-datum], #liste article[data-audio]')) { knopf.hidden = true; return; } /* nur wo es etwas zum Anhören gibt */
-  var AC = window.AudioContext || window.webkitAudioContext; if (!AC) { knopf.hidden = true; return; }
   var an = false; try { an = localStorage.getItem('mz-lofi') === '1'; } catch (e) {}
-  var LAUT = 0.2, ctx = null, master, keys, bass, drums, rausch, uhr = null, zeit = 0, schritt = 0, takt = 0, prog = 0, tonart = 0, spricht = false, vorschauBis = 0, ruheUhr = null, wow;
-  var BPM = 72, S16 = 60 / BPM / 4;
-  var ARTEN = { maj9: [4, 7, 11, 14], m9: [3, 7, 10, 14], dom9: [4, 10, 14, 17], m7: [3, 7, 10, 15] };
-  var FOLGEN = [
-    [[53, 'maj9'], [52, 'm7'], [50, 'm9'], [48, 'maj9']],
-    [[50, 'm9'], [55, 'dom9'], [48, 'maj9'], [57, 'm9']],
-    [[57, 'm9'], [50, 'm9'], [55, 'dom9'], [48, 'maj9']],
-    [[53, 'maj9'], [55, 'dom9'], [52, 'm7'], [57, 'm9']],
-    [[48, 'maj9'], [57, 'm9'], [53, 'maj9'], [55, 'dom9']]
-  ];
-  function hz(m) { return 440 * Math.pow(2, (m - 69) / 12); }
-  function zufall(a) { return a[Math.floor(Math.random() * a.length)]; }
-  var weissBuf = null;
-  function aufbauen() {
-    ctx = new AC();
-    try { if (navigator.audioSession) navigator.audioSession.type = 'playback'; } catch (e) {} /* iPhone: auch mit Stummschalter hörbar, wie die Stimme */
-    master = ctx.createGain(); master.gain.value = 0;
-    var warm = ctx.createBiquadFilter(); warm.type = 'lowpass'; warm.frequency.value = 3400; warm.Q.value = 0.3;
-    var komp = ctx.createDynamicsCompressor(); komp.threshold.value = -20; komp.ratio.value = 3;
-    warm.connect(komp); komp.connect(master); master.connect(ctx.destination);
-    keys = ctx.createBiquadFilter(); keys.type = 'lowpass'; keys.frequency.value = 1500; var kg = ctx.createGain(); kg.gain.value = 0.5; keys.connect(kg);
-    bass = ctx.createBiquadFilter(); bass.type = 'lowpass'; bass.frequency.value = 280; var bg = ctx.createGain(); bg.gain.value = 0.42; bass.connect(bg); bg.connect(warm);
-    drums = ctx.createBiquadFilter(); drums.type = 'lowpass'; drums.frequency.value = 5200; var dg = ctx.createGain(); dg.gain.value = 0.62; drums.connect(dg); dg.connect(warm);
-    /* Bandleiern: alles schwankt leicht in der Tonhöhe wie eine alte Kassette */
-    var leier = ctx.createDelay(0.05); leier.delayTime.value = 0.012; wow = ctx.createGain(); wow.gain.value = 0.0016; var lfo = ctx.createOscillator(); lfo.frequency.value = 0.35; lfo.connect(wow); wow.connect(leier.delayTime); lfo.start();
-    kg.connect(leier); leier.connect(warm);
-    weissBuf = ctx.createBuffer(1, ctx.sampleRate * 2, ctx.sampleRate); var w = weissBuf.getChannelData(0); for (var i = 0; i < w.length; i++) w[i] = Math.random() * 2 - 1;
-    /* Plattenknistern: leises Rauschen plus seltene Knackser, 7 Sekunden in Schleife */
-    var kb = ctx.createBuffer(1, ctx.sampleRate * 7, ctx.sampleRate), k = kb.getChannelData(0);
-    for (var j = 0; j < k.length; j++) k[j] = (Math.random() * 2 - 1) * 0.012;
-    for (var c = 0; c < 70; c++) { var p = Math.floor(Math.random() * (k.length - 200)), a = 0.15 + Math.random() * 0.45; for (var d = 0; d < 60; d++) k[p + d] += (Math.random() * 2 - 1) * a * Math.exp(-d / 9); }
-    rausch = ctx.createBufferSource(); rausch.buffer = kb; rausch.loop = true; var hp = ctx.createBiquadFilter(); hp.type = 'highpass'; hp.frequency.value = 900;
-    var rg = ctx.createGain(); rg.gain.value = 0.35; rausch.connect(hp); hp.connect(rg); rg.connect(warm); rausch.start();
-    prog = Math.floor(Math.random() * FOLGEN.length);
-  }
-  function ton(ziel, f, t, dauer, laut, art, hall) {
-    var o = ctx.createOscillator(), g = ctx.createGain(); o.type = art || 'sine'; o.frequency.value = f;
-    g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(laut, t + 0.012); g.gain.setTargetAtTime(laut * 0.35, t + 0.03, 0.35); g.gain.setTargetAtTime(0, t + dauer, hall || 0.25);
-    o.connect(g); g.connect(ziel); o.start(t); o.stop(t + dauer + (hall || 0.25) * 4.5);
-  }
-  function akkord(t, dauer, laut) {
-    var c = FOLGEN[prog][takt % 4], grund = c[0] + tonart;
-    ARTEN[c[1]].forEach(function (iv, n) { var m = grund + iv; while (m > 74) m -= 12; var tt = t + n * 0.018 + Math.random() * 0.01;
-      ton(keys, hz(m), tt, dauer, laut * 0.11, 'sine', 0.4); ton(keys, hz(m) * 2.003, tt, dauer * 0.5, laut * 0.018, 'triangle', 0.2); });
-  }
-  function kick(t, l) { var o = ctx.createOscillator(), g = ctx.createGain(); o.frequency.setValueAtTime(115, t); o.frequency.exponentialRampToValueAtTime(42, t + 0.13);
-    g.gain.setValueAtTime(0.9 * l, t); g.gain.exponentialRampToValueAtTime(0.001, t + 0.38); o.connect(g); g.connect(drums); o.start(t); o.stop(t + 0.4); }
-  function rauschen(t, typ, f, q, laut, lang) { var s = ctx.createBufferSource(), fi = ctx.createBiquadFilter(), g = ctx.createGain(); s.buffer = weissBuf; s.playbackRate.value = 0.9 + Math.random() * 0.2;
-    fi.type = typ; fi.frequency.value = f; fi.Q.value = q; g.gain.setValueAtTime(laut, t); g.gain.exponentialRampToValueAtTime(0.001, t + lang);
-    s.connect(fi); fi.connect(g); g.connect(drums); s.start(t, Math.random()); s.stop(t + lang + 0.02); }
-  function snare(t, l) { rauschen(t, 'bandpass', 1800, 0.6, 0.75 * l, 0.22); ton(drums, 185, t, 0.03, 0.18 * l, 'triangle', 0.04); }
-  function hat(t, l) { rauschen(t, 'highpass', 6800, 0.5, 0.16 * l, 0.05); }
-  var ohneBeat = 2, melodie = [];
-  function plane(t, s) {
-    var c = FOLGEN[prog][takt % 4], grund = c[0] + tonart, beat = ohneBeat <= 0;
-    if (s === 0) { akkord(t, S16 * (Math.random() < 0.5 ? 9 : 14), 1); ton(bass, hz(grund - 12), t, S16 * 6, 0.5, 'sine', 0.12); }
-    if (s === 10 && Math.random() < 0.45) akkord(t, S16 * 5, 0.7);
-    if ((s === 7 || s === 11) && Math.random() < 0.35) ton(bass, hz(grund - 12 + zufall([0, 7, 12])), t, S16 * 2.5, 0.4, 'sine', 0.1);
-    if (beat) {
-      if (s === 0 || (s === 10 && Math.random() < 0.8) || (s === 7 && Math.random() < 0.25)) kick(t, s === 0 ? 1 : 0.8);
-      if (s === 4 || s === 12) snare(t, 0.9 + Math.random() * 0.2);
-      if (s % 2 === 0) hat(t, s % 4 === 0 ? 0.9 : 0.55 + Math.random() * 0.25); else if (Math.random() < 0.12) hat(t, 0.35);
-    }
-    /* sparsame Melodie aus Tönen des Akkords, eine Oktave höher */
-    if (s % 2 === 0 && Math.random() < 0.11) { var iv = ARTEN[c[1]]; ton(keys, hz(grund + 12 + zufall(iv.concat([0, 12]))), t, S16 * 3, 0.07, 'sine', 0.5); }
-  }
-  function weiterTakt() {
-    takt++; if (ohneBeat > 0) ohneBeat--;
-    if (takt % 8 === 0) { if (Math.random() < 0.55) prog = Math.floor(Math.random() * FOLGEN.length); if (Math.random() < 0.12) ohneBeat = 2; }
-    if (takt % 32 === 0 && Math.random() < 0.5) tonart = zufall([-2, -1, 0, 0, 2, 3]);
-  }
-  function takten() { var vor = document.hidden ? 1.6 : 0.35;
-    while (zeit < ctx.currentTime + vor) { var swing = schritt % 2 ? S16 * 0.32 : 0; plane(zeit + swing, schritt); zeit += S16; schritt++; if (schritt === 16) { schritt = 0; weiterTakt(); } } }
-  function laufen(soll) {
-    if (!ctx) return;
-    var g = master.gain, t = ctx.currentTime; g.cancelScheduledValues(t); g.setValueAtTime(g.value, t);
-    if (soll) { if (ctx.state !== 'running') ctx.resume(); if (!uhr) { zeit = ctx.currentTime + 0.08; uhr = setInterval(takten, 60); takten(); } g.linearRampToValueAtTime(LAUT, t + 1.4); }
-    else { g.linearRampToValueAtTime(0, t + 1.6); setTimeout(function () { if (!soll && master.gain.value < 0.01 && !(an && (spricht || Date.now() < vorschauBis))) { clearInterval(uhr); uhr = null; ctx.suspend && ctx.suspend(); } }, 2200); }
-  }
-  function pruefen() { laufen(an && (spricht || Date.now() < vorschauBis)); }
-  function wecken() { if (!an) return; if (!ctx) aufbauen(); if (ctx.state !== 'running') ctx.resume(); }
-  /* Handys erlauben Ton nur nach einem Fingertipp: beim ersten Tippen auf der Seite aufwecken */
+  var root = document.documentElement, el = new Audio(), entsperrt = false, spricht = false, vorschauBis = 0, ruheUhr = null, gestartet = false;
+  el.loop = true; el.preload = 'none';
+  /* Mini-Welle: bewegt sich, solange die Musik wirklich läuft; auch klein am Bedienungshilfen-Knopf */
+  var welle = '<i class="welle" aria-hidden="true"><b></b><b></b><b></b><b></b></i>';
+  knopf.insertAdjacentHTML('beforeend', welle); var hk = document.querySelector('.hilfe-knopf'); if (hk) hk.insertAdjacentHTML('beforeend', welle);
+  function zeigen() { var spielt = an && !el.paused && !el.muted; root.classList.toggle('lofi-spielt', spielt); root.classList.toggle('lofi-an', an);
+    knopf.setAttribute('aria-label', 'Lo-Fi beim Anhören: ' + (an ? (spielt ? 'an, läuft gerade' : 'an, läuft beim Vorlesen') : 'aus')); }
+  ['playing', 'pause', 'ended', 'volumechange'].forEach(function (ev) { el.addEventListener(ev, zeigen); });
+  function quelle() { if (!el.getAttribute('src')) { el.src = '/audio/lofi.m4a'; el.load(); } }
+  function starte() { quelle(); el.muted = false;
+    if (!gestartet) { gestartet = true; var irgendwo = function () { if (el.duration) el.currentTime = Math.random() * el.duration; }; /* jedes Mal woanders in der Schleife einsteigen */
+      if (el.readyState >= 1) irgendwo(); else el.addEventListener('loadedmetadata', irgendwo, { once: true }); }
+    if (el.paused) el.play().catch(function () {}); }
+  function pruefen() { if (an && (spricht || Date.now() < vorschauBis)) starte(); else if (!el.paused) el.pause(); zeigen(); }
+  /* Handys erlauben Ton nur nach einem Fingertipp: beim ersten Tippen die Musik einmal stumm anstoßen, danach darf sie jederzeit starten */
+  function wecken() { if (!an || entsperrt) return; entsperrt = true; quelle(); if (!el.paused) return; el.muted = true;
+    var q = el.play(); if (q && q.then) q.then(function () { if (!(spricht || Date.now() < vorschauBis)) el.pause(); el.muted = false; zeigen(); }).catch(function () { el.muted = false; entsperrt = false; }); else el.muted = false; }
   document.addEventListener('click', wecken, true); document.addEventListener('touchend', wecken, true);
   window.addEventListener('mz-audio', function (e) { clearTimeout(ruheUhr);
     if (e.detail.spielt) { if (!spricht) { spricht = true; pruefen(); } }
     else ruheUhr = setTimeout(function () { spricht = false; pruefen(); }, 2600); /* kurze Pausen zwischen Meldungen überbrücken */ });
-  knopf.setAttribute('aria-pressed', an);
+  knopf.setAttribute('aria-pressed', an); zeigen();
   knopf.addEventListener('click', function (e) { e.stopPropagation(); an = !an; knopf.setAttribute('aria-pressed', an); try { localStorage.setItem('mz-lofi', an ? '1' : '0'); } catch (x) {}
-    if (an) { wecken(); vorschauBis = Date.now() + 7000; setTimeout(pruefen, 7100); } pruefen(); });
-  window.mzLofi = { an: function () { return an; }, ctx: function () { return ctx; }, laut: function () { return master && master.gain.value; } };
+    if (an) { entsperrt = true; vorschauBis = Date.now() + 7000; setTimeout(pruefen, 7100); } pruefen(); });
+  window.mzLofi = { an: function () { return an; }, el: el };
 })();
 /* Mitlesen: Beim Vorlesen wird das gerade gesprochene Wort etwas dicker, auf der Karte und im Vollbild (Wunsch Nicolas 2026-11-08).
    Wort-Zeiten: audio/<datum>/<id>.woerter.json (lokal mit Whisper erzeugt, wortzeiten.py) */
