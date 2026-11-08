@@ -1184,7 +1184,7 @@ html.gross .hoeren .rubrik { white-space: normal; }
     sek.innerHTML = '<div class="reels-kopf"><h2 class="zettel">Neu von Neko</h2><a href="https://www.instagram.com/nekos_news/reels/" rel="noopener">Alle Videos →</a></div><div class="reels-leiste"></div>';
     var leiste = sek.querySelector('.reels-leiste');
     neu.forEach(function (x, i) {
-      var a = document.createElement('a'); a.className = 'reel'; a.href = 'https://www.instagram.com/reel/' + x.code + '/'; a.rel = 'noopener'; a.style.setProperty('--n', i);
+      var a = document.createElement('a'); a.className = 'reel'; a.href = 'https://www.instagram.com/p/' + x.code + '/'; a.rel = 'noopener'; a.style.setProperty('--n', i);
       a.innerHTML = '<img loading="lazy" alt="' + x.titel.replace(/"/g, '&quot;') + '" src="/' + x.bild + '">' + (x.aufrufe ? '<span class="aufrufe">' + x.aufrufe + '</span>' : '');
       leiste.appendChild(a);
     });
@@ -1224,7 +1224,7 @@ html.gross .hoeren .rubrik { white-space: normal; }
       filter.appendChild(b);
     });
     alle.forEach(function (x) {
-      var a = document.createElement('a'); a.className = 'reel'; a.href = 'https://www.instagram.com/reel/' + x.code + '/'; a.rel = 'noopener'; a.dataset.themen = x.themen.join('|');
+      var a = document.createElement('a'); a.className = 'reel'; a.href = 'https://www.instagram.com/p/' + x.code + '/'; a.rel = 'noopener'; a.dataset.themen = x.themen.join('|');
       a.innerHTML = (x.angepinnt ? '<span class="pin" aria-hidden="true"></span>' : '') + '<img loading="lazy" alt="' + x.titel.replace(/"/g, '&quot;') + '" src="/' + x.bild + '">' + (x.aufrufe ? '<span class="aufrufe">' + x.aufrufe + '</span>' : '');
       raster.appendChild(a);
     });
