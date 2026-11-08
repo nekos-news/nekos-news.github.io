@@ -1032,7 +1032,12 @@ html.kontrast .bogen-leiste .zu, html.kontrast .bogen-leiste .bogen-play { backg
 .bogen-leiste { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 0.2rem); z-index: 3; width: min(34rem, calc(100vw - 2.2rem)); display: flex; justify-content: space-between; align-items: center; pointer-events: none; margin-bottom: -0.4rem; }
 .bogen-leiste > * { pointer-events: auto; }
 .bogen-leiste .zu, .bogen-leiste .bogen-play { position: static !important; top: auto !important; left: auto !important; right: auto !important; width: 2.6rem !important; height: 2.6rem !important; }
-.w.jetzt { -webkit-text-stroke: 0.65px currentColor; paint-order: stroke fill; } /* Mitlesen: gesprochenes Wort etwas dicker */
+/* Mitlesen: gesprochenes Wort dicker + leichter Farbwechsel (Nicolas 2026-11-08: stärker) */
+.w { transition: color 0.12s ease; }
+.w.jetzt { -webkit-text-stroke: 1.15px currentColor; paint-order: stroke fill; color: #B8401F; }
+h3 .w.jetzt { color: #FFE2A8; }
+html.kontrast .w.jetzt { color: inherit; text-decoration: underline 2px; text-underline-offset: 3px; }
+html.ruhig .w { transition: none; }
 /* Seiten ohne Tagesausgabe (Woche/Monat/Jahr): Logo oben, blauer Hinweis mittig darunter */
 .oben:has(+ .wrap:not([data-datum])) { padding-top: 3.4rem; }
 .oben:has(+ .wrap:not([data-datum])) .logo-oben { display: block !important; position: static !important; justify-self: center; width: min(8rem, 34vw) !important; margin: 0.9rem 0 0.6rem !important; }
