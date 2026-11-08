@@ -1008,6 +1008,10 @@ html.ruhig { scroll-snap-type: none; }
 .wischer article.papier { padding: 1rem 1rem 1.05rem !important; gap: 0.7rem !important; }
 .wischer article h3 { font-size: 1.15rem !important; }
 .wischer article .fakt, .wischer article p:not(.quelle) { font-size: 0.94rem; line-height: 1.5; }
+/* Seiten ohne Tagesausgabe (Woche/Monat/Jahr): Logo oben, blauer Hinweis mittig darunter */
+.oben:has(+ .wrap:not([data-datum])) { padding-top: 3.4rem; }
+.oben:has(+ .wrap:not([data-datum])) .logo-oben { display: block !important; position: static !important; justify-self: center; width: min(8rem, 34vw) !important; margin: 0.9rem 0 0.6rem !important; }
+.oben:has(+ .wrap:not([data-datum])) .hinweis { justify-self: center !important; margin-inline: auto !important; max-width: min(24rem, 84%) !important; font-size: 0.6rem !important; }
 </style>
 </head>
 <body>
