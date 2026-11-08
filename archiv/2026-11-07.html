@@ -394,7 +394,7 @@ html.ruhig .reel { opacity: 1; transform: none; }
 /* Aufrufe als eigener Papierschnipsel (deckt die Zahl aus dem Instagram-Bild ab) */
 .reel .aufrufe { position: absolute; left: 0.22rem; bottom: 0.22rem; min-width: 44%; padding: 0.22rem 0.4rem 0.18rem; font: 800 0.62rem var(--sans); color: var(--anthrazit);
   background-color: var(--creme); background-image: var(--faser); transform: rotate(-2deg); clip-path: polygon(0 6%, 100% 0, 97% 100%, 3% 94%); }
-.reel .aufrufe::before { content: "▶ "; color: var(--rost); }
+.reel .aufrufe::before { content: "\25B6\FE0E  "; color: var(--rost); }
 /* Play-Knöpfe: orange, jeder anders geschnitten, harter kleiner Papierschatten */
 .hoeren .huelle { filter: drop-shadow(1.5px 2px 0 rgba(46,43,42,0.55)) !important; }
 .hoeren button { background-color: var(--rost) !important; }
@@ -814,6 +814,9 @@ html.ruhig .menue-dunkel { transition: none; }
 .hoeren small { display: grid; line-height: 1.15; font-weight: 700; color: var(--anthrazit); }
 .hoeren small .stimme-name { font-size: 0.58rem; font-weight: 400; color: var(--mittelgrau); letter-spacing: 0.02em; }
 article .marke { font-size: 0.64rem !important; padding: 0.28rem 0.55rem 0.24rem !important; line-height: 1.3; }
+/* „Neu von Neko“ läuft bis an den Bildschirmrand (2026-11-08) */
+.reels-leiste { margin-inline: calc(50% - 50vw) !important; padding-inline: calc(50vw - 50%) !important; scroll-padding-inline: calc(50vw - 50%); }
+html { overflow-x: clip; }
 </style>
 </head>
 <body>
@@ -1074,7 +1077,7 @@ article .marke { font-size: 0.64rem !important; padding: 0.28rem 0.55rem 0.24rem
 <!-- AUSGABE-ENDE -->
 
 <div class="leiste" aria-label="Vorlesen und Navigation">
-  <button id="btn-lesen" type="button" hidden>▶ Alles anhören</button>
+  <button id="btn-lesen" type="button" hidden>&#x25B6;&#xFE0E; Alles anhören</button>
   <span class="status" id="lese-status" aria-live="polite"></span>
   <button type="button" class="hoch" aria-label="Nach oben" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
 </div>
@@ -1337,7 +1340,7 @@ article .marke { font-size: 0.64rem !important; padding: 0.28rem 0.55rem 0.24rem
     player.src = x.url; player.play().catch(function () {}); knoepfe(i); btn.textContent = 'Ⅱ Pause';
     if (alles) { x.el.scrollIntoView({ block: 'center', behavior: 'smooth' }); status.textContent = (i + 1) + ' von ' + liste.length; }
   }
-  function ende() { player.pause(); pos = -1; alles = false; knoepfe(-1); btn.textContent = '▶ Alles anhören'; status.textContent = ''; }
+  function ende() { player.pause(); pos = -1; alles = false; knoepfe(-1); btn.textContent = '\u25B6\uFE0E Alles anhören'; status.textContent = ''; }
   player.addEventListener('ended', function () { if (alles) spiele(pos + 1); else ende(); });
   fetch(basis + 'liste.json').then(function (r) { return r.ok ? r.json() : []; }).catch(function () { return []; }).then(function (ids) {
     liste = teile.filter(function (el) { return ids.indexOf(el.id) >= 0; }).map(function (el) { return { el: el, url: basis + el.id + '.mp3' }; });
@@ -1365,7 +1368,7 @@ article .marke { font-size: 0.64rem !important; padding: 0.28rem 0.55rem 0.24rem
   });
   // Unten zeigt immer, was gerade läuft: Pause, solange irgendetwas abgespielt wird
   player.addEventListener('play', function () { btn.textContent = 'Ⅱ Pause'; });
-  player.addEventListener('pause', function () { if (pos >= 0 && !player.ended) btn.textContent = '▶ Weiter'; });
+  player.addEventListener('pause', function () { if (pos >= 0 && !player.ended) btn.textContent = '\u25B6\uFE0E Weiter'; });
   btn.addEventListener('click', function () {
     if (pos >= 0 && !player.paused) { player.pause(); knoepfe(-1); return; }
     if (pos >= 0 && player.paused) { player.play(); knoepfe(pos); return; }
