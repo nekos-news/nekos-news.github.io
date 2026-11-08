@@ -628,7 +628,8 @@ article .quelle::before { content: "Originalartikel · Direktlink"; display: blo
 
 
 
-.hilfe-feld .surf-kachel { grid-column: 1 / -1; flex-direction: row !important; gap: 0.5rem !important; }
+.hilfe-feld .surf-kachel, .hilfe-feld .lofi-kachel { grid-column: 1 / -1; flex-direction: row !important; gap: 0.5rem !important; }
+.hilfe-feld .lofi-kachel svg { width: 1.25rem !important; height: 1.25rem !important; }
 html.ruhig .hilfe-feld .surf-kachel { display: none !important; }
 /* Einfache Sprache */
 .einfach { display: none; margin: 0; font-size: 1.02rem; line-height: 1.6; }
@@ -1011,8 +1012,15 @@ html.ruhig { scroll-snap-type: none; }
 .lesefluss .durch small { display: block; font: 400 0.68rem var(--maschine); letter-spacing: 0.04em; margin-top: 0.2rem; }
 @keyframes durch-rein { from { opacity: 0; transform: rotate(-8deg) scale(0.8); } }
 html.ruhig .lesefluss .durch { animation: none; }
-.gelesen-haken { position: absolute; z-index: 5; right: 0.7rem; bottom: 0.5rem; width: 1.7rem; height: 1.7rem; pointer-events: none; opacity: 0; transition: opacity 0.3s; }
-article.ist-gelesen .gelesen-haken { opacity: 0.85; }
+.gelesen-haken { position: absolute; z-index: 5; right: 0.6rem; bottom: 0.45rem; display: flex; align-items: center; gap: 0.25rem; pointer-events: none; }
+.gelesen-haken svg { width: 1.75rem; height: 1.35rem; overflow: visible; }
+.gelesen-haken path { fill: none; stroke: #9b958d; stroke-width: 2.8; stroke-linecap: round; stroke-linejoin: round; transition: stroke 0.3s, opacity 0.3s; }
+.gelesen-haken .h2 { opacity: 0; }
+.wischer article.papier:has(> .gelesen-haken), article.papier:has(> .gelesen-haken) { padding-bottom: 2.3rem !important; } /* eigene Zeile für die Haken, nichts wird verdeckt */
+.gelesen-haken small { font: 400 0.56rem/1 var(--maschine); letter-spacing: 0.04em; color: #1F4E9A; white-space: nowrap; }
+article.ist-gelesen .gelesen-haken path { stroke: #1F4E9A; }
+article.ist-gehoert .gelesen-haken .h2 { opacity: 1; }
+html.kontrast .gelesen-haken path { stroke: #777; } html.kontrast article.ist-gelesen .gelesen-haken path { stroke: #000; } html.kontrast .gelesen-haken small { color: #000; }
 article.ist-gelesen .neu-stempel { display: none; }
 .bogen-grund { padding-bottom: 2.4rem !important; gap: 1.4rem; align-content: start; justify-items: center; }
 .bogen-weiter { width: min(30rem, calc(100vw - 4rem)); display: grid; grid-template-columns: 1fr auto; column-gap: 0.7rem; row-gap: 0.15rem; align-items: center; text-align: left; cursor: pointer;
@@ -1244,6 +1252,7 @@ html.kontrast .hinweis b { color: #fff !important; }
     <button type="button" data-hilfe="ruhig" aria-pressed="false"><svg viewBox="0 0 24 24"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg><span>Migräne-Modus</span></button>
     <button type="button" data-hilfe="leicht" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M4 4 H20 A2 2 0 0 1 22 6 V15 A2 2 0 0 1 20 17 H10 L5 21 V17 H4 A2 2 0 0 1 2 15 V6 A2 2 0 0 1 4 4 Z M6 8 V10 H18 V8 Z M6 12 V14 H14 V12 Z"/></svg><span>Einfache Sprache</span></button>
       <button type="button" data-surf aria-pressed="false" class="surf-kachel"><span aria-hidden="true" style="font-size:1.4rem">🛹</span><span>Gen Z</span></button>
+      <button type="button" data-lofi aria-pressed="false" class="lofi-kachel"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 17.5 V5.5 L20 3 V15.2 A2.9 2.6 0 1 1 18 12.8 V7.4 L11 9 V17.6 A2.9 2.6 0 1 1 9 17.5 Z"/></svg><span>Lo-Fi beim Anhören</span></button>
   </div>
 </div>
 </div>
@@ -1288,7 +1297,7 @@ html.kontrast .hinweis b { color: #fff !important; }
       <p class="fakt"><b title="KI-Zusammenfassung">KI-Zusammenfassung</b>Nach Hochrechnungen gewinnen die Demokraten die Mehrheit im Repräsentantenhaus. Laut CNBC auch im Senat, einzelne Rennen werden aber noch ausgezählt.</p>
       <p class="quelle"><a href="https://www.cbsnews.com/live-updates/house-election-results-2026/">CBS News</a> · <a href="https://www.cnbc.com/2026/11/04/2026-midterm-election-results-live-updates.html">CNBC</a> · <a href="archiv/2026-11-07.html#m8">Zur Ausgabe</a></p>
     </article>
-    <article class="papier riss" id="w3">
+    <article class="papier riss" id="w3" data-audio="/audio/2026-11-08/m6.mp3">
       <h3>Sechs Tote in Krakau: Tusk spricht von Terror</h3>
       <span class="rubrik">Polen · 08.11.</span>
       <p class="fakt"><b title="KI-Zusammenfassung">KI-Zusammenfassung</b>Ein 25-jähriger Pole hat am Samstag auf dem Hauptmarkt von Krakau aus einem Auto auf Passanten geschossen, sechs Menschen starben, 16 wurden verletzt. Polens Innenminister sagte, der Festgenommene sei offenbar von rechtsextremen Ideologien fasziniert gewesen.</p>
@@ -1300,13 +1309,13 @@ html.kontrast .hinweis b { color: #fff !important; }
       <p class="fakt"><b title="KI-Zusammenfassung">KI-Zusammenfassung</b>Vor dem Oberlandesgericht Düsseldorf hat am Freitag der Prozess gegen vier mutmaßliche Anführer der verbotenen Reichsbürger-Gruppe begonnen.</p>
       <p class="quelle"><a href="https://www.news.de/panorama/860164168/6-november-2026-news-themen-des-tages-was-passiert-heute-in-deutschland-und-der-welt-das-ist-heute-am-06-11-2026-wichtig-in-den-nachrichten-aus-politik-wirtschaft-sport-und-co/1/">news.de (dpa)</a> · <a href="archiv/2026-11-07.html#m3">Zur Ausgabe</a></p>
     </article>
-    <article class="papier riss" id="w5">
+    <article class="papier riss" id="w5" data-audio="/audio/2026-11-08/m7.mp3">
       <h3>Wahl verloren, Kurs verschärft? Trump macht Stephen Miller zum Stabschef</h3>
       <span class="rubrik">USA · 08.11.</span>
       <p class="fakt"><b title="KI-Zusammenfassung">KI-Zusammenfassung</b>Trump hat Stephen Miller zum neuen Stabschef im Weißen Haus ernannt, er löst am Montag Susie Wiles ab. Die Washington Post schreibt, das könnte Trumps Politik weiter nach rechts rücken.</p>
       <p class="quelle"><a href="https://www.npr.org/2026/11/06/nx-s1-6032810/stephen-miller-replaces-susie-wiles-as-white-house-chief-of-staff">NPR</a> · <a href="https://www.washingtonpost.com/politics/2026/11/06/trump-names-stephen-miller-new-white-house-chief-staff/">Washington Post</a> · <a href="https://www.cbsnews.com/news/stephen-miller-trump-chief-of-staff-susie-wiles/">CBS News</a> · <a href="archiv/2026-11-08.html#m7">Zur Ausgabe</a></p>
     </article>
-    <article class="papier riss" id="w6">
+    <article class="papier riss" id="w6" data-audio="/audio/2026-11-08/m9.mp3">
       <h3>Drei Tage vor den Friedensgesprächen: Russland greift Kiew wieder massiv an</h3>
       <span class="rubrik">Ukraine · 08.11.</span>
       <p class="fakt"><b title="KI-Zusammenfassung">KI-Zusammenfassung</b>Russland hat Kiew und die Region in der Nacht zu Samstag laut ukrainischer Luftwaffe mit Raketen und 172 Drohnen angegriffen. Getroffen wurde vor allem Energie-Infrastruktur, in Kiew gab es laut Bürgermeister Klitschko fünf Verletzte.</p>
@@ -1324,25 +1333,25 @@ html.kontrast .hinweis b { color: #fff !important; }
       <p class="fakt"><b title="KI-Zusammenfassung">KI-Zusammenfassung</b>Russland, die Ukraine und die USA verhandeln am 10. und 11. November in Abu Dhabi. Der Kreml hat das bestätigt. Kurz zuvor wurde Kiew erneut mit Raketen angegriffen.</p>
       <p class="quelle"><a href="https://www.usnews.com/news/world/articles/2026-11-03/kremlin-confirms-trilateral-ukraine-peace-talks-in-abu-dhabi-next-week">US News (Reuters)</a> · <a href="https://www.axios.com/2026/11/03/us-russia-ukraine-peace-talks-uae-trump-witkoff-kushner">Axios</a> · <a href="archiv/2026-11-07.html#m7">Zur Ausgabe</a></p>
     </article>
-    <article class="papier riss" id="w9">
+    <article class="papier riss" id="w9" data-audio="/audio/2026-11-08/m1.mp3">
       <h3>Nach zwölf Männern: Wird Ilse Aigner die erste Bundespräsidentin?</h3>
       <span class="rubrik">Staat · 08.11.</span>
       <p class="fakt"><b title="KI-Zusammenfassung">KI-Zusammenfassung</b>Die Union hat sich laut Berichten auf die CSU-Politikerin Ilse Aigner als Kandidatin für das Bundespräsidentenamt geeinigt. Offiziell soll das am Montag verkündet werden, die SPD hat Unterstützung angekündigt.</p>
       <p class="quelle"><a href="https://www.zdfheute.de/politik/bundespraesidentin-aigner-koalition-merz-100.html">ZDFheute</a> · <a href="https://www.tagesspiegel.de/politik/wohl-einigung-in-der-union-ilse-aigner-soll-bundesprasidentin-werden-16252498.html">Tagesspiegel</a> · <a href="https://www.wetterauer-zeitung.de/politik/bundespraesidentin-union-einigt-sich-auf-ilse-aigner-zr-94578810.html">Wetterauer Zeitung</a> · <a href="archiv/2026-11-08.html#m1">Zur Ausgabe</a></p>
     </article>
-    <article class="papier riss" id="w10">
+    <article class="papier riss" id="w10" data-audio="/audio/2026-11-08/m2.mp3">
       <h3>Klingbeil an die Union: Bringt endlich das AfD-Verbot auf den Weg</h3>
       <span class="rubrik">SPD · 08.11.</span>
       <p class="fakt"><b title="KI-Zusammenfassung">KI-Zusammenfassung</b>Beim Treffen der Ruhr-SPD in Bochum hat sich SPD-Chef Lars Klingbeil der Kritik an der Koalition gestellt. Er verlangte laut dpa, dass die Union einen Antrag für ein AfD-Verbotsverfahren einleitet.</p>
       <p class="quelle"><a href="https://www.tagesspiegel.de/politik/dpa-klingbeil-bei-ruhr-spd-spd-im-ruhrgebiet-wirft-bundesregierung-hickhack-vor-16255060.html">Tagesspiegel (dpa)</a> · <a href="https://www.zdfheute.de/politik/deutschland/spd-chef-lars-klingbeil-nordrhein-westfalen-ruhrgebiet-bochum-100.html">ZDFheute</a> · <a href="https://www.radiowuppertal.de/dpa/klingbeil-an-der-basis-im-ruhrgebiet-kritik-und-impulse-2800597">Radio Wuppertal (dpa)</a> · <a href="archiv/2026-11-08.html#m2">Zur Ausgabe</a></p>
     </article>
-    <article class="papier riss" id="w11">
+    <article class="papier riss" id="w11" data-audio="/audio/2026-11-08/m3.mp3">
       <h3>Pflege und Kinder zählen nicht mehr? Dann verliert die Hälfte der Frauen die Frührente</h3>
       <span class="rubrik">Rente · 08.11.</span>
       <p class="fakt"><b title="KI-Zusammenfassung">KI-Zusammenfassung</b>Die Union erwägt, bei der Rente nach 45 Beitragsjahren Kinder- und Pflegezeiten nicht mehr anzurechnen. Laut Berechnungen des DIW hätten dann 52,1 Prozent weniger Frauen Anspruch, bei Männern fast keine Veränderung.</p>
       <p class="quelle"><a href="https://www.tagesspiegel.de/politik/debatte-um-rente-mit-63-vorschlag-der-union-wurde-frauen-offenbar-massiv-benachteiligen-16248629.html">Tagesspiegel</a> · <a href="https://www.t-online.de/finanzen/ratgeber/altersvorsorge/privatevorsorge/rentenversicherung/id_101246538/rente-nach-beitrags-jahren-diw-studie-warnt-vor-nachteilen-fuer-viele.html">t-online</a> · <a href="archiv/2026-11-08.html#m3">Zur Ausgabe</a></p>
     </article>
-    <article class="papier riss" id="w12">
+    <article class="papier riss" id="w12" data-audio="/audio/2026-11-08/m10.mp3">
       <h3>Jetzt beschlossen: Mindestens fünf Jahre Haft für Taten mit K.-o.-Tropfen</h3>
       <span class="rubrik">Recht · 08.11.</span>
       <p class="fakt"><b title="KI-Zusammenfassung">KI-Zusammenfassung</b>Der Bundestag hat am Freitag härtere Strafen für den Einsatz von K.-o.-Tropfen beschlossen. Wer sie bei einer Vergewaltigung oder einem Raub einsetzt, bekommt künftig mindestens fünf Jahre Haft statt bisher drei.</p>
@@ -1354,13 +1363,13 @@ html.kontrast .hinweis b { color: #fff !important; }
       <p class="fakt"><b title="KI-Zusammenfassung">KI-Zusammenfassung</b>Das Kabinett will den Entwurf noch vor Weihnachten beschließen. Im Bundestag ist die Reform aber erst für das erste Quartal 2027 geplant.</p>
       <p class="quelle"><a href="https://www.t-online.de/nachrichten/deutschland/innenpolitik/id_101473498/rentenreform-merz-erwartet-bundestagsbeschluss-wohl-erst-2027.html">t-online</a> · <a href="https://www.ad-hoc-news.de/wissenschaft/rentenreform-kabinett-plant-beschluss-vor-weihnachten-kapitalrente-folgt-2027/70460882">ad-hoc-news</a> · <a href="archiv/2026-11-07.html#m2">Zur Ausgabe</a></p>
     </article>
-    <article class="papier riss" id="w14">
+    <article class="papier riss" id="w14" data-audio="/audio/2026-11-08/m5.mp3">
       <h3>Schah-Sohn in der Paulskirche: Zehntausende jubeln, Kritiker schreiben offene Briefe</h3>
       <span class="rubrik">Iran · 08.11.</span>
       <p class="fakt"><b title="KI-Zusammenfassung">KI-Zusammenfassung</b>Reza Pahlavi, Sohn des 1979 gestürzten Schahs, hat in der Frankfurter Paulskirche stellvertretend den Freiheitspreis der Friedrich-Naumann-Stiftung für das iranische Volk entgegengenommen. Zehntausende demonstrierten gegen das Regime in Teheran.</p>
       <p class="quelle"><a href="https://www.zdfheute.de/politik/deutschland/frankfurt-demonstrationen-iran-100.html">ZDFheute</a> · <a href="https://www.hessenschau.de/gesellschaft/iran-demos-heute-in-frankfurt-warum-reza-pahlavi-umstritten-ist-v6,faq_auszeichnung_pahlavi-100.html">hessenschau</a> · <a href="https://frankfurt.t-online.de/region/frankfurt-am-main/id_101517898/frankfurt-tausende-iraner-demonstrieren-weitgehend-friedlich-fuer-pahlavi.html">t-online</a> · <a href="archiv/2026-11-08.html#m5">Zur Ausgabe</a></p>
     </article>
-    <article class="papier riss" id="w15">
+    <article class="papier riss" id="w15" data-audio="/audio/2026-11-08/m8.mp3">
       <h3>Der UFC-Boss als Regierungssprecher? Trump bietet Dana White den Job an</h3>
       <span class="rubrik">USA · 08.11.</span>
       <p class="fakt"><b title="KI-Zusammenfassung">KI-Zusammenfassung</b>Trump hat auf Truth Social erklärt, er habe UFC-Chef Dana White den Posten des Pressesprechers im Weißen Haus angeboten. White will am Montag mit Trump sprechen, zugesagt hat er noch nicht.</p>
@@ -1378,7 +1387,7 @@ html.kontrast .hinweis b { color: #fff !important; }
       <p class="fakt"><b title="KI-Zusammenfassung">KI-Zusammenfassung</b>China bestätigt, dass über ein Dreiertreffen der Staatschefs gesprochen wird. Einen Termin gibt es nicht.</p>
       <p class="quelle"><a href="https://www.inkl.com/news/latest-news-bulletin-november-7th-2026-morning">inkl (Guardian-Briefing)</a> · <a href="archiv/2026-11-07.html#m9">Zur Ausgabe</a></p>
     </article>
-    <article class="papier riss" id="w18">
+    <article class="papier riss" id="w18" data-audio="/audio/2026-11-08/m4.mp3">
       <h3>Widerspruch zwecklos: Der Rundfunkbeitrag gleicht gerade die Daten aller Erwachsenen ab</h3>
       <span class="rubrik">Medien · 08.11.</span>
       <p class="fakt"><b title="KI-Zusammenfassung">KI-Zusammenfassung</b>Der Beitragsservice von ARD, ZDF und Deutschlandradio hat den bundesweiten Meldedatenabgleich gestartet. Die Meldeämter liefern bis zum 8. Dezember die Daten aller Volljährigen, ein Widerspruch ist nicht möglich.</p>
@@ -1684,19 +1693,39 @@ function mzVideoZeit(code, i) {
   /* Tagesausgabe: audio/<datum>/liste.json; Woche/Monat/Jahr (seit 2026-11-08): jede Meldung bringt ihr Audio als data-audio mit */
   var wrap = document.querySelector('.wrap[data-datum]'), listenSeite = !wrap && document.querySelector('#liste article[data-audio]'); if (!wrap && !listenSeite) return;
   var basis = wrap ? '/audio/' + wrap.getAttribute('data-datum') + '/' : '';
-  var player = new Audio(), liste = [], pos = -1, alles = false; window.mzPlayer = player;
+  var player = new Audio(), liste = [], pos = -1, alles = false, ueberspringen = false, uebersprungen = 0; window.mzPlayer = player;
+  /* Harfen-„Bidim“ vor jeder Meldung (Wunsch Nicolas 2026-11-08); „Das Wichtigste“ hat es schon in der Aufnahme */
+  var ding = new Audio('/audio/ding.mp3'), dingt = false, dingUhr = null, entsperrt = false, root = document.documentElement; ding.preload = 'auto';
+  function entsperren() { if (entsperrt) return; entsperrt = true; ding.muted = true; var q = ding.play(); if (q && q.then) q.then(function () { ding.pause(); ding.currentTime = 0; ding.muted = false; }).catch(function () { ding.muted = false; }); else ding.muted = false; }
+  /* Angehört merken (nur im eigenen Browser): ab 90 % gilt eine Meldung als gehört */
+  function gehoert() { try { return JSON.parse(localStorage.getItem('mz-gehoert') || '[]'); } catch (e) { return []; } }
+  function istGehoert(u) { return gehoert().indexOf(u) >= 0; }
+  function merkeGehoert(u) { var g = gehoert(); if (!u || g.indexOf(u) >= 0) return; g.unshift(u); try { localStorage.setItem('mz-gehoert', JSON.stringify(g.slice(0, 400))); } catch (e) {} window.dispatchEvent(new CustomEvent('mz-gehoert', { detail: { src: u } })); }
+  window.mzIstGehoert = istGehoert;
+  player.addEventListener('timeupdate', function () { var x = liste[pos]; if (x && !dingt && player.duration && player.currentTime / player.duration > 0.9) merkeGehoert(x.url); });
+  player.addEventListener('ended', function () { var x = liste[pos]; if (x) merkeGehoert(x.url); });
   /* Zeit an andere Teile melden (z. B. Story im 30-Sekunden-Zettel läuft mit) */
-  ['timeupdate', 'play', 'pause', 'ended'].forEach(function (ev) { player.addEventListener(ev, function () { var x = liste[pos]; window.dispatchEvent(new CustomEvent('mz-audio', { detail: { id: x ? x.el.id : null, src: x ? x.url : null, t: player.currentTime, d: player.duration, spielt: !player.paused && !player.ended } })); }); });
+  ['timeupdate', 'play', 'pause', 'ended'].forEach(function (ev) { player.addEventListener(ev, function () { if (dingt) return; var x = liste[pos]; window.dispatchEvent(new CustomEvent('mz-audio', { detail: { id: x ? x.el.id : null, src: x ? x.url : null, t: player.currentTime, d: player.duration, spielt: !player.paused && !player.ended } })); }); });
   var leiste = document.querySelector('.leiste'), btn = document.getElementById('btn-lesen'), status = document.getElementById('lese-status');
   var teile = Array.prototype.slice.call(document.querySelectorAll('#kurz, article[id]'));
   function knoepfe(aktiv) { liste.forEach(function (x, i) { x.knopf.setAttribute('aria-pressed', i === aktiv); x.knopf.setAttribute('aria-label', i === aktiv ? 'Pause' : 'Anhören'); x.el.classList.toggle('liest', i === aktiv); }); }
   function spiele(i) {
     pos = i; var x = liste[i]; if (!x) { ende(); return; }
-    player.src = x.url; player.play().catch(function () {}); knoepfe(i); btn.textContent = 'Ⅱ Pause';
-    if (alles) { if (window.mzZeigeMeldung) window.mzZeigeMeldung(x.el); (x.el.closest('.wischer') || x.el).scrollIntoView({ block: x.el.closest('.wischer') ? 'start' : 'center', behavior: 'smooth' }); var nM = liste.filter(function (y) { return y.el.id !== 'kurz'; }).length, iM = liste.slice(0, i + 1).filter(function (y) { return y.el.id !== 'kurz'; }).length; status.textContent = x.el.id === 'kurz' ? 'Das Wichtigste' : 'Meldung ' + iM + ' von ' + nM; }
+    clearTimeout(dingUhr); ding.pause(); player.src = x.url;
+    if (x.el.id !== 'kurz' && !root.classList.contains('ruhig')) {
+      /* Erst das Bidim, die Stimme setzt im Ausklang ein. Die Stimme startet stumm schon jetzt, damit das Handy sie später ohne Tippen weiterspielen lässt. */
+      dingt = true; player.muted = true; ding.currentTime = 0; ding.play().catch(function () {});
+      var q = player.play(); if (q && q.then) q.then(function () { if (dingt) { player.pause(); player.currentTime = 0; } }).catch(function () {});
+      dingUhr = setTimeout(function () { if (pos !== i || !dingt) return; dingt = false; player.muted = false; player.currentTime = 0; player.play().catch(function () {}); }, 950);
+    } else { dingt = false; player.muted = false; player.play().catch(function () {}); }
+    knoepfe(i); btn.textContent = 'Ⅱ Pause';
+    if (alles) { if (window.mzZeigeMeldung) window.mzZeigeMeldung(x.el); (x.el.closest('.wischer') || x.el).scrollIntoView({ block: x.el.closest('.wischer') ? 'start' : 'center', behavior: 'smooth' }); var nM = liste.filter(function (y) { return y.el.id !== 'kurz'; }).length, iM = liste.slice(0, i + 1).filter(function (y) { return y.el.id !== 'kurz'; }).length; status.textContent = (x.el.id === 'kurz' ? 'Das Wichtigste' : 'Meldung ' + iM + ' von ' + nM) + (uebersprungen ? ' · ' + uebersprungen + ' schon gehört' : ''); }
   }
-  function ende() { player.pause(); pos = -1; alles = false; knoepfe(-1); btn.textContent = '\u25B6\uFE0E Alles anhören'; status.textContent = ''; }
-  player.addEventListener('ended', function () { if (alles) spiele(pos + 1); else ende(); });
+  /* „Alles anhören“ überspringt, was man schon gehört hat (Wunsch Nicolas 2026-11-08). Ist alles gehört, läuft alles von vorn. */
+  function naechste(j) { while (ueberspringen && j < liste.length && istGehoert(liste[j].url)) j++; return j; }
+  function stopDing() { if (!dingt) return false; clearTimeout(dingUhr); dingt = false; ding.pause(); player.pause(); player.muted = false; player.currentTime = 0; knoepfe(-1); btn.textContent = '\u25B6\uFE0E Weiter'; return true; }
+  function ende() { clearTimeout(dingUhr); dingt = false; player.muted = false; player.pause(); pos = -1; alles = false; uebersprungen = 0; knoepfe(-1); btn.textContent = '\u25B6\uFE0E Alles anhören'; status.textContent = ''; }
+  player.addEventListener('ended', function () { if (dingt) return; if (alles) spiele(naechste(pos + 1)); else ende(); });
   (listenSeite ? Promise.resolve(null) : fetch(basis + 'liste.json').then(function (r) { return r.ok ? r.json() : []; }).catch(function () { return []; })).then(function (ids) {
     liste = ids === null
       ? teile.filter(function (el) { return el.getAttribute('data-audio'); }).map(function (el) { return { el: el, url: el.getAttribute('data-audio') }; })
@@ -1718,9 +1747,10 @@ function mzVideoZeit(code, i) {
       x.knopf.style.setProperty('clip-path', 'polygon(' + punkte.join(',') + ')', 'important');
       x.knopf.style.transform = 'rotate(' + ((i * 37) % 11 - 5) + 'deg)';
       x.knopf.addEventListener('click', function () {
+        entsperren(); if (pos === i && stopDing()) return;
         if (pos === i && !player.paused) { player.pause(); knoepfe(-1); return; }
         if (pos === i && player.paused) { player.play(); knoepfe(i); return; }
-        alles = false; spiele(i);
+        alles = false; uebersprungen = 0; status.textContent = ''; spiele(i);
       });
       /* 10 Sekunden zurück (Wunsch Nicolas 2026-11-08); läuft die Meldung noch nicht, startet sie */
       var z10 = document.createElement('button'); z10.type = 'button'; z10.className = 'zurueck10'; z10.setAttribute('aria-label', '10 Sekunden zurück');
@@ -1735,12 +1765,15 @@ function mzVideoZeit(code, i) {
     });
   });
   // Unten zeigt immer, was gerade läuft: Pause, solange irgendetwas abgespielt wird
-  player.addEventListener('play', function () { btn.textContent = 'Ⅱ Pause'; });
-  player.addEventListener('pause', function () { if (pos >= 0 && !player.ended) btn.textContent = '\u25B6\uFE0E Weiter'; });
+  player.addEventListener('play', function () { if (pos >= 0) btn.textContent = 'Ⅱ Pause'; });
+  player.addEventListener('pause', function () { if (!dingt && pos >= 0 && !player.ended) btn.textContent = '\u25B6\uFE0E Weiter'; });
   btn.addEventListener('click', function () {
+    entsperren(); if (pos >= 0 && stopDing()) return;
     if (pos >= 0 && !player.paused) { player.pause(); knoepfe(-1); return; }
     if (pos >= 0 && player.paused) { player.play(); knoepfe(pos); return; }
-    alles = true; spiele(0);
+    alles = true; ueberspringen = liste.some(function (x) { return !istGehoert(x.url); });
+    var start = naechste(0); uebersprungen = liste.filter(function (x) { return ueberspringen && istGehoert(x.url); }).length;
+    spiele(start);
   });
 })();
 /* Einfache Sprache für alle sichtbaren Texte mit data-einfach (Wunsch Nicolas 2026-11-08) */
@@ -1944,8 +1977,12 @@ function mzVideoZeit(code, i) {
   box.innerHTML = '<div class="punkte" aria-label="Fortschritt">' + arts.map(function (a, n) { return '<button type="button" aria-label="Meldung ' + (n + 1) + '"></button>'; }).join('') + '</div><div class="unten"></div>';
   nav.insertAdjacentElement('afterend', box);
   var tasten = box.querySelectorAll('.punkte button'), unten = box.querySelector('.unten');
-  arts.forEach(function (a) { var h = document.createElementNS('http://www.w3.org/2000/svg', 'svg'); h.setAttribute('class', 'gelesen-haken'); h.setAttribute('viewBox', '0 0 24 24'); h.setAttribute('aria-hidden', 'true');
-    h.innerHTML = '<path d="M3.5 13.2 C 6 14.8, 7.6 17, 9.2 19.6 C 12 13, 15.5 8, 20.8 3.6" fill="none" stroke="#1F4E9A" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>'; a.appendChild(h); });
+  /* Haken wie bei WhatsApp (Wunsch Nicolas 2026-11-08): einer grau = noch nicht gesehen, einer blau = gesehen, zwei blau = angehört */
+  var hakenPfad = 'M3.5 13.2 C 6 14.8, 7.6 17, 9.2 19.6 C 12 13, 15.5 8, 20.8 3.6';
+  arts.forEach(function (a) { var h = document.createElement('span'); h.className = 'gelesen-haken';
+    h.innerHTML = '<small></small><svg viewBox="0 0 31 24" aria-hidden="true"><path class="h2" transform="translate(8 0)" d="' + hakenPfad + '"/><path class="h1" d="' + hakenPfad + '"/></svg>'; a.appendChild(h); });
+  function istGeh(a) { return !!(window.mzIstGehoert && window.mzIstGehoert('/audio/' + datum + '/' + a.id + '.mp3')); }
+  window.addEventListener('mz-gehoert', function () { zeichne(); });
   tasten.forEach(function (t, n) { t.addEventListener('click', function () { window.mzZeigeMeldung(arts[n]); }); });
   function aktiv() { for (var n = 0; n < arts.length; n++) if (arts[n].parentNode.classList.contains('aktiv')) return n; return 0; }
   function istGel(a) { return gel.indexOf(key(a)) >= 0; }
@@ -1954,7 +1991,8 @@ function mzVideoZeit(code, i) {
     try { localStorage.setItem('mz-gelesen', JSON.stringify(gel)); } catch (e) {} zeichne(); }
   function zeichne() {
     var i = aktiv(), offen = arts.filter(function (a) { return !istGel(a); });
-    arts.forEach(function (a, n) { a.classList.toggle('ist-gelesen', istGel(a)); tasten[n].className = (istGel(a) ? 'gelesen' : '') + (n === i ? ' jetzt' : ''); });
+    arts.forEach(function (a, n) { var gh = istGeh(a); a.classList.toggle('ist-gelesen', istGel(a) || gh); a.classList.toggle('ist-gehoert', gh);
+      var hs = a.querySelector('.gelesen-haken'); if (hs) { var tx = gh ? 'bereits gehört' : (istGel(a) || gh) ? 'gesehen' : ''; hs.setAttribute('aria-label', tx || 'noch nicht gesehen'); hs.setAttribute('role', 'img'); if (hs.firstChild.textContent !== tx) hs.firstChild.textContent = tx; } tasten[n].className = (istGel(a) ? 'gelesen' : '') + (n === i ? ' jetzt' : ''); });
     var html = '';
     if (!offen.length) html = '<div class="durch">Du bist durch für heute ✓<small>Neues kommt um 7 und 17 Uhr</small></div>';
     /* Kein Hinweis auf den nächsten Artikel (Entscheidung Nicolas 2026-11-08: ganz weglassen) */
@@ -1970,6 +2008,104 @@ function mzVideoZeit(code, i) {
   window.addEventListener('mz-audio', function (e) { if (e.detail.spielt) { var a = document.getElementById(e.detail.id); if (arts.indexOf(a) >= 0) markiere(a); } });
   arts.forEach(function (a) { var s = a.querySelector('details.mehr summary'); if (s) s.addEventListener('click', function () { markiere(a); }); });
   zeichne();
+})();
+/* Lo-Fi im Hintergrund beim Vorlesen (Wunsch Nicolas 2026-11-08). Komplett im Browser erzeugt (Web Audio): eigene Akkorde, Beat und Plattenknistern,
+   keine fremden Aufnahmen, also frei nutzbar. Wiederholt sich nie genau: Akkordfolgen, Tonart, Melodie und Beat wechseln zufällig. */
+(function () {
+  var knopf = document.querySelector('[data-lofi]'); if (!knopf) return;
+  if (!document.querySelector('.wrap[data-datum], #liste article[data-audio]')) { knopf.hidden = true; return; } /* nur wo es etwas zum Anhören gibt */
+  var AC = window.AudioContext || window.webkitAudioContext; if (!AC) { knopf.hidden = true; return; }
+  var an = false; try { an = localStorage.getItem('mz-lofi') === '1'; } catch (e) {}
+  var LAUT = 0.2, ctx = null, master, keys, bass, drums, rausch, uhr = null, zeit = 0, schritt = 0, takt = 0, prog = 0, tonart = 0, spricht = false, vorschauBis = 0, ruheUhr = null, wow;
+  var BPM = 72, S16 = 60 / BPM / 4;
+  var ARTEN = { maj9: [4, 7, 11, 14], m9: [3, 7, 10, 14], dom9: [4, 10, 14, 17], m7: [3, 7, 10, 15] };
+  var FOLGEN = [
+    [[53, 'maj9'], [52, 'm7'], [50, 'm9'], [48, 'maj9']],
+    [[50, 'm9'], [55, 'dom9'], [48, 'maj9'], [57, 'm9']],
+    [[57, 'm9'], [50, 'm9'], [55, 'dom9'], [48, 'maj9']],
+    [[53, 'maj9'], [55, 'dom9'], [52, 'm7'], [57, 'm9']],
+    [[48, 'maj9'], [57, 'm9'], [53, 'maj9'], [55, 'dom9']]
+  ];
+  function hz(m) { return 440 * Math.pow(2, (m - 69) / 12); }
+  function zufall(a) { return a[Math.floor(Math.random() * a.length)]; }
+  var weissBuf = null;
+  function aufbauen() {
+    ctx = new AC();
+    try { if (navigator.audioSession) navigator.audioSession.type = 'playback'; } catch (e) {} /* iPhone: auch mit Stummschalter hörbar, wie die Stimme */
+    master = ctx.createGain(); master.gain.value = 0;
+    var warm = ctx.createBiquadFilter(); warm.type = 'lowpass'; warm.frequency.value = 3400; warm.Q.value = 0.3;
+    var komp = ctx.createDynamicsCompressor(); komp.threshold.value = -20; komp.ratio.value = 3;
+    warm.connect(komp); komp.connect(master); master.connect(ctx.destination);
+    keys = ctx.createBiquadFilter(); keys.type = 'lowpass'; keys.frequency.value = 1500; var kg = ctx.createGain(); kg.gain.value = 0.5; keys.connect(kg);
+    bass = ctx.createBiquadFilter(); bass.type = 'lowpass'; bass.frequency.value = 280; var bg = ctx.createGain(); bg.gain.value = 0.42; bass.connect(bg); bg.connect(warm);
+    drums = ctx.createBiquadFilter(); drums.type = 'lowpass'; drums.frequency.value = 5200; var dg = ctx.createGain(); dg.gain.value = 0.62; drums.connect(dg); dg.connect(warm);
+    /* Bandleiern: alles schwankt leicht in der Tonhöhe wie eine alte Kassette */
+    var leier = ctx.createDelay(0.05); leier.delayTime.value = 0.012; wow = ctx.createGain(); wow.gain.value = 0.0016; var lfo = ctx.createOscillator(); lfo.frequency.value = 0.35; lfo.connect(wow); wow.connect(leier.delayTime); lfo.start();
+    kg.connect(leier); leier.connect(warm);
+    weissBuf = ctx.createBuffer(1, ctx.sampleRate * 2, ctx.sampleRate); var w = weissBuf.getChannelData(0); for (var i = 0; i < w.length; i++) w[i] = Math.random() * 2 - 1;
+    /* Plattenknistern: leises Rauschen plus seltene Knackser, 7 Sekunden in Schleife */
+    var kb = ctx.createBuffer(1, ctx.sampleRate * 7, ctx.sampleRate), k = kb.getChannelData(0);
+    for (var j = 0; j < k.length; j++) k[j] = (Math.random() * 2 - 1) * 0.012;
+    for (var c = 0; c < 70; c++) { var p = Math.floor(Math.random() * (k.length - 200)), a = 0.15 + Math.random() * 0.45; for (var d = 0; d < 60; d++) k[p + d] += (Math.random() * 2 - 1) * a * Math.exp(-d / 9); }
+    rausch = ctx.createBufferSource(); rausch.buffer = kb; rausch.loop = true; var hp = ctx.createBiquadFilter(); hp.type = 'highpass'; hp.frequency.value = 900;
+    var rg = ctx.createGain(); rg.gain.value = 0.35; rausch.connect(hp); hp.connect(rg); rg.connect(warm); rausch.start();
+    prog = Math.floor(Math.random() * FOLGEN.length);
+  }
+  function ton(ziel, f, t, dauer, laut, art, hall) {
+    var o = ctx.createOscillator(), g = ctx.createGain(); o.type = art || 'sine'; o.frequency.value = f;
+    g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(laut, t + 0.012); g.gain.setTargetAtTime(laut * 0.35, t + 0.03, 0.35); g.gain.setTargetAtTime(0, t + dauer, hall || 0.25);
+    o.connect(g); g.connect(ziel); o.start(t); o.stop(t + dauer + (hall || 0.25) * 4.5);
+  }
+  function akkord(t, dauer, laut) {
+    var c = FOLGEN[prog][takt % 4], grund = c[0] + tonart;
+    ARTEN[c[1]].forEach(function (iv, n) { var m = grund + iv; while (m > 74) m -= 12; var tt = t + n * 0.018 + Math.random() * 0.01;
+      ton(keys, hz(m), tt, dauer, laut * 0.11, 'sine', 0.4); ton(keys, hz(m) * 2.003, tt, dauer * 0.5, laut * 0.018, 'triangle', 0.2); });
+  }
+  function kick(t, l) { var o = ctx.createOscillator(), g = ctx.createGain(); o.frequency.setValueAtTime(115, t); o.frequency.exponentialRampToValueAtTime(42, t + 0.13);
+    g.gain.setValueAtTime(0.9 * l, t); g.gain.exponentialRampToValueAtTime(0.001, t + 0.38); o.connect(g); g.connect(drums); o.start(t); o.stop(t + 0.4); }
+  function rauschen(t, typ, f, q, laut, lang) { var s = ctx.createBufferSource(), fi = ctx.createBiquadFilter(), g = ctx.createGain(); s.buffer = weissBuf; s.playbackRate.value = 0.9 + Math.random() * 0.2;
+    fi.type = typ; fi.frequency.value = f; fi.Q.value = q; g.gain.setValueAtTime(laut, t); g.gain.exponentialRampToValueAtTime(0.001, t + lang);
+    s.connect(fi); fi.connect(g); g.connect(drums); s.start(t, Math.random()); s.stop(t + lang + 0.02); }
+  function snare(t, l) { rauschen(t, 'bandpass', 1800, 0.6, 0.75 * l, 0.22); ton(drums, 185, t, 0.03, 0.18 * l, 'triangle', 0.04); }
+  function hat(t, l) { rauschen(t, 'highpass', 6800, 0.5, 0.16 * l, 0.05); }
+  var ohneBeat = 2, melodie = [];
+  function plane(t, s) {
+    var c = FOLGEN[prog][takt % 4], grund = c[0] + tonart, beat = ohneBeat <= 0;
+    if (s === 0) { akkord(t, S16 * (Math.random() < 0.5 ? 9 : 14), 1); ton(bass, hz(grund - 12), t, S16 * 6, 0.5, 'sine', 0.12); }
+    if (s === 10 && Math.random() < 0.45) akkord(t, S16 * 5, 0.7);
+    if ((s === 7 || s === 11) && Math.random() < 0.35) ton(bass, hz(grund - 12 + zufall([0, 7, 12])), t, S16 * 2.5, 0.4, 'sine', 0.1);
+    if (beat) {
+      if (s === 0 || (s === 10 && Math.random() < 0.8) || (s === 7 && Math.random() < 0.25)) kick(t, s === 0 ? 1 : 0.8);
+      if (s === 4 || s === 12) snare(t, 0.9 + Math.random() * 0.2);
+      if (s % 2 === 0) hat(t, s % 4 === 0 ? 0.9 : 0.55 + Math.random() * 0.25); else if (Math.random() < 0.12) hat(t, 0.35);
+    }
+    /* sparsame Melodie aus Tönen des Akkords, eine Oktave höher */
+    if (s % 2 === 0 && Math.random() < 0.11) { var iv = ARTEN[c[1]]; ton(keys, hz(grund + 12 + zufall(iv.concat([0, 12]))), t, S16 * 3, 0.07, 'sine', 0.5); }
+  }
+  function weiterTakt() {
+    takt++; if (ohneBeat > 0) ohneBeat--;
+    if (takt % 8 === 0) { if (Math.random() < 0.55) prog = Math.floor(Math.random() * FOLGEN.length); if (Math.random() < 0.12) ohneBeat = 2; }
+    if (takt % 32 === 0 && Math.random() < 0.5) tonart = zufall([-2, -1, 0, 0, 2, 3]);
+  }
+  function takten() { var vor = document.hidden ? 1.6 : 0.35;
+    while (zeit < ctx.currentTime + vor) { var swing = schritt % 2 ? S16 * 0.32 : 0; plane(zeit + swing, schritt); zeit += S16; schritt++; if (schritt === 16) { schritt = 0; weiterTakt(); } } }
+  function laufen(soll) {
+    if (!ctx) return;
+    var g = master.gain, t = ctx.currentTime; g.cancelScheduledValues(t); g.setValueAtTime(g.value, t);
+    if (soll) { if (ctx.state !== 'running') ctx.resume(); if (!uhr) { zeit = ctx.currentTime + 0.08; uhr = setInterval(takten, 60); takten(); } g.linearRampToValueAtTime(LAUT, t + 1.4); }
+    else { g.linearRampToValueAtTime(0, t + 1.6); setTimeout(function () { if (!soll && master.gain.value < 0.01 && !(an && (spricht || Date.now() < vorschauBis))) { clearInterval(uhr); uhr = null; ctx.suspend && ctx.suspend(); } }, 2200); }
+  }
+  function pruefen() { laufen(an && (spricht || Date.now() < vorschauBis)); }
+  function wecken() { if (!an) return; if (!ctx) aufbauen(); if (ctx.state !== 'running') ctx.resume(); }
+  /* Handys erlauben Ton nur nach einem Fingertipp: beim ersten Tippen auf der Seite aufwecken */
+  document.addEventListener('click', wecken, true); document.addEventListener('touchend', wecken, true);
+  window.addEventListener('mz-audio', function (e) { clearTimeout(ruheUhr);
+    if (e.detail.spielt) { if (!spricht) { spricht = true; pruefen(); } }
+    else ruheUhr = setTimeout(function () { spricht = false; pruefen(); }, 2600); /* kurze Pausen zwischen Meldungen überbrücken */ });
+  knopf.setAttribute('aria-pressed', an);
+  knopf.addEventListener('click', function (e) { e.stopPropagation(); an = !an; knopf.setAttribute('aria-pressed', an); try { localStorage.setItem('mz-lofi', an ? '1' : '0'); } catch (x) {}
+    if (an) { wecken(); vorschauBis = Date.now() + 7000; setTimeout(pruefen, 7100); } pruefen(); });
+  window.mzLofi = { an: function () { return an; }, ctx: function () { return ctx; }, laut: function () { return master && master.gain.value; } };
 })();
 /* Mitlesen: Beim Vorlesen wird das gerade gesprochene Wort etwas dicker, auf der Karte und im Vollbild (Wunsch Nicolas 2026-11-08).
    Wort-Zeiten: audio/<datum>/<id>.woerter.json (lokal mit Whisper erzeugt, wortzeiten.py) */
