@@ -1055,7 +1055,7 @@ html.kontrast .w.jetzt { color: inherit; text-decoration: underline 2px; text-un
 article h3 mark.kreis::after, .bogen h3 mark.kreis::after { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 80' preserveAspectRatio='none'%3E%3Cpath d='M30 12 C 70 2, 150 3, 185 20 C 205 34, 190 62, 140 72 C 90 80, 25 76, 10 55 C -2 38, 15 18, 55 9 C 80 4, 110 5, 128 8' fill='none' stroke='%23FFE2A8' stroke-width='3.4' stroke-linecap='round'/%3E%3C/svg%3E") !important; filter: none; }
 article h3 mark.strich::after, .bogen h3 mark.strich::after { filter: brightness(2.2) saturate(0.6); }
 .zurueck10 { position: relative; width: 2.1rem; height: 2.1rem; padding: 0; border: 0; border-radius: 50%; cursor: pointer; display: grid; place-items: center; color: var(--anthrazit); background: rgba(46,43,42,0.1); flex: none; }
-.zurueck10 svg { position: absolute; left: 50%; top: 50%; width: 76%; height: 76%; transform: translate(calc(-50% + 0.1rem), -50%); display: block; } /* leicht nach rechts (Nicolas 2026-11-08) */ /* feste Größe: Safari zentrierte das Symbol sonst falsch */
+.zurueck10 svg { position: absolute; left: 50%; top: 50%; width: 76%; height: 76%; transform: translate(calc(-50% + 0.05rem), -50%); display: block; } /* minimal nach rechts (Nicolas 2026-11-08) */ /* feste Größe: Safari zentrierte das Symbol sonst falsch */
 
 .bogen-links { display: flex; align-items: center; gap: 0.5rem; }
 .bogen-leiste .zurueck10 { width: 2.4rem; height: 2.4rem; color: var(--creme); background: rgba(244,236,220,0.16); }
@@ -1071,6 +1071,8 @@ html.kontrast .hoeren button.zurueck10 { background: #fff !important; color: #00
 #intro.sofort .buchstaben { animation: logo-wackeln 0.6s ease-in-out 0.45s both; transform-origin: 50% 60%; }
 /* An der vollen Bildschirmhöhe ausrichten (wie der Startbildschirm), damit das Logo beim App-Start nicht mitrutscht */
 #intro .buchstaben { position: absolute !important; left: 50%; top: 50vh; top: 50lvh; translate: -50% calc(-50% - 50px) !important; }
+/* Rubrik immer einzeilig (Nicolas 2026-11-08: keine zweizeiligen Rubriken) */
+.hoeren .rubrik, article .rubrik { white-space: nowrap !important; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
 /* Seiten ohne Tagesausgabe (Woche/Monat/Jahr): Logo oben, blauer Hinweis mittig darunter */
 .oben:has(+ .wrap:not([data-datum])) { padding-top: 3.4rem; }
 .oben:has(+ .wrap:not([data-datum])) .logo-oben { display: block !important; position: static !important; justify-self: center; width: min(8rem, 34vw) !important; margin: 0.9rem 0 0.6rem !important; }
@@ -1305,7 +1307,7 @@ html.kontrast .hinweis b { color: #fff !important; }
       <p class="quelle"><a href="https://www.t-online.de/nachrichten/deutschland/innenpolitik/id_101473498/rentenreform-merz-erwartet-bundestagsbeschluss-wohl-erst-2027.html">t-online</a> · <a href="https://www.ad-hoc-news.de/wissenschaft/rentenreform-kabinett-plant-beschluss-vor-weihnachten-kapitalrente-folgt-2027/70460882">ad-hoc-news</a> · <a href="https://www.boersen-zeitung.de/konjunktur-politik/merz-kabinett-soll-rentenreform-noch-2026-billigen">Börsen-Zeitung</a></p>
     </article>
     <article class="papier riss" id="m3" data-lesen>
-      <span class="rubrik">Düsseldorf · Justiz</span>
+      <span class="rubrik">Justiz</span>
       <h3>Die Reichsbürger vom <mark class="kreis">„Königreich Deutschland“</mark> stehen vor Gericht</h3>
       <p class="einfach"><b>In einfacher Sprache</b>In Düsseldorf hat ein Prozess vor Gericht angefangen. Angeklagt sind vier Personen aus einer Reichsbürger-Gruppe. Die Gruppe hat einen eigenen „Staat“ ausgerufen. Die Gruppe ist verboten.</p>
       <p class="fakt"><b title="KI-Zusammenfassung">KI-Zusammenfassung</b>Vor dem Oberlandesgericht Düsseldorf hat am Freitag der Prozess gegen vier mutmaßliche Anführer der verbotenen Reichsbürger-Gruppe begonnen.</p>
