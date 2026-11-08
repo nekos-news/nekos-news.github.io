@@ -143,10 +143,13 @@ def neko():
           <span class="beruf" data-einfach="Ich habe Design studiert">Studierter Kommunikationsdesigner</span>
         </div>
       </div>
-      <p data-einfach="Ich mache kurze Videos über Politik. Auf Instagram, TikTok und YouTube. Ich erkläre, was gerade passiert. So, wie ich es einem Freund erzählen würde.">Ich mache <mark class="strich">Nekos_news</mark>: kurze Videos über Politik auf Instagram, TikTok und YouTube. Ich erzähl dir, was gerade passiert, so wie ich es einem Freund erzählen würde: ehrlich, mit Fakten und ohne Nachrichtensprecher-Ton.</p>
-      <p data-einfach="Mich interessiert, wenn etwas nicht fair ist. Ich bin gegen Nazis. Ich möchte auch Menschen erreichen, die anders denken. Schön, dass du hier bist.">Mich interessiert, was <mark class="kreis">nicht zusammenpasst</mark>: wenn Politik das eine verspricht und das andere macht, oder wenn am Ende wieder die ganz normalen Leute zahlen. Ich bin links und klar gegen Rechtsextremismus, will aber auch die erreichen, die das anders sehen. Schön, dass du hier bist.</p>
-      <div class="kanaele vita-kanaele">KANAELEPATREON<a class="anfrage" href="mailto:neko.anfragen@gmail.com?subject=Anfrage%20an%20Neko"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5 H21 A1 1 0 0 1 22 6 V18 A1 1 0 0 1 21 19 H3 A1 1 0 0 1 2 18 V6 A1 1 0 0 1 3 5 Z M4 7.2 V17 H20 V7.2 L12 12.6 Z M5.6 7 L12 11.2 L18.4 7 Z"/></svg>Anfragen</a></div>
+      <p data-einfach="Ich mache kurze Videos über Politik. Auf Social Media.">Ich mache <mark class="strich">Nekos_news</mark>: kurze Videos über Politik auf Social Media.</p>
+      <p data-einfach="Ich will, dass mehr Menschen Lust auf Politik haben. Ich erkläre es einfach. Und ich zeige, wenn Firmen sich Politik kaufen wollen.">Ich bin ein Typ, der versucht, Leute für Politik zu begeistern: die Einstiegshürden kleiner machen, zeigen, was <mark class="kreis">nicht zusammenpasst</mark>, und ein bisschen gegen Lobbyarbeit halten. Ehrlich, mit Fakten und ohne Nachrichtensprecher-Ton.</p>
     </article>
+  <div class="folgen">
+    <span class="folgen-tipp" aria-hidden="true"><span>Folgen!</span><svg viewBox="0 0 40 40"><path d="M6 6 C 10 18, 18 28, 31 34 M31 34 L22 34.5 M31 34 L28.5 25.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+    <div class="kanaele vita-kanaele">KANAELEPATREON<a class="anfrage" href="mailto:neko.anfragen@gmail.com?subject=Anfrage%20an%20Neko"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5 H21 A1 1 0 0 1 22 6 V18 A1 1 0 0 1 21 19 H3 A1 1 0 0 1 2 18 V6 A1 1 0 0 1 3 5 Z M4 7.2 V17 H20 V7.2 L12 12.6 Z M5.6 7 L12 11.2 L18.4 7 Z"/></svg>Anfragen</a></div>
+  </div>
   </section>
   <section class="gruppe" id="content">
     <img class="content-logo" src="bilder/logo_buchstaben.png" alt="Nekos News – Videos" width="330" height="280">
@@ -156,7 +159,7 @@ def neko():
   <section class="gruppe" id="faq">
     <h2 class="zettel zettel-gross">FAQ</h2>
     <article class="papier riss faq">
-      <details class="faq-frage"><summary>Wer steckt hinter Nekos_news?</summary><p>Ich, Neko. Ich bin studierter Kommunikationsdesigner und mache politische Kurzvideos auf Instagram, TikTok und YouTube.</p></details>
+      <details class="faq-frage"><summary>Wer steckt hinter Nekos_news?</summary><p>Ich, Neko. Ich bin studierter Kommunikationsdesigner und mache politische Kurzvideos auf Social Media.</p></details>
       <details class="faq-frage"><summary>Wie entstehen deine Videos?</summary><p>Ich setze mich an ein Thema und überlege mir, wie man es kreativ umsetzen kann, damit die Hürde möglichst klein ist, sich für komplexe Themen zu interessieren. Dann recherchiere ich die Fakten und baue das Video in meinem Papier-Look.</p></details>
       <details class="faq-frage"><summary>Sind die News auf dieser Seite von dir?</summary><p>Nein. Die News-Seite stellt eine KI automatisch zusammen: Sie fasst Berichte echter Journalist:innen zusammen und verlinkt die Originalartikel. Anders als meine Videos prüfe ich das nicht selbst.</p></details>
       <details class="faq-frage"><summary>Wie oft gibt es neue News?</summary><p>Jeden Morgen gegen 7 Uhr eine neue Ausgabe. Gegen 17 Uhr wird nur ergänzt, wenn tagsüber etwas Großes passiert ist.</p></details>

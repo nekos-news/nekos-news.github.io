@@ -1037,6 +1037,13 @@ article > .andere-sicht { display: none; }
 /* Markierungen im Fließtext dürfen umbrechen (Strich als Unterstreichung) */
 .bogen-text mark.strich, details.mehr p mark.strich { white-space: normal; text-decoration: underline; text-decoration-color: #8F3A22; text-decoration-thickness: 2px; text-underline-offset: 4px; text-decoration-skip-ink: none; }
 .bogen-text mark.strich::after, details.mehr p mark.strich::after { display: none; }
+/* Neko-Seite: Kanäle unter dem Zettel mit handgeschriebenem „Folgen!“ (2026-11-08) */
+#neko { gap: 1.4rem !important; }
+.folgen { display: grid; justify-items: center; gap: 0.2rem; margin-top: 0.6rem; }
+.folgen .vita-kanaele { justify-content: center !important; margin: 0 !important; }
+.folgen-tipp { justify-self: start; margin-left: 12%; display: flex; align-items: flex-end; gap: 0.2rem; font: 700 1.45rem/1 "Caveat", cursive; color: var(--creme); transform: rotate(-5deg); }
+.folgen-tipp svg { width: 2rem; height: 2rem; margin-bottom: -0.9rem; }
+html.ruhig .folgen-tipp { transform: none; }
 </style>
 </head>
 <body>
