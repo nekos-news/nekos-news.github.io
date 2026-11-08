@@ -1246,7 +1246,7 @@ html { overflow-x: clip; }
   function spiele(i) {
     pos = i; var x = liste[i]; if (!x) { ende(); return; }
     player.src = x.url; player.play().catch(function () {}); knoepfe(i); btn.textContent = 'Ⅱ Pause';
-    if (alles) { x.el.scrollIntoView({ block: 'center', behavior: 'smooth' }); status.textContent = (i + 1) + ' von ' + liste.length; }
+    if (alles) { x.el.scrollIntoView({ block: 'center', behavior: 'smooth' }); var nM = liste.filter(function (y) { return y.el.id !== 'kurz'; }).length, iM = liste.slice(0, i + 1).filter(function (y) { return y.el.id !== 'kurz'; }).length; status.textContent = x.el.id === 'kurz' ? 'Das Wichtigste' : 'Meldung ' + iM + ' von ' + nM; }
   }
   function ende() { player.pause(); pos = -1; alles = false; knoepfe(-1); btn.textContent = '\u25B6\uFE0E Alles anhören'; status.textContent = ''; }
   player.addEventListener('ended', function () { if (alles) spiele(pos + 1); else ende(); });
