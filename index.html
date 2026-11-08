@@ -934,6 +934,26 @@ html.ruhig .story .karte { animation: none; }
 article.papier, .kurz, .reel, .produkt { transition: scale 0.15s ease, filter 0.15s ease; }
 article.papier:active, .kurz:active, .reel:active { scale: 1.012; filter: drop-shadow(0 6px 0 rgba(0,0,0,0.28)) drop-shadow(8px 22px 24px rgba(2,6,20,0.7)); }
 html.ruhig article.papier:active, html.ruhig .kurz:active, html.ruhig .reel:active { scale: 1; }
+/* „Heute“ als Wisch-Karussell: immer ein Artikel, zur Seite wischen (Wunsch Nicolas 2026-11-08) */
+.karussell { box-sizing: border-box; transition: height 0.3s ease; display: flex; align-items: flex-start; gap: 1.1rem; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; -webkit-overflow-scrolling: touch;
+  margin-inline: calc(50% - 50vw); padding: 3.2rem calc(50vw - 50%) 1.4rem; scroll-padding-inline: calc(50vw - 50%); }
+.karussell::-webkit-scrollbar { display: none; }
+.karussell > article { flex: 0 0 100%; box-sizing: border-box; scroll-snap-align: center; scroll-snap-stop: always; scroll-margin-top: 6rem; }
+.karussell-kopf { display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; margin-bottom: -2.2rem; }
+.karussell-punkte { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.35rem; margin-top: -0.4rem; }
+.karussell-punkte button { width: 0.55rem; height: 0.55rem; padding: 0; border: 0; border-radius: 50%; background: rgba(232,220,198,0.35); cursor: pointer; }
+.karussell-punkte button[aria-current="true"] { background: var(--rost); transform: scale(1.35); }
+.wisch-hinweis { font: 700 1.15rem/1 "Caveat", cursive; color: var(--creme); transform: rotate(-4deg); white-space: nowrap; }
+.karussell-zaehler { font: 400 0.75rem var(--maschine); color: var(--creme); opacity: 0.8; }
+#deutschland { gap: 0 !important; }
+#deutschland > .zettel { margin-bottom: -0.6rem; }
+.karussell-nav { display: flex; align-items: center; justify-content: center; gap: 1.1rem; margin-top: 0.2rem; }
+.karussell-nav .pfeil { width: 3rem; height: 2.7rem; border: 0; cursor: pointer; font: 800 1.5rem/1 var(--sans); color: var(--creme); -webkit-text-stroke: 1px var(--creme);
+  background-color: var(--rost); background-image: var(--faser); clip-path: polygon(4% 8%, 50% 0, 96% 6%, 100% 52%, 95% 96%, 46% 100%, 3% 93%, 0 48%); filter: drop-shadow(0 3px 0 rgba(0,0,0,0.3)); }
+.karussell-nav .zurueck { transform: rotate(-3deg); } .karussell-nav .weiter { transform: rotate(3deg); }
+.karussell-nav .pfeil:disabled { opacity: 0.3; cursor: default; }
+.karussell-nav .karussell-zaehler { font: 400 0.85rem var(--maschine); color: var(--creme); min-width: 3.5rem; text-align: center; }
+.mehr-news { margin-top: 3.5rem !important; }
 </style>
 </head>
 <body>
@@ -1576,6 +1596,29 @@ html.ruhig article.papier:active, html.ruhig .kurz:active, html.ruhig .reel:acti
 (function () { var n = document.querySelector('.kurz .neko'); if (!n) return;
   var w = document.createElement('span'); w.className = 'neko-wrap'; n.parentNode.insertBefore(w, n); w.appendChild(n);
   var z = document.createElement('img'); z.className = 'zl'; z.src = '/bilder/logo_buchstaben.png'; z.alt = ''; w.appendChild(z); })();
+/* „Heute“: alle Meldungen in ein Wisch-Karussell, darunter Pfeile ← 1 / 10 → */
+(function () {
+  var wrap = document.querySelector('.wrap[data-datum]'); if (!wrap) return;
+  var erste = wrap.querySelector('section.gruppe'); if (!erste) return;
+  var arts = Array.prototype.slice.call(wrap.querySelectorAll('section.gruppe > article[id]')); if (arts.length < 2) return;
+  var k = document.createElement('div'); k.className = 'karussell'; k.setAttribute('aria-label', 'Meldungen, zur Seite wischen');
+  arts.forEach(function (a) { k.appendChild(a); });
+  wrap.querySelectorAll('section.gruppe').forEach(function (s) { if (s !== erste && !s.querySelector('article, .zettel')) s.remove(); });
+  var nav = document.createElement('div'); nav.className = 'karussell-nav';
+  nav.innerHTML = '<button type="button" class="pfeil zurueck" aria-label="Vorherige Meldung">←</button><span class="karussell-zaehler">1 / ' + arts.length + '</span><button type="button" class="pfeil weiter" aria-label="Nächste Meldung">→</button>';
+  erste.appendChild(k); erste.appendChild(nav);
+  var jetzt = 0, zaehler = nav.querySelector('.karussell-zaehler');
+  function geh(n) { n = Math.max(0, Math.min(arts.length - 1, n)); var a = arts[n]; k.scrollTo({ left: a.offsetLeft - k.offsetLeft - (k.clientWidth - a.offsetWidth) / 2, behavior: 'smooth' }); }
+  nav.querySelector('.zurueck').addEventListener('click', function () { geh(jetzt - 1); });
+  nav.querySelector('.weiter').addEventListener('click', function () { geh(jetzt + 1); });
+  function aktuell() { var mitte = k.scrollLeft + k.clientWidth / 2, d = 1e9;
+    arts.forEach(function (a, n) { var c = a.offsetLeft - k.offsetLeft + a.offsetWidth / 2; if (Math.abs(c - mitte) < d) { d = Math.abs(c - mitte); jetzt = n; } });
+    zaehler.textContent = (jetzt + 1) + ' / ' + arts.length;
+    var cs = getComputedStyle(k); k.style.height = (arts[jetzt].offsetHeight + parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom)) + 'px';
+    nav.querySelector('.zurueck').disabled = jetzt === 0; nav.querySelector('.weiter').disabled = jetzt === arts.length - 1; }
+  k.addEventListener('scroll', function () { requestAnimationFrame(aktuell); }, { passive: true }); aktuell();
+  addEventListener('load', aktuell); addEventListener('resize', aktuell); arts.forEach(function (a) { a.addEventListener('toggle', aktuell, true); });
+})();
 /* Story-Karten: „Das Wichtigste“ zum Durchtippen */
 (function () {
   var kurz = document.querySelector('#kurz'); if (!kurz) return;
