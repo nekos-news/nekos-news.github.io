@@ -1026,6 +1026,13 @@ html.kontrast .sortierung span { color: #fff; }
 .wrap > .liste-hinweis { justify-self: center !important; margin: 1.8rem auto 0 !important; max-width: min(19rem, calc(100% - 3rem)) !important; font-size: 0.58rem !important; padding: 0.45rem 0.6rem 0.45rem 0.5rem !important; gap: 0.45rem !important; transform: rotate(0.8deg); }
 .wrap > .liste-hinweis .schild { width: 1.9rem !important; }
 .wrap > .liste-hinweis b { font-size: 0.62rem !important; }
+html body .bogen-grund { padding-top: calc(env(safe-area-inset-top, 0px) + 0.6rem) !important; }
+.bogen-leiste .zu { border: 0; border-radius: 50%; background: var(--rost); color: var(--creme); font: 800 1.05rem var(--sans); cursor: pointer; filter: drop-shadow(0 3px 0 rgba(0,0,0,0.3)); }
+html.kontrast .bogen-leiste .zu, html.kontrast .bogen-leiste .bogen-play { background: #000 !important; outline: 2px solid #fff; }
+.bogen-leiste { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 0.2rem); z-index: 3; width: min(34rem, calc(100vw - 2.2rem)); display: flex; justify-content: space-between; align-items: center; pointer-events: none; margin-bottom: -0.4rem; }
+.bogen-leiste > * { pointer-events: auto; }
+.bogen-leiste .zu, .bogen-leiste .bogen-play { position: static !important; top: auto !important; left: auto !important; right: auto !important; width: 2.6rem !important; height: 2.6rem !important; }
+.w.jetzt { -webkit-text-stroke: 0.65px currentColor; paint-order: stroke fill; } /* Mitlesen: gesprochenes Wort etwas dicker */
 /* Seiten ohne Tagesausgabe (Woche/Monat/Jahr): Logo oben, blauer Hinweis mittig darunter */
 .oben:has(+ .wrap:not([data-datum])) { padding-top: 3.4rem; }
 .oben:has(+ .wrap:not([data-datum])) .logo-oben { display: block !important; position: static !important; justify-self: center; width: min(8rem, 34vw) !important; margin: 0.9rem 0 0.6rem !important; }
@@ -1557,9 +1564,9 @@ function mzVideoZeit(code, i) {
   /* Tagesausgabe: audio/<datum>/liste.json; Woche/Monat/Jahr (seit 2026-11-08): jede Meldung bringt ihr Audio als data-audio mit */
   var wrap = document.querySelector('.wrap[data-datum]'), listenSeite = !wrap && document.querySelector('#liste article[data-audio]'); if (!wrap && !listenSeite) return;
   var basis = wrap ? '/audio/' + wrap.getAttribute('data-datum') + '/' : '';
-  var player = new Audio(), liste = [], pos = -1, alles = false;
+  var player = new Audio(), liste = [], pos = -1, alles = false; window.mzPlayer = player;
   /* Zeit an andere Teile melden (z. B. Story im 30-Sekunden-Zettel läuft mit) */
-  ['timeupdate', 'play', 'pause', 'ended'].forEach(function (ev) { player.addEventListener(ev, function () { var x = liste[pos]; window.dispatchEvent(new CustomEvent('mz-audio', { detail: { id: x ? x.el.id : null, t: player.currentTime, d: player.duration, spielt: !player.paused && !player.ended } })); }); });
+  ['timeupdate', 'play', 'pause', 'ended'].forEach(function (ev) { player.addEventListener(ev, function () { var x = liste[pos]; window.dispatchEvent(new CustomEvent('mz-audio', { detail: { id: x ? x.el.id : null, src: x ? x.url : null, t: player.currentTime, d: player.duration, spielt: !player.paused && !player.ended } })); }); });
   var leiste = document.querySelector('.leiste'), btn = document.getElementById('btn-lesen'), status = document.getElementById('lese-status');
   var teile = Array.prototype.slice.call(document.querySelectorAll('#kurz, article[id]'));
   function knoepfe(aktiv) { liste.forEach(function (x, i) { x.knopf.setAttribute('aria-pressed', i === aktiv); x.knopf.setAttribute('aria-label', i === aktiv ? 'Pause' : 'Anhören'); x.el.classList.toggle('liest', i === aktiv); }); }
@@ -1670,13 +1677,19 @@ function mzVideoZeit(code, i) {
         pb.addEventListener('click', function (e) { e.stopPropagation(); knopf.click(); setTimeout(setze, 50); });
         g.querySelector('.bogen').appendChild(pb); setze(); window.addEventListener('mz-audio', setze); }
       g.querySelector('.bogen').classList.add('sichtbar');
+      /* ▶ und ✕ in eine eigene Leiste, die unter der iPhone-Statusleiste bleibt und beim Scrollen mitkommt (Fehler gemeldet 2026-11-08) */
+      var bl = document.createElement('div'); bl.className = 'bogen-leiste';
+      var pbk = g.querySelector('.bogen-play'), zuk = g.querySelector('.bogen .zu');
+      bl.appendChild(pbk || document.createElement('span')); if (zuk) bl.appendChild(zuk);
+      g.insertBefore(bl, g.firstChild);
+      g.querySelector('.bogen').dataset.fuer = art.id;
       /* Unten im Vollbild direkt zur nächsten Meldung (2026-11-08) */
       var alle = Array.prototype.slice.call(document.querySelectorAll('.wrap[data-datum] article[id]')).filter(function (x) { return x.querySelector('details.mehr summary'); });
       var nx = alle[alle.indexOf(art) + 1], fb = document.createElement('button'); fb.type = 'button'; fb.className = 'bogen-weiter';
       fb.innerHTML = nx ? '<span>Weiter</span><b>→</b>' : '<span>Zurück zur Übersicht</span><b>✕</b>'; /* ohne Titel der nächsten Meldung (Nicolas 2026-11-08) */
       fb.addEventListener('click', function (e) { e.stopPropagation(); if (!nx) { zu(); return; } if (window.mzZeigeMeldung) window.mzZeigeMeldung(nx); nx.querySelector('details.mehr summary').click(); g.scrollTop = 0; requestAnimationFrame(function () { g.scrollTop = 0; }); });
       g.appendChild(fb);
-      g.hidden = false; document.body.style.overflow = 'hidden';
+      g.hidden = false; g.scrollTop = 0; document.body.style.overflow = 'hidden';
     });
   });
   g.addEventListener('click', function (e) { if (e.target === g || e.target.closest('.zu')) zu(); });
@@ -1825,6 +1838,58 @@ function mzVideoZeit(code, i) {
   window.addEventListener('mz-audio', function (e) { if (e.detail.spielt) { var a = document.getElementById(e.detail.id); if (arts.indexOf(a) >= 0) markiere(a); } });
   arts.forEach(function (a) { var s = a.querySelector('details.mehr summary'); if (s) s.addEventListener('click', function () { markiere(a); }); });
   zeichne();
+})();
+/* Mitlesen: Beim Vorlesen wird das gerade gesprochene Wort etwas dicker, auf der Karte und im Vollbild (Wunsch Nicolas 2026-11-08).
+   Wort-Zeiten: audio/<datum>/<id>.woerter.json (lokal mit Whisper erzeugt, wortzeiten.py) */
+(function () {
+  var cache = {}, laeuft = false, jetztId = null, jetztSrc = null, an = [];
+  function norm(t) { return t.toLowerCase().replace(/[^0-9a-zäöüß]/g, ''); }
+  function laden(src) { var u = src.replace(/\.mp3$/, '.woerter.json'); if (!(u in cache)) { cache[u] = null; fetch(u).then(function (r) { return r.ok ? r.json() : null; }).then(function (w) { cache[u] = w || false; }).catch(function () { cache[u] = false; }); } return cache[u]; }
+  function einpacken(root, sel) {
+    var spans = [];
+    root.querySelectorAll(sel).forEach(function (el) {
+      var tw = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, { acceptNode: function (n) { return n.parentNode.closest('b, .w, .hoeren, .rubrik, .quelle, details, .einfach, .randnotiz') ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT; } }), knoten = [];
+      while (tw.nextNode()) knoten.push(tw.currentNode);
+      knoten.forEach(function (n) { if (!n.nodeValue.trim()) return; var f = document.createDocumentFragment();
+        n.nodeValue.split(/(\s+)/).forEach(function (teil) { if (!teil) return; if (/^\s+$/.test(teil)) { f.appendChild(document.createTextNode(teil)); return; }
+          var sp = document.createElement('span'); sp.className = 'w'; sp.textContent = teil; f.appendChild(sp); });
+        n.parentNode.replaceChild(f, n); });
+      el.querySelectorAll('.w').forEach(function (sp) { spans.push(sp); });
+    });
+    return spans;
+  }
+  /* Angezeigte Wörter den gesprochenen zuordnen (längste gemeinsame Folge), Lücken bleiben ohne Zeit */
+  function zuordnen(spans, w) {
+    var a = spans.map(function (s) { return norm(s.textContent); }), b = w.map(function (x) { return norm(x[1]); }), n = a.length, m = b.length;
+    var L = new Uint16Array((n + 1) * (m + 1));
+    for (var i = n - 1; i >= 0; i--) for (var j = m - 1; j >= 0; j--) L[i * (m + 1) + j] = (a[i] && a[i] === b[j]) ? L[(i + 1) * (m + 1) + j + 1] + 1 : Math.max(L[(i + 1) * (m + 1) + j], L[i * (m + 1) + j + 1]);
+    var zu = new Array(n).fill(-1); i = 0; j = 0;
+    while (i < n && j < m) { if (a[i] && a[i] === b[j]) { zu[i] = j; i++; j++; } else if (L[(i + 1) * (m + 1) + j] >= L[i * (m + 1) + j + 1]) i++; else j++; }
+    return zu;
+  }
+  function vorbereiten(root, sel, w) {
+    if (root._mit && root._mit.w === w) return root._mit;
+    var spans = root._spans || (root._spans = einpacken(root, sel));
+    return (root._mit = { w: w, spans: spans, zu: zuordnen(spans, w) });
+  }
+  function ziele(id) { var out = [], art = document.getElementById(id);
+    if (art && art.tagName === 'ARTICLE') out.push([art, 'h3, .fakt']);
+    var bg = document.querySelector('.bogen-grund:not([hidden]) .bogen[data-fuer="' + id + '"]'); if (bg) out.push([bg, 'h3, .bogen-text']);
+    return out; }
+  function aus() { an.forEach(function (s) { s.classList.remove('jetzt'); }); an = []; }
+  function bild() {
+    if (!laeuft) { aus(); return; }
+    var w = jetztSrc && laden(jetztSrc), p = window.mzPlayer;
+    if (w && p) { var t = p.currentTime, neu = [];
+      ziele(jetztId).forEach(function (z) { var m = vorbereiten(z[0], z[1], w);
+        for (var i = m.spans.length - 1; i >= 0; i--) { var j = m.zu[i]; if (j < 0) continue;
+          if (w[j][0] <= t) { var ende = j + 1 < w.length ? w[j + 1][0] + 0.15 : w[j][0] + 0.8; if (t < ende) neu.push(m.spans[i]); break; } } });
+      an.forEach(function (s) { if (neu.indexOf(s) < 0) s.classList.remove('jetzt'); }); neu.forEach(function (s) { s.classList.add('jetzt'); }); an = neu; }
+    requestAnimationFrame(bild);
+  }
+  window.addEventListener('mz-audio', function (e) { var d = e.detail;
+    if (d.spielt && d.src) { if (d.id !== jetztId) aus(); jetztId = d.id; jetztSrc = d.src; laden(d.src); if (!laeuft) { laeuft = true; requestAnimationFrame(bild); } }
+    else { laeuft = false; aus(); } });
 })();
 /* Logo links neben „Samstag 7.11.“ */
 (function () { var z = document.querySelector('.kurz .zeile'); if (!z) return; var l = document.createElement('img'); l.className = 'kurz-logo'; l.src = '/bilder/logo_buchstaben.png'; l.alt = 'Nekos News'; z.insertBefore(l, z.firstChild); })();
