@@ -1605,8 +1605,9 @@ function mzVideoZeit(code, i) {
 })();
 /* Vorlesen mit Nekos KI-Stimme: audio/<datum>/<id>.mp3, erzeugt jeden Morgen. Fehlt eine Datei, gibt es keinen Knopf. */
 (function () {
-  var wrap = document.querySelector('.wrap[data-datum]'); if (!wrap) return;
-  var basis = '/audio/' + wrap.getAttribute('data-datum') + '/';
+  /* Tagesausgabe: audio/<datum>/liste.json; Woche/Monat/Jahr (seit 2026-11-08): jede Meldung bringt ihr Audio als data-audio mit */
+  var wrap = document.querySelector('.wrap[data-datum]'), listenSeite = !wrap && document.querySelector('#liste article[data-audio]'); if (!wrap && !listenSeite) return;
+  var basis = wrap ? '/audio/' + wrap.getAttribute('data-datum') + '/' : '';
   var player = new Audio(), liste = [], pos = -1, alles = false;
   /* Zeit an andere Teile melden (z. B. Story im 30-Sekunden-Zettel läuft mit) */
   ['timeupdate', 'play', 'pause', 'ended'].forEach(function (ev) { player.addEventListener(ev, function () { var x = liste[pos]; window.dispatchEvent(new CustomEvent('mz-audio', { detail: { id: x ? x.el.id : null, t: player.currentTime, d: player.duration, spielt: !player.paused && !player.ended } })); }); });
@@ -1620,8 +1621,10 @@ function mzVideoZeit(code, i) {
   }
   function ende() { player.pause(); pos = -1; alles = false; knoepfe(-1); btn.textContent = '\u25B6\uFE0E Alles anhören'; status.textContent = ''; }
   player.addEventListener('ended', function () { if (alles) spiele(pos + 1); else ende(); });
-  fetch(basis + 'liste.json').then(function (r) { return r.ok ? r.json() : []; }).catch(function () { return []; }).then(function (ids) {
-    liste = teile.filter(function (el) { return ids.indexOf(el.id) >= 0; }).map(function (el) { return { el: el, url: basis + el.id + '.mp3' }; });
+  (listenSeite ? Promise.resolve(null) : fetch(basis + 'liste.json').then(function (r) { return r.ok ? r.json() : []; }).catch(function () { return []; })).then(function (ids) {
+    liste = ids === null
+      ? teile.filter(function (el) { return el.getAttribute('data-audio'); }).map(function (el) { return { el: el, url: el.getAttribute('data-audio') }; })
+      : teile.filter(function (el) { return ids.indexOf(el.id) >= 0; }).map(function (el) { return { el: el, url: basis + el.id + '.mp3' }; });
     if (!liste.length) return;
     btn.hidden = false;
     liste.forEach(function (x, i) {

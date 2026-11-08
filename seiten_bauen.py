@@ -53,9 +53,11 @@ def bestenliste():
             teile.append('    <article class="papier riss"><p>Noch keine Meldungen gesammelt.</p></article>')
         for i, a in enumerate(auswahl, 1):
             d = datetime.date.fromisoformat(a["datum"])
-            teile.append(f'''    <article class="papier riss" id="w{i}">
+            mp3 = os.path.join(HIER, "audio", a["datum"], a["id"] + ".mp3")
+            audio = f' data-audio="/audio/{a["datum"]}/{a["id"]}.mp3"' if os.path.exists(mp3) else ""  # Vorlesen auch auf Woche/Monat/Jahr (Wunsch Nicolas 2026-11-08)
+            teile.append(f'''    <article class="papier riss" id="w{i}"{audio}>
       <h3>{html.escape(a["titel"])}</h3>
-      <span class="rubrik">{html.escape(a.get("rubrik", ""))} · {TAGE[d.weekday()]}, {d:%d.%m.}</span>
+      <span class="rubrik">{html.escape(a.get("rubrik", ""))} · {d:%d.%m.}</span>
       <p class="fakt"><b title="KI-Zusammenfassung">KI-Zusammenfassung</b>{html.escape(a.get("fakt", ""))}</p>
       <p class="quelle">{a.get("quellen_html", "")} · <a href="archiv/{a["datum"]}.html#{a["id"]}">Zur Ausgabe</a></p>
     </article>''')
