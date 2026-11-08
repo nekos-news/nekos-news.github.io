@@ -139,7 +139,7 @@ def neko():
       <div class="vita-kopf">
         <span class="profil"><img src="bilder/profilbild.jpg" alt="Nekos Instagram-Profilbild" width="220" height="220"></span>
         <div class="vita-gruss">
-          <h3>Hi, ich bin [Neko]</h3>
+          <h3>Hi, ich bin <span class="name">[Neko]</span></h3>
           <span class="beruf" data-einfach="Ich habe Design studiert">Studierter Kommunikationsdesigner</span>
         </div>
       </div>
