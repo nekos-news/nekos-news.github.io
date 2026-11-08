@@ -930,6 +930,10 @@ html.ruhig .story .karte { animation: none; }
 .neu-stempel { position: absolute; z-index: 5; right: -0.6rem; top: -0.9rem; font: 400 0.8rem var(--maschine); letter-spacing: 0.1em; color: #a3271c; border: 2px solid #a3271c; padding: 0.15rem 0.4rem 0.05rem;
   background: rgba(244,236,220,0.85); transform: rotate(9deg); border-radius: 3px; box-shadow: 0 2px 0 rgba(0,0,0,0.2); }
 .content-logo { justify-self: center; width: min(13rem, 62vw); height: auto; transform: rotate(-1.5deg); filter: drop-shadow(0 4px 0 rgba(0,0,0,0.3)) drop-shadow(6px 14px 16px rgba(2,6,20,0.6)); }
+/* Papier reagiert beim Antippen: hebt sich kurz an (2026-11-08) */
+article.papier, .kurz, .reel, .produkt { transition: scale 0.15s ease, filter 0.15s ease; }
+article.papier:active, .kurz:active, .reel:active { scale: 1.012; filter: drop-shadow(0 6px 0 rgba(0,0,0,0.28)) drop-shadow(8px 22px 24px rgba(2,6,20,0.7)); }
+html.ruhig article.papier:active, html.ruhig .kurz:active, html.ruhig .reel:active { scale: 1; }
 </style>
 </head>
 <body>
