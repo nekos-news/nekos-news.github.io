@@ -473,7 +473,7 @@ html.kontrast .erpress span:nth-child(2)::after, html.kontrast .erpress span:nth
 .kurz .zeile > span:first-child { display: grid; gap: 0.35rem; }
 .kurz .zeile > span:last-child { white-space: nowrap; color: var(--mittelgrau); font-size: 0.66rem; }
 .kurz h2 { margin-right: 4.6rem !important; }
-.kurz .neko { position: absolute; right: 0.6rem; top: -2.9rem; width: 9.2rem; z-index: 3; height: auto; pointer-events: none; }
+.kurz .neko { position: absolute; right: 0.2rem; top: -5.4rem; width: 10.6rem; z-index: 3; height: auto; pointer-events: none; }
 html.kontrast .kurz .zeile { color: #000; }
 /* Shop-Produkte */
 .produktbilder { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
@@ -845,7 +845,7 @@ html.kontrast .hinweis { background: #000 !important; color: #fff !important; }
 .hinweis .schild { width: 2.5rem !important; }
 .hinweis b { font-size: 0.72rem !important; }
 /* Platz, weil die Figur oben aus dem Kasten ragt */
-.wrap > .kurz { margin-top: 1.9rem; }
+.wrap > .kurz { margin-top: -0.6rem; }
 /* Mehr Luft im 30-Sekunden-Zettel (2026-11-08) */
 .kurz h2 { margin-bottom: 0.9rem !important; }
 .kurz .hoeren { margin: 0.4rem 0 1.1rem !important; }
@@ -853,6 +853,12 @@ html.kontrast .hinweis { background: #000 !important; color: #fff !important; }
 html.ruhig { background-color: #2a2927 !important; }
 html.ruhig::after { inset: -100vh -20vw !important; }
 html.ruhig .raster-ebene { filter: grayscale(1); }
+/* Hinweis schmal, links neben dem Kopf der Zeitungs-Figur (2026-11-08) */
+.oben .hinweis { max-width: 54% !important; font-size: 0.6rem !important; padding: 0.5rem 0.6rem 0.5rem 0.55rem !important; gap: 0.45rem !important; }
+.oben .hinweis .schild { width: 1.9rem !important; }
+.oben .hinweis b { font-size: 0.64rem !important; }
+.logo-oben { margin-top: 0.3rem !important; margin-bottom: 0.3rem !important; }
+.oben { margin-top: 0.2rem !important; }
 </style>
 </head>
 <body>
