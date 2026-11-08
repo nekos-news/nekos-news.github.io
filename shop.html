@@ -994,6 +994,20 @@ html.ruhig .wischer .spur { transition: none !important; }
 #content .content-logo { margin-bottom: 0.2rem; }
 #content .filter { margin-bottom: 0.2rem; }
 .vita-gruss h3 .name { font-weight: 900; font-size: 1.22em; -webkit-text-stroke: 0.9px currentColor; paint-order: stroke fill; letter-spacing: -0.01em; white-space: nowrap; }
+/* Runde 2026-11-08 abends */
+.oben .hinweis { max-width: 58% !important; font-size: 0.5rem !important; padding: 0.38rem 0.45rem 0.38rem 0.4rem !important; gap: 0.35rem !important; }
+.oben .hinweis .schild { width: 1.6rem !important; }
+.oben .hinweis b { font-size: 0.52rem !important; white-space: normal !important; }
+#deutschland > .zettel { margin-bottom: 0.9rem !important; }
+#btn-lesen, .leiste .hoch { background-color: #1F4E9A !important; }
+.hilfe-knopf { width: 2.2rem !important; height: 2.2rem !important; }
+.hilfe-knopf svg { width: 1.2rem !important; height: 1.2rem !important; }
+html { scroll-snap-type: y proximity; }
+#deutschland { scroll-snap-align: start; scroll-margin-top: 3.6rem; }
+html.ruhig { scroll-snap-type: none; }
+.wischer article.papier { padding: 1rem 1rem 1.05rem !important; gap: 0.7rem !important; }
+.wischer article h3 { font-size: 1.15rem !important; }
+.wischer article .fakt, .wischer article p:not(.quelle) { font-size: 0.94rem; line-height: 1.5; }
 </style>
 </head>
 <body>
@@ -1510,7 +1524,7 @@ html.ruhig .wischer .spur { transition: none !important; }
 (function () {
   var h = document.querySelector('.hilfe-rechts'); if (!h) return;
   var t = document.createElement('div'); t.className = 'genz-tipp'; t.setAttribute('aria-hidden', 'true');
-  t.innerHTML = '<span>Gen Z?</span><svg viewBox="0 0 40 40"><path d="M32 36 C 30 22, 22 12, 17 4 M17 4 L10.5 10 M17 4 L24 8.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  t.innerHTML = '<span>Gen Z!</span><svg viewBox="0 0 40 40"><path d="M32 36 C 30 22, 22 12, 17 4 M17 4 L10.5 10 M17 4 L24 8.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   h.insertAdjacentElement('afterend', t);
   function pruefen() { t.classList.toggle('weg', window.scrollY > 40 || h.querySelector('.hilfe-offen, [aria-expanded="true"]') !== null); }
   window.addEventListener('scroll', pruefen, { passive: true }); document.addEventListener('click', function () { setTimeout(pruefen, 0); }); pruefen();
@@ -1570,7 +1584,7 @@ html.ruhig .wischer .spur { transition: none !important; }
     spur.style.transition = animiert ? 'transform 0.35s cubic-bezier(0.2, 0.8, 0.25, 1)' : 'none';
     spur.style.transform = 'translate3d(' + off + 'px,0,0)';
     folien.forEach(function (f, n) { f.classList.toggle('aktiv', n === i); });
-    w.style.height = (arts[i].offsetHeight + 56) + 'px';
+    w.style.height = (arts[i].offsetHeight + 18) + 'px';
     nav.querySelector('.karussell-zaehler').textContent = (i + 1) + ' / ' + arts.length;
     nav.querySelector('.zurueck').disabled = i === 0; nav.querySelector('.weiter').disabled = i === arts.length - 1;
   }
