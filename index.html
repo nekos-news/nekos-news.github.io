@@ -845,7 +845,7 @@ html.kontrast .hinweis { background: #000 !important; color: #fff !important; }
 .hinweis .schild { width: 2.5rem !important; }
 .hinweis b { font-size: 0.72rem !important; }
 /* Platz, weil die Figur oben aus dem Kasten ragt */
-.wrap > .kurz { margin-top: -0.6rem; }
+.wrap > .kurz { margin-top: 2.4rem; }
 /* Mehr Luft im 30-Sekunden-Zettel (2026-11-08) */
 .kurz h2 { margin-bottom: 0.9rem !important; }
 .kurz .hoeren { margin: 0.4rem 0 1.1rem !important; }
@@ -870,6 +870,16 @@ article h3 { max-width: 100%; box-sizing: border-box; overflow-wrap: break-word;
 html.gross article h3 { hyphens: auto; }
 html.gross mark.kreis, html.gross mark.strich { white-space: normal; }
 html.gross .hoeren .rubrik { white-space: normal; }
+/* Logo klein rechts über der Schulter, Hinweis links daneben, alles höher (2026-11-08) */
+.oben { position: relative; padding-top: 6rem; margin-top: 0 !important; }
+.oben .logo-oben { position: absolute; right: 0.4rem; top: 5.8rem; width: 6rem !important; margin: 0 !important; z-index: 4; }
+.oben .hinweis { max-width: 52% !important; font-size: 0.56rem !important; padding: 0.45rem 0.55rem 0.45rem 0.5rem !important; }
+.oben .hinweis .schild { width: 2.2rem !important; }
+.oben .hinweis b { font-size: 0.6rem !important; }
+.wrap { padding-top: 1.2rem !important; }
+/* Unterseiten ohne Hinweis: Logo wie gehabt mittig */
+.oben:not(:has(.hinweis)) { padding-top: 3.4rem; }
+.oben:not(:has(.hinweis)) .logo-oben { position: static !important; justify-self: center; width: min(8rem, 34vw) !important; margin: 0.9rem 0 0.4rem !important; }
 </style>
 </head>
 <body>
