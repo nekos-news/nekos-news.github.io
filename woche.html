@@ -14,7 +14,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=3"><link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png?v=3"><link rel="icon" type="image/png" sizes="192x192" href="/favicon.png?v=3">
 <link rel="manifest" href="manifest.webmanifest">
-<link rel="stylesheet" href="/schriften/schriften.css">
+<link rel="stylesheet" href="/schriften/schriften.css?v=3">
 <script>
 try { (JSON.parse(localStorage.getItem('mz-hilfe') || '[]')).forEach(function (k) { if (k !== 'lesbar') document.documentElement.classList.add(k); }); } catch (e) {}
 </script>
@@ -789,6 +789,26 @@ html.kontrast .produktbilder::after { color: #fff; text-shadow: none; }
   border: 0.07em solid rgba(244,241,234,0.3); border-top-color: #f4f1ea; box-shadow: 0 0 6px rgba(255,255,255,0.4); animation: kreisel 0.9s linear infinite; }
 @keyframes kreisel { to { transform: rotate(360deg); } }
 html.ruhig .spray i, html.ruhig .ipunkt b { animation: none; }
+/* Aufklapp-Menüs: starker Schatten, Umgebung dunkel und unscharf (2026-11-08) */
+.leiste-oben .news-wahl a { filter: drop-shadow(0 4px 0 rgba(0,0,0,0.35)) drop-shadow(5px 16px 18px rgba(0,0,0,0.75)); }
+.menue-dunkel { position: fixed; inset: 0; z-index: 5; background: rgba(2,5,16,0.62); -webkit-backdrop-filter: blur(7px); backdrop-filter: blur(7px); opacity: 0; pointer-events: none; transition: opacity 0.2s ease; }
+html.menue-auf .menue-dunkel { opacity: 1; pointer-events: auto; }
+html.ruhig .menue-dunkel { transition: none; }
+.surf-fenster .groesse { position: absolute; right: -0.35rem; bottom: -0.35rem; z-index: 4; width: 1.5rem; height: 1.5rem; cursor: nwse-resize; touch-action: none;
+  filter: drop-shadow(0 2px 0 rgba(0,0,0,0.3)); }
+.surf-fenster .groesse::before { content: ""; position: absolute; inset: 0; background: var(--rost); clip-path: polygon(100% 0, 100% 100%, 0 100%); }
+.surf-fenster .groesse::after { content: ""; position: absolute; right: 0.25rem; bottom: 0.25rem; width: 0.55rem; height: 0.55rem; border-right: 2px solid var(--creme); border-bottom: 2px solid var(--creme); }
+.surf-fenster { max-width: none !important; }
+/* „Coming Soon“ als Graffiti-Tag (Wunsch Nicolas 2026-11-08) */
+.spray { font-family: "Sedgwick Ave Display", "Rubik Spray Paint", var(--sans) !important; font-size: clamp(2.5rem, 13vw, 3.6rem) !important; line-height: 0.85 !important;
+  color: #fff !important; transform: rotate(-6deg) !important; filter: none !important; text-shadow: 0 2px 0 rgba(0,0,0,0.45), 0 0 10px rgba(0,0,0,0.35) !important; padding: 0 0.6em 0.35em 0.2em; }
+.spray .z1, .spray .z2 { display: block; }
+.spray .z2 { margin-left: 0.45em; }
+.spray em { font-style: normal; letter-spacing: -0.05em; }
+.spray .stern { position: absolute; right: -0.15em; top: 0.75em; font-size: 1.15em; transform: rotate(12deg); }
+.spray .ipunkt b { top: -0.3em !important; }
+.spray .strich { position: absolute; left: 22%; right: 18%; bottom: 0.1em; height: 0.09em; background: #fff; border-radius: 1em; transform: rotate(-1.5deg); box-shadow: 0 2px 0 rgba(0,0,0,0.45); }
+.spray i { display: none !important; }
 </style>
 </head>
 <body>
@@ -1147,7 +1167,7 @@ html.ruhig .spray i, html.ruhig .ipunkt b { animation: none; }
     var start = Math.floor(Math.random() * 240);
     fenster = document.createElement('div'); fenster.className = 'surf-fenster';
     /* Datenschutz: YouTube (Google) lädt erst, wenn man nach dem Hinweis auf „Video laden“ tippt */
-    fenster.innerHTML = '<div class="griff">Gen Z</div><button class="zu" type="button" aria-label="Konzentrationshilfe schließen">✕</button><div class="bild"><div class="deckel frage"><span>Das Video kommt von YouTube. Beim Laden gehen Daten (z.&nbsp;B. deine IP-Adresse) an Google.</span><button type="button" class="laden">Video laden</button></div></div>';
+    fenster.innerHTML = '<div class="griff">Gen Z</div><div class="groesse" aria-label="Größe ändern" title="Größe ändern"></div><button class="zu" type="button" aria-label="Konzentrationshilfe schließen">✕</button><div class="bild"><div class="deckel frage"><span>Das Video kommt von YouTube. Beim Laden gehen Daten (z.&nbsp;B. deine IP-Adresse) an Google.</span><button type="button" class="laden">Video laden</button></div></div>';
     fenster.querySelector('.zu').addEventListener('click', zu);
     document.body.appendChild(fenster);
     fenster.querySelector('.laden').addEventListener('click', function () {
@@ -1162,6 +1182,12 @@ html.ruhig .spray i, html.ruhig .ipunkt b { animation: none; }
       setTimeout(deckelWeg, 6000);
     });
     fenster.addEventListener('animationend', function () { if (fenster) { fenster.style.animation = 'none'; fenster.style.transform = 'rotate(-2deg)'; } });
+    /* Größe ändern an der Ecke unten rechts (Wunsch Nicolas 2026-11-08) */
+    (function () { var ecke = fenster.querySelector('.groesse'), sx, sw;
+      ecke.addEventListener('pointerdown', function (e) { sx = e.clientX; sw = fenster.offsetWidth; ecke.setPointerCapture(e.pointerId); fenster.classList.add('zieht'); e.preventDefault(); e.stopPropagation(); });
+      ecke.addEventListener('pointermove', function (e) { if (sw == null) return; var r = fenster.getBoundingClientRect();
+        fenster.style.width = Math.max(110, Math.min(innerWidth * 0.8 - r.left + innerWidth * 0.1, sw + e.clientX - sx, innerWidth - r.left - 8)) + 'px'; });
+      ecke.addEventListener('pointerup', function () { sw = null; fenster.classList.remove('zieht'); }); })();
     /* Ziehen an der Titelleiste (Maus und Finger) */
     var griff = fenster.querySelector('.griff'), sx, sy, fx, fy;
     griff.addEventListener('pointerdown', function (e) {
@@ -1347,6 +1373,14 @@ html.ruhig .spray i, html.ruhig .ipunkt b { animation: none; }
 })();
 /* Jedes Papierstück bekommt eine von 12 Risskanten, nie zweimal hintereinander gleich */
 (function () { var letzte = -1; document.querySelectorAll('.riss').forEach(function (el) { var n; do { n = Math.floor(Math.random() * 12); } while (n === letzte); letzte = n; el.classList.add('r-' + n); }); })();
+/* Dunkle, unscharfe Ebene, solange ein Aufklapp-Menü offen ist */
+(function () {
+  var d = document.createElement('div'); d.className = 'menue-dunkel'; d.setAttribute('aria-hidden', 'true'); document.body.appendChild(d);
+  var leiste = document.querySelector('.leiste-oben'); if (!leiste) return;
+  function pruefen() { document.documentElement.classList.toggle('menue-auf', !!leiste.querySelector('.news-offen')); }
+  new MutationObserver(pruefen).observe(leiste, { subtree: true, attributes: true, attributeFilter: ['class'] });
+  d.addEventListener('click', function () { leiste.querySelectorAll('.news-offen').forEach(function (n) { n.classList.remove('news-offen'); }); });
+})();
 </script>
 </body>
 </html>
