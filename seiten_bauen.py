@@ -181,7 +181,7 @@ def datenschutz():
 IMPRESSUM_ADRESSE = ""  # z. B. "Vorname Nachname<br>Straße Nr.<br>PLZ Ort" – erst nach ausdrücklichem OK von Nicolas eintragen (wird öffentlich)
 
 def impressum():
-    adresse = IMPRESSUM_ADRESSE or "Die vollständige Anschrift wird gerade ergänzt."
+    adresse = IMPRESSUM_ADRESSE or "Adresse folgt."
     inhalt = f'''<div class="wrap">
   <section class="gruppe" id="impressum">
     <h2 class="zettel zettel-gross">Impressum</h2>
