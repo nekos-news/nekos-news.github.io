@@ -845,7 +845,7 @@ html.kontrast .hinweis { background: #000 !important; color: #fff !important; }
 .hinweis .schild { width: 2.5rem !important; }
 .hinweis b { font-size: 0.72rem !important; }
 /* Platz, weil die Figur oben aus dem Kasten ragt */
-.wrap > .kurz { margin-top: 2.4rem; }
+.wrap > .kurz { margin-top: -0.2rem; }
 /* Mehr Luft im 30-Sekunden-Zettel (2026-11-08) */
 .kurz h2 { margin-bottom: 0.9rem !important; }
 .kurz .hoeren { margin: 0.4rem 0 1.1rem !important; }
@@ -880,6 +880,12 @@ html.gross .hoeren .rubrik { white-space: normal; }
 /* Unterseiten ohne Hinweis: Logo wie gehabt mittig */
 .oben:not(:has(.hinweis)) { padding-top: 3.4rem; }
 .oben:not(:has(.hinweis)) .logo-oben { position: static !important; justify-self: center; width: min(8rem, 34vw) !important; margin: 0.9rem 0 0.4rem !important; }
+/* Nekos-News-Logo auf der Zeitung in Nekos Hand (2026-11-08) */
+.kurz .neko-wrap { position: absolute; right: 0.2rem; top: -5.4rem; width: 10.6rem; z-index: 3; pointer-events: none; }
+.kurz .neko-wrap .neko { position: static !important; width: 100% !important; display: block; }
+.kurz .neko-wrap .zl { position: absolute; left: 33%; top: 39%; width: 31%; transform: rotate(-8deg) skewY(5deg); opacity: 0.92; mix-blend-mode: multiply; }
+html.ruhig .kurz .neko-wrap .zl { mix-blend-mode: normal; }
+.oben:has(.hinweis) .logo-oben { display: none !important; }
 </style>
 </head>
 <body>
@@ -1514,6 +1520,10 @@ html.gross .hoeren .rubrik { white-space: normal; }
   new MutationObserver(pruefen).observe(leiste, { subtree: true, attributes: true, attributeFilter: ['class'] });
   d.addEventListener('click', function () { leiste.querySelectorAll('.news-offen').forEach(function (n) { n.classList.remove('news-offen'); }); });
 })();
+/* Logo auf die Zeitung legen */
+(function () { var n = document.querySelector('.kurz .neko'); if (!n) return;
+  var w = document.createElement('span'); w.className = 'neko-wrap'; n.parentNode.insertBefore(w, n); w.appendChild(n);
+  var z = document.createElement('img'); z.className = 'zl'; z.src = '/bilder/logo_buchstaben.png'; z.alt = ''; w.appendChild(z); })();
 </script>
 </body>
 </html>
