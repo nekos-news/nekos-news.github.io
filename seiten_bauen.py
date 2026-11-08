@@ -154,7 +154,7 @@ def neko():
     <div class="raster" id="raster"></div>
   </section>
 ''' + FUSS
-    k = re.search(r'<div class="kanaele">(.*?)</div>', vorlage(), re.S).group(1).strip()
+    k = open(os.path.join(HIER, "daten", "kanaele.html"), encoding="utf-8").read().strip()  # Kanal-Knöpfe (nicht mehr im Menü)
     seite(inhalt.replace("KANAELE", k).replace("PATREON", patreon), "Neko", "neko.html")
     # Auf der Profilseite kein „Kein Journalismus“-Hinweis (Wunsch Nicolas)
     ohne_ki("neko.html")
@@ -178,6 +178,22 @@ def datenschutz():
     seite("\n".join(teile), "Datenschutz", "datenschutz.html")
     ohne_ki("datenschutz.html")
 
+IMPRESSUM_ADRESSE = ""  # z. B. "Vorname Nachname<br>Straße Nr.<br>PLZ Ort" – erst nach ausdrücklichem OK von Nicolas eintragen (wird öffentlich)
+
+def impressum():
+    adresse = IMPRESSUM_ADRESSE or "Die vollständige Anschrift wird gerade ergänzt."
+    inhalt = f'''<div class="wrap">
+  <section class="gruppe" id="impressum">
+    <h2 class="zettel zettel-gross">Impressum</h2>
+    <article class="papier riss"><h3>Angaben gemäß § 5 DDG</h3><p>{adresse}</p></article>
+    <article class="papier riss"><h3>Kontakt</h3><p>E-Mail: <a href="mailto:neko.anfragen@gmail.com">neko.anfragen@gmail.com</a></p></article>
+    <article class="papier riss"><h3>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h3><p>{adresse}</p></article>
+    <article class="papier riss"><h3>Hinweis</h3><p>Die Nachrichten-Zusammenfassungen werden automatisch von einer KI erstellt und verlinken die Originalartikel. Für die Inhalte verlinkter Seiten sind deren Betreiber verantwortlich.</p></article>
+  </section>
+</div>'''
+    seite(inhalt, "Impressum", "impressum.html")
+    ohne_ki("impressum.html")
+
 if __name__ == "__main__":
-    bestenliste(); shop(); neko(); datenschutz()
+    bestenliste(); shop(); neko(); datenschutz(); impressum()
     print("Seiten gebaut: woche, monat, jahr, shop, neko")
