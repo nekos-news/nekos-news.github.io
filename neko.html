@@ -1068,7 +1068,9 @@ html.kontrast .hoeren button.zurueck10 { background: #fff !important; color: #00
 .hoeren { gap: 0.4rem !important; }
 /* Intro: Logo steht still und wackelt kurz, dann kommen die Datums-Schnipsel (Nicolas 2026-11-08) */
 @keyframes logo-wackeln { 0% { rotate: 0deg; } 20% { rotate: -3deg; } 45% { rotate: 2.5deg; } 70% { rotate: -1.4deg; } 100% { rotate: 0deg; } }
-#intro.sofort .buchstaben { animation: logo-wackeln 0.65s ease-in-out 0.12s both; transform-origin: 50% 60%; }
+#intro.sofort .buchstaben { animation: logo-wackeln 0.6s ease-in-out 0.45s both; transform-origin: 50% 60%; }
+/* An der vollen Bildschirmhöhe ausrichten (wie der Startbildschirm), damit das Logo beim App-Start nicht mitrutscht */
+#intro .buchstaben { position: absolute !important; left: 50%; top: 50vh; top: 50lvh; translate: -50% calc(-50% - 50px) !important; }
 /* Seiten ohne Tagesausgabe (Woche/Monat/Jahr): Logo oben, blauer Hinweis mittig darunter */
 .oben:has(+ .wrap:not([data-datum])) { padding-top: 3.4rem; }
 .oben:has(+ .wrap:not([data-datum])) .logo-oben { display: block !important; position: static !important; justify-self: center; width: min(8rem, 34vw) !important; margin: 0.9rem 0 0.6rem !important; }
@@ -1152,9 +1154,11 @@ html.kontrast .hinweis b { color: #fff !important; }
       var hoehe = d0.bottom + oben - g.top, shift = Math.round((innerHeight - hoehe) / 2 - g.top);
       datum.style.top = (g.bottom + oben) + 'px';
       Array.prototype.forEach.call(datum.children, function (s, n) {
-        var d = 800 + n * 140; /* erst wackelt das Logo, dann kommen die Schnipsel */
-        s.animate([{ opacity: 0, transform: 'scale(1.6) rotate(-12deg)' }, { opacity: 1, transform: 'scale(1.15) rotate(6deg)', offset: 0.5 }, { opacity: 1 }],
-          { duration: 240, delay: d, easing: 'steps(3, end)', fill: 'both', composite: 'add' });
+        var d = 1100 + n * 140; /* erst steht das Logo, dann wackelt es, dann ploppen die Schnipsel auf */
+        /* unsichtbar starten und erst beim Aufploppen erscheinen (vorher addierte „composite: add“ die Sichtbarkeit -> Datum war sofort da) */
+        s.style.opacity = '0';
+        s.animate([{ opacity: 0, scale: '1.6', rotate: '-12deg' }, { opacity: 1, scale: '1.15', rotate: '6deg', offset: 0.5 }, { opacity: 1, scale: '1', rotate: '0deg' }],
+          { duration: 240, delay: d, easing: 'steps(3, end)', fill: 'forwards' }).onfinish = function () { s.style.opacity = ''; };
         if (window.mzKlick) setTimeout(function () { window.mzKlick(0.05); }, d);
       });
       document.body.classList.add('karten'); /* Zettel fliegen hinter dem Dunklen schon an ihren Platz */
@@ -1165,7 +1169,7 @@ html.kontrast .hinweis b { color: #fff !important; }
         datum.animate([{ transform: 'translateX(-50%) scale(' + gross + ') rotate(-2deg)' },
                        { transform: 'translate(calc(-50% + ' + dx + 'px), ' + dy + 'px) scale(1) rotate(0deg)' }],
           { duration: 650, easing: 'cubic-bezier(0.5, 0, 0.2, 1)', fill: 'forwards' }).onfinish = los;
-      }, 1950);
+      }, 2250);
     });
   }
   document.addEventListener('DOMContentLoaded', function () {
