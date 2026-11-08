@@ -1019,6 +1019,13 @@ html.ruhig .lesefluss .durch { animation: none; }
 .gelesen-haken svg { width: 1.45rem; height: 1.1rem; overflow: visible; }
 .gelesen-haken path { fill: none; stroke: #9b958d; stroke-width: 2.8; stroke-linecap: round; stroke-linejoin: round; transition: stroke 0.3s, opacity 0.3s; }
 .gelesen-haken .h2 { opacity: 0; }
+/* Kontrast-Modus: letzte orange Reste schwarz-weiß (Bugtest 2026-11-08) */
+html.kontrast details.mehr summary { background: #000 !important; color: #fff !important; transform: none; }
+html.kontrast article .quelle::before { color: #000 !important; }
+html.kontrast .karussell-nav .pfeil { background: #000 !important; background-image: none !important; color: #fff !important; -webkit-text-stroke: 0; clip-path: none; outline: 2px solid #fff; filter: none; transform: none; }
+html.kontrast .karussell-zaehler { color: #fff; }
+html.kontrast article .rubrik::before { background: #000 !important; }
+
 /* Lo-Fi-Welle (2026-11-08): flach = an, wartet aufs Vorlesen; bewegt = läuft gerade */
 .welle { display: none; align-items: flex-end; gap: 2px; height: 0.85rem; }
 .welle b { display: block; width: 3px; height: 30%; border-radius: 1px; background: currentColor; }
