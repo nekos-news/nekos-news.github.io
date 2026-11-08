@@ -88,5 +88,95 @@
   "fakt": "Bei einem italienischen Minister wurden Daten gestohlen.",
   "quellen_html": "<a href=\"https://www.zdfheute.de/newsticker/schlagzeilen-100.html\">ZDFheute</a>",
   "krass": 3
+ },
+ {
+  "datum": "2026-11-08",
+  "id": "m1",
+  "rubrik": "Staat",
+  "titel": "Nach zwölf Männern: Wird Ilse Aigner die erste Bundespräsidentin?",
+  "fakt": "Die Union hat sich laut Berichten auf die CSU-Politikerin Ilse Aigner als Kandidatin für das Bundespräsidentenamt geeinigt. Offiziell soll das am Montag verkündet werden, die SPD hat Unterstützung angekündigt.",
+  "quellen_html": "<a href=\"https://www.zdfheute.de/politik/bundespraesidentin-aigner-koalition-merz-100.html\">ZDFheute</a> · <a href=\"https://www.tagesspiegel.de/politik/wohl-einigung-in-der-union-ilse-aigner-soll-bundesprasidentin-werden-16252498.html\">Tagesspiegel</a> · <a href=\"https://www.wetterauer-zeitung.de/politik/bundespraesidentin-union-einigt-sich-auf-ilse-aigner-zr-94578810.html\">Wetterauer Zeitung</a>",
+  "krass": 5
+ },
+ {
+  "datum": "2026-11-08",
+  "id": "m2",
+  "rubrik": "SPD",
+  "titel": "Klingbeil an die Union: Bringt endlich das AfD-Verbot auf den Weg",
+  "fakt": "Beim Treffen der Ruhr-SPD in Bochum hat sich SPD-Chef Lars Klingbeil der Kritik an der Koalition gestellt. Er verlangte laut dpa, dass die Union einen Antrag für ein AfD-Verbotsverfahren einleitet.",
+  "quellen_html": "<a href=\"https://www.tagesspiegel.de/politik/dpa-klingbeil-bei-ruhr-spd-spd-im-ruhrgebiet-wirft-bundesregierung-hickhack-vor-16255060.html\">Tagesspiegel (dpa)</a> · <a href=\"https://www.zdfheute.de/politik/deutschland/spd-chef-lars-klingbeil-nordrhein-westfalen-ruhrgebiet-bochum-100.html\">ZDFheute</a> · <a href=\"https://www.radiowuppertal.de/dpa/klingbeil-an-der-basis-im-ruhrgebiet-kritik-und-impulse-2800597\">Radio Wuppertal (dpa)</a>",
+  "krass": 5
+ },
+ {
+  "datum": "2026-11-08",
+  "id": "m3",
+  "rubrik": "Rente",
+  "titel": "Pflege und Kinder zählen nicht mehr? Dann verliert die Hälfte der Frauen die Frührente",
+  "fakt": "Die Union erwägt, bei der Rente nach 45 Beitragsjahren Kinder- und Pflegezeiten nicht mehr anzurechnen. Laut Berechnungen des DIW hätten dann 52,1 Prozent weniger Frauen Anspruch, bei Männern fast keine Veränderung.",
+  "quellen_html": "<a href=\"https://www.tagesspiegel.de/politik/debatte-um-rente-mit-63-vorschlag-der-union-wurde-frauen-offenbar-massiv-benachteiligen-16248629.html\">Tagesspiegel</a> · <a href=\"https://www.t-online.de/finanzen/ratgeber/altersvorsorge/privatevorsorge/rentenversicherung/id_101246538/rente-nach-beitrags-jahren-diw-studie-warnt-vor-nachteilen-fuer-viele.html\">t-online</a>",
+  "krass": 5
+ },
+ {
+  "datum": "2026-11-08",
+  "id": "m4",
+  "rubrik": "Medien",
+  "titel": "Widerspruch zwecklos: Der Rundfunkbeitrag gleicht gerade die Daten aller Erwachsenen ab",
+  "fakt": "Der Beitragsservice von ARD, ZDF und Deutschlandradio hat den bundesweiten Meldedatenabgleich gestartet. Die Meldeämter liefern bis zum 8. Dezember die Daten aller Volljährigen, ein Widerspruch ist nicht möglich.",
+  "quellen_html": "<a href=\"https://www.t-online.de/finanzen/aktuelles/verbraucher/id_101517610/rundfunkbeitrag-fuer-ard-zdf-und-deutschlandradio-beitragsservice-prueft.html\">t-online</a> · <a href=\"https://www.digitalfernsehen.de/news/inhalte/buntes/rundfunkbeitrag-das-aendert-sich-jetzt-1191191\">Digital Fernsehen</a>",
+  "krass": 3
+ },
+ {
+  "datum": "2026-11-08",
+  "id": "m5",
+  "rubrik": "Iran",
+  "titel": "Schah-Sohn in der Paulskirche: Zehntausende jubeln, Kritiker schreiben offene Briefe",
+  "fakt": "Reza Pahlavi, Sohn des 1979 gestürzten Schahs, hat in der Frankfurter Paulskirche stellvertretend den Freiheitspreis der Friedrich-Naumann-Stiftung für das iranische Volk entgegengenommen. Zehntausende demonstrierten gegen das Regime in Teheran.",
+  "quellen_html": "<a href=\"https://www.zdfheute.de/politik/deutschland/frankfurt-demonstrationen-iran-100.html\">ZDFheute</a> · <a href=\"https://www.hessenschau.de/gesellschaft/iran-demos-heute-in-frankfurt-warum-reza-pahlavi-umstritten-ist-v6,faq_auszeichnung_pahlavi-100.html\">hessenschau</a> · <a href=\"https://frankfurt.t-online.de/region/frankfurt-am-main/id_101517898/frankfurt-tausende-iraner-demonstrieren-weitgehend-friedlich-fuer-pahlavi.html\">t-online</a>",
+  "krass": 4
+ },
+ {
+  "datum": "2026-11-08",
+  "id": "m6",
+  "rubrik": "Polen",
+  "titel": "Sechs Tote in Krakau: Tusk spricht von Terror",
+  "fakt": "Ein 25-jähriger Pole hat am Samstag auf dem Hauptmarkt von Krakau aus einem Auto auf Passanten geschossen, sechs Menschen starben, 16 wurden verletzt. Polens Innenminister sagte, der Festgenommene sei offenbar von rechtsextremen Ideologien fasziniert gewesen.",
+  "quellen_html": "<a href=\"https://www.zdfheute.de/politik/ausland/polen-krakau-schuesse-tote-verletzte-100.html\">ZDFheute</a> · <a href=\"https://orf.at/stories/3447559/\">ORF</a> · <a href=\"https://taz.de/Mutmasslicher-Taeter-festgenommen/!6228323/\">taz</a>",
+  "krass": 7
+ },
+ {
+  "datum": "2026-11-08",
+  "id": "m7",
+  "rubrik": "USA",
+  "titel": "Wahl verloren, Kurs verschärft? Trump macht Stephen Miller zum Stabschef",
+  "fakt": "Trump hat Stephen Miller zum neuen Stabschef im Weißen Haus ernannt, er löst am Montag Susie Wiles ab. Die Washington Post schreibt, das könnte Trumps Politik weiter nach rechts rücken.",
+  "quellen_html": "<a href=\"https://www.npr.org/2026/11/06/nx-s1-6032810/stephen-miller-replaces-susie-wiles-as-white-house-chief-of-staff\">NPR</a> · <a href=\"https://www.washingtonpost.com/politics/2026/11/06/trump-names-stephen-miller-new-white-house-chief-staff/\">Washington Post</a> · <a href=\"https://www.cbsnews.com/news/stephen-miller-trump-chief-of-staff-susie-wiles/\">CBS News</a>",
+  "krass": 6
+ },
+ {
+  "datum": "2026-11-08",
+  "id": "m8",
+  "rubrik": "USA",
+  "titel": "Der UFC-Boss als Regierungssprecher? Trump bietet Dana White den Job an",
+  "fakt": "Trump hat auf Truth Social erklärt, er habe UFC-Chef Dana White den Posten des Pressesprechers im Weißen Haus angeboten. White will am Montag mit Trump sprechen, zugesagt hat er noch nicht.",
+  "quellen_html": "<a href=\"https://www.cbsnews.com/news/trump-offers-white-house-press-secretary-role-dana-white/\">CBS News</a> · <a href=\"https://www.nbcnews.com/politics/white-house/trump-offers-press-secretary-job-ufc-ceo-dana-white-rcna608039\">NBC News</a> · <a href=\"https://www.cnbc.com/2026/11/07/trump-ufc-dana-white-press-secretary-offer.html\">CNBC</a>",
+  "krass": 4
+ },
+ {
+  "datum": "2026-11-08",
+  "id": "m9",
+  "rubrik": "Ukraine",
+  "titel": "Drei Tage vor den Friedensgesprächen: Russland greift Kiew wieder massiv an",
+  "fakt": "Russland hat Kiew und die Region in der Nacht zu Samstag laut ukrainischer Luftwaffe mit Raketen und 172 Drohnen angegriffen. Getroffen wurde vor allem Energie-Infrastruktur, in Kiew gab es laut Bürgermeister Klitschko fünf Verletzte.",
+  "quellen_html": "<a href=\"https://www.criticalthreats.org/analysis/russian-offensive-campaign-assessment-november-7-2026-6aefc4cc503e5\">ISW</a> · <a href=\"https://www.ukrinform.net/\">Ukrinform</a> · <a href=\"https://www.usnews.com/news/world/articles/2026-11-03/kremlin-confirms-trilateral-ukraine-peace-talks-in-abu-dhabi-next-week\">US News (Reuters)</a>",
+  "krass": 6
+ },
+ {
+  "datum": "2026-11-08",
+  "id": "m10",
+  "rubrik": "Recht",
+  "titel": "Jetzt beschlossen: Mindestens fünf Jahre Haft für Taten mit K.-o.-Tropfen",
+  "fakt": "Der Bundestag hat am Freitag härtere Strafen für den Einsatz von K.-o.-Tropfen beschlossen. Wer sie bei einer Vergewaltigung oder einem Raub einsetzt, bekommt künftig mindestens fünf Jahre Haft statt bisher drei.",
+  "quellen_html": "<a href=\"https://www.nordbayern.de/schlagzeilen/funf-jahre-haft-bundestag-beschliesst-hartere-strafen-fur-den-einsatz-von-k-o-tropfen-1.15343112\">nordbayern (dpa)</a>",
+  "krass": 5
  }
 ]
