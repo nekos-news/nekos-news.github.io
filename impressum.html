@@ -1042,7 +1042,7 @@ html.kontrast .w.jetzt { color: inherit; text-decoration: underline 2px; text-un
 article h3 mark.kreis::after, .bogen h3 mark.kreis::after { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 80' preserveAspectRatio='none'%3E%3Cpath d='M30 12 C 70 2, 150 3, 185 20 C 205 34, 190 62, 140 72 C 90 80, 25 76, 10 55 C -2 38, 15 18, 55 9 C 80 4, 110 5, 128 8' fill='none' stroke='%23FFE2A8' stroke-width='3.4' stroke-linecap='round'/%3E%3C/svg%3E") !important; filter: none; }
 article h3 mark.strich::after, .bogen h3 mark.strich::after { filter: brightness(2.2) saturate(0.6); }
 .zurueck10 { position: relative; width: 2.1rem; height: 2.1rem; padding: 0; border: 0; border-radius: 50%; cursor: pointer; display: grid; place-items: center; color: var(--anthrazit); background: rgba(46,43,42,0.1); flex: none; }
-.zurueck10 svg { position: absolute; inset: 0.22rem; width: auto; height: auto; }
+.zurueck10 svg { position: absolute; left: 50%; top: 50%; width: 76%; height: 76%; transform: translate(-50%, -50%); display: block; } /* feste Größe: Safari zentrierte das Symbol sonst falsch */
 
 .bogen-links { display: flex; align-items: center; gap: 0.5rem; }
 .bogen-leiste .zurueck10 { width: 2.4rem; height: 2.4rem; color: var(--creme); background: rgba(244,236,220,0.16); }
@@ -1582,7 +1582,7 @@ function mzVideoZeit(code, i) {
       });
       /* 10 Sekunden zurück (Wunsch Nicolas 2026-11-08); läuft die Meldung noch nicht, startet sie */
       var z10 = document.createElement('button'); z10.type = 'button'; z10.className = 'zurueck10'; z10.setAttribute('aria-label', '10 Sekunden zurück');
-      z10.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.6A8.4 8.4 0 1 1 4.7 7.8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M14.6 0.9 9.6 3.6 14.6 6.3z" fill="currentColor"/><text x="12" y="14.6" text-anchor="middle" font-family="Libre Franklin, Arial, sans-serif" font-weight="800" font-size="7.2" fill="currentColor">10</text></svg>';
+      z10.innerHTML = '<svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M12 3.6A8.4 8.4 0 1 1 4.7 7.8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M14.6 0.9 9.6 3.6 14.6 6.3z" fill="currentColor"/><text x="12" y="14.6" text-anchor="middle" font-family="Libre Franklin, Arial, sans-serif" font-weight="800" font-size="7.2" fill="currentColor">10</text></svg>';
       z10.addEventListener('click', function (e) { e.stopPropagation(); if (pos === i) { player.currentTime = Math.max(0, player.currentTime - 10); if (player.paused) { player.play(); knoepfe(i); } } else x.knopf.click(); });
       d.querySelector('.huelle').insertAdjacentElement('afterend', z10);
     });
