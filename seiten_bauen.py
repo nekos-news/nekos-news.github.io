@@ -147,8 +147,8 @@ def neko():
           <span class="beruf" data-einfach="Ich habe Design studiert">Studierter Kommunikationsdesigner</span>
         </div>
       </div>
-      <p data-einfach="Ich mache kurze Videos über Politik. Auf Social Media.">Ich mache <mark class="strich">Nekos_news</mark>: kurze Videos über Politik auf Social Media.</p>
-      <p data-einfach="Ich will, dass mehr Menschen Lust auf Politik haben. Ich erkläre es einfach. Und ich zeige, wenn Firmen sich Politik kaufen wollen.">Ich bin ein Typ, der versucht, Leute für Politik zu begeistern: die Einstiegshürden kleiner machen, zeigen, was <mark class="kreis">nicht zusammenpasst</mark>, und ein bisschen gegen Lobbyarbeit halten. Ehrlich, mit Fakten und ohne Nachrichtensprecher-Ton.</p>
+      <p data-einfach="Ich mache kurze Videos über Politik.">Ich mache <mark class="strich">Nekos_news</mark>, kurze Videos über Politik.</p>
+      <p data-einfach="Politik geht alle an. Aber oft wirkt sie schwer. Ich erkläre sie einfach, wie für einen Freund.">Politik betrifft jeden, fühlt sich aber oft an wie was für <mark class="kreis">Insider</mark>. Ich erklär’s so, wie ich’s einem Kumpel erklären würde.</p>
     </article>
   <div class="folgen">
     <div class="kanaele vita-kanaele">KANAELEPATREON<a class="anfrage" href="mailto:neko.anfragen@gmail.com?subject=Anfrage%20an%20Neko"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5 H21 A1 1 0 0 1 22 6 V18 A1 1 0 0 1 21 19 H3 A1 1 0 0 1 2 18 V6 A1 1 0 0 1 3 5 Z M4 7.2 V17 H20 V7.2 L12 12.6 Z M5.6 7 L12 11.2 L18.4 7 Z"/></svg>Anfragen</a></div>
