@@ -891,6 +891,15 @@ html.ruhig .kurz .neko-wrap .zl { mix-blend-mode: normal; }
 .gruppe > .zettel, .mehr-news .zettel, .reels-kopf .zettel { font-size: 1.45rem !important; padding: 0.55rem 1.2rem 0.48rem !important; }
 .zettel-gross { font-size: 1.75rem !important; padding: 0.6rem 1.35rem 0.52rem !important; }
 .oben .hinweis b { white-space: nowrap; }
+/* FAQ auf der Neko-Seite */
+.faq { gap: 0 !important; padding-block: 0.4rem !important; }
+.faq-frage { border-bottom: 1px dashed var(--mittelgrau); padding: 0.75rem 0; }
+.faq-frage:last-child { border-bottom: 0; }
+.faq-frage summary { cursor: pointer; list-style: none; font: 800 0.95rem/1.3 var(--sans); color: var(--anthrazit); display: flex; justify-content: space-between; gap: 0.6rem; }
+.faq-frage summary::-webkit-details-marker { display: none; }
+.faq-frage summary::after { content: "+"; color: var(--rost); font-size: 1.2rem; line-height: 1; }
+.faq-frage[open] summary::after { content: "–"; }
+.faq-frage p { margin: 0.5rem 0 0; font-size: 0.97rem; }
 </style>
 </head>
 <body>
@@ -993,7 +1002,8 @@ html.ruhig .kurz .neko-wrap .zl { mix-blend-mode: normal; }
 <div class="news neko-menue">
     <button class="news-knopf" type="button" aria-expanded="false">Neko ▾</button>
     <div class="news-wahl">
-      <a href="/neko.html#neko">Über mich</a><a href="/neko.html#content">Videos</a>
+      <a href="/neko.html#neko">Über mich</a><a href="/neko.html#content">Videos</a><a href="/neko.html#faq">FAQ</a>
+    <a href="/neko.html#faq">FAQ</a>
     </div>
   </div>
   <div class="news">

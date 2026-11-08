@@ -891,6 +891,15 @@ html.ruhig .kurz .neko-wrap .zl { mix-blend-mode: normal; }
 .gruppe > .zettel, .mehr-news .zettel, .reels-kopf .zettel { font-size: 1.45rem !important; padding: 0.55rem 1.2rem 0.48rem !important; }
 .zettel-gross { font-size: 1.75rem !important; padding: 0.6rem 1.35rem 0.52rem !important; }
 .oben .hinweis b { white-space: nowrap; }
+/* FAQ auf der Neko-Seite */
+.faq { gap: 0 !important; padding-block: 0.4rem !important; }
+.faq-frage { border-bottom: 1px dashed var(--mittelgrau); padding: 0.75rem 0; }
+.faq-frage:last-child { border-bottom: 0; }
+.faq-frage summary { cursor: pointer; list-style: none; font: 800 0.95rem/1.3 var(--sans); color: var(--anthrazit); display: flex; justify-content: space-between; gap: 0.6rem; }
+.faq-frage summary::-webkit-details-marker { display: none; }
+.faq-frage summary::after { content: "+"; color: var(--rost); font-size: 1.2rem; line-height: 1; }
+.faq-frage[open] summary::after { content: "–"; }
+.faq-frage p { margin: 0.5rem 0 0; font-size: 0.97rem; }
 </style>
 </head>
 <body>
@@ -993,7 +1002,8 @@ html.ruhig .kurz .neko-wrap .zl { mix-blend-mode: normal; }
 <div class="news neko-menue">
     <button class="news-knopf" type="button" aria-expanded="false">Neko ▾</button>
     <div class="news-wahl">
-      <a href="/neko.html#neko">Über mich</a><a href="/neko.html#content">Videos</a>
+      <a href="/neko.html#neko">Über mich</a><a href="/neko.html#content">Videos</a><a href="/neko.html#faq">FAQ</a>
+    <a href="/neko.html#faq">FAQ</a>
     </div>
   </div>
   <div class="news">
@@ -1063,6 +1073,18 @@ html.ruhig .kurz .neko-wrap .zl { mix-blend-mode: normal; }
     <h2 class="zettel zettel-gross">Content</h2>
     <div class="filter" id="filter" role="group" aria-label="Nach Thema filtern"></div>
     <div class="raster" id="raster"></div>
+  </section>
+  <section class="gruppe" id="faq">
+    <h2 class="zettel zettel-gross">FAQ</h2>
+    <article class="papier riss faq">
+      <details class="faq-frage"><summary>Wer steckt hinter Nekos_news?</summary><p>Ich, Neko. Ich bin studierter Kommunikationsdesigner und mache politische Kurzvideos auf Instagram, TikTok und YouTube.</p></details>
+      <details class="faq-frage"><summary>Wie entstehen deine Videos?</summary><p>Ich suche mir ein Thema, recherchiere die Fakten und baue dann das Video in meinem Papier-Look. Wenn ich Zahlen nenne, sollen sie belegbar sein.</p></details>
+      <details class="faq-frage"><summary>Sind die News auf dieser Seite von dir?</summary><p>Nein. Die News-Seite stellt eine KI automatisch zusammen: Sie fasst Berichte echter Journalist:innen zusammen und verlinkt die Originalartikel. Anders als meine Videos prüfe ich das nicht selbst.</p></details>
+      <details class="faq-frage"><summary>Wie oft gibt es neue News?</summary><p>Jeden Morgen gegen 7 Uhr eine neue Ausgabe. Gegen 17 Uhr wird nur ergänzt, wenn tagsüber etwas Großes passiert ist.</p></details>
+      <details class="faq-frage"><summary>Kann ich dir ein Thema vorschlagen?</summary><p>Klar, schreib mir an <a href="mailto:neko.anfragen@gmail.com">neko.anfragen@gmail.com</a>. Ich kann nicht jedes Thema machen, aber ich lese alles.</p></details>
+      <details class="faq-frage"><summary>Kooperationen und Anfragen?</summary><p>Bitte per Mail an <a href="mailto:neko.anfragen@gmail.com">neko.anfragen@gmail.com</a>, kurz mit Worum geht’s, Zeitraum und Ansprechperson.</p></details>
+      <details class="faq-frage"><summary>Wann kommt der Shop?</summary><p>Bald. Hoodie, Kappe und Sticker sind schon zu sehen, bestellen kann man noch nicht.</p></details>
+    </article>
   </section>
 </div>
 <!-- AUSGABE-ENDE -->

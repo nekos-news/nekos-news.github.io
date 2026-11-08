@@ -153,6 +153,18 @@ def neko():
     <div class="filter" id="filter" role="group" aria-label="Nach Thema filtern"></div>
     <div class="raster" id="raster"></div>
   </section>
+  <section class="gruppe" id="faq">
+    <h2 class="zettel zettel-gross">FAQ</h2>
+    <article class="papier riss faq">
+      <details class="faq-frage"><summary>Wer steckt hinter Nekos_news?</summary><p>Ich, Neko. Ich bin studierter Kommunikationsdesigner und mache politische Kurzvideos auf Instagram, TikTok und YouTube.</p></details>
+      <details class="faq-frage"><summary>Wie entstehen deine Videos?</summary><p>Ich suche mir ein Thema, recherchiere die Fakten und baue dann das Video in meinem Papier-Look. Wenn ich Zahlen nenne, sollen sie belegbar sein.</p></details>
+      <details class="faq-frage"><summary>Sind die News auf dieser Seite von dir?</summary><p>Nein. Die News-Seite stellt eine KI automatisch zusammen: Sie fasst Berichte echter Journalist:innen zusammen und verlinkt die Originalartikel. Anders als meine Videos prüfe ich das nicht selbst.</p></details>
+      <details class="faq-frage"><summary>Wie oft gibt es neue News?</summary><p>Jeden Morgen gegen 7 Uhr eine neue Ausgabe. Gegen 17 Uhr wird nur ergänzt, wenn tagsüber etwas Großes passiert ist.</p></details>
+      <details class="faq-frage"><summary>Kann ich dir ein Thema vorschlagen?</summary><p>Klar, schreib mir an <a href="mailto:neko.anfragen@gmail.com">neko.anfragen@gmail.com</a>. Ich kann nicht jedes Thema machen, aber ich lese alles.</p></details>
+      <details class="faq-frage"><summary>Kooperationen und Anfragen?</summary><p>Bitte per Mail an <a href="mailto:neko.anfragen@gmail.com">neko.anfragen@gmail.com</a>, kurz mit Worum geht’s, Zeitraum und Ansprechperson.</p></details>
+      <details class="faq-frage"><summary>Wann kommt der Shop?</summary><p>Bald. Hoodie, Kappe und Sticker sind schon zu sehen, bestellen kann man noch nicht.</p></details>
+    </article>
+  </section>
 ''' + FUSS
     k = open(os.path.join(HIER, "daten", "kanaele.html"), encoding="utf-8").read().strip()  # Kanal-Knöpfe (nicht mehr im Menü)
     seite(inhalt.replace("KANAELE", k).replace("PATREON", patreon), "Neko", "neko.html")
