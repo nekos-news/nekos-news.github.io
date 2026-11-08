@@ -1047,10 +1047,12 @@ article h3 mark.strich::after, .bogen h3 mark.strich::after { filter: brightness
 .bogen-links { display: flex; align-items: center; gap: 0.5rem; }
 .bogen-leiste .zurueck10 { width: 2.4rem; height: 2.4rem; color: var(--creme); background: rgba(244,236,220,0.16); }
 html.kontrast .zurueck10 { background: #fff; color: #000; outline: 2px solid #000; }
-.hoeren button.zurueck10 { width: 2.1rem !important; height: 2.1rem !important; clip-path: none !important; background: var(--rost) !important; background-image: var(--faser) !important; color: var(--creme) !important; transform: none !important; filter: none !important; font-size: 0.56rem !important; }
+.hoeren button.zurueck10 { width: 2.2rem !important; height: 2.2rem !important; border-radius: 0 !important; background: var(--rost) !important; background-image: var(--faser) !important; color: var(--creme) !important; transform: none !important; filter: none !important; font-size: 0.56rem !important; }
 .hoeren button.zurueck10::before, .hoeren button.zurueck10::after { content: none !important; display: none !important; }
-.bogen-leiste button.zurueck10 { color: var(--creme) !important; background: var(--rost) !important; filter: drop-shadow(0 3px 0 rgba(0,0,0,0.3)) !important; width: 2.4rem !important; height: 2.4rem !important; }
+.bogen-leiste button.zurueck10 { color: var(--creme) !important; background: var(--rost) !important; filter: none !important; width: 2.4rem !important; height: 2.4rem !important; }
 html.kontrast .hoeren button.zurueck10 { background: #fff !important; color: #000 !important; outline: 2px solid #000; }
+.hoeren small .stimme-name { white-space: nowrap; }
+.hoeren { gap: 0.4rem !important; }
 /* Seiten ohne Tagesausgabe (Woche/Monat/Jahr): Logo oben, blauer Hinweis mittig darunter */
 .oben:has(+ .wrap:not([data-datum])) { padding-top: 3.4rem; }
 .oben:has(+ .wrap:not([data-datum])) .logo-oben { display: block !important; position: static !important; justify-self: center; width: min(8rem, 34vw) !important; margin: 0.9rem 0 0.6rem !important; }
@@ -1684,7 +1686,12 @@ function mzVideoZeit(code, i) {
       var z10 = document.createElement('button'); z10.type = 'button'; z10.className = 'zurueck10'; z10.setAttribute('aria-label', '10 Sekunden zurück');
       z10.innerHTML = '<svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M12 3.6A8.4 8.4 0 1 1 4.7 7.8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M14.6 0.9 9.6 3.6 14.6 6.3z" fill="currentColor"/><text x="12" y="14.6" text-anchor="middle" font-family="Libre Franklin, Arial, sans-serif" font-weight="800" font-size="7.2" fill="currentColor">10</text></svg>';
       z10.addEventListener('click', function (e) { e.stopPropagation(); if (pos === i) { player.currentTime = Math.max(0, player.currentTime - 10); if (player.paused) { player.play(); knoepfe(i); } } else x.knopf.click(); });
-      d.querySelector('.huelle').insertAdjacentElement('afterend', z10);
+      /* Handgeschnittener Rand wie beim Play-Knopf (Wunsch Nicolas 2026-11-08) */
+      var zh = document.createElement('span'); zh.className = 'huelle'; zh.appendChild(z10);
+      var zp = [], zn = 15 + (i % 2) * 2; for (var zk = 0; zk < zn; zk++) { var zw = zk / zn * Math.PI * 2, zr = 50 - ((Math.sin((i + 7) * 12.9898 + zk * 78.233) * 43758.5453) % 1 + 1) % 1 * 6;
+        zp.push((50 + zr * Math.cos(zw)).toFixed(1) + '% ' + (50 + zr * Math.sin(zw)).toFixed(1) + '%'); }
+      z10.style.setProperty('clip-path', 'polygon(' + zp.join(',') + ')', 'important');
+      d.querySelector('.huelle').insertAdjacentElement('afterend', zh);
     });
   });
   // Unten zeigt immer, was gerade läuft: Pause, solange irgendetwas abgespielt wird
