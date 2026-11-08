@@ -1023,6 +1023,9 @@ html.kontrast .sortierung span { color: #fff; }
 #liste:has(.wischer) { gap: 0 !important; }
 #liste:has(.wischer) > .zettel { margin-bottom: 0.9rem !important; }
 #liste:has(.wischer) + .liste-info { margin-top: 1.6rem; }
+.wrap > .liste-hinweis { justify-self: center !important; margin: 1.8rem auto 0 !important; max-width: min(19rem, calc(100% - 3rem)) !important; font-size: 0.58rem !important; padding: 0.45rem 0.6rem 0.45rem 0.5rem !important; gap: 0.45rem !important; transform: rotate(0.8deg); }
+.wrap > .liste-hinweis .schild { width: 1.9rem !important; }
+.wrap > .liste-hinweis b { font-size: 0.62rem !important; }
 /* Seiten ohne Tagesausgabe (Woche/Monat/Jahr): Logo oben, blauer Hinweis mittig darunter */
 .oben:has(+ .wrap:not([data-datum])) { padding-top: 3.4rem; }
 .oben:has(+ .wrap:not([data-datum])) .logo-oben { display: block !important; position: static !important; justify-self: center; width: min(8rem, 34vw) !important; margin: 0.9rem 0 0.6rem !important; }
@@ -1267,7 +1270,7 @@ html.kontrast .hinweis b { color: #fff !important; }
       <p class="quelle"><a href="https://www.zdfheute.de/newsticker/schlagzeilen-100.html">ZDFheute</a> · <a href="https://de.investing.com/news/general-news/merz-lobt-spd-fur-zusammenarbeit-in-der-koalition-3747149">dpa-AFX</a> · <a href="archiv/2026-11-07.html#m1">Zur Ausgabe</a></p>
     </article>
   </section>
-  <p class="liste-info papier riss" style="padding:0.6rem 0.8rem">Welche Meldungen hier stehen, schätzt eine KI ein: Tragweite, Betroffene, Ungerechtigkeit, Überraschung. Das ist eine Einschätzung, keine Messung.</p>
+  <p class="hinweis liste-hinweis"><svg class="schild" viewBox="0 0 64 56" aria-hidden="true"><path d="M32 3 L61 52 L3 52 Z" fill="#D99A4E" stroke="#2E2B2A" stroke-width="5" stroke-linejoin="round"/><text x="32" y="45" text-anchor="middle" font-family="Libre Franklin, Arial, sans-serif" font-weight="800" font-size="19" fill="#2E2B2A">KI</text></svg><span><b>Achtung, KI-Auswahl:</b> Welche Meldungen hier stehen, entscheidet eine KI, nicht Neko. Sie schätzt Tragweite, Betroffene, Ungerechtigkeit und Überraschung ein. Das ist eine Einschätzung, keine Messung.</span></p>
 </div>
 <!-- AUSGABE-ENDE -->
 

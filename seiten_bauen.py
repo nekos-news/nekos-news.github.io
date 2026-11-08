@@ -62,7 +62,8 @@ def bestenliste():
       <p class="quelle">{a.get("quellen_html", "")} · <a href="archiv/{a["datum"]}.html#{a["id"]}">Zur Ausgabe</a></p>
     </article>''')
         teile.append("  </section>")
-        teile.append('  <p class="liste-info papier riss" style="padding:0.6rem 0.8rem">Welche Meldungen hier stehen, schätzt eine KI ein: Tragweite, Betroffene, Ungerechtigkeit, Überraschung. Das ist eine Einschätzung, keine Messung.</p>')
+        # Blau wie der KI-Hinweis oben, kleiner; klar: Auswahl trifft die KI, nicht Neko (Wunsch Nicolas 2026-11-08)
+        teile.append('  <p class="hinweis liste-hinweis"><svg class="schild" viewBox="0 0 64 56" aria-hidden="true"><path d="M32 3 L61 52 L3 52 Z" fill="#D99A4E" stroke="#2E2B2A" stroke-width="5" stroke-linejoin="round"/><text x="32" y="45" text-anchor="middle" font-family="Libre Franklin, Arial, sans-serif" font-weight="800" font-size="19" fill="#2E2B2A">KI</text></svg><span><b>Achtung, KI-Auswahl:</b> Welche Meldungen hier stehen, entscheidet eine KI, nicht Neko. Sie schätzt Tragweite, Betroffene, Ungerechtigkeit und Überraschung ein. Das ist eine Einschätzung, keine Messung.</span></p>')
         teile.append("</div>")
         seite("\n".join(teile), titel, datei)
 
