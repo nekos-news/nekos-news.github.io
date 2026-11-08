@@ -47,21 +47,21 @@ def bestenliste():
         auswahl = [a for a in alle if (heute - datetime.date.fromisoformat(a["datum"])).days < tage]
         auswahl.sort(key=lambda a: (-a.get("krass", 0), a["datum"]), reverse=False)
         auswahl = sorted(auswahl, key=lambda a: (-a.get("krass", 0), -datetime.date.fromisoformat(a["datum"]).toordinal()))[:anzahl]
-        teile = [kopf(f"Stand {heute:%d.%m.%Y}", titel, unter)]
-        teile.append('  <section class="gruppe" id="liste">\n    <h2 class="zettel">Bestenliste</h2>')
+        # Ohne Kopfzettel und ohne Platzierungen; Überschrift = Zeitraum (Wunsch Nicolas 2026-11-08)
+        teile = ['<div class="wrap">', '  <section class="gruppe" id="liste">\n    <h2 class="zettel zettel-gross">%s</h2>' % titel]
         if not auswahl:
             teile.append('    <article class="papier riss"><p>Noch keine Meldungen gesammelt.</p></article>')
         for i, a in enumerate(auswahl, 1):
             d = datetime.date.fromisoformat(a["datum"])
             teile.append(f'''    <article class="papier riss">
-      <span class="rubrik"><span class="platz">{i}</span> {html.escape(a.get("rubrik", ""))} · {TAGE[d.weekday()]}, {d:%d.%m.}</span>
       <h3>{html.escape(a["titel"])}</h3>
-      <p class="fakt"><b>Fakt</b>{html.escape(a.get("fakt", ""))}</p>
+      <span class="rubrik">{html.escape(a.get("rubrik", ""))} · {TAGE[d.weekday()]}, {d:%d.%m.}</span>
+      <p class="fakt"><b title="KI-Zusammenfassung">KI-Zusammenfassung</b>{html.escape(a.get("fakt", ""))}</p>
       <p class="quelle">{a.get("quellen_html", "")} · <a href="archiv/{a["datum"]}.html#{a["id"]}">Zur Ausgabe</a></p>
     </article>''')
         teile.append("  </section>")
-        teile.append('  <p class="liste-info papier riss" style="padding:0.6rem 0.8rem">Wie „krass“ eine Meldung ist (1–10), schätzt die KI jeden Morgen ein: Tragweite, Betroffene, Ungerechtigkeit, Überraschung. Das ist eine Einschätzung, keine Messung.</p>')
-        teile.append(FUSS)
+        teile.append('  <p class="liste-info papier riss" style="padding:0.6rem 0.8rem">Welche Meldungen hier stehen, schätzt eine KI ein: Tragweite, Betroffene, Ungerechtigkeit, Überraschung. Das ist eine Einschätzung, keine Messung.</p>')
+        teile.append("</div>")
         seite("\n".join(teile), titel, datei)
 
 def shop():
