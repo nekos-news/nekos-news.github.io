@@ -53,7 +53,7 @@ def bestenliste():
             teile.append('    <article class="papier riss"><p>Noch keine Meldungen gesammelt.</p></article>')
         for i, a in enumerate(auswahl, 1):
             d = datetime.date.fromisoformat(a["datum"])
-            teile.append(f'''    <article class="papier riss">
+            teile.append(f'''    <article class="papier riss" id="w{i}">
       <h3>{html.escape(a["titel"])}</h3>
       <span class="rubrik">{html.escape(a.get("rubrik", ""))} · {TAGE[d.weekday()]}, {d:%d.%m.}</span>
       <p class="fakt"><b title="KI-Zusammenfassung">KI-Zusammenfassung</b>{html.escape(a.get("fakt", ""))}</p>

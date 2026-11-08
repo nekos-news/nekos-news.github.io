@@ -1020,6 +1020,9 @@ article.vita { margin-top: 2.4rem; }
 html.kontrast .sortierung button { background: #fff !important; background-image: none !important; color: #000 !important; border: 2px solid #000; transform: none; filter: none; }
 html.kontrast .sortierung button[aria-pressed="true"] { background: #000 !important; color: #fff !important; outline: 2px solid #fff; }
 html.kontrast .sortierung span { color: #fff; }
+#liste:has(.wischer) { gap: 0 !important; }
+#liste:has(.wischer) > .zettel { margin-bottom: 0.9rem !important; }
+#liste:has(.wischer) + .liste-info { margin-top: 1.6rem; }
 /* Seiten ohne Tagesausgabe (Woche/Monat/Jahr): Logo oben, blauer Hinweis mittig darunter */
 .oben:has(+ .wrap:not([data-datum])) { padding-top: 3.4rem; }
 .oben:has(+ .wrap:not([data-datum])) .logo-oben { display: block !important; position: static !important; justify-self: center; width: min(8rem, 34vw) !important; margin: 0.9rem 0 0.6rem !important; }
@@ -1221,61 +1224,61 @@ html.kontrast .hinweis b { color: #fff !important; }
 <div class="wrap">
   <section class="gruppe" id="liste">
     <h2 class="zettel zettel-gross">Dieser Monat</h2>
-    <article class="papier riss">
+    <article class="papier riss" id="w1">
       <h3>Trump greift wieder im Iran an und lobt gleichzeitig die Gespräche</h3>
       <span class="rubrik">Nahost · Samstag, 07.11.</span>
       <p class="fakt"><b title="KI-Zusammenfassung">KI-Zusammenfassung</b>Trump hat neue Angriffe auf Luftabwehr auf der Insel Qeshm bestätigt. Er nennt sie „klein“ und spricht gleichzeitig von Fortschritten in Gesprächen mit Teheran.</p>
       <p class="quelle"><a href="https://aljazeera.com/amp/news/2026/11/7/trump-confirms-new-us-strikes-on-irans-qeshm-island">Al Jazeera</a> · <a href="https://foreignpolicy.com/2026/11/03/us-iran-strikes-midterms-israel-aid-ukraine-russia-agoa-australia/">Foreign Policy</a> · <a href="archiv/2026-11-07.html#m6">Zur Ausgabe</a></p>
     </article>
-    <article class="papier riss">
+    <article class="papier riss" id="w2">
       <h3>Klatsche für Trump: Die Demokraten holen das Repräsentantenhaus</h3>
       <span class="rubrik">USA · Samstag, 07.11.</span>
       <p class="fakt"><b title="KI-Zusammenfassung">KI-Zusammenfassung</b>Nach Hochrechnungen gewinnen die Demokraten die Mehrheit im Repräsentantenhaus. Laut CNBC auch im Senat, einzelne Rennen werden aber noch ausgezählt.</p>
       <p class="quelle"><a href="https://www.cbsnews.com/live-updates/house-election-results-2026/">CBS News</a> · <a href="https://www.cnbc.com/2026/11/04/2026-midterm-election-results-live-updates.html">CNBC</a> · <a href="archiv/2026-11-07.html#m8">Zur Ausgabe</a></p>
     </article>
-    <article class="papier riss">
+    <article class="papier riss" id="w3">
       <h3>Die Reichsbürger vom „Königreich Deutschland“ stehen vor Gericht</h3>
       <span class="rubrik">Düsseldorf · Justiz · Samstag, 07.11.</span>
       <p class="fakt"><b title="KI-Zusammenfassung">KI-Zusammenfassung</b>Vor dem Oberlandesgericht Düsseldorf hat am Freitag der Prozess gegen vier mutmaßliche Anführer der verbotenen Reichsbürger-Gruppe begonnen.</p>
       <p class="quelle"><a href="https://www.news.de/panorama/860164168/6-november-2026-news-themen-des-tages-was-passiert-heute-in-deutschland-und-der-welt-das-ist-heute-am-06-11-2026-wichtig-in-den-nachrichten-aus-politik-wirtschaft-sport-und-co/1/">news.de (dpa)</a> · <a href="archiv/2026-11-07.html#m3">Zur Ausgabe</a></p>
     </article>
-    <article class="papier riss">
+    <article class="papier riss" id="w4">
       <h3>Wer mit K.-o.-Tropfen vergewaltigt, soll härter bestraft werden</h3>
       <span class="rubrik">Recht · Samstag, 07.11.</span>
       <p class="fakt"><b title="KI-Zusammenfassung">KI-Zusammenfassung</b>Der Bundestag sollte am Freitag ein schärferes Gesetz beschließen. Wer K.-o.-Tropfen für eine Vergewaltigung oder einen Raub nutzt, soll mindestens fünf Jahre Haft bekommen.</p>
       <p class="quelle"><a href="https://www.news.de/panorama/860164168/6-november-2026-news-themen-des-tages-was-passiert-heute-in-deutschland-und-der-welt-das-ist-heute-am-06-11-2026-wichtig-in-den-nachrichten-aus-politik-wirtschaft-sport-und-co/1/">news.de (dpa)</a> · <a href="archiv/2026-11-07.html#m4">Zur Ausgabe</a></p>
     </article>
-    <article class="papier riss">
+    <article class="papier riss" id="w5">
       <h3>Russland, Ukraine, USA: Nächste Woche wird in Abu Dhabi verhandelt</h3>
       <span class="rubrik">Ukraine · Samstag, 07.11.</span>
       <p class="fakt"><b title="KI-Zusammenfassung">KI-Zusammenfassung</b>Russland, die Ukraine und die USA verhandeln am 10. und 11. November in Abu Dhabi. Der Kreml hat das bestätigt. Kurz zuvor wurde Kiew erneut mit Raketen angegriffen.</p>
       <p class="quelle"><a href="https://www.usnews.com/news/world/articles/2026-11-03/kremlin-confirms-trilateral-ukraine-peace-talks-in-abu-dhabi-next-week">US News (Reuters)</a> · <a href="https://www.axios.com/2026/11/03/us-russia-ukraine-peace-talks-uae-trump-witkoff-kushner">Axios</a> · <a href="archiv/2026-11-07.html#m7">Zur Ausgabe</a></p>
     </article>
-    <article class="papier riss">
+    <article class="papier riss" id="w6">
       <h3>Die Rentenreform? Kommt frühestens im Frühjahr</h3>
       <span class="rubrik">Soziales · Samstag, 07.11.</span>
       <p class="fakt"><b title="KI-Zusammenfassung">KI-Zusammenfassung</b>Das Kabinett will den Entwurf noch vor Weihnachten beschließen. Im Bundestag ist die Reform aber erst für das erste Quartal 2027 geplant.</p>
       <p class="quelle"><a href="https://www.t-online.de/nachrichten/deutschland/innenpolitik/id_101473498/rentenreform-merz-erwartet-bundestagsbeschluss-wohl-erst-2027.html">t-online</a> · <a href="https://www.ad-hoc-news.de/wissenschaft/rentenreform-kabinett-plant-beschluss-vor-weihnachten-kapitalrente-folgt-2027/70460882">ad-hoc-news</a> · <a href="archiv/2026-11-07.html#m2">Zur Ausgabe</a></p>
     </article>
-    <article class="papier riss">
+    <article class="papier riss" id="w7">
       <h3>Selbst die SPD nervt der Dauerstreit in der Koalition</h3>
       <span class="rubrik">Bundespolitik · Samstag, 07.11.</span>
       <p class="fakt"><b title="KI-Zusammenfassung">KI-Zusammenfassung</b>Die SPD im Ruhrgebiet wirft der schwarz-roten Bundesregierung vor, uneinig aufzutreten und öffentlich zu streiten.</p>
       <p class="quelle"><a href="https://www.zdfheute.de/newsticker/schlagzeilen-100.html">ZDFheute</a> · <a href="https://de.investing.com/news/general-news/merz-lobt-spd-fur-zusammenarbeit-in-der-koalition-3747149">dpa-AFX</a> · <a href="archiv/2026-11-07.html#m1">Zur Ausgabe</a></p>
     </article>
-    <article class="papier riss">
+    <article class="papier riss" id="w8">
       <h3>Xi, Trump und Putin an einem Tisch? Darüber wird gerade geredet</h3>
       <span class="rubrik">Diplomatie · Samstag, 07.11.</span>
       <p class="fakt"><b title="KI-Zusammenfassung">KI-Zusammenfassung</b>China bestätigt, dass über ein Dreiertreffen der Staatschefs gesprochen wird. Einen Termin gibt es nicht.</p>
       <p class="quelle"><a href="https://www.inkl.com/news/latest-news-bulletin-november-7th-2026-morning">inkl (Guardian-Briefing)</a> · <a href="archiv/2026-11-07.html#m9">Zur Ausgabe</a></p>
     </article>
-    <article class="papier riss">
+    <article class="papier riss" id="w9">
       <h3>Haushalt 2027: Ende November wird’s ernst</h3>
       <span class="rubrik">Finanzen · Samstag, 07.11.</span>
       <p class="fakt"><b title="KI-Zusammenfassung">KI-Zusammenfassung</b>Der Bundestag berät den Haushalt vom 24. bis 27. November abschließend. Am Freitag der Woche ist die Schlussabstimmung geplant.</p>
       <p class="quelle"><a href="https://www.bundestag.de/dokumente/textarchiv/2026/kw34-haushalt-2027-ablauf-1187766">Bundestag</a> · <a href="archiv/2026-11-07.html#m5">Zur Ausgabe</a></p>
     </article>
-    <article class="papier riss">
+    <article class="papier riss" id="w10">
       <h3>Hacker klauen Daten von einem italienischen Minister</h3>
       <span class="rubrik">Europa · Samstag, 07.11.</span>
       <p class="fakt"><b title="KI-Zusammenfassung">KI-Zusammenfassung</b>Bei einem italienischen Minister wurden Daten gestohlen.</p>
@@ -1699,7 +1702,8 @@ function mzVideoZeit(code, i) {
   var w = document.createElement('span'); w.className = 'neko-wrap'; n.parentNode.insertBefore(w, n); w.appendChild(n); })();
 /* „Heute“: Wischer – immer genau EINE Meldung pro Wisch; Handy: Nachbarn unsichtbar, Desktop: Nachbarn grau und unscharf (Wunsch Nicolas 2026-11-08) */
 (function () {
-  var wrap = document.querySelector('.wrap[data-datum]'); if (!wrap) return;
+  /* Tagesausgabe und (seit 2026-11-08) Woche/Monat/Jahr (#liste) */
+  var wrap = document.querySelector('.wrap[data-datum]') || (document.getElementById('liste') && document.getElementById('liste').parentNode); if (!wrap) return;
   var erste = wrap.querySelector('section.gruppe'); if (!erste) return;
   var arts = Array.prototype.slice.call(wrap.querySelectorAll('section.gruppe > article[id]')); if (arts.length < 2) return;
   var w = document.createElement('div'); w.className = 'wischer'; w.setAttribute('aria-label', 'Meldungen, zur Seite wischen');
@@ -1792,7 +1796,7 @@ function mzVideoZeit(code, i) {
 })();
 /* Lesefluss im Wischer: „Als Nächstes“, gelesen merken (nur im eigenen Browser), Fortschritt und „Du bist durch“ (2026-11-08) */
 (function () {
-  var w = document.querySelector('.wischer'), nav = document.querySelector('.karussell-nav'); if (!w || !nav || !window.mzZeigeMeldung) return;
+  var w = document.querySelector('.wischer'), nav = document.querySelector('.karussell-nav'); if (!w || !nav || !window.mzZeigeMeldung || !document.querySelector('.wrap[data-datum]')) return;
   var arts = Array.prototype.slice.call(w.querySelectorAll('article[id]')), datum = document.querySelector('.wrap[data-datum]').getAttribute('data-datum');
   var gel = []; try { gel = JSON.parse(localStorage.getItem('mz-gelesen') || '[]'); } catch (e) {}
   function key(a) { return datum + '#' + a.id; }

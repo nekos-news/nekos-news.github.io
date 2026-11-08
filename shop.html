@@ -1020,6 +1020,9 @@ article.vita { margin-top: 2.4rem; }
 html.kontrast .sortierung button { background: #fff !important; background-image: none !important; color: #000 !important; border: 2px solid #000; transform: none; filter: none; }
 html.kontrast .sortierung button[aria-pressed="true"] { background: #000 !important; color: #fff !important; outline: 2px solid #fff; }
 html.kontrast .sortierung span { color: #fff; }
+#liste:has(.wischer) { gap: 0 !important; }
+#liste:has(.wischer) > .zettel { margin-bottom: 0.9rem !important; }
+#liste:has(.wischer) + .liste-info { margin-top: 1.6rem; }
 /* Seiten ohne Tagesausgabe (Woche/Monat/Jahr): Logo oben, blauer Hinweis mittig darunter */
 .oben:has(+ .wrap:not([data-datum])) { padding-top: 3.4rem; }
 .oben:has(+ .wrap:not([data-datum])) .logo-oben { display: block !important; position: static !important; justify-self: center; width: min(8rem, 34vw) !important; margin: 0.9rem 0 0.6rem !important; }
@@ -1660,7 +1663,8 @@ function mzVideoZeit(code, i) {
   var w = document.createElement('span'); w.className = 'neko-wrap'; n.parentNode.insertBefore(w, n); w.appendChild(n); })();
 /* „Heute“: Wischer – immer genau EINE Meldung pro Wisch; Handy: Nachbarn unsichtbar, Desktop: Nachbarn grau und unscharf (Wunsch Nicolas 2026-11-08) */
 (function () {
-  var wrap = document.querySelector('.wrap[data-datum]'); if (!wrap) return;
+  /* Tagesausgabe und (seit 2026-11-08) Woche/Monat/Jahr (#liste) */
+  var wrap = document.querySelector('.wrap[data-datum]') || (document.getElementById('liste') && document.getElementById('liste').parentNode); if (!wrap) return;
   var erste = wrap.querySelector('section.gruppe'); if (!erste) return;
   var arts = Array.prototype.slice.call(wrap.querySelectorAll('section.gruppe > article[id]')); if (arts.length < 2) return;
   var w = document.createElement('div'); w.className = 'wischer'; w.setAttribute('aria-label', 'Meldungen, zur Seite wischen');
@@ -1753,7 +1757,7 @@ function mzVideoZeit(code, i) {
 })();
 /* Lesefluss im Wischer: „Als Nächstes“, gelesen merken (nur im eigenen Browser), Fortschritt und „Du bist durch“ (2026-11-08) */
 (function () {
-  var w = document.querySelector('.wischer'), nav = document.querySelector('.karussell-nav'); if (!w || !nav || !window.mzZeigeMeldung) return;
+  var w = document.querySelector('.wischer'), nav = document.querySelector('.karussell-nav'); if (!w || !nav || !window.mzZeigeMeldung || !document.querySelector('.wrap[data-datum]')) return;
   var arts = Array.prototype.slice.call(w.querySelectorAll('article[id]')), datum = document.querySelector('.wrap[data-datum]').getAttribute('data-datum');
   var gel = []; try { gel = JSON.parse(localStorage.getItem('mz-gelesen') || '[]'); } catch (e) {}
   function key(a) { return datum + '#' + a.id; }
