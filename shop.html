@@ -774,14 +774,14 @@ html.kontrast .produktbilder::after { color: #fff; text-shadow: none; }
   font: 400 clamp(2.3rem, 12vw, 3.4rem)/0.92 "Rubik Spray Paint", var(--sans);
   text-shadow: 0 0 2px rgba(255,255,255,0.9), 0 0 9px rgba(255,255,255,0.45), 0 0 22px rgba(255,255,255,0.18); filter: blur(0.25px); }
 .spray i { position: absolute; top: 88%; width: 0.22rem; height: var(--h); background: linear-gradient(#f4f1ea, rgba(244,241,234,0.85)); border-radius: 0 0 0.2rem 0.2rem;
-  box-shadow: 0 0 6px rgba(255,255,255,0.35); transform-origin: top; animation: tropfen 3.2s ease-in var(--v) infinite both; }
+  box-shadow: 0 0 6px rgba(255,255,255,0.35); transform-origin: top; }
 .spray i::after { content: ""; position: absolute; left: 50%; bottom: -0.16rem; width: 0.38rem; height: 0.38rem; margin-left: -0.19rem; border-radius: 50%; background: #f4f1ea; }
 @keyframes tropfen { 0% { transform: scaleY(0.25); } 70% { transform: scaleY(1); } 100% { transform: scaleY(1); } }
 .lade { position: absolute; left: 12%; right: 12%; bottom: 9%; height: 0.32rem; background: rgba(255,255,255,0.18); overflow: hidden; border-radius: 0.2rem; }
 .lade b { position: absolute; inset: 0; background: #f4f1ea; transform-origin: left; animation: laden 2.6s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
 @keyframes laden { 0% { transform: scaleX(0); } 80% { transform: scaleX(0.94); } 100% { transform: scaleX(0.94); opacity: 0; } }
 .produkt .slogan { font: italic 600 1.05rem/1.35 var(--serif); color: var(--rost); margin: 0; }
-.preiszeile { display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; flex-wrap: wrap; }
+.preiszeile { display: flex; align-items: center; justify-content: center; gap: 0.6rem; flex-wrap: wrap; }
 .preis { font: 800 1.35rem var(--sans); color: var(--anthrazit); background: var(--papier-2); background-image: var(--faser); padding: 0.25rem 0.6rem 0.2rem; transform: rotate(-2deg); filter: drop-shadow(1px 2px 0 rgba(46,43,42,0.3)); }
 .preiszeile .marke { justify-self: auto; }
 .ipunkt { position: relative; display: inline-block; }
@@ -903,7 +903,7 @@ html.ruhig .spray i, html.ruhig .ipunkt b { animation: none; }
 <div class="news shop-menue">
     <button class="news-knopf" type="button" aria-expanded="false">Shop ▾</button>
     <div class="news-wahl">
-      <a href="/shop.html">Alle Produkte</a><a href="/shop.html#hoodie">Hoodie</a><a href="/shop.html#kappe">Kappe</a><a href="/shop.html#sticker">Sticker</a>
+      <a href="/shop.html">Alle Produkte</a><a href="/shop.html#kleidung">Kleidung</a><a href="/shop.html#lifestyle">Lifestyle</a>
     </div>
   </div>
 </div>
@@ -935,27 +935,28 @@ html.ruhig .spray i, html.ruhig .ipunkt b { animation: none; }
 <!-- AUSGABE-START -->
 <div class="wrap">
   <section class="gruppe" id="shop">
-    <h2 class="zettel zettel-gross">Kommt bald</h2>
+    <h2 class="zettel zettel-gross" id="kleidung">Kleidung</h2>
     <article class="papier riss produkt" id="hoodie">
       <h3>STOP – F*cking Fascists</h3>
       <div class="produktbilder pix" role="img" aria-label="Hoodie STOP – F*cking Fascists – Vorschau folgt"><img src="bilder/shop/pix_hoodie_hinten.png" alt="" width="22" height="22"><img src="bilder/shop/pix_hoodie_vorne.png" alt="" width="22" height="22"><div class="coming"><span class="spray">Com<span class="ipunkt">ı<b></b></span>ng<br>Soon<i style="left:9%;--h:1.1rem;--v:0s"></i><i style="left:23%;--h:1.9rem;--v:0.6s"></i><i style="left:41%;--h:0.8rem;--v:1.1s"></i><i style="left:58%;--h:2.3rem;--v:0.3s"></i><i style="left:74%;--h:1.3rem;--v:0.9s"></i><i style="left:88%;--h:0.7rem;--v:1.4s"></i></span></div></div>
       <p class="slogan">Eine klare Linie. Und die überfährt man nicht.</p>
       <p data-einfach="Ein schwarzer Pulli mit Kapuze. Hinten ist ein großes Stopp-Schild gegen Nazis. Die weißen Streifen sehen aus wie Streifen auf der Straße.">Schwarzer Hoodie mit großem Stoppschild auf dem Rücken. Die weißen Streifen an Kapuze und Ärmeln sind den Mittelstreifen auf der Straße nachempfunden: Sie markieren die Linie, die nicht überschritten wird. Dazu #NIEWIEDERISTJETZT.</p>
-      <div class="preiszeile"><span class="preis">59 €</span><span class="marke" data-einfach="Kann man noch nicht kaufen">Noch nicht bestellbar</span></div>
+      <div class="preiszeile"><span class="marke" data-einfach="Kann man noch nicht kaufen">Noch nicht bestellbar</span></div>
     </article>
     <article class="papier riss produkt" id="kappe">
       <h3>MENSCH.</h3>
       <div class="produktbilder pix eins" role="img" aria-label="Kappe MENSCH. – Vorschau folgt"><img src="bilder/shop/pix_kappe.png" alt="" width="22" height="22"><div class="coming"><span class="spray">Com<span class="ipunkt">ı<b></b></span>ng<br>Soon<i style="left:9%;--h:1.1rem;--v:0s"></i><i style="left:23%;--h:1.9rem;--v:0.6s"></i><i style="left:41%;--h:0.8rem;--v:1.1s"></i><i style="left:58%;--h:2.3rem;--v:0.3s"></i><i style="left:74%;--h:1.3rem;--v:0.9s"></i><i style="left:88%;--h:0.7rem;--v:1.4s"></i></span></div></div>
       <p class="slogan">Ein Wort. Mehr muss man nicht erklären.</p>
       <p data-einfach="Eine schwarze Mütze mit Schirm. Darauf steht: MENSCH.">Schwarze Kappe mit weißem Schriftzug „MENSCH.“ – für alle, die nicht lange diskutieren wollen, auf welcher Seite sie stehen.</p>
-      <div class="preiszeile"><span class="preis">29 €</span><span class="marke" data-einfach="Kann man noch nicht kaufen">Noch nicht bestellbar</span></div>
+      <div class="preiszeile"><span class="marke" data-einfach="Kann man noch nicht kaufen">Noch nicht bestellbar</span></div>
     </article>
+    <h2 class="zettel zettel-gross" id="lifestyle">Lifestyle</h2>
     <article class="papier riss produkt" id="sticker">
       <h3>You are the product</h3>
       <div class="produktbilder pix eins" role="img" aria-label="Sticker You are the product – Vorschau folgt"><img src="bilder/shop/pix_sticker_product.png" alt="" width="22" height="22"><div class="coming"><span class="spray">Com<span class="ipunkt">ı<b></b></span>ng<br>Soon<i style="left:9%;--h:1.1rem;--v:0s"></i><i style="left:23%;--h:1.9rem;--v:0.6s"></i><i style="left:41%;--h:0.8rem;--v:1.1s"></i><i style="left:58%;--h:2.3rem;--v:0.3s"></i><i style="left:74%;--h:1.3rem;--v:0.9s"></i><i style="left:88%;--h:0.7rem;--v:1.4s"></i></span></div></div>
       <p class="slogan">Kostenlos ist es nur, solange du die Ware bist.</p>
       <p data-einfach="Ein Aufkleber. Darauf steht: Du bist das Produkt.">Schwarz-weißer Sticker mit Strichcode. Klebt auf Laptop, Laterne und Handyhülle und erinnert daran, wer bei kostenlosen Apps eigentlich verkauft wird.</p>
-      <div class="preiszeile"><span class="preis">3 €</span><span class="marke" data-einfach="Kann man noch nicht kaufen">Noch nicht bestellbar</span></div>
+      <div class="preiszeile"><span class="marke" data-einfach="Kann man noch nicht kaufen">Noch nicht bestellbar</span></div>
     </article>
   </section>
   <button type="button" class="wagen" aria-label="Einkaufswagen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 3 H5 L7.4 14.2 A1.5 1.5 0 0 0 8.9 15.4 H18.6 A1.5 1.5 0 0 0 20 14.3 L21.8 7 H6.3 M9 20.5 A1.6 1.6 0 1 0 9 17.3 A1.6 1.6 0 1 0 9 20.5 Z M18 20.5 A1.6 1.6 0 1 0 18 17.3 A1.6 1.6 0 1 0 18 20.5 Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg><span class="anzahl">0</span><span class="wagen-info" hidden>Bald bestellbar</span></button>

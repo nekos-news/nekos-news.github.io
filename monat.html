@@ -774,14 +774,14 @@ html.kontrast .produktbilder::after { color: #fff; text-shadow: none; }
   font: 400 clamp(2.3rem, 12vw, 3.4rem)/0.92 "Rubik Spray Paint", var(--sans);
   text-shadow: 0 0 2px rgba(255,255,255,0.9), 0 0 9px rgba(255,255,255,0.45), 0 0 22px rgba(255,255,255,0.18); filter: blur(0.25px); }
 .spray i { position: absolute; top: 88%; width: 0.22rem; height: var(--h); background: linear-gradient(#f4f1ea, rgba(244,241,234,0.85)); border-radius: 0 0 0.2rem 0.2rem;
-  box-shadow: 0 0 6px rgba(255,255,255,0.35); transform-origin: top; animation: tropfen 3.2s ease-in var(--v) infinite both; }
+  box-shadow: 0 0 6px rgba(255,255,255,0.35); transform-origin: top; }
 .spray i::after { content: ""; position: absolute; left: 50%; bottom: -0.16rem; width: 0.38rem; height: 0.38rem; margin-left: -0.19rem; border-radius: 50%; background: #f4f1ea; }
 @keyframes tropfen { 0% { transform: scaleY(0.25); } 70% { transform: scaleY(1); } 100% { transform: scaleY(1); } }
 .lade { position: absolute; left: 12%; right: 12%; bottom: 9%; height: 0.32rem; background: rgba(255,255,255,0.18); overflow: hidden; border-radius: 0.2rem; }
 .lade b { position: absolute; inset: 0; background: #f4f1ea; transform-origin: left; animation: laden 2.6s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
 @keyframes laden { 0% { transform: scaleX(0); } 80% { transform: scaleX(0.94); } 100% { transform: scaleX(0.94); opacity: 0; } }
 .produkt .slogan { font: italic 600 1.05rem/1.35 var(--serif); color: var(--rost); margin: 0; }
-.preiszeile { display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; flex-wrap: wrap; }
+.preiszeile { display: flex; align-items: center; justify-content: center; gap: 0.6rem; flex-wrap: wrap; }
 .preis { font: 800 1.35rem var(--sans); color: var(--anthrazit); background: var(--papier-2); background-image: var(--faser); padding: 0.25rem 0.6rem 0.2rem; transform: rotate(-2deg); filter: drop-shadow(1px 2px 0 rgba(46,43,42,0.3)); }
 .preiszeile .marke { justify-self: auto; }
 .ipunkt { position: relative; display: inline-block; }
@@ -903,7 +903,7 @@ html.ruhig .spray i, html.ruhig .ipunkt b { animation: none; }
 <div class="news shop-menue">
     <button class="news-knopf" type="button" aria-expanded="false">Shop ▾</button>
     <div class="news-wahl">
-      <a href="/shop.html">Alle Produkte</a><a href="/shop.html#hoodie">Hoodie</a><a href="/shop.html#kappe">Kappe</a><a href="/shop.html#sticker">Sticker</a>
+      <a href="/shop.html">Alle Produkte</a><a href="/shop.html#kleidung">Kleidung</a><a href="/shop.html#lifestyle">Lifestyle</a>
     </div>
   </div>
 </div>

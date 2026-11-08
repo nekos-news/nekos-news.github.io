@@ -68,27 +68,28 @@ def shop():
     """Shop-Vorschau (Stand 2026-11-08): kein Kopf, direkt „Kommt bald“; Bilder verpixelt wie noch nicht geladen, weißes Sprüh-„Coming Soon“ mit Tropfen und Ladebalken. Preise sind Beispielpreise."""
     inhalt = '''<div class="wrap">
   <section class="gruppe" id="shop">
-    <h2 class="zettel zettel-gross">Kommt bald</h2>
+    <h2 class="zettel zettel-gross" id="kleidung">Kleidung</h2>
     <article class="papier riss produkt" id="hoodie">
       <h3>STOP – F*cking Fascists</h3>
       HOODIE
       <p class="slogan">Eine klare Linie. Und die überfährt man nicht.</p>
       <p data-einfach="Ein schwarzer Pulli mit Kapuze. Hinten ist ein großes Stopp-Schild gegen Nazis. Die weißen Streifen sehen aus wie Streifen auf der Straße.">Schwarzer Hoodie mit großem Stoppschild auf dem Rücken. Die weißen Streifen an Kapuze und Ärmeln sind den Mittelstreifen auf der Straße nachempfunden: Sie markieren die Linie, die nicht überschritten wird. Dazu #NIEWIEDERISTJETZT.</p>
-      <div class="preiszeile"><span class="preis">59 €</span><span class="marke" data-einfach="Kann man noch nicht kaufen">Noch nicht bestellbar</span></div>
+      <div class="preiszeile"><span class="marke" data-einfach="Kann man noch nicht kaufen">Noch nicht bestellbar</span></div>
     </article>
     <article class="papier riss produkt" id="kappe">
       <h3>MENSCH.</h3>
       KAPPE
       <p class="slogan">Ein Wort. Mehr muss man nicht erklären.</p>
       <p data-einfach="Eine schwarze Mütze mit Schirm. Darauf steht: MENSCH.">Schwarze Kappe mit weißem Schriftzug „MENSCH.“ – für alle, die nicht lange diskutieren wollen, auf welcher Seite sie stehen.</p>
-      <div class="preiszeile"><span class="preis">29 €</span><span class="marke" data-einfach="Kann man noch nicht kaufen">Noch nicht bestellbar</span></div>
+      <div class="preiszeile"><span class="marke" data-einfach="Kann man noch nicht kaufen">Noch nicht bestellbar</span></div>
     </article>
+    <h2 class="zettel zettel-gross" id="lifestyle">Lifestyle</h2>
     <article class="papier riss produkt" id="sticker">
       <h3>You are the product</h3>
       STICKER
       <p class="slogan">Kostenlos ist es nur, solange du die Ware bist.</p>
       <p data-einfach="Ein Aufkleber. Darauf steht: Du bist das Produkt.">Schwarz-weißer Sticker mit Strichcode. Klebt auf Laptop, Laterne und Handyhülle und erinnert daran, wer bei kostenlosen Apps eigentlich verkauft wird.</p>
-      <div class="preiszeile"><span class="preis">3 €</span><span class="marke" data-einfach="Kann man noch nicht kaufen">Noch nicht bestellbar</span></div>
+      <div class="preiszeile"><span class="marke" data-einfach="Kann man noch nicht kaufen">Noch nicht bestellbar</span></div>
     </article>
   </section>
   <button type="button" class="wagen" aria-label="Einkaufswagen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 3 H5 L7.4 14.2 A1.5 1.5 0 0 0 8.9 15.4 H18.6 A1.5 1.5 0 0 0 20 14.3 L21.8 7 H6.3 M9 20.5 A1.6 1.6 0 1 0 9 17.3 A1.6 1.6 0 1 0 9 20.5 Z M18 20.5 A1.6 1.6 0 1 0 18 17.3 A1.6 1.6 0 1 0 18 20.5 Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg><span class="anzahl">0</span><span class="wagen-info" hidden>Bald bestellbar</span></button>
