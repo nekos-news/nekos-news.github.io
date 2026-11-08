@@ -1042,14 +1042,14 @@ html.kontrast .w.jetzt { color: inherit; text-decoration: underline 2px; text-un
 article h3 mark.kreis::after, .bogen h3 mark.kreis::after { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 80' preserveAspectRatio='none'%3E%3Cpath d='M30 12 C 70 2, 150 3, 185 20 C 205 34, 190 62, 140 72 C 90 80, 25 76, 10 55 C -2 38, 15 18, 55 9 C 80 4, 110 5, 128 8' fill='none' stroke='%23FFE2A8' stroke-width='3.4' stroke-linecap='round'/%3E%3C/svg%3E") !important; filter: none; }
 article h3 mark.strich::after, .bogen h3 mark.strich::after { filter: brightness(2.2) saturate(0.6); }
 .zurueck10 { position: relative; width: 2.1rem; height: 2.1rem; padding: 0; border: 0; border-radius: 50%; cursor: pointer; display: grid; place-items: center; color: var(--anthrazit); background: rgba(46,43,42,0.1); flex: none; }
-.zurueck10 svg { position: absolute; inset: 0.18rem; width: auto; height: auto; }
+.zurueck10 svg { position: absolute; inset: 0.22rem; width: auto; height: auto; }
 
 .bogen-links { display: flex; align-items: center; gap: 0.5rem; }
 .bogen-leiste .zurueck10 { width: 2.4rem; height: 2.4rem; color: var(--creme); background: rgba(244,236,220,0.16); }
 html.kontrast .zurueck10 { background: #fff; color: #000; outline: 2px solid #000; }
-.hoeren button.zurueck10 { width: 2.1rem !important; height: 2.1rem !important; clip-path: none !important; background: rgba(46,43,42,0.1) !important; background-image: none !important; color: var(--anthrazit) !important; transform: none !important; filter: none !important; font-size: 0.56rem !important; }
+.hoeren button.zurueck10 { width: 2.1rem !important; height: 2.1rem !important; clip-path: none !important; background: var(--rost) !important; background-image: var(--faser) !important; color: var(--creme) !important; transform: none !important; filter: none !important; font-size: 0.56rem !important; }
 .hoeren button.zurueck10::before, .hoeren button.zurueck10::after { content: none !important; display: none !important; }
-.bogen-leiste button.zurueck10 { color: var(--creme) !important; background: rgba(244,236,220,0.16) !important; width: 2.4rem !important; height: 2.4rem !important; }
+.bogen-leiste button.zurueck10 { color: var(--creme) !important; background: var(--rost) !important; filter: drop-shadow(0 3px 0 rgba(0,0,0,0.3)) !important; width: 2.4rem !important; height: 2.4rem !important; }
 html.kontrast .hoeren button.zurueck10 { background: #fff !important; color: #000 !important; outline: 2px solid #000; }
 /* Seiten ohne Tagesausgabe (Woche/Monat/Jahr): Logo oben, blauer Hinweis mittig darunter */
 .oben:has(+ .wrap:not([data-datum])) { padding-top: 3.4rem; }
@@ -1601,7 +1601,7 @@ function mzVideoZeit(code, i) {
       });
       /* 10 Sekunden zurück (Wunsch Nicolas 2026-11-08); läuft die Meldung noch nicht, startet sie */
       var z10 = document.createElement('button'); z10.type = 'button'; z10.className = 'zurueck10'; z10.setAttribute('aria-label', '10 Sekunden zurück');
-      z10.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.2V0.6L7.4 4.4 12 8.2V5.6a7 7 0 1 1-7 7H2.6a9.4 9.4 0 1 0 9.4-9.4z" fill="currentColor"/><text x="12" y="15.9" text-anchor="middle" font-family="Libre Franklin, Arial, sans-serif" font-weight="800" font-size="7.6" fill="currentColor">10</text></svg>';
+      z10.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.6A8.4 8.4 0 1 1 4.7 7.8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M14.6 0.9 9.6 3.6 14.6 6.3z" fill="currentColor"/><text x="12" y="14.6" text-anchor="middle" font-family="Libre Franklin, Arial, sans-serif" font-weight="800" font-size="7.2" fill="currentColor">10</text></svg>';
       z10.addEventListener('click', function (e) { e.stopPropagation(); if (pos === i) { player.currentTime = Math.max(0, player.currentTime - 10); if (player.paused) { player.play(); knoepfe(i); } } else x.knopf.click(); });
       d.querySelector('.huelle').insertAdjacentElement('afterend', z10);
     });
