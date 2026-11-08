@@ -845,7 +845,7 @@ html.kontrast .hinweis { background: #000 !important; color: #fff !important; }
 .hinweis .schild { width: 2.5rem !important; }
 .hinweis b { font-size: 0.72rem !important; }
 /* Platz, weil die Figur oben aus dem Kasten ragt */
-.wrap > .kurz { margin-top: -0.2rem; }
+.wrap > .kurz { margin-top: 4.6rem; }
 /* Mehr Luft im 30-Sekunden-Zettel (2026-11-08) */
 .kurz h2 { margin-bottom: 0.9rem !important; }
 .kurz .hoeren { margin: 0.4rem 0 1.1rem !important; }
@@ -873,7 +873,7 @@ html.gross .hoeren .rubrik { white-space: normal; }
 /* Logo klein rechts über der Schulter, Hinweis links daneben, alles höher (2026-11-08) */
 .oben { position: relative; padding-top: 6rem; margin-top: 0 !important; }
 .oben .logo-oben { position: absolute; right: 0.4rem; top: 5.8rem; width: 6rem !important; margin: 0 !important; z-index: 4; }
-.oben .hinweis { max-width: 52% !important; font-size: 0.56rem !important; padding: 0.45rem 0.55rem 0.45rem 0.5rem !important; }
+.oben .hinweis { max-width: calc(100% - 0.4rem) !important; font-size: 0.56rem !important; padding: 0.45rem 0.55rem 0.45rem 0.5rem !important; }
 .oben .hinweis .schild { width: 2.2rem !important; }
 .oben .hinweis b { font-size: 0.6rem !important; }
 .wrap { padding-top: 1.2rem !important; }
@@ -885,10 +885,12 @@ html.gross .hoeren .rubrik { white-space: normal; }
 .kurz .neko-wrap .neko { position: static !important; width: 100% !important; display: block; }
 .kurz .neko-wrap .zl { position: absolute; left: 33%; top: 39%; width: 31%; transform: rotate(-8deg) skewY(5deg); opacity: 0.92; mix-blend-mode: multiply; }
 html.ruhig .kurz .neko-wrap .zl { mix-blend-mode: normal; }
+.kurz .neko-wrap .zl { display: none !important; } /* Logo auf der Zeitung sah nicht gut aus (Nicolas 2026-11-08) */
 .oben:has(.hinweis) .logo-oben { display: none !important; }
 /* Abschnitts-Zettel (Heute, Content, Kleidung …) größer (2026-11-08) */
 .gruppe > .zettel, .mehr-news .zettel, .reels-kopf .zettel { font-size: 1.45rem !important; padding: 0.55rem 1.2rem 0.48rem !important; }
 .zettel-gross { font-size: 1.75rem !important; padding: 0.6rem 1.35rem 0.52rem !important; }
+.oben .hinweis b { white-space: nowrap; }
 </style>
 </head>
 <body>
@@ -1040,7 +1042,7 @@ html.ruhig .kurz .neko-wrap .zl { mix-blend-mode: normal; }
 </div>
 <div class="oben">
   <img class="logo-oben" src="bilder/logo_buchstaben.png" alt="Nekos News" width="330" height="280">
-  <p class="hinweis"><svg class="schild" viewBox="0 0 64 56" aria-hidden="true"><path d="M32 3 L61 52 L3 52 Z" fill="#D99A4E" stroke="#2E2B2A" stroke-width="5" stroke-linejoin="round"/><text x="32" y="45" text-anchor="middle" font-family="Libre Franklin, Arial, sans-serif" font-weight="800" font-size="19" fill="#2E2B2A">KI</text></svg><span><b>Kein Journalismus:</b> Diese News-Seite ist nicht von mir recherchiert. Eine KI fasst Berichte echter Journalist:innen zusammen, nicht intensiv geprüft. Links zu den Originalartikeln vorhanden.</span></p>
+  <p class="hinweis"><svg class="schild" viewBox="0 0 64 56" aria-hidden="true"><path d="M32 3 L61 52 L3 52 Z" fill="#D99A4E" stroke="#2E2B2A" stroke-width="5" stroke-linejoin="round"/><text x="32" y="45" text-anchor="middle" font-family="Libre Franklin, Arial, sans-serif" font-weight="800" font-size="19" fill="#2E2B2A">KI</text></svg><span><b>Achtung, KI-Zusammenfassungen:</b> Diese News-Seite ist nicht von mir recherchiert. Eine KI fasst Berichte echter Journalist:innen zusammen, nicht intensiv geprüft. Links zu den Originalartikeln vorhanden.</span></p>
 </div>
 <!-- AUSGABE-START -->
 <div class="wrap">
