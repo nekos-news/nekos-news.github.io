@@ -158,7 +158,7 @@ section.gruppe, aside.kurz { scroll-margin-top: 4.5rem; }
 #intro.fliegt { -webkit-backdrop-filter: none; backdrop-filter: none; background: transparent; transition: background 0.45s ease; }
 #intro.fliegt::before { opacity: 0; transition: opacity 0.45s ease; }
 body:not(.los) .logo-oben { opacity: 0; }
-#intro .buchstaben { position: relative; width: min(74vw, 320px); aspect-ratio: 330 / 280; will-change: transform; }
+#intro .buchstaben { position: relative; width: min(55vw, 240px); aspect-ratio: 330 / 280; will-change: transform; translate: 0 -2.6rem; } /* 25 % kleiner, vorab schon etwas hoch, damit nichts springt */
 #intro .buchstaben img { position: absolute; opacity: 0;
   animation: buchstabe-plopp 0.45s steps(1, end) forwards; animation-delay: calc(var(--i) * 0.08s); }
 #intro .buchstaben img.ganz { inset: 0; width: 100%; height: 100%; animation: ganz-da 0.01s steps(1, end) 0.98s both, kochen 1s steps(1, end) 0.98s infinite; }
@@ -191,7 +191,7 @@ body:not(.karten) .reinflug { animation-play-state: paused; }
 #intro.verschwimmt .buchstaben { filter: blur(14px); opacity: 0; transform: scale(0.94); transition: filter 0.6s ease, opacity 0.6s ease, transform 0.6s ease; }
 #intro.verschwimmt { background: rgba(6,14,38,0.35); transition: background 0.6s ease; }
 #intro.verschwimmt::before { opacity: 0.5; transition: opacity 0.6s ease; }
-#intro .intro-datum { position: absolute; z-index: 3; left: 50%; top: 70%; transform: translateX(-50%) scale(2.2) rotate(-2deg); transform-origin: 50% 50%; filter: drop-shadow(0 2px 0 rgba(0,0,0,0.35)); }
+#intro .intro-datum { position: absolute; z-index: 3; left: 50%; top: 70%; transform: translateX(-50%) scale(1.85) rotate(-2deg); transform-origin: 50% 50%; filter: drop-shadow(0 2px 0 rgba(0,0,0,0.35)); }
 #intro { transition: opacity 0.35s ease, visibility 0.35s; }
 body:not(.los) #kurz .erpress { visibility: hidden; }
 
@@ -1090,11 +1090,14 @@ html.kontrast .hinweis b { color: #fff !important; }
       window.dispatchEvent(new Event('mz-intro-start')); /* Ton nur, wenn der Browser ihn erlaubt */
       var gruppe = intro.querySelector('.buchstaben'), echt = document.querySelector('#kurz .erpress');
       function ausblenden(nach) { setTimeout(function () { intro.classList.add('verschwimmt'); document.body.classList.add('karten'); }, nach); }
-      if (!echt || !document.body.animate) { ausblenden(1100); setTimeout(los, 1900); return; }
-      var gross = 2.2, datum = echt.cloneNode(true); datum.className = 'erpress intro-datum'; datum.removeAttribute('aria-label');
-      var g = gruppe.getBoundingClientRect();
-      datum.style.top = (g.bottom + 46) + 'px';
-      intro.appendChild(datum);
+      if (!echt || !document.body.animate) { gruppe.style.translate = '0 0'; ausblenden(1100); setTimeout(los, 1900); return; }
+      var gross = 1.85, datum = echt.cloneNode(true); datum.className = 'erpress intro-datum'; datum.removeAttribute('aria-label');
+      /* Logo + Datum als EINE Gruppe waagerecht und senkrecht mittig (Wunsch Nicolas 2026-11-08) */
+      gruppe.style.translate = '0 0'; var g = gruppe.getBoundingClientRect();
+      datum.style.top = g.bottom + 'px'; intro.appendChild(datum);
+      var d0 = datum.getBoundingClientRect(), oben = g.bottom + 24 - d0.top;
+      var hoehe = d0.bottom + oben - g.top, shift = Math.round((innerHeight - hoehe) / 2 - g.top);
+      gruppe.style.translate = '0 ' + shift + 'px'; datum.style.top = (g.bottom + oben + shift) + 'px';
       Array.prototype.forEach.call(datum.children, function (s, n) {
         var d = 350 + n * 150;
         s.animate([{ opacity: 0, transform: 'scale(1.6) rotate(-12deg)' }, { opacity: 1, transform: 'scale(1.15) rotate(6deg)', offset: 0.5 }, { opacity: 1 }],
