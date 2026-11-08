@@ -149,7 +149,7 @@ def neko():
     </article>
   </section>
   <section class="gruppe" id="content">
-    <h2 class="zettel zettel-gross">Content</h2>
+    <img class="content-logo" src="bilder/logo_buchstaben.png" alt="Nekos News – Videos" width="330" height="280">
     <div class="filter" id="filter" role="group" aria-label="Nach Thema filtern"></div>
     <div class="raster" id="raster"></div>
   </section>
@@ -157,7 +157,7 @@ def neko():
     <h2 class="zettel zettel-gross">FAQ</h2>
     <article class="papier riss faq">
       <details class="faq-frage"><summary>Wer steckt hinter Nekos_news?</summary><p>Ich, Neko. Ich bin studierter Kommunikationsdesigner und mache politische Kurzvideos auf Instagram, TikTok und YouTube.</p></details>
-      <details class="faq-frage"><summary>Wie entstehen deine Videos?</summary><p>Ich suche mir ein Thema, recherchiere die Fakten und baue dann das Video in meinem Papier-Look. Wenn ich Zahlen nenne, sollen sie belegbar sein.</p></details>
+      <details class="faq-frage"><summary>Wie entstehen deine Videos?</summary><p>Ich setze mich an ein Thema und überlege mir, wie man es kreativ umsetzen kann, damit die Hürde möglichst klein ist, sich für komplexe Themen zu interessieren. Dann recherchiere ich die Fakten und baue das Video in meinem Papier-Look.</p></details>
       <details class="faq-frage"><summary>Sind die News auf dieser Seite von dir?</summary><p>Nein. Die News-Seite stellt eine KI automatisch zusammen: Sie fasst Berichte echter Journalist:innen zusammen und verlinkt die Originalartikel. Anders als meine Videos prüfe ich das nicht selbst.</p></details>
       <details class="faq-frage"><summary>Wie oft gibt es neue News?</summary><p>Jeden Morgen gegen 7 Uhr eine neue Ausgabe. Gegen 17 Uhr wird nur ergänzt, wenn tagsüber etwas Großes passiert ist.</p></details>
       <details class="faq-frage"><summary>Kann ich dir ein Thema vorschlagen?</summary><p>Klar, schreib mir an <a href="mailto:neko.anfragen@gmail.com">neko.anfragen@gmail.com</a>. Ich kann nicht jedes Thema machen, aber ich lese alles.</p></details>
@@ -170,6 +170,9 @@ def neko():
     seite(inhalt.replace("KANAELE", k).replace("PATREON", patreon), "Neko", "neko.html")
     # Auf der Profilseite kein „Kein Journalismus“-Hinweis (Wunsch Nicolas)
     ohne_ki("neko.html")
+    pfad = os.path.join(HIER, "neko.html"); s = open(pfad, encoding="utf-8").read()
+    s = re.sub(r'\s*<img class="logo-oben"[^>]*>', "", s, count=1)  # Logo steht auf der Neko-Seite bei den Videos (Wunsch Nicolas 2026-11-08)
+    open(pfad, "w", encoding="utf-8").write(s)
 
 def datenschutz():
     """Datenschutzerklärung (Entwurf 2026-11-08, ohne Gewähr; vor dem Shop von Rechtstext-Anbieter prüfen lassen)."""

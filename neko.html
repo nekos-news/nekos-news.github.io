@@ -900,6 +900,36 @@ html.ruhig .kurz .neko-wrap .zl { mix-blend-mode: normal; }
 .faq-frage summary::after { content: "+"; color: var(--rost); font-size: 1.2rem; line-height: 1; }
 .faq-frage[open] summary::after { content: "–"; }
 .faq-frage p { margin: 0.5rem 0 0; font-size: 0.97rem; }
+/* ===== Dynamik-Test 2026-11-08: Story-Karten, Stift-Fortschritt, NEU-Stempel ===== */
+.story-knopf { justify-self: start; display: inline-flex; align-items: center; gap: 0.4rem; border: 0; cursor: pointer; margin: 0.2rem 0 0.4rem;
+  font: 800 0.72rem var(--sans); letter-spacing: 0.06em; text-transform: uppercase; color: var(--creme); background-color: var(--anthrazit); background-image: var(--faser);
+  padding: 0.45rem 0.7rem 0.4rem; transform: rotate(-1.5deg); filter: drop-shadow(0 2px 0 rgba(0,0,0,0.3)); }
+.story-knopf i { width: 1.1rem; height: 1.1rem; border-radius: 50%; border: 2px solid var(--rost); display: grid; place-items: center; font-style: normal; font-size: 0.55rem; }
+.story { position: fixed; inset: 0; z-index: 40; display: grid; grid-template-rows: auto 1fr auto; padding: calc(0.8rem + env(safe-area-inset-top, 0px)) 1rem calc(1.2rem + env(safe-area-inset-bottom, 0px));
+  background: rgba(4,8,20,0.82); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); }
+.story[hidden] { display: none; }
+.story .balken { display: flex; gap: 4px; }
+.story .balken span { flex: 1; height: 4px; background: rgba(255,255,255,0.25); border-radius: 2px; overflow: hidden; }
+.story .balken b { display: block; height: 100%; width: 100%; background: var(--creme); transform-origin: left; transform: scaleX(0); }
+.story .balken span.voll b { transform: scaleX(1); }
+.story .balken span.jetzt b { animation: story-lauf var(--dauer, 6s) linear forwards; }
+@keyframes story-lauf { to { transform: scaleX(1); } }
+.story .karte { align-self: center; justify-self: center; width: min(26rem, calc(100% - 1.2rem)); box-sizing: border-box; padding: 1.6rem 1.3rem 1.4rem; display: grid; gap: 0.9rem;
+  animation: karte-rein 0.35s cubic-bezier(0.2, 0.9, 0.25, 1.15) both; }
+@keyframes karte-rein { from { opacity: 0; transform: translateX(40px) rotate(4deg); } to { opacity: 1; transform: rotate(var(--r, -1deg)); } }
+.story .karte .nr { font: 400 0.75rem var(--maschine); color: var(--rost); }
+.story .karte p { margin: 0; font: 700 1.35rem/1.35 var(--serif); color: var(--anthrazit); }
+.story .karte a { justify-self: start; font: 800 0.75rem var(--sans); letter-spacing: 0.06em; text-transform: uppercase; color: var(--creme); background: var(--rost); padding: 0.45rem 0.7rem; text-decoration: none; }
+.story .zu { position: absolute; top: calc(1.5rem + env(safe-area-inset-top, 0px)); right: 1rem; width: 2.2rem; height: 2.2rem; border: 0; border-radius: 50%; background: var(--creme); color: var(--anthrazit); font: 800 1rem var(--sans); cursor: pointer; z-index: 2; }
+.story .story-hinweis { text-align: center; font: 0.7rem var(--sans); color: rgba(255,255,255,0.55); }
+.story .buehne { display: grid; place-items: center; min-height: 0; }
+.story .karte { min-height: 46vh; align-content: center; }
+html.ruhig .story .karte { animation: none; }
+.stift { position: fixed; z-index: 7; left: 0; right: 0; top: 0; height: 5px; pointer-events: none; transform-origin: left; transform: scaleX(0);
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 6' preserveAspectRatio='none'%3E%3Cpath d='M0 3.2 C 12 2, 25 4.2, 40 3 S 70 2.2, 100 3.4' fill='none' stroke='%238F2A1E' stroke-width='3.2' stroke-linecap='round'/%3E%3C/svg%3E") 0 0 / 100% 100% no-repeat; }
+.neu-stempel { position: absolute; z-index: 5; right: -0.6rem; top: -0.9rem; font: 400 0.8rem var(--maschine); letter-spacing: 0.1em; color: #a3271c; border: 2px solid #a3271c; padding: 0.15rem 0.4rem 0.05rem;
+  background: rgba(244,236,220,0.85); transform: rotate(9deg); border-radius: 3px; box-shadow: 0 2px 0 rgba(0,0,0,0.2); }
+.content-logo { justify-self: center; width: min(13rem, 62vw); height: auto; transform: rotate(-1.5deg); filter: drop-shadow(0 4px 0 rgba(0,0,0,0.3)) drop-shadow(6px 14px 16px rgba(2,6,20,0.6)); }
 </style>
 </head>
 <body>
@@ -1003,7 +1033,6 @@ html.ruhig .kurz .neko-wrap .zl { mix-blend-mode: normal; }
     <button class="news-knopf" type="button" aria-expanded="false">Neko ▾</button>
     <div class="news-wahl">
       <a href="/neko.html#neko">Über mich</a><a href="/neko.html#content">Videos</a><a href="/neko.html#faq">FAQ</a>
-    <a href="/neko.html#faq">FAQ</a>
     </div>
   </div>
   <div class="news">
@@ -1037,6 +1066,7 @@ html.ruhig .kurz .neko-wrap .zl { mix-blend-mode: normal; }
     <b class="menue-kopf">Neko</b>
     <a href="/neko.html#neko">Über mich</a>
     <a href="/neko.html#content">Videos</a>
+    <a href="/neko.html#faq">FAQ</a>
     <b class="menue-kopf">News</b>
     <a href="/">Heute</a>
     <a href="/woche.html">Diese Woche</a>
@@ -1051,7 +1081,6 @@ html.ruhig .kurz .neko-wrap .zl { mix-blend-mode: normal; }
   </nav>
 </div>
 <div class="oben">
-  <img class="logo-oben" src="bilder/logo_buchstaben.png" alt="Nekos News" width="330" height="280">
 </div>
 <!-- AUSGABE-START -->
 <div class="wrap">
@@ -1070,7 +1099,7 @@ html.ruhig .kurz .neko-wrap .zl { mix-blend-mode: normal; }
     </article>
   </section>
   <section class="gruppe" id="content">
-    <h2 class="zettel zettel-gross">Content</h2>
+    <img class="content-logo" src="bilder/logo_buchstaben.png" alt="Nekos News – Videos" width="330" height="280">
     <div class="filter" id="filter" role="group" aria-label="Nach Thema filtern"></div>
     <div class="raster" id="raster"></div>
   </section>
@@ -1078,7 +1107,7 @@ html.ruhig .kurz .neko-wrap .zl { mix-blend-mode: normal; }
     <h2 class="zettel zettel-gross">FAQ</h2>
     <article class="papier riss faq">
       <details class="faq-frage"><summary>Wer steckt hinter Nekos_news?</summary><p>Ich, Neko. Ich bin studierter Kommunikationsdesigner und mache politische Kurzvideos auf Instagram, TikTok und YouTube.</p></details>
-      <details class="faq-frage"><summary>Wie entstehen deine Videos?</summary><p>Ich suche mir ein Thema, recherchiere die Fakten und baue dann das Video in meinem Papier-Look. Wenn ich Zahlen nenne, sollen sie belegbar sein.</p></details>
+      <details class="faq-frage"><summary>Wie entstehen deine Videos?</summary><p>Ich setze mich an ein Thema und überlege mir, wie man es kreativ umsetzen kann, damit die Hürde möglichst klein ist, sich für komplexe Themen zu interessieren. Dann recherchiere ich die Fakten und baue das Video in meinem Papier-Look.</p></details>
       <details class="faq-frage"><summary>Sind die News auf dieser Seite von dir?</summary><p>Nein. Die News-Seite stellt eine KI automatisch zusammen: Sie fasst Berichte echter Journalist:innen zusammen und verlinkt die Originalartikel. Anders als meine Videos prüfe ich das nicht selbst.</p></details>
       <details class="faq-frage"><summary>Wie oft gibt es neue News?</summary><p>Jeden Morgen gegen 7 Uhr eine neue Ausgabe. Gegen 17 Uhr wird nur ergänzt, wenn tagsüber etwas Großes passiert ist.</p></details>
       <details class="faq-frage"><summary>Kann ich dir ein Thema vorschlagen?</summary><p>Klar, schreib mir an <a href="mailto:neko.anfragen@gmail.com">neko.anfragen@gmail.com</a>. Ich kann nicht jedes Thema machen, aber ich lese alles.</p></details>
@@ -1462,6 +1491,47 @@ html.ruhig .kurz .neko-wrap .zl { mix-blend-mode: normal; }
 (function () { var n = document.querySelector('.kurz .neko'); if (!n) return;
   var w = document.createElement('span'); w.className = 'neko-wrap'; n.parentNode.insertBefore(w, n); w.appendChild(n);
   var z = document.createElement('img'); z.className = 'zl'; z.src = '/bilder/logo_buchstaben.png'; z.alt = ''; w.appendChild(z); })();
+/* Story-Karten: „Das Wichtigste“ zum Durchtippen */
+(function () {
+  var kurz = document.querySelector('#kurz'); if (!kurz) return;
+  var punkte = Array.prototype.slice.call(kurz.querySelectorAll('li a')); if (!punkte.length) return;
+  var knopf = document.createElement('button'); knopf.type = 'button'; knopf.className = 'story-knopf'; knopf.innerHTML = '<i>&#x25B6;&#xFE0E;</i>Als Story ansehen';
+  var h2 = kurz.querySelector('h2'); h2.insertAdjacentElement('afterend', knopf);
+  var s = document.createElement('div'); s.className = 'story'; s.hidden = true; s.setAttribute('role', 'dialog');
+  s.innerHTML = '<div class="balken">' + punkte.map(function () { return '<span><b></b></span>'; }).join('') + '</div><div class="buehne"></div><div class="story-hinweis">Tippen: weiter · links tippen: zurück</div><button class="zu" type="button" aria-label="Schließen">✕</button>';
+  document.body.appendChild(s);
+  var i = 0, uhr = null, ruhig = function () { return document.documentElement.classList.contains('ruhig'); };
+  function zeig(n) {
+    if (n < 0) n = 0; if (n >= punkte.length) { zu(); return; } i = n; clearTimeout(uhr);
+    s.querySelectorAll('.balken span').forEach(function (sp, k) { sp.className = k < i ? 'voll' : (k === i ? 'jetzt' : ''); sp.firstChild.style.animation = 'none'; sp.firstChild.offsetWidth; sp.firstChild.style.animation = ''; });
+    var p = punkte[i], ziel = p.getAttribute('href');
+    s.querySelector('.buehne').innerHTML = '<div class="karte papier riss r-' + (i % 12) + '" style="--r:' + (i % 2 ? '1.2deg' : '-1.2deg') + '"><span class="nr">' + (i + 1) + ' / ' + punkte.length + '</span><p>' + p.textContent + '</p><a href="' + ziel + '">Zum Artikel</a></div>';
+    s.querySelector('.karte a').addEventListener('click', function (e) { e.stopPropagation(); zu(); });
+    if (!ruhig()) uhr = setTimeout(function () { zeig(i + 1); }, 6000);
+  }
+  function zu() { clearTimeout(uhr); s.hidden = true; document.body.style.overflow = ''; }
+  knopf.addEventListener('click', function () { s.hidden = false; document.body.style.overflow = 'hidden'; zeig(0); });
+  s.addEventListener('click', function (e) { if (e.target.closest('.zu')) { zu(); return; } if (e.target.closest('a')) return; zeig(e.clientX < innerWidth * 0.33 ? i - 1 : i + 1); });
+  var sx = null; s.addEventListener('touchstart', function (e) { sx = e.touches[0].clientX; }, { passive: true });
+  s.addEventListener('touchend', function (e) { if (sx == null) return; var dx = e.changedTouches[0].clientX - sx; sx = null; if (Math.abs(dx) > 50) { e.preventDefault(); zeig(dx < 0 ? i + 1 : i - 1); } });
+  document.addEventListener('keydown', function (e) { if (s.hidden) return; if (e.key === 'Escape') zu(); if (e.key === 'ArrowRight') zeig(i + 1); if (e.key === 'ArrowLeft') zeig(i - 1); });
+})();
+/* Stift-Strich oben zeigt, wie weit man gelesen hat */
+(function () {
+  var st = document.createElement('div'); st.className = 'stift'; st.setAttribute('aria-hidden', 'true'); document.body.appendChild(st);
+  function setzen() { var h = document.documentElement.scrollHeight - innerHeight; st.style.transform = 'scaleX(' + (h > 0 ? Math.min(1, scrollY / h) : 0) + ')'; }
+  addEventListener('scroll', setzen, { passive: true }); addEventListener('resize', setzen); setzen();
+})();
+/* NEU-Stempel: Meldungen, die seit dem letzten Besuch dazugekommen sind (nur im eigenen Browser gespeichert) */
+(function () {
+  var arts = Array.prototype.slice.call(document.querySelectorAll('.wrap[data-datum] article[id]')); if (!arts.length) return;
+  var datum = document.querySelector('.wrap[data-datum]').getAttribute('data-datum'), alt = null;
+  try { alt = JSON.parse(localStorage.getItem('mz-gesehen') || 'null'); } catch (e) {}
+  var schluessel = arts.map(function (a) { return datum + '#' + a.id + '#' + (a.querySelector('h3') ? a.querySelector('h3').textContent.length : 0); });
+  var schonDa = alt && alt.some(function (x) { return x.indexOf(datum + '#') === 0; }); /* nur wenn diese Ausgabe schon einmal gesehen wurde */
+  if (schonDa) arts.forEach(function (a, k) { if (alt.indexOf(schluessel[k]) < 0) { var st = document.createElement('span'); st.className = 'neu-stempel'; st.textContent = 'NEU'; a.appendChild(st); } });
+  try { localStorage.setItem('mz-gesehen', JSON.stringify(schluessel.concat((alt || []).filter(function (x) { return x.indexOf(datum) !== 0; })).slice(0, 200))); } catch (e) {}
+})();
 </script>
 </body>
 </html>
