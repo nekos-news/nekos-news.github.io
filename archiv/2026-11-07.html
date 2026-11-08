@@ -1028,9 +1028,8 @@ article .quelle a::after { font-size: 0.6rem !important; }
 /* Randnotiz („Offizielle Nominierung erst am Montag“) nur unter „Mehr anzeigen“, nicht auf der Karte; in Einfacher Sprache bleibt sie, weil es dort kein „Mehr anzeigen“ gibt */
 html:not(.leicht) article:has(> details.mehr) > .marke { display: none !important; }
 /* Vollbild: Knopfleiste klar über der Überschrift statt hineinzuragen; beim Scrollen mit dunklem Hintergrund */
-.bogen-leiste { margin-bottom: 1.5rem !important; padding: 0.4rem 0.2rem 0.5rem; background: linear-gradient(rgba(8,22,54,0.96) 72%, rgba(8,22,54,0)); }
+.bogen-leiste { margin-bottom: 1.5rem !important; } /* ohne eigenen Hintergrund: der blaue Streifen stand fest im Bild (Fehler 2026-11-08) */
 .bogen-grund .bogen { margin-top: 0 !important; }
-html.kontrast .bogen-leiste { background: #000; }
 
 /* Kontrast-Modus: letzte orange Reste schwarz-weiß (Bugtest 2026-11-08) */
 html.kontrast details.mehr summary { background: #000 !important; color: #fff !important; transform: none; }
@@ -1261,16 +1260,21 @@ html.kontrast .hinweis b { color: #fff !important; }
       var idx = []; for (var k = 0; k < teile.length; k++) idx.push(k); if (!unten) idx.reverse();
       var vorher = 0;
       idx.forEach(function (k, j) {
-        y[k] = Math.max(-90, Math.min(90, y[k] + dy * 0.3));
+        y[k] = Math.max(-9, Math.min(9, y[k] + dy * 0.12)); /* höchstens 9 px Versatz: nie mehr als der Abstand, nichts schiebt sich übereinander (Fehler 2026-11-08) */
         var ziel = j === 0 ? 0 : vorher;
         y[k] += (ziel - y[k]) * 0.3;
         vorher = y[k];
         if (Math.abs(y[k]) > 0.3) bewegt = true;
-        if (!teile[k].classList.contains('reinflug')) teile[k].style.translate = '0 ' + y[k].toFixed(1) + 'px';
       });
+      for (var b = 1; b < teile.length; b++) if (bund[b]) y[b] = y[b - 1];
+      teile.forEach(function (t, k) { if (!t.classList.contains('reinflug')) t.style.translate = '0 ' + y[k].toFixed(1) + 'px'; });
       if (bewegt) requestAnimationFrame(schritt); else { laeuft = false; teile.forEach(function (t, k) { y[k] = 0; if (!t.classList.contains('reinflug')) t.style.translate = ''; }); }
     }
-    window.addEventListener('scroll', function () { if (!laeuft) { laeuft = true; requestAnimationFrame(schritt); } }, { passive: true });
+    /* Teile, die dichter als 20 px beieinander stehen (z. B. Wischer und Pfeile), laufen als Einheit */
+    var bund = [];
+    function buendeln() { var r = teile.map(function (t) { return t.getBoundingClientRect(); });
+      bund = teile.map(function (t, k) { return k > 0 && r[k].top - r[k - 1].bottom < 20 && r[k].height > 0; }); }
+    window.addEventListener('scroll', function () { if (!laeuft) { laeuft = true; buendeln(); requestAnimationFrame(schritt); } }, { passive: true });
   });
 })();
 </script>
