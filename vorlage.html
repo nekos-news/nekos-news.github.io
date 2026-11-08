@@ -423,7 +423,7 @@ html.kontrast .zettel::before { background: #000 !important; }
 html.kontrast .hoeren button::before { border-left-color: #fff !important; }
 html.kontrast .hoeren .huelle { filter: none !important; }
 html.kontrast .leiste .hoch { background: #000 !important; clip-path: none !important; width: 2.6rem; color: #fff !important; font-size: 1rem !important; }
-html.kontrast .leiste .hoch::after { content: "↑"; color: #fff; }
+html.kontrast .leiste .hoch { outline: 2px solid #fff; outline-offset: -2px; -webkit-text-stroke: 0 !important; }
 html.kontrast .mitdenken b, html.kontrast .hinweis b, html.kontrast .these b, html.kontrast .gegen b, html.kontrast .fakt b, html.kontrast .einordnung b,
 html.kontrast article .rubrik, html.kontrast .kurz h2, html.kontrast .sicht h4, html.kontrast .kopf .zeile { color: #000 !important; }
 
@@ -1006,6 +1006,16 @@ html.ruhig .lesefluss .durch { animation: none; }
 article.ist-gelesen .gelesen-haken { opacity: 0.85; }
 article.ist-gelesen .neu-stempel { display: none; }
 html.kontrast .lesefluss .naechste { background: #000; outline: 2px solid #fff; }
+.bogen-grund { padding-bottom: 2.4rem !important; gap: 1.4rem; align-content: start; justify-items: center; }
+.bogen-weiter { width: min(30rem, calc(100vw - 4rem)); display: grid; grid-template-columns: 1fr auto; column-gap: 0.7rem; row-gap: 0.15rem; align-items: center; text-align: left; cursor: pointer;
+  border: 0; border-left: 3px solid var(--rost); padding: 0.7rem 0.9rem 0.65rem; background: rgba(244,236,220,0.08); color: var(--creme); transform: rotate(0.5deg); }
+.bogen-weiter i { grid-column: 1 / -1; font: 400 0.7rem var(--maschine); font-style: normal; letter-spacing: 0.06em; text-transform: uppercase; opacity: 0.75; }
+.bogen-weiter span { font: 700 1rem/1.3 var(--serif); }
+.bogen-weiter b { font: 800 1.2rem var(--sans); color: #f08a3e; }
+/* Feinschliff 2026-11-08: Hoch-Pfeil allein rechts unten, Luft unter dem KI-Hinweis, Neko-Karte unter „Gen Z?“ */
+.leiste:has(#btn-lesen[hidden]):not(:has(.status:not(:empty))) { left: auto; right: max(16px, env(safe-area-inset-right, 0px)); transform: rotate(-2deg); }
+.oben:has(.hinweis):has(+ .wrap:not([data-datum])) + .wrap { margin-top: 1.4rem; }
+article.vita { margin-top: 2.4rem; }
 /* Seiten ohne Tagesausgabe (Woche/Monat/Jahr): Logo oben, blauer Hinweis mittig darunter */
 .oben:has(+ .wrap:not([data-datum])) { padding-top: 3.4rem; }
 .oben:has(+ .wrap:not([data-datum])) .logo-oben { display: block !important; position: static !important; justify-self: center; width: min(8rem, 34vw) !important; margin: 0.9rem 0 0.6rem !important; }
@@ -1672,6 +1682,12 @@ html.kontrast .hinweis b { color: #fff !important; }
         pb.addEventListener('click', function (e) { e.stopPropagation(); knopf.click(); setTimeout(setze, 50); });
         g.querySelector('.bogen').appendChild(pb); setze(); window.addEventListener('mz-audio', setze); }
       g.querySelector('.bogen').classList.add('sichtbar');
+      /* Unten im Vollbild direkt zur nächsten Meldung (2026-11-08) */
+      var alle = Array.prototype.slice.call(document.querySelectorAll('.wrap[data-datum] article[id]')).filter(function (x) { return x.querySelector('details.mehr summary'); });
+      var nx = alle[alle.indexOf(art) + 1], fb = document.createElement('button'); fb.type = 'button'; fb.className = 'bogen-weiter';
+      fb.innerHTML = nx ? '<i>Nächste Meldung</i><span>' + nx.querySelector('h3').textContent + '</span><b>→</b>' : '<i>Das war die letzte</i><span>Zurück zur Übersicht</span><b>✕</b>';
+      fb.addEventListener('click', function (e) { e.stopPropagation(); if (!nx) { zu(); return; } if (window.mzZeigeMeldung) window.mzZeigeMeldung(nx); nx.querySelector('details.mehr summary').click(); g.scrollTop = 0; requestAnimationFrame(function () { g.scrollTop = 0; }); });
+      g.appendChild(fb);
       g.hidden = false; document.body.style.overflow = 'hidden';
     });
   });
@@ -1732,6 +1748,7 @@ html.kontrast .hinweis b { color: #fff !important; }
   /* Höhe nachziehen, wenn Schriften oder Bilder die Karte später größer machen */
   if ('ResizeObserver' in window) { var ro = new ResizeObserver(function () { w.style.height = (arts[i].offsetHeight + 18) + 'px'; }); arts.forEach(function (a) { ro.observe(a); }); }
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { setzen(false); });
+  setTimeout(function () { setzen(false); }, 1200);
   setzen(false);
 })();
 /* „Das Wichtigste“ als Story direkt im Zettel: ein Punkt nach dem anderen, läuft von selbst, tippen/wischen (Wunsch Nicolas 2026-11-08) */

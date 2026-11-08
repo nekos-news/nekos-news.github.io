@@ -423,7 +423,7 @@ html.kontrast .zettel::before { background: #000 !important; }
 html.kontrast .hoeren button::before { border-left-color: #fff !important; }
 html.kontrast .hoeren .huelle { filter: none !important; }
 html.kontrast .leiste .hoch { background: #000 !important; clip-path: none !important; width: 2.6rem; color: #fff !important; font-size: 1rem !important; }
-html.kontrast .leiste .hoch::after { content: "↑"; color: #fff; }
+html.kontrast .leiste .hoch { outline: 2px solid #fff; outline-offset: -2px; -webkit-text-stroke: 0 !important; }
 html.kontrast .mitdenken b, html.kontrast .hinweis b, html.kontrast .these b, html.kontrast .gegen b, html.kontrast .fakt b, html.kontrast .einordnung b,
 html.kontrast article .rubrik, html.kontrast .kurz h2, html.kontrast .sicht h4, html.kontrast .kopf .zeile { color: #000 !important; }
 
@@ -987,6 +987,35 @@ html.ruhig { scroll-snap-type: none; }
 .wischer article.papier { padding: 1rem 1rem 1.05rem !important; gap: 0.7rem !important; }
 .wischer article h3 { font-size: 1.15rem !important; }
 .wischer article .fakt, .wischer article p:not(.quelle) { font-size: 0.94rem; line-height: 1.5; }
+/* Lesefluss: „Als Nächstes“, Gelesen-Haken, Fortschritt, „Du bist durch“ (2026-11-08) */
+.lesefluss { display: grid; justify-items: center; gap: 0.7rem; margin-top: 0.9rem; }
+.lesefluss .punkte { display: flex; gap: 0.32rem; align-items: center; }
+.lesefluss .punkte button { width: 1.05rem; height: 0.32rem; padding: 0; border: 0; cursor: pointer; border-radius: 2px; background: rgba(244,236,220,0.28); transform: rotate(-4deg); transition: background 0.25s, width 0.25s; }
+.lesefluss .punkte button.gelesen { background: var(--rost); }
+.lesefluss .punkte button.jetzt { width: 1.7rem; background: var(--creme); }
+.lesefluss .punkte button.jetzt.gelesen { background: #f08a3e; }
+.lesefluss .naechste { width: min(24rem, 84vw); display: grid; grid-template-columns: 1fr auto; column-gap: 0.6rem; row-gap: 0.15rem; align-items: center; border: 0; cursor: pointer; text-align: left; padding: 0.55rem 0.8rem 0.5rem; background: rgba(244,236,220,0.07); border-left: 3px solid var(--rost); color: var(--creme); transform: rotate(-0.6deg); }
+.lesefluss .naechste i { grid-column: 1 / -1; font: 400 0.7rem var(--maschine); font-style: normal; letter-spacing: 0.06em; text-transform: uppercase; opacity: 0.75; white-space: nowrap; }
+.lesefluss .naechste span { font: 700 0.95rem/1.3 var(--serif); overflow: hidden; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; }
+.lesefluss .naechste b { font: 800 1rem var(--sans); color: #f08a3e; }
+.lesefluss .durch { justify-self: center; font: 700 1.6rem/1.1 "Caveat", cursive; color: var(--anthrazit); background: #F2D45C; background-image: var(--faser); padding: 0.55rem 1rem 0.5rem; transform: rotate(-2deg); filter: drop-shadow(0 3px 0 rgba(0,0,0,0.25)) drop-shadow(4px 10px 12px rgba(2,6,20,0.5)); text-align: center; animation: durch-rein 0.4s cubic-bezier(0.2, 0.9, 0.25, 1.3) both; }
+.lesefluss .durch small { display: block; font: 400 0.68rem var(--maschine); letter-spacing: 0.04em; margin-top: 0.2rem; }
+@keyframes durch-rein { from { opacity: 0; transform: rotate(-8deg) scale(0.8); } }
+html.ruhig .lesefluss .durch { animation: none; }
+.gelesen-haken { position: absolute; z-index: 5; right: 0.7rem; bottom: 0.5rem; width: 1.7rem; height: 1.7rem; pointer-events: none; opacity: 0; transition: opacity 0.3s; }
+article.ist-gelesen .gelesen-haken { opacity: 0.85; }
+article.ist-gelesen .neu-stempel { display: none; }
+html.kontrast .lesefluss .naechste { background: #000; outline: 2px solid #fff; }
+.bogen-grund { padding-bottom: 2.4rem !important; gap: 1.4rem; align-content: start; justify-items: center; }
+.bogen-weiter { width: min(30rem, calc(100vw - 4rem)); display: grid; grid-template-columns: 1fr auto; column-gap: 0.7rem; row-gap: 0.15rem; align-items: center; text-align: left; cursor: pointer;
+  border: 0; border-left: 3px solid var(--rost); padding: 0.7rem 0.9rem 0.65rem; background: rgba(244,236,220,0.08); color: var(--creme); transform: rotate(0.5deg); }
+.bogen-weiter i { grid-column: 1 / -1; font: 400 0.7rem var(--maschine); font-style: normal; letter-spacing: 0.06em; text-transform: uppercase; opacity: 0.75; }
+.bogen-weiter span { font: 700 1rem/1.3 var(--serif); }
+.bogen-weiter b { font: 800 1.2rem var(--sans); color: #f08a3e; }
+/* Feinschliff 2026-11-08: Hoch-Pfeil allein rechts unten, Luft unter dem KI-Hinweis, Neko-Karte unter „Gen Z?“ */
+.leiste:has(#btn-lesen[hidden]):not(:has(.status:not(:empty))) { left: auto; right: max(16px, env(safe-area-inset-right, 0px)); transform: rotate(-2deg); }
+.oben:has(.hinweis):has(+ .wrap:not([data-datum])) + .wrap { margin-top: 1.4rem; }
+article.vita { margin-top: 2.4rem; }
 /* Seiten ohne Tagesausgabe (Woche/Monat/Jahr): Logo oben, blauer Hinweis mittig darunter */
 .oben:has(+ .wrap:not([data-datum])) { padding-top: 3.4rem; }
 .oben:has(+ .wrap:not([data-datum])) .logo-oben { display: block !important; position: static !important; justify-self: center; width: min(8rem, 34vw) !important; margin: 0.9rem 0 0.6rem !important; }
@@ -1571,6 +1600,12 @@ html.kontrast .hinweis b { color: #fff !important; }
         pb.addEventListener('click', function (e) { e.stopPropagation(); knopf.click(); setTimeout(setze, 50); });
         g.querySelector('.bogen').appendChild(pb); setze(); window.addEventListener('mz-audio', setze); }
       g.querySelector('.bogen').classList.add('sichtbar');
+      /* Unten im Vollbild direkt zur nächsten Meldung (2026-11-08) */
+      var alle = Array.prototype.slice.call(document.querySelectorAll('.wrap[data-datum] article[id]')).filter(function (x) { return x.querySelector('details.mehr summary'); });
+      var nx = alle[alle.indexOf(art) + 1], fb = document.createElement('button'); fb.type = 'button'; fb.className = 'bogen-weiter';
+      fb.innerHTML = nx ? '<i>Nächste Meldung</i><span>' + nx.querySelector('h3').textContent + '</span><b>→</b>' : '<i>Das war die letzte</i><span>Zurück zur Übersicht</span><b>✕</b>';
+      fb.addEventListener('click', function (e) { e.stopPropagation(); if (!nx) { zu(); return; } if (window.mzZeigeMeldung) window.mzZeigeMeldung(nx); nx.querySelector('details.mehr summary').click(); g.scrollTop = 0; requestAnimationFrame(function () { g.scrollTop = 0; }); });
+      g.appendChild(fb);
       g.hidden = false; document.body.style.overflow = 'hidden';
     });
   });
@@ -1628,6 +1663,10 @@ html.kontrast .hinweis b { color: #fff !important; }
   arts.forEach(function (a) { a.addEventListener('toggle', function () { setzen(false); }, true); });
   folien.forEach(function (f, n) { f.addEventListener('click', function (e) { if (n !== i) { e.preventDefault(); e.stopPropagation(); geh(n); } }, true); });
   addEventListener('resize', function () { setzen(false); }); addEventListener('load', function () { setzen(false); });
+  /* Höhe nachziehen, wenn Schriften oder Bilder die Karte später größer machen */
+  if ('ResizeObserver' in window) { var ro = new ResizeObserver(function () { w.style.height = (arts[i].offsetHeight + 18) + 'px'; }); arts.forEach(function (a) { ro.observe(a); }); }
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { setzen(false); });
+  setTimeout(function () { setzen(false); }, 1200);
   setzen(false);
 })();
 /* „Das Wichtigste“ als Story direkt im Zettel: ein Punkt nach dem anderen, läuft von selbst, tippen/wischen (Wunsch Nicolas 2026-11-08) */
@@ -1676,6 +1715,44 @@ html.kontrast .hinweis b { color: #fff !important; }
   var schonDa = alt && alt.some(function (x) { return x.indexOf(datum + '#') === 0; }); /* nur wenn diese Ausgabe schon einmal gesehen wurde */
   if (schonDa) arts.forEach(function (a, k) { if (alt.indexOf(schluessel[k]) < 0) { var st = document.createElement('span'); st.className = 'neu-stempel'; st.textContent = 'NEU'; a.appendChild(st); } });
   try { localStorage.setItem('mz-gesehen', JSON.stringify(schluessel.concat((alt || []).filter(function (x) { return x.indexOf(datum) !== 0; })).slice(0, 200))); } catch (e) {}
+})();
+/* Lesefluss im Wischer: „Als Nächstes“, gelesen merken (nur im eigenen Browser), Fortschritt und „Du bist durch“ (2026-11-08) */
+(function () {
+  var w = document.querySelector('.wischer'), nav = document.querySelector('.karussell-nav'); if (!w || !nav || !window.mzZeigeMeldung) return;
+  var arts = Array.prototype.slice.call(w.querySelectorAll('article[id]')), datum = document.querySelector('.wrap[data-datum]').getAttribute('data-datum');
+  var gel = []; try { gel = JSON.parse(localStorage.getItem('mz-gelesen') || '[]'); } catch (e) {}
+  function key(a) { return datum + '#' + a.id; }
+  var box = document.createElement('div'); box.className = 'lesefluss';
+  box.innerHTML = '<div class="punkte" aria-label="Fortschritt">' + arts.map(function (a, n) { return '<button type="button" aria-label="Meldung ' + (n + 1) + '"></button>'; }).join('') + '</div><div class="unten"></div>';
+  nav.insertAdjacentElement('afterend', box);
+  var tasten = box.querySelectorAll('.punkte button'), unten = box.querySelector('.unten');
+  arts.forEach(function (a) { var h = document.createElementNS('http://www.w3.org/2000/svg', 'svg'); h.setAttribute('class', 'gelesen-haken'); h.setAttribute('viewBox', '0 0 24 24'); h.setAttribute('aria-hidden', 'true');
+    h.innerHTML = '<path d="M3.5 13.2 C 6 14.8, 7.6 17, 9.2 19.6 C 12 13, 15.5 8, 20.8 3.6" fill="none" stroke="#1F4E9A" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>'; a.appendChild(h); });
+  tasten.forEach(function (t, n) { t.addEventListener('click', function () { window.mzZeigeMeldung(arts[n]); }); });
+  function aktiv() { for (var n = 0; n < arts.length; n++) if (arts[n].parentNode.classList.contains('aktiv')) return n; return 0; }
+  function istGel(a) { return gel.indexOf(key(a)) >= 0; }
+  var warDurch = arts.every(istGel);
+  function markiere(a) { if (istGel(a)) return; gel.unshift(key(a)); gel = gel.filter(function (x, k) { return k < 300; });
+    try { localStorage.setItem('mz-gelesen', JSON.stringify(gel)); } catch (e) {} zeichne(); }
+  function zeichne() {
+    var i = aktiv(), offen = arts.filter(function (a) { return !istGel(a); });
+    arts.forEach(function (a, n) { a.classList.toggle('ist-gelesen', istGel(a)); tasten[n].className = (istGel(a) ? 'gelesen' : '') + (n === i ? ' jetzt' : ''); });
+    var html = '';
+    if (!offen.length) html = '<div class="durch">Du bist durch für heute ✓<small>Neues kommt um 7 und 17 Uhr</small></div>';
+    else { var ziel = arts[i + 1] || offen[0], txt = arts[i + 1] ? 'Als Nächstes' : 'Noch ' + offen.length + ' offen';
+      if (ziel !== arts[i]) html = '<button type="button" class="naechste"><i>' + txt + ':</i><span>' + ziel.querySelector('h3').textContent + '</span><b>→</b></button>'; }
+    if (unten.innerHTML !== html) { unten.innerHTML = html; var b = unten.querySelector('.naechste'); if (b) b.addEventListener('click', function () { window.mzZeigeMeldung(arts[i + 1] || offen[0]); }); }
+    if (!offen.length && !warDurch) { warDurch = true; }
+  }
+  /* Als gelesen gilt: 6 Sekunden sichtbar als aktive Meldung, angehört oder „Mehr anzeigen“ geöffnet */
+  var sichtbar = false, uhr = null, zuletzt = -1;
+  function pruefe() { var i = aktiv(); zeichne(); if (i === zuletzt && uhr) return; clearTimeout(uhr); uhr = null; zuletzt = i;
+    if (sichtbar && !istGel(arts[i])) uhr = setTimeout(function () { uhr = null; if (sichtbar && aktiv() === i) markiere(arts[i]); }, 6000); }
+  new MutationObserver(pruefe).observe(w.querySelector('.spur'), { attributes: true, subtree: true, attributeFilter: ['class'] });
+  if ('IntersectionObserver' in window) new IntersectionObserver(function (es) { sichtbar = es[0].isIntersecting; zuletzt = -1; pruefe(); }, { threshold: 0.45 }).observe(w); else sichtbar = true;
+  window.addEventListener('mz-audio', function (e) { if (e.detail.spielt) { var a = document.getElementById(e.detail.id); if (arts.indexOf(a) >= 0) markiere(a); } });
+  arts.forEach(function (a) { var s = a.querySelector('details.mehr summary'); if (s) s.addEventListener('click', function () { markiere(a); }); });
+  zeichne();
 })();
 /* Logo links neben „Samstag 7.11.“ */
 (function () { var z = document.querySelector('.kurz .zeile'); if (!z) return; var l = document.createElement('img'); l.className = 'kurz-logo'; l.src = '/bilder/logo_buchstaben.png'; l.alt = 'Nekos News'; z.insertBefore(l, z.firstChild); })();
