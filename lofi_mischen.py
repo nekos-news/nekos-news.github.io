@@ -33,7 +33,7 @@ def ausgabe(datum, neu=False):
         if neu or not os.path.exists(ziel):
             subprocess.run(["ffmpeg", "-hide_banner", "-loglevel", "error", "-y", "-i", quelle, "-stream_loop", "-1", "-ss", f"{ab % gesamt:.2f}", "-i", LOFI,
                             "-filter_complex", f"[1]atrim=0:{d + 0.6:.2f},afade=t=in:d=0.8,afade=t=out:st={d - 0.6:.2f}:d=1.2[m];[0][m]amix=inputs=2:duration=longest:normalize=0",
-                            "-ac", "1", "-ar", "48000", "-b:a", "112k", ziel], check=True)
+                            "-ac", "1", "-ar", "48000", "-b:a", "64k", ziel], check=True)
             print(f"{datum}/{i}.lofi.mp3")
         ab += d + 1.0
 

@@ -1,0 +1,3 @@
+# Tages-MP3s liegen seit 2026-11-08 im Pages-Projekt nekos-news-audio (audio_hochladen.sh), nicht in git
+audio/20*/*.mp3
+.wrangler/
