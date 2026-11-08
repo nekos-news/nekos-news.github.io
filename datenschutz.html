@@ -23,16 +23,16 @@
 <meta name="color-scheme" content="dark">
 <style>html, body { background: #081636; }</style><!-- sofort dunkel, kein Weißblitz (2026-11-08) -->
 <!-- Startbildschirm der Home-Bildschirm-App: dunkelblau mit Logo statt Weiß -->
-<link rel="apple-touch-startup-image" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="/bilder/start/start_750x1334.png">
-<link rel="apple-touch-startup-image" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="/bilder/start/start_828x1792.png">
-<link rel="apple-touch-startup-image" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="/bilder/start/start_1125x2436.png">
-<link rel="apple-touch-startup-image" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="/bilder/start/start_1170x2532.png">
-<link rel="apple-touch-startup-image" media="(device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="/bilder/start/start_1179x2556.png">
-<link rel="apple-touch-startup-image" media="(device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="/bilder/start/start_1206x2622.png">
-<link rel="apple-touch-startup-image" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="/bilder/start/start_1242x2688.png">
-<link rel="apple-touch-startup-image" media="(device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="/bilder/start/start_1284x2778.png">
-<link rel="apple-touch-startup-image" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="/bilder/start/start_1290x2796.png">
-<link rel="apple-touch-startup-image" media="(device-width: 440px) and (device-height: 956px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="/bilder/start/start_1320x2868.png">
+<link rel="apple-touch-startup-image" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="/bilder/start/start2_750x1334.png">
+<link rel="apple-touch-startup-image" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="/bilder/start/start2_828x1792.png">
+<link rel="apple-touch-startup-image" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="/bilder/start/start2_1125x2436.png">
+<link rel="apple-touch-startup-image" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="/bilder/start/start2_1170x2532.png">
+<link rel="apple-touch-startup-image" media="(device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="/bilder/start/start2_1179x2556.png">
+<link rel="apple-touch-startup-image" media="(device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="/bilder/start/start2_1206x2622.png">
+<link rel="apple-touch-startup-image" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="/bilder/start/start2_1242x2688.png">
+<link rel="apple-touch-startup-image" media="(device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="/bilder/start/start2_1284x2778.png">
+<link rel="apple-touch-startup-image" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="/bilder/start/start2_1290x2796.png">
+<link rel="apple-touch-startup-image" media="(device-width: 440px) and (device-height: 956px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="/bilder/start/start2_1320x2868.png">
 <meta name="robots" content="noindex">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=4">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=3"><link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png?v=3"><link rel="icon" type="image/png" sizes="192x192" href="/favicon.png?v=3">
@@ -171,7 +171,7 @@ section.gruppe, aside.kurz { scroll-margin-top: 4.5rem; }
 #intro.fliegt { -webkit-backdrop-filter: none; backdrop-filter: none; background: transparent; transition: background 0.45s ease; }
 #intro.fliegt::before { opacity: 0; transition: opacity 0.45s ease; }
 body:not(.los) .logo-oben { opacity: 0; }
-#intro .buchstaben { position: relative; width: min(55vw, 240px); aspect-ratio: 330 / 280; will-change: transform; translate: 0 -3.3rem; } /* 25 % kleiner, vorab schon etwas hoch, damit nichts springt */
+#intro .buchstaben { position: relative; width: min(55vw, 240px); aspect-ratio: 330 / 280; will-change: transform; translate: 0 -50px; } /* fest: Logo bewegt sich nicht mehr (Nicolas 2026-11-08), gleiche Stelle wie Startbildschirm; 25 % kleiner, vorab schon etwas hoch, damit nichts springt */
 #intro .buchstaben img { position: absolute; opacity: 0;
   animation: buchstabe-plopp 0.45s steps(1, end) forwards; animation-delay: calc(var(--i) * 0.08s); }
 #intro .buchstaben img.ganz { inset: 0; width: 100%; height: 100%; animation: ganz-da 0.01s steps(1, end) 0.98s both, kochen 1s steps(1, end) 0.98s infinite; }
@@ -1066,6 +1066,9 @@ html.kontrast .zurueck10 { background: #fff; color: #000; outline: 2px solid #00
 html.kontrast .hoeren button.zurueck10 { background: #fff !important; color: #000 !important; outline: 2px solid #000; }
 .hoeren small .stimme-name { white-space: nowrap; }
 .hoeren { gap: 0.4rem !important; }
+/* Intro: Logo steht still und wackelt kurz, dann kommen die Datums-Schnipsel (Nicolas 2026-11-08) */
+@keyframes logo-wackeln { 0% { rotate: 0deg; } 20% { rotate: -3deg; } 45% { rotate: 2.5deg; } 70% { rotate: -1.4deg; } 100% { rotate: 0deg; } }
+#intro.sofort .buchstaben { animation: logo-wackeln 0.65s ease-in-out 0.12s both; transform-origin: 50% 60%; }
 /* Seiten ohne Tagesausgabe (Woche/Monat/Jahr): Logo oben, blauer Hinweis mittig darunter */
 .oben:has(+ .wrap:not([data-datum])) { padding-top: 3.4rem; }
 .oben:has(+ .wrap:not([data-datum])) .logo-oben { display: block !important; position: static !important; justify-self: center; width: min(8rem, 34vw) !important; margin: 0.9rem 0 0.6rem !important; }
@@ -1140,16 +1143,16 @@ html.kontrast .hinweis b { color: #fff !important; }
       window.dispatchEvent(new Event('mz-intro-start')); /* Ton nur, wenn der Browser ihn erlaubt */
       var gruppe = intro.querySelector('.buchstaben'), echt = document.querySelector('#kurz .erpress');
       function ausblenden(nach) { setTimeout(function () { intro.classList.add('verschwimmt'); document.body.classList.add('karten'); }, nach); }
-      if (!echt || !document.body.animate) { gruppe.style.translate = '0 0'; ausblenden(1100); setTimeout(los, 1900); return; }
+      if (!echt || !document.body.animate) { ausblenden(1100); setTimeout(los, 1900); return; }
       var gross = 1.85, datum = echt.cloneNode(true); datum.className = 'erpress intro-datum'; datum.removeAttribute('aria-label');
       /* Logo + Datum als EINE Gruppe waagerecht und senkrecht mittig (Wunsch Nicolas 2026-11-08) */
-      gruppe.style.translate = '0 0'; var g = gruppe.getBoundingClientRect();
+      var g = gruppe.getBoundingClientRect(); /* Logo bleibt stehen, nur das Datum wird darunter gesetzt */
       datum.style.top = g.bottom + 'px'; intro.appendChild(datum);
       var d0 = datum.getBoundingClientRect(), oben = g.bottom + 46 - d0.top; /* Abstand Logo–Datum (Nicolas 2026-11-08: etwas tiefer) */
       var hoehe = d0.bottom + oben - g.top, shift = Math.round((innerHeight - hoehe) / 2 - g.top);
-      gruppe.style.translate = '0 ' + shift + 'px'; datum.style.top = (g.bottom + oben + shift) + 'px';
+      datum.style.top = (g.bottom + oben) + 'px';
       Array.prototype.forEach.call(datum.children, function (s, n) {
-        var d = 350 + n * 150;
+        var d = 800 + n * 140; /* erst wackelt das Logo, dann kommen die Schnipsel */
         s.animate([{ opacity: 0, transform: 'scale(1.6) rotate(-12deg)' }, { opacity: 1, transform: 'scale(1.15) rotate(6deg)', offset: 0.5 }, { opacity: 1 }],
           { duration: 240, delay: d, easing: 'steps(3, end)', fill: 'both', composite: 'add' });
         if (window.mzKlick) setTimeout(function () { window.mzKlick(0.05); }, d);
@@ -1162,7 +1165,7 @@ html.kontrast .hinweis b { color: #fff !important; }
         datum.animate([{ transform: 'translateX(-50%) scale(' + gross + ') rotate(-2deg)' },
                        { transform: 'translate(calc(-50% + ' + dx + 'px), ' + dy + 'px) scale(1) rotate(0deg)' }],
           { duration: 650, easing: 'cubic-bezier(0.5, 0, 0.2, 1)', fill: 'forwards' }).onfinish = los;
-      }, 1650);
+      }, 1950);
     });
   }
   document.addEventListener('DOMContentLoaded', function () {
