@@ -473,7 +473,7 @@ html.kontrast .erpress span:nth-child(2)::after, html.kontrast .erpress span:nth
 .kurz .zeile > span:first-child { display: grid; gap: 0.35rem; }
 .kurz .zeile > span:last-child { white-space: nowrap; color: var(--mittelgrau); font-size: 0.66rem; }
 .kurz h2 { margin-right: 4.6rem !important; }
-.kurz .neko { position: absolute; right: 0.9rem; top: 0.85rem; width: 7.2rem; height: auto; pointer-events: none; }
+.kurz .neko { position: absolute; right: 0.6rem; top: -2.9rem; width: 9.2rem; z-index: 3; height: auto; pointer-events: none; }
 html.kontrast .kurz .zeile { color: #000; }
 /* Shop-Produkte */
 .produktbilder { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
@@ -844,6 +844,8 @@ html.kontrast .hinweis { background: #000 !important; color: #fff !important; }
 .hinweis { font-size: 0.66rem !important; padding: 0.6rem 0.8rem 0.6rem 0.65rem !important; gap: 0.6rem !important; max-width: min(24rem, calc(100% - 2.6rem)) !important; }
 .hinweis .schild { width: 2.5rem !important; }
 .hinweis b { font-size: 0.72rem !important; }
+/* Platz, weil die Figur oben aus dem Kasten ragt */
+.wrap > .kurz { margin-top: 1.9rem; }
 </style>
 </head>
 <body>
