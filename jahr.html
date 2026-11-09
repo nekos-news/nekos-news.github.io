@@ -1223,6 +1223,11 @@ article .karten-fuss > .quelle::before { font-size: 0.6rem !important; }
 article .teilen svg { width: 1.35rem !important; height: 1.35rem !important; }
 .gelesen-haken svg { width: 1.7rem !important; height: 1.3rem !important; }
 .karten-fuss { min-height: 2.2rem !important; }
+/* Kartenbereich passt sich weich an die aktuelle Karte an, damit unten keine Lücke bleibt (Wunsch Nicolas 2026-11-09) */
+.wischer { transition: height 0.32s ease; }
+html.ruhig .wischer { transition: none; }
+.faq-frage.werte-frage .werte-los { margin: 0.4rem auto 0.2rem; display: block; }
+.faq-frage .werte-hinweis { font: 400 0.74rem/1.45 var(--sans) !important; color: var(--mittelgrau); }
 /* Kachel als Bild (2026-11-09) */
 .bild-modus .gelesen-haken { display: none !important; }
 .bild-signatur { margin-left: auto; flex: none; font: 400 0.74rem/1 var(--maschine); letter-spacing: 0.04em; color: var(--rost); }
@@ -2001,7 +2006,7 @@ function mzVideoZeit(code, i) {
     spur.style.transition = animiert ? 'transform 0.38s cubic-bezier(0.22, 0.75, 0.2, 1)' : 'none';
     spur.style.transform = 'translate3d(' + off + 'px,0,0)';
     folien.forEach(function (f, n) { f.classList.toggle('aktiv', n === i); });
-    w.style.height = hoehe() + 'px'; /* immer die höchste Karte: Pfeile und Leiste darunter springen nicht mehr (Wunsch Nicolas 2026-11-09) */
+    w.style.height = (arts[i].offsetHeight + 18) + 'px'; /* Höhe der aktuellen Karte mit weichem Übergang, unten keine Lücke (Wunsch Nicolas 2026-11-09) */
     nav.querySelector('.karussell-zaehler').textContent = (i + 1) + ' / ' + arts.length;
     /* Endlos: nach der letzten kommt wieder die erste (Wunsch Nicolas 2026-11-08) – Pfeile nie ausgegraut */
   }
@@ -2031,7 +2036,7 @@ function mzVideoZeit(code, i) {
   folien.forEach(function (f, n) { f.addEventListener('click', function (e) { if (n !== i) { e.preventDefault(); e.stopPropagation(); geh(n); } }, true); });
   addEventListener('resize', function () { setzen(false); }); addEventListener('load', function () { setzen(false); });
   /* Höhe nachziehen, wenn Schriften oder Bilder die Karte später größer machen */
-  if ('ResizeObserver' in window) { var ro = new ResizeObserver(function () { w.style.height = hoehe() + 'px'; }); arts.forEach(function (a) { ro.observe(a); }); }
+  if ('ResizeObserver' in window) { var ro = new ResizeObserver(function () { w.style.height = (arts[i].offsetHeight + 18) + 'px'; }); arts.forEach(function (a) { ro.observe(a); }); }
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { setzen(false); });
   setTimeout(function () { setzen(false); }, 1200);
   setzen(false);

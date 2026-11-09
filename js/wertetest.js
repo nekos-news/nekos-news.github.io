@@ -185,7 +185,7 @@
       stark.map(function (a) { return '<p class="wt-achse"><b>' + ACHSEN[a].name + ' · ' + w[a] + ' von 100</b>' + (w[a] >= 50 ? ACHSEN[a].hoch : ACHSEN[a].tief) + '</p>'; }).join('') +
       '<h3 class="wt-h" style="margin-top:1.2rem">Diese Parteien könnten für dich interessant sein</h3>' +
       nah.map(function (p, i) { return '<div class="wt-partei' + (i < 2 ? ' top' : '') + '"><span>' + p.n + '</span><i><b style="width:' + Math.max(4, p.s) + '%"></b></i><span>' + p.s + ' %</span></div>'; }).join('') +
-      '<p class="wt-klein">Keine Wahlempfehlung. Die Partei-Werte sind eine grobe Einschätzung ihrer Grundwerte aus Wahlprogrammen und aktuellen Forderungen, keine Messung' + (PSTAND ? ' (Stand ' + PSTAND.split('-').reverse().join('.') + ')' : '') + '. Schau dir die Programme selbst an, zum Beispiel im Wahl-O-Mat der Bundeszentrale für politische Bildung.</p>' +
+      '<p class="wt-klein">Keine Wahlwerbung und keine Wahlempfehlung, ausschließlich eine KI-Einschätzung. Die Partei-Werte sind eine grobe Einschätzung ihrer Grundwerte aus Wahlprogrammen und aktuellen Forderungen, keine Messung' + (PSTAND ? ' (Stand ' + PSTAND.split('-').reverse().join('.') + ')' : '') + '. Schau dir die Programme selbst an, zum Beispiel im Wahl-O-Mat der Bundeszentrale für politische Bildung.</p>' +
       '<div class="wt-knoepfe wt-start"><button type="button" class="wt-knopf leise" data-neu>Nochmal machen</button></div>';
     karte.querySelector('[data-neu]').addEventListener('click', function () { st = { a: {}, i: 0 }; merke(st); intro(); });
   }

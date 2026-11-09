@@ -137,15 +137,13 @@ PATREON = ""  # Link zu Nekos Patreon, sobald bekannt (leer = Knopf ausgeblendet
 FOLGEN_TIPP = '<span class="folgen-tipp" aria-hidden="true"><span>Folgen!</span><svg viewBox="0 0 40 40"><path d="M6 6 C 10 18, 18 28, 31 34 M31 34 L22 34.5 M31 34 L28.5 25.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>'
 
 # Werte-Test (2026-11-09): erst online, wenn Nicolas die Partei-Werte in daten/parteien.json freigegeben hat
-WERTETEST = False
-WERTETEST_HTML = '''  <section class="gruppe" id="werte">
-    <article class="papier riss werte-teaser">
-      <h3>Wie tickst du?</h3>
-      <p>36 kleine Alltagsszenen, keine Politik-Thesen. Du antwortest nur mit Regler oder Ja/Nein und siehst am Ende, was dir wirklich wichtig ist und welche Parteien von ihren Grundwerten her zu dir passen könnten.</p>
-      <button type="button" class="werte-los" data-wertetest>Test starten · ca. 10 Min.</button>
-    </article>
-    <script src="/js/wertetest.js" defer></script>
-  </section>
+WERTETEST = True  # Nicolas 2026-11-09: als erste FAQ-Frage „Was soll ich wählen? (interaktiv)“
+WERTETEST_HTML = '''      <details class="faq-frage werte-frage"><summary>Was soll ich wählen? (interaktiv)</summary>
+        <p>36 kleine Alltagsszenen statt Politik-Thesen. Du antwortest nur mit Regler oder Ja/Nein und siehst am Ende, was dir wirklich wichtig ist und welche Parteien von ihren Grundwerten her zu dir passen könnten. Dauert ca. 10 Minuten, deine Antworten bleiben auf deinem Gerät.</p>
+        <button type="button" class="werte-los" data-wertetest>Test starten</button>
+        <p class="werte-hinweis">Keine Wahlwerbung und keine Wahlempfehlung: Die Auswertung ist ausschließlich eine KI-Einschätzung.</p>
+        <script src="/js/wertetest.js" defer></script>
+      </details>
 '''
 
 def neko():
@@ -167,7 +165,7 @@ def neko():
     <div class="kanaele vita-kanaele">KANAELEPATREON<a class="anfrage" href="mailto:neko.anfragen@gmail.com?subject=Anfrage%20an%20Neko"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5 H21 A1 1 0 0 1 22 6 V18 A1 1 0 0 1 21 19 H3 A1 1 0 0 1 2 18 V6 A1 1 0 0 1 3 5 Z M4 7.2 V17 H20 V7.2 L12 12.6 Z M5.6 7 L12 11.2 L18.4 7 Z"/></svg>Anfragen</a></div>
   </div>
   </section>
-WERTETEST_PLATZ  <section class="gruppe" id="content">
+  <section class="gruppe" id="content">
     <img class="content-logo" src="bilder/logo_buchstaben.png" alt="Nekos News – Videos" width="330" height="280">
     <div class="filter" id="filter" role="group" aria-label="Nach Thema filtern"></div>
     <div class="raster" id="raster"></div>
@@ -175,7 +173,7 @@ WERTETEST_PLATZ  <section class="gruppe" id="content">
   <section class="gruppe" id="faq">
     <h2 class="zettel zettel-gross">FAQ</h2>
     <article class="papier riss faq">
-      <details class="faq-frage"><summary>Wer steckt hinter Nekos_news?</summary><p>Ich, Neko. Ich bin studierter Kommunikationsdesigner und mache politische Kurzvideos auf Social Media.</p></details>
+WERTETEST_PLATZ      <details class="faq-frage"><summary>Wer steckt hinter Nekos_news?</summary><p>Ich, Neko. Ich bin studierter Kommunikationsdesigner und mache politische Kurzvideos auf Social Media.</p></details>
       <details class="faq-frage"><summary>Wie entstehen deine Videos?</summary><p>Ich setze mich an ein Thema und überlege mir, wie man es kreativ umsetzen kann, damit die Hürde möglichst klein ist, sich für komplexe Themen zu interessieren. Dann recherchiere ich die Fakten und baue das Video in meinem Papier-Look.</p></details>
       <details class="faq-frage"><summary>Sind die News auf dieser Seite von dir?</summary><p>Nein. Die News-Seite stellt eine KI automatisch zusammen: Sie fasst Berichte echter Journalist:innen zusammen und verlinkt die Originalartikel. Anders als meine Videos prüfe ich das nicht selbst.</p></details>
       <details class="faq-frage"><summary>Wie oft gibt es neue News?</summary><p>Jeden Morgen gegen 7 Uhr eine neue Ausgabe. Gegen 17 Uhr wird nur ergänzt, wenn tagsüber etwas Großes passiert ist.</p></details>
