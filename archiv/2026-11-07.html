@@ -511,7 +511,7 @@ html.ruhig article h3 { background-image: none; transform: none; }
 /* Zahlen: per Hand unterstrichen, Strich zeichnet sich beim Reinscrollen */
 .zahl { position: relative; white-space: nowrap; }
 .zahl::after { content: ""; position: absolute; left: -2%; right: -2%; bottom: -0.28em; height: 0.42em; pointer-events: none;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 12' preserveAspectRatio='none'%3E%3Cpath d='M2 8 C 18 5, 32 10, 50 6 S 82 4, 98 7' fill='none' stroke='%23B4532F' stroke-width='3.2' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat left center / 100% 100%;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 12' preserveAspectRatio='none'%3E%3Cpath d='M2 8 C 18 5, 32 10, 50 6 S 82 4, 98 7' fill='none' stroke='%238E2A22' stroke-width='3.2' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat left center / 100% 100%;
   clip-path: inset(0 100% 0 0); transition: clip-path 0.55s steps(5, end); }
 .sichtbar .zahl::after { clip-path: inset(0 0 0 0); }
 .sichtbar .zahl:nth-of-type(2)::after { transition-delay: 0.25s; } .sichtbar .zahl:nth-of-type(3)::after { transition-delay: 0.5s; }
@@ -1217,6 +1217,12 @@ article h3 { text-wrap: balance; }
 .werte-teaser h3 { justify-self: center !important; }
 .werte-teaser p { margin: 0; font-size: 0.95rem; }
 .werte-los { border: 0; cursor: pointer; padding: 0.75rem 1.1rem 0.66rem; font: 800 0.85rem var(--sans); letter-spacing: 0.05em; text-transform: uppercase; color: var(--creme); background-color: var(--rost); background-image: var(--faser); transform: rotate(-1deg); filter: drop-shadow(0 3px 0 rgba(0,0,0,0.25)); }
+/* Fußzeile der Karte: Quellen kleiner, Teilen und Haken größer (Wunsch Nicolas 2026-11-09) */
+article .karten-fuss > .quelle a { font-size: 0.6rem !important; }
+article .karten-fuss > .quelle::before { font-size: 0.6rem !important; }
+article .teilen svg { width: 1.35rem !important; height: 1.35rem !important; }
+.gelesen-haken svg { width: 1.7rem !important; height: 1.3rem !important; }
+.karten-fuss { min-height: 2.2rem !important; }
 /* Kachel als Bild (2026-11-09) */
 .bild-modus .gelesen-haken { display: none !important; }
 .bild-signatur { margin-left: auto; flex: none; font: 400 0.74rem/1 var(--maschine); letter-spacing: 0.04em; color: var(--rost); }
@@ -2192,7 +2198,7 @@ function mzFuss(a) { var f = a.querySelector(':scope > .karten-fuss'); if (!f) {
         var su = det.querySelector('summary'); if (su) { var sr = pos(su.getBoundingClientRect()); x.strokeStyle = getComputedStyle(su).color; x.lineWidth = 1.5; x.strokeRect(sr.x + 0.75, sr.y + 0.75, sr.w - 1.5, sr.h - 1.5); } }
       /* Handmarkierungen: Unterstreichungen und Kreise */
       a.querySelectorAll('.zahl, mark.strich').forEach(function (m) { if (!sichtbar(m) || auslassen(m)) return; var rs = m.getClientRects(); for (var i = 0; i < rs.length; i++) { var r = pos(rs[i]);
-        x.strokeStyle = 'rgba(178,72,40,0.9)'; x.lineWidth = 1.8; x.lineCap = 'round'; x.beginPath(); x.moveTo(r.x, r.y + r.h - 1); x.bezierCurveTo(r.x + r.w * 0.3, r.y + r.h + 2, r.x + r.w * 0.6, r.y + r.h - 3, r.x + r.w, r.y + r.h); x.stroke(); } });
+        x.strokeStyle = 'rgba(142,42,34,0.95)'; x.lineWidth = 1.8; x.lineCap = 'round'; x.beginPath(); x.moveTo(r.x, r.y + r.h - 1); x.bezierCurveTo(r.x + r.w * 0.3, r.y + r.h + 2, r.x + r.w * 0.6, r.y + r.h - 3, r.x + r.w, r.y + r.h); x.stroke(); } });
       a.querySelectorAll('mark.kreis').forEach(function (m) { if (!sichtbar(m)) return; var r = pos(m.getBoundingClientRect()); x.strokeStyle = 'rgba(236,200,140,0.95)'; x.lineWidth = 2;
         x.beginPath(); x.ellipse(r.x + r.w / 2, r.y + r.h / 2 + 2, r.w / 2 + 8, r.h / 2 + 1, -0.02, 0, Math.PI * 2); x.stroke(); });
       /* Text: jedes Wort an seiner echten Stelle, in seiner echten Schrift */
