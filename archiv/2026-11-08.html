@@ -1108,7 +1108,7 @@ html.kontrast .bogen-leiste .zu, html.kontrast .bogen-leiste .bogen-play { backg
 .bogen-leiste > * { pointer-events: auto; }
 .bogen-leiste .zu, .bogen-leiste .bogen-play { position: static !important; top: auto !important; left: auto !important; right: auto !important; width: 2.6rem !important; height: 2.6rem !important; }
 /* Mitlesen: gesprochenes Wort dicker + leichter Farbwechsel (Nicolas 2026-11-08: stärker) */
-.w.jetzt { -webkit-text-stroke: 0.075em currentColor; paint-order: stroke fill; } /* nur dicker, Textfarbe bleibt (Nicolas 2026-11-08) */
+.w.jetzt { -webkit-text-stroke: 0.045em currentColor; paint-order: stroke fill; } /* nur dicker, Textfarbe bleibt (Nicolas 2026-11-08) */
 /* „Mehr anzeigen“ pulsiert leicht, wenn gerade vorgelesen wird, was nur im Vollbild steht */
 @keyframes mehr-puls { 0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(184,64,31,0); } 50% { transform: scale(1.06); box-shadow: 0 0 0 6px rgba(184,64,31,0.22); } }
 details.mehr summary.puls { animation: mehr-puls 1.3s ease-in-out infinite; }
@@ -1769,8 +1769,10 @@ function mzVideoZeit(code, i) {
   window.mzIstGehoert = istGehoert;
   /* Lo-Fi: ist es an, spielt die Fassung mit Musik (<id>.lofi.mp3) – eine einzige Datei, damit das iPhone nichts gegenseitig anhält */
   function mitLofi() { try { return localStorage.getItem('mz-lofi') === '1'; } catch (e) { return false; } }
-  function url(x) { return mitLofi() ? x.url.replace(/\.mp3$/, '.lofi.mp3') : x.url; }
-  player.addEventListener('error', function () { var x = liste[pos]; if (x && /\.lofi\.mp3$/.test(player.src)) { player.src = x.url; if (!dingt) player.play().catch(function () {}); } }); /* fehlt die Lo-Fi-Fassung: ohne Musik */
+  /* ?v: Stundenstempel, damit das Handy keine alte Aufnahme aus dem Speicher spielt, wenn sie neu vertont wurde (Fehlerfall 2026-11-09: Mitlesen passte nicht mehr) */
+  var stand = '?v=' + Math.floor(Date.now() / 36e5);
+  function url(x) { return (mitLofi() ? x.url.replace(/\.mp3$/, '.lofi.mp3') : x.url) + stand; }
+  player.addEventListener('error', function () { var x = liste[pos]; if (x && /\.lofi\.mp3$/.test(player.src)) { player.src = x.url + stand; if (!dingt) player.play().catch(function () {}); } }); /* fehlt die Lo-Fi-Fassung: ohne Musik */
   window.mzLofiWechsel = function () { var x = liste[pos]; if (!x || dingt) return; var t = player.currentTime, lief = !player.paused, neu = url(x); if (player.src.indexOf(neu) >= 0) return;
     player.src = neu; player.addEventListener('loadedmetadata', function () { player.currentTime = t; }, { once: true }); if (lief) player.play().catch(function () {}); };
   player.addEventListener('timeupdate', function () { var x = liste[pos]; if (x && !dingt && player.duration && player.currentTime / player.duration > 0.9) merkeGehoert(x.url); });
@@ -1810,7 +1812,7 @@ function mzVideoZeit(code, i) {
       var ziel = x.el.querySelector('.rubrik, h2'); ziel.insertAdjacentElement('afterend', d);
       x.knopf = d.querySelector('button');
       var rub = x.el.querySelector(':scope > .rubrik'); if (rub && x.el.tagName === 'ARTICLE') d.appendChild(rub); /* Thema rechts in die Zeile unter der Überschrift */
-      (function (klein) { var a = new Audio(); a.preload = 'metadata'; a.src = x.url;
+      (function (klein) { var a = new Audio(); a.preload = 'metadata'; a.src = x.url + stand;
         a.addEventListener('loadedmetadata', function () { var s = Math.round(a.duration); if (!isFinite(s)) return;
           klein.innerHTML = (s < 60 ? s + ' Sek.' : Math.floor(s / 60) + ':' + ('0' + s % 60).slice(-2) + ' Min.') + '<span class="stimme-name">Google KI-Stimme</span>'; }); })(d.querySelector('small'));
       var punkte = [], n = 16 + (i % 3) * 2;
@@ -2010,10 +2012,18 @@ function mzVideoZeit(code, i) {
   var i = 0, uhr = null, sichtbar = false, synchron = false, manuell = false, ruhig = function () { return document.documentElement.classList.contains('ruhig'); };
   /* Läuft das Vorlesen von „Das Wichtigste“, zeigt die Story den Punkt, der gerade gesprochen wird – außer man hat selbst getippt */
   var laengen = punkte.map(function (p) { return p.textContent.length + 2; }), vorlauf = 52, gesamt = vorlauf + laengen.reduce(function (a, b) { return a + b; }, 0);
+  /* Seit 2026-11-09 (KI-Hinweis vorab) nach echten Wort-Zeiten: wann beginnt jeder Punkt in der Aufnahme? */
+  var zeiten = null, dw = document.querySelector('.wrap[data-datum]'), nrm = function (t) { return t.toLowerCase().replace(/[^0-9a-zäöüß]/g, ''); };
+  if (dw) fetch('/audio/' + dw.getAttribute('data-datum') + '/kurz.woerter.json?v=3').then(function (r) { return r.ok ? r.json() : null; }).then(function (w) {
+    if (!w || !w.length) return; var nw = w.map(function (x) { return nrm(x[1]); }), j = 0;
+    zeiten = punkte.map(function (p) { var pw = p.textContent.split(/\s+/).map(nrm).filter(Boolean).slice(0, 4), soll = Math.min(2, pw.length);
+      for (var k = j; k < nw.length; k++) { var hit = 0; for (var q = 0; q < pw.length; q++) if (nw[k + q] === pw[q]) hit++; if (hit >= soll) { j = k + 1; return w[k][0]; } } return null; });
+    if (zeiten.every(function (z) { return z === null; })) zeiten = null; }).catch(function () {});
   window.addEventListener('mz-audio', function (e) { var d = e.detail;
     if (d.id !== 'kurz' || !d.spielt) { if (synchron) { synchron = false; zeig(i); } return; }
     if (!synchron) { synchron = true; manuell = false; zeig(0); }
     if (manuell || !d.d) return;
+    if (zeiten) { var nz = 0; zeiten.forEach(function (z, k) { if (z !== null && d.t >= z - 0.15) nz = k; }); if (nz !== i) zeig(nz); return; }
     var pos = Math.max(0, (d.t - 1.0) / Math.max(1, d.d - 1.0)) * gesamt - vorlauf, n = 0;
     while (n < laengen.length - 1 && pos > laengen[n]) { pos -= laengen[n]; n++; }
     if (pos < 0) n = 0; if (n !== i) zeig(n); });

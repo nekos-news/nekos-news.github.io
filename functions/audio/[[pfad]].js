@@ -8,9 +8,9 @@ async function holen(request, next) {
   const pfad = new URL(request.url).pathname;
   if (/^\/audio\/\d{4}-\d{2}-\d{2}\/[\w.-]+\.mp3$/.test(pfad)) {
     try {
-      const r = await fetch(AUDIO_HOST + pfad, { cf: { cacheTtl: 86400, cacheEverything: true } });
+      const r = await fetch(AUDIO_HOST + pfad, { cf: { cacheTtl: 300, cacheEverything: true } });
       if (r.status === 200 && (r.headers.get('Content-Type') || '').startsWith('audio/')) {
-        const h = new Headers(r.headers); h.set('Cache-Control', 'public, max-age=86400');
+        const h = new Headers(r.headers); h.set('Cache-Control', 'public, max-age=300'); // kurz, weil Aufnahmen neu vertont werden können (2026-11-09)
         return new Response(r.body, { status: 200, headers: h });
       }
     } catch (e) {}
