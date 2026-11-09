@@ -1482,7 +1482,7 @@ function mzVideoZeit(code, i) {
   var kurz = document.getElementById('kurz'); if (!kurz || !window.fetch) return;
   fetch('/daten/content.json', { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : []; }).then(function (alle) {
     /* Nur nach Datum, Anheften auf Instagram spielt hier keine Rolle (Wunsch Nicolas 2026-11-08) */
-    var neu = alle.map(function (x, i) { return { x: x, t: mzVideoZeit(x.code, i) }; }).sort(function (p, q) { return q.t - p.t; }).map(function (o) { return o.x; }).slice(0, 20); if (!neu.length) return; /* 20 statt 8 (Wunsch Nicolas 2026-11-09: weiter scrollen) */
+    var neu = alle.map(function (x, i) { return { x: x, t: mzVideoZeit(x.code, i) }; }).sort(function (p, q) { return q.t - p.t; }).map(function (o) { return o.x; }).slice(0, 24); if (!neu.length) return; /* alle 24 aus content.json statt 8 (Wunsch Nicolas 2026-11-09) */
     var sek = document.createElement('section'); sek.className = 'reels';
     sek.innerHTML = '<div class="reels-kopf"><h2 class="zettel">Neu von Neko</h2></div><div class="reels-leiste"></div>';
     var leiste = sek.querySelector('.reels-leiste');
