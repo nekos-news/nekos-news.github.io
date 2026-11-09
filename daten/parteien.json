@@ -1,0 +1,84 @@
+{
+ "stand": "2026-11-09",
+ "hinweis": "Einschätzung von Claude, keine Messung: Grundwerte der Parteien auf den 5 Achsen des Werte-Tests (0–100), anhand der Wahlprogramme 2025 und aktueller Forderungen. Wird montags überprüft (Morgenzeitung-Aufgabe). Änderungen mit Datum und Grund in 'verlauf'.",
+ "achsen": {
+  "f": "Mitgefühl",
+  "g": "Sozial (hoch) vs. Markt (tief)",
+  "o": "Offenheit (hoch) vs. Ordnung/Tradition (tief)",
+  "k": "Weites Wir (hoch) vs. eigene Gruppe zuerst (tief)",
+  "z": "Zukunft/Klima (hoch) vs. Hier und Jetzt (tief)"
+ },
+ "parteien": [
+  {
+   "n": "Die Linke",
+   "f": 85,
+   "g": 92,
+   "o": 80,
+   "k": 85,
+   "z": 75
+  },
+  {
+   "n": "Grüne",
+   "f": 75,
+   "g": 70,
+   "o": 88,
+   "k": 85,
+   "z": 95
+  },
+  {
+   "n": "SPD",
+   "f": 70,
+   "g": 72,
+   "o": 62,
+   "k": 65,
+   "z": 60
+  },
+  {
+   "n": "Volt",
+   "f": 70,
+   "g": 58,
+   "o": 90,
+   "k": 92,
+   "z": 85
+  },
+  {
+   "n": "CDU/CSU",
+   "f": 45,
+   "g": 35,
+   "o": 30,
+   "k": 42,
+   "z": 42
+  },
+  {
+   "n": "FDP",
+   "f": 38,
+   "g": 18,
+   "o": 65,
+   "k": 55,
+   "z": 45
+  },
+  {
+   "n": "BSW",
+   "f": 62,
+   "g": 80,
+   "o": 25,
+   "k": 35,
+   "z": 35
+  },
+  {
+   "n": "AfD",
+   "f": 22,
+   "g": 38,
+   "o": 8,
+   "k": 8,
+   "z": 12
+  }
+ ],
+ "verlauf": [
+  {
+   "datum": "2026-11-09",
+   "aenderung": "Erste Einschätzung",
+   "grund": "Wahlprogramme 2025 (Grundwerte)"
+  }
+ ]
+}

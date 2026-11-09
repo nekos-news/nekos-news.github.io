@@ -1212,6 +1212,11 @@ article .karten-fuss > .quelle a + a::before { content: "" !important; display: 
   border-radius: 50%; background: var(--mittelgrau) !important; -webkit-mask: none !important; mask: none !important; vertical-align: 0.22em; } /* Punkt auf halber x-Höhe */
 .hoeren button.zurueck10 { width: 2.05rem !important; height: 2.05rem !important; } /* 10-Sekunden-Knopf etwas kleiner (Wunsch Nicolas 2026-11-09) */
 article h3 { text-wrap: balance; }
+/* Werte-Test auf der Neko-Seite (2026-11-09) */
+.werte-teaser { text-align: center; display: grid; gap: 0.6rem; justify-items: center; }
+.werte-teaser h3 { justify-self: center !important; }
+.werte-teaser p { margin: 0; font-size: 0.95rem; }
+.werte-los { border: 0; cursor: pointer; padding: 0.75rem 1.1rem 0.66rem; font: 800 0.85rem var(--sans); letter-spacing: 0.05em; text-transform: uppercase; color: var(--creme); background-color: var(--rost); background-image: var(--faser); transform: rotate(-1deg); filter: drop-shadow(0 3px 0 rgba(0,0,0,0.25)); }
 /* Kachel als Bild (2026-11-09) */
 .bild-modus .gelesen-haken { display: none !important; }
 .bild-signatur { margin-left: auto; flex: none; font: 400 0.74rem/1 var(--maschine); letter-spacing: 0.04em; color: var(--rost); }
