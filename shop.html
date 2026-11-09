@@ -1199,6 +1199,8 @@ article .teilen svg { width: 1rem; height: 1rem; }
 .gelesen-haken svg { width: 1.25rem; height: 0.95rem; }
 html.kontrast article .quelle, html.kontrast article .quelle::before, html.kontrast article .quelle a, html.kontrast .fakt b { color: #000 !important; }
 html.kontrast details.mehr summary { box-shadow: none; }
+.karten-fuss > .quelle { flex: 1 1 auto; min-width: 0; margin: 0 !important; order: 0 !important; }
+.karten-fuss { align-items: center !important; gap: 0.5rem !important; }
 /* Kachel als Bild (2026-11-09) */
 .bild-buehne { position: fixed !important; left: 0 !important; top: 0 !important; z-index: -5 !important; pointer-events: none !important; height: auto !important; overflow: visible !important; padding: 44px 40px 40px !important; margin: 0 !important;
   background-color: var(--grund, #081636) !important; }
@@ -2054,7 +2056,13 @@ function mzFuss(a) { var f = a.querySelector(':scope > .karten-fuss'); if (!f) {
       var sig = document.createElement('span'); sig.className = 'bild-signatur'; sig.textContent = '@nekos_news'; fuss.appendChild(sig);
       folie.appendChild(k); spur.appendChild(folie); buehne.appendChild(spur);
       document.body.appendChild(buehne); /* fest oben links hinter allem: abseits des Bildschirms bleibt das Bild leer */
-      return ms.domToBlob(buehne, { scale: 3, type: 'image/png' }).then(function (blob) { buehne.remove(); return new File([blob], 'nekos-news-' + (a.id || 'meldung') + '.png', { type: 'image/png' }); },
+      /* Safari (iPhone) liefert beim ersten Zeichnen oft ein leeres Bild (Fehlerfall 2026-11-09): prüfen und bis zu 5-mal neu zeichnen */
+      function leer(c) { try { var x = c.getContext('2d'), w = c.width, h = c.height, n = 0;
+        [[0.5, 0.3], [0.5, 0.5], [0.3, 0.6], [0.7, 0.45]].forEach(function (p) { if (x.getImageData(Math.floor(w * p[0]), Math.floor(h * p[1]), 1, 1).data[3] > 0) n++; }); return n < 2; } catch (e) { return false; } }
+      function versuch(k) { return ms.domToCanvas(buehne, { scale: 2.5, drawImageCount: 3, drawImageInterval: 120 }).then(function (c) {
+        if (leer(c) && k < 5) return new Promise(function (r) { setTimeout(r, 250); }).then(function () { return versuch(k + 1); }); return c; }); }
+      return versuch(1).then(function (c) { return new Promise(function (ok) { c.toBlob(ok, 'image/png'); }); })
+        .then(function (blob) { buehne.remove(); if (!blob) throw new Error('kein Bild'); return new File([blob], 'nekos-news-' + (a.id || 'meldung') + '.png', { type: 'image/png' }); },
         function (e) { buehne.remove(); throw e; });
     });
   }
@@ -2079,6 +2087,7 @@ function mzFuss(a) { var f = a.querySelector(':scope > .karten-fuss'); if (!f) {
     b.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.3 9.2 H6.6 C5.6 9.2 5 9.9 5.1 10.8 L5.3 19.6 C5.3 20.5 5.9 21.1 6.8 21.1 L17.4 20.9 C18.3 20.9 18.9 20.3 18.9 19.4 L18.8 10.7 C18.8 9.8 18.2 9.2 17.3 9.2 H15.8"/><path d="M12.1 14.6 C12 10.6 12 6.8 12 3.1 M8.3 6.7 C9.6 5.4 10.8 4.1 12 2.9 C13.3 4.1 14.5 5.3 15.8 6.6"/></svg><span>Teilen</span>';
     b.addEventListener('click', function (e) { e.stopPropagation(); e.preventDefault(); var u = link(a); kopieren(u).then(function (ok) { zeige(ok, a, u); }); });
     mzFuss(a).insertBefore(b, mzFuss(a).firstChild);
+    var q = a.querySelector(':scope > .quelle'); if (q) mzFuss(a).insertBefore(q, b.nextSibling); /* Quellen in dieselbe Zeile zwischen Teilen und Haken (Wunsch Nicolas 2026-11-09) */
   });
 })();
 /* Lo-Fi beim Vorlesen (Wunsch Nicolas 2026-11-08). Selbst erzeugte Musik (Generator: ~/NekoTools/lofi, keine fremden Aufnahmen, frei nutzbar).
