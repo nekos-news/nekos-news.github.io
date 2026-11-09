@@ -528,7 +528,7 @@ article .rubrik::before { content: ""; width: 0.55rem; height: 0.55rem; border-r
 html.kontrast article h3::after { display: none; }
 html.ruhig article h3::after { transform: none; }
 /* Feinschliff */
-article h3::after { top: -0.7rem !important; width: 2.6rem !important; height: 0.85rem !important; background: rgba(217,154,78,0.6) !important; }
+/* (2026-11-09 entfernt: zwang jede Befestigung in 2,6×0,85 rem – Nadeln wurden zu ovalen Klecksen. Ovale nie wieder, Wunsch Nicolas) */
 .fakt b, .einordnung b, .these b, .gegen b { font-family: var(--maschine) !important; font-weight: 400 !important; font-size: 0.72rem !important; letter-spacing: 0.02em !important;
   text-transform: none !important; color: var(--rost) !important; margin-right: 0.4rem; }
 .fakt b::after, .einordnung b::after, .these b::after { content: ":"; }
@@ -1199,6 +1199,13 @@ article .teilen svg { width: 1rem; height: 1rem; }
 .gelesen-haken svg { width: 1.25rem; height: 0.95rem; }
 html.kontrast article .quelle, html.kontrast article .quelle::before, html.kontrast article .quelle a, html.kontrast .fakt b { color: #000 !important; }
 html.kontrast details.mehr summary { box-shadow: none; }
+/* Kachel als Bild (2026-11-09) */
+.bild-buehne { position: fixed !important; left: 0 !important; top: 0 !important; z-index: -5 !important; pointer-events: none !important; height: auto !important; overflow: visible !important; padding: 44px 40px 40px !important; margin: 0 !important;
+  background-color: var(--grund, #081636) !important; }
+.bild-buehne .spur { transform: none !important; display: block !important; }
+.bild-buehne .w-folie { width: auto !important; }
+.bild-signatur { margin-left: auto; font: 400 0.74rem/1 var(--maschine); letter-spacing: 0.04em; color: var(--rost); }
+.teilen-toast button + button { margin-left: -0.2rem; }
 </style>
 </head>
 <body>
@@ -1455,7 +1462,7 @@ function mzVideoZeit(code, i) {
   var kurz = document.getElementById('kurz'); if (!kurz || !window.fetch) return;
   fetch('/daten/content.json', { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : []; }).then(function (alle) {
     /* Nur nach Datum, Anheften auf Instagram spielt hier keine Rolle (Wunsch Nicolas 2026-11-08) */
-    var neu = alle.map(function (x, i) { return { x: x, t: mzVideoZeit(x.code, i) }; }).sort(function (p, q) { return q.t - p.t; }).map(function (o) { return o.x; }).slice(0, 8); if (!neu.length) return;
+    var neu = alle.map(function (x, i) { return { x: x, t: mzVideoZeit(x.code, i) }; }).sort(function (p, q) { return q.t - p.t; }).map(function (o) { return o.x; }).slice(0, 20); if (!neu.length) return; /* 20 statt 8 (Wunsch Nicolas 2026-11-09: weiter scrollen) */
     var sek = document.createElement('section'); sek.className = 'reels';
     sek.innerHTML = '<div class="reels-kopf"><h2 class="zettel">Neu von Neko</h2></div><div class="reels-leiste"></div>';
     var leiste = sek.querySelector('.reels-leiste');
@@ -1854,12 +1861,13 @@ function mzVideoZeit(code, i) {
   erste.appendChild(w); erste.appendChild(nav);
   var i = 0, dx = 0;
   function breite() { return folien[0].getBoundingClientRect().width; }
+  function hoehe() { return Math.max.apply(null, arts.map(function (a) { return a.offsetHeight; })) + 18; }
   function setzen(animiert) {
     var off = (w.clientWidth - breite()) / 2 - i * breite() + dx;
     spur.style.transition = animiert ? 'transform 0.38s cubic-bezier(0.22, 0.75, 0.2, 1)' : 'none';
     spur.style.transform = 'translate3d(' + off + 'px,0,0)';
     folien.forEach(function (f, n) { f.classList.toggle('aktiv', n === i); });
-    w.style.height = (arts[i].offsetHeight + 18) + 'px';
+    w.style.height = hoehe() + 'px'; /* immer die höchste Karte: Pfeile und Leiste darunter springen nicht mehr (Wunsch Nicolas 2026-11-09) */
     nav.querySelector('.karussell-zaehler').textContent = (i + 1) + ' / ' + arts.length;
     /* Endlos: nach der letzten kommt wieder die erste (Wunsch Nicolas 2026-11-08) – Pfeile nie ausgegraut */
   }
@@ -1889,7 +1897,7 @@ function mzVideoZeit(code, i) {
   folien.forEach(function (f, n) { f.addEventListener('click', function (e) { if (n !== i) { e.preventDefault(); e.stopPropagation(); geh(n); } }, true); });
   addEventListener('resize', function () { setzen(false); }); addEventListener('load', function () { setzen(false); });
   /* Höhe nachziehen, wenn Schriften oder Bilder die Karte später größer machen */
-  if ('ResizeObserver' in window) { var ro = new ResizeObserver(function () { w.style.height = (arts[i].offsetHeight + 18) + 'px'; }); arts.forEach(function (a) { ro.observe(a); }); }
+  if ('ResizeObserver' in window) { var ro = new ResizeObserver(function () { w.style.height = hoehe() + 'px'; }); arts.forEach(function (a) { ro.observe(a); }); }
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { setzen(false); });
   setTimeout(function () { setzen(false); }, 1200);
   setzen(false);
@@ -2009,15 +2017,48 @@ function mzFuss(a) { var f = a.querySelector(':scope > .karten-fuss'); if (!f) {
     return m ? location.origin + '/archiv/' + m[1] + '.html#' + m[2] : location.origin + location.pathname + '#' + a.id;
   }
   function kopieren(t) {
-    if (navigator.clipboard && navigator.clipboard.writeText) return navigator.clipboard.writeText(t).then(function () { return true; }, function () { return alt(t); });
+    if (navigator.clipboard && navigator.clipboard.writeText) return Promise.race([navigator.clipboard.writeText(t).then(function () { return true; }, function () { return alt(t); }),
+      new Promise(function (ok) { setTimeout(function () { ok(alt(t)); }, 900); })]); /* hängt die Zwischenablage, nicht ewig warten (2026-11-09) */
     return Promise.resolve(alt(t));
     function alt(t) { var f = document.createElement('textarea'); f.value = t; f.setAttribute('readonly', ''); f.style.cssText = 'position:fixed;opacity:0;top:0'; document.body.appendChild(f); f.select(); var ok = false; try { ok = document.execCommand('copy'); } catch (e) {} f.remove(); return ok; }
   }
+  /* Kachel als Bild (Wunsch Nicolas 2026-11-09): die Karte, wie sie ist, als PNG; statt Haken unten rechts „@nekos_news“.
+     Das Bild wird schon beim Tippen auf Teilen vorbereitet, damit das Teilen-Menü danach direkt aufgehen darf (iPhone verlangt das). */
+  var bibl = null;
+  function bibliothek() { return bibl || (bibl = new Promise(function (ok, nein) { if (window.modernScreenshot) return ok(window.modernScreenshot);
+    var sc = document.createElement('script'); sc.src = '/js/modern-screenshot-4.6.8.js'; sc.onload = function () { ok(window.modernScreenshot); }; sc.onerror = nein; document.head.appendChild(sc); })); }
+  function bildMachen(a) {
+    return bibliothek().then(function (ms) {
+      var r = a.getBoundingClientRect(), buehne = document.createElement('div'), spur = document.createElement('div'), folie = document.createElement('div'), k = a.cloneNode(true);
+      buehne.className = 'wischer bild-buehne'; spur.className = 'spur'; folie.className = 'w-folie aktiv';
+      buehne.style.width = Math.round(a.offsetWidth + 80) + 'px';
+      k.removeAttribute('id'); k.querySelectorAll('[id]').forEach(function (x) { x.removeAttribute('id'); });
+      k.classList.remove('liest'); k.querySelectorAll('.jetzt, .puls').forEach(function (x) { x.classList.remove('jetzt', 'puls'); });
+      k.querySelectorAll('.teilen, .gelesen-haken').forEach(function (x) { x.remove(); });
+      k.querySelectorAll('h3, .hoeren button').forEach(function (x) { x.style.setProperty('background-image', 'none', 'important'); }); /* Faser-Textur wird im Bild sonst schwarz */
+      var fuss = k.querySelector('.karten-fuss') || k.appendChild(Object.assign(document.createElement('div'), { className: 'karten-fuss' }));
+      var sig = document.createElement('span'); sig.className = 'bild-signatur'; sig.textContent = '@nekos_news'; fuss.appendChild(sig);
+      folie.appendChild(k); spur.appendChild(folie); buehne.appendChild(spur);
+      document.body.appendChild(buehne); /* fest oben links hinter allem: abseits des Bildschirms bleibt das Bild leer */
+      return ms.domToBlob(buehne, { scale: 3, type: 'image/png' }).then(function (blob) { buehne.remove(); return new File([blob], 'nekos-news-' + (a.id || 'meldung') + '.png', { type: 'image/png' }); },
+        function (e) { buehne.remove(); throw e; });
+    });
+  }
+  function bildRaus(datei, a) {
+    var h = a.querySelector('h3'), titel = (h ? h.textContent.trim() + ' – ' : '') + 'Nekos News';
+    if (navigator.canShare && navigator.canShare({ files: [datei] })) return navigator.share({ files: [datei], title: titel }).catch(function () {});
+    var u = URL.createObjectURL(datei), l = document.createElement('a'); l.href = u; l.download = datei.name; document.body.appendChild(l); l.click(); l.remove(); setTimeout(function () { URL.revokeObjectURL(u); }, 4000);
+  }
   function zeige(ok, a, u) {
     clearTimeout(weg); toast.innerHTML = '<span>' + (ok ? 'Link kopiert ✓' : 'Link: ' + u) + '</span>';
+    var bild = null, fehler = false; bildMachen(a).then(function (f) { bild = f; if (bk.dataset.warte) { bk.textContent = 'Bild teilen'; delete bk.dataset.warte; } }, function () { fehler = true; bk.textContent = 'Bild geht nicht'; });
+    var bk = document.createElement('button'); bk.type = 'button'; bk.textContent = 'Als Bild';
+    bk.addEventListener('click', function () { if (fehler) return; if (!bild) { bk.dataset.warte = '1'; bk.textContent = 'Bild …'; clearTimeout(weg); return; }
+      bildRaus(bild, a); toast.hidden = true; });
+    toast.appendChild(bk);
     if (navigator.share) { var b = document.createElement('button'); b.type = 'button'; b.textContent = 'Teilen…';
       b.addEventListener('click', function () { var h = a.querySelector('h3'); navigator.share({ title: (h ? h.textContent.trim() + ' – ' : '') + 'Nekos News', url: u }).catch(function () {}); toast.hidden = true; }); toast.appendChild(b); }
-    toast.hidden = false; weg = setTimeout(function () { toast.hidden = true; }, 4000);
+    toast.hidden = false; weg = setTimeout(function () { toast.hidden = true; }, 7000);
   }
   arts.forEach(function (a) {
     var b = document.createElement('button'); b.type = 'button'; b.className = 'teilen'; b.setAttribute('aria-label', 'Link zu dieser Meldung kopieren');
