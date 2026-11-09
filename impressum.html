@@ -1205,8 +1205,15 @@ html.kontrast details.mehr summary { box-shadow: none; }
 .zahl::after { bottom: -0.06em !important; }
 mark.strich::after { bottom: -0.18em !important; }
 .karten-fuss > .quelle { text-align: center !important; }
+/* Quellen: „Quellen:“ in eigener Zeile, darunter alle Quellen mit mittigem Punkt (Wunsch Nicolas 2026-11-09) */
+article .karten-fuss > .quelle { font-size: 0 !important; line-height: 1.35 !important; }
+article .karten-fuss > .quelle::before { display: block !important; margin-bottom: 0.1rem !important; }
+article .karten-fuss > .quelle a + a::before { content: "" !important; display: inline-block !important; margin: 0 6px !important; width: 3px !important; height: 3px !important;
+  border-radius: 50%; background: var(--mittelgrau) !important; -webkit-mask: none !important; mask: none !important; vertical-align: 0.22em; } /* Punkt auf halber x-Höhe */
+.hoeren button.zurueck10 { width: 2.05rem !important; height: 2.05rem !important; } /* 10-Sekunden-Knopf etwas kleiner (Wunsch Nicolas 2026-11-09) */
+article h3 { text-wrap: balance; }
 /* Kachel als Bild (2026-11-09) */
-.bild-modus .teilen, .bild-modus .gelesen-haken { display: none !important; }
+.bild-modus .gelesen-haken { display: none !important; }
 .bild-signatur { margin-left: auto; flex: none; font: 400 0.74rem/1 var(--maschine); letter-spacing: 0.04em; color: var(--rost); }
 .teilen-toast button + button { margin-left: -0.2rem; }
 </style>
@@ -2004,6 +2011,17 @@ function mzFuss(a) { var f = a.querySelector(':scope > .karten-fuss'); if (!f) {
   arts.forEach(function (a) { var s = a.querySelector('details.mehr summary'); if (s) s.addEventListener('click', function () { markiere(a); }); });
   zeichne();
 })();
+/* Überschriften: Zeilen linksbündig, der Textblock aber mittig im orangen Kasten (Wunsch Nicolas 2026-11-09) */
+(function () {
+  function mitte(h) { h.style.paddingLeft = h.style.paddingRight = ''; var cs = getComputedStyle(h), pl = parseFloat(cs.paddingLeft), pr = parseFloat(cs.paddingRight);
+    var rg = document.createRange(); rg.selectNodeContents(h); var rs = rg.getClientRects(), rechts = -Infinity, links = Infinity;
+    for (var i = 0; i < rs.length; i++) if (rs[i].width > 1) { rechts = Math.max(rechts, rs[i].right); links = Math.min(links, rs[i].left); }
+    var b = h.getBoundingClientRect(), frei = (b.right - pr) - rechts - 1; if (isFinite(rechts) && frei > 3) { h.style.paddingLeft = (pl + frei / 2) + 'px'; h.style.paddingRight = (pr + frei / 2) + 'px'; } }
+  function alle() { document.querySelectorAll('article h3, .bogen h3').forEach(mitte); }
+  var uhr; function bald() { clearTimeout(uhr); uhr = setTimeout(alle, 120); }
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(alle); window.addEventListener('load', alle); window.addEventListener('resize', bald);
+  document.addEventListener('click', function () { setTimeout(alle, 80); });
+})();
 /* Teilen an jeder Meldung (Wunsch Nicolas 2026-11-08): kopiert einen festen Link (Archiv-Ausgabe + Meldung) in die Zwischenablage; wo das Handy es kann, zusätzlich „Teilen…“ */
 (function () {
   var wrap = document.querySelector('.wrap[data-datum]'), datum = wrap && wrap.getAttribute('data-datum');
@@ -2026,7 +2044,7 @@ function mzFuss(a) { var f = a.querySelector(':scope > .karten-fuss'); if (!f) {
      Grund: Safari auf dem iPhone kann HTML nicht zuverlässig abfotografieren (Bild blieb leer), und die versteckte Kopie war dort sichtbar. */
   function bildMachen(a) {
     return (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(function () {
-      /* Für die Dauer des Zeichnens: Teilen und Haken weg, „@nekos_news“ an ihre Stelle (gleicher Ablauf, kein sichtbares Flackern) */
+      /* Für die Dauer des Zeichnens: Haken weg (Teilen bleibt, Wunsch Nicolas), „@nekos_news“ an ihre Stelle (gleicher Ablauf, kein sichtbares Flackern) */
       var fuss0 = a.querySelector('.karten-fuss'), sig = document.createElement('span'); sig.className = 'bild-signatur'; sig.textContent = '@nekos_news';
       a.classList.add('bild-modus'); if (fuss0) fuss0.appendChild(sig);
       try {
@@ -2044,6 +2062,15 @@ function mzFuss(a) { var f = a.querySelector(':scope > .karten-fuss'); if (!f) {
         var px = P.x + (pt.trim().split(/\s+/)[0].indexOf('%') > 0 ? v[0] * P.w : v[0]), py = P.y + (pt.trim().split(/\s+/)[1].indexOf('%') > 0 ? v[1] * P.h : v[1]); i ? x.lineTo(px, py) : x.moveTo(px, py); });
       else x.rect(P.x, P.y, P.w, P.h);
       x.closePath(); x.fill(); x.restore();
+      /* Papierfasern (wie die Faser-Textur der Seite): feine waagerechte Striche, nur innerhalb des Papiers */
+      x.save(); x.beginPath();
+      if (poly) poly[1].split(',').forEach(function (pt, i) { var t2 = pt.trim().split(/\s+/), px = P.x + (t2[0].indexOf('%') > 0 ? parseFloat(t2[0]) / 100 * P.w : parseFloat(t2[0])), py = P.y + (t2[1].indexOf('%') > 0 ? parseFloat(t2[1]) / 100 * P.h : parseFloat(t2[1])); i ? x.lineTo(px, py) : x.moveTo(px, py); });
+      else x.rect(P.x, P.y, P.w, P.h);
+      x.closePath(); x.clip(); var zz = 7;
+      function zufall() { zz = (zz * 16807) % 2147483647; return zz / 2147483647; }
+      for (var fy = P.y; fy < P.y + P.h; fy += 0.7) { var fx = P.x - 20; while (fx < P.x + P.w) { var lang = 15 + zufall() * 90, al = zufall() * 0.07;
+        x.fillStyle = zufall() < 0.5 ? 'rgba(77,56,38,' + al + ')' : 'rgba(255,250,240,' + al * 0.9 + ')'; x.fillRect(fx, fy, lang, 0.55); fx += lang + zufall() * 25; } }
+      x.restore();
       /* Flächen: Überschrift, Knöpfe, Punkt der Rubrik, „Mehr anzeigen“-Rahmen, gestrichelte Linie */
       var h3 = a.querySelector('h3'); if (h3) { var hr = pos(h3.getBoundingClientRect()); x.save(); x.shadowColor = 'rgba(46,43,42,0.35)'; x.shadowOffsetX = 3; x.shadowOffsetY = 3;
         x.fillStyle = getComputedStyle(h3).backgroundColor; x.fillRect(hr.x, hr.y, hr.w, hr.h); x.restore(); }
@@ -2067,18 +2094,22 @@ function mzFuss(a) { var f = a.querySelector(':scope > .karten-fuss'); if (!f) {
       x.textBaseline = 'alphabetic';
       var tw = document.createTreeWalker(a, NodeFilter.SHOW_TEXT, null), n, rg = document.createRange();
       while ((n = tw.nextNode())) { var el = n.parentNode; if (!n.nodeValue.trim() || auslassen(n) || !sichtbar(el)) continue;
-        var cs = getComputedStyle(el), fs = parseFloat(cs.fontSize); if (cs.color === 'rgba(0, 0, 0, 0)' || cs.webkitTextFillColor === 'rgba(0, 0, 0, 0)') continue;
+        var cs = getComputedStyle(el), fs = parseFloat(cs.fontSize); if (fs < 2) continue; if (cs.color === 'rgba(0, 0, 0, 0)' || cs.webkitTextFillColor === 'rgba(0, 0, 0, 0)') continue;
         x.font = cs.fontStyle + ' ' + cs.fontWeight + ' ' + cs.fontSize + ' ' + cs.fontFamily; x.fillStyle = cs.color;
         var tt = cs.textTransform, re = /\S+/g, m;
         while ((m = re.exec(n.nodeValue))) { rg.setStart(n, m.index); rg.setEnd(n, m.index + m[0].length); var rs = rg.getClientRects(); if (!rs.length) continue; var r = pos(rs[0]);
           var wort = tt === 'uppercase' ? m[0].toUpperCase() : m[0], mt = x.measureText(wort), asc = mt.fontBoundingBoxAscent || fs * 0.8, desc = mt.fontBoundingBoxDescent || fs * 0.2;
           x.save(); var ls = parseFloat(cs.letterSpacing); if (ls && 'letterSpacing' in x) x.letterSpacing = ls + 'px';
           x.fillText(wort, r.x, r.y + (r.h - (asc + desc)) / 2 + asc); x.restore(); } }
-      /* Pseudo-Texte: „Quellen:“ und der KI-Stern */
-      var q = a.querySelector('.quelle'); if (q && sichtbar(q)) { var qa = q.querySelector('a'); if (qa) { var qr = pos(qa.getClientRects()[0]), qc = getComputedStyle(q, '::before');
-        x.font = qc.fontWeight + ' ' + qc.fontSize + ' ' + qc.fontFamily; x.fillStyle = qc.color; var t = 'Quellen: ', tw2 = x.measureText(t).width;
-        x.fillText(t, qr.x - tw2, qr.y + qr.h * 0.78); }
-        q.querySelectorAll('a').forEach(function (l) { var rs = l.getClientRects(); for (var i = 0; i < rs.length; i++) { var r = pos(rs[i]); x.fillStyle = 'rgba(46,43,42,0.3)'; x.fillRect(r.x, r.y + r.h - 1, r.w, 1); } }); }
+      /* „Quellen:“ (eigene Zeile über den Links), Unterstreichungen und Mittelpunkte zwischen den Quellen */
+      var q = a.querySelector('.quelle'); if (q && sichtbar(q)) { var ls2 = q.querySelectorAll('a'), qc = getComputedStyle(q, '::before');
+        if (ls2.length) { var f0 = pos(ls2[0].getClientRects()[0]), qR = pos(q.getBoundingClientRect()); x.font = qc.fontWeight + ' ' + qc.fontSize + ' ' + qc.fontFamily; x.fillStyle = qc.color;
+          x.textAlign = 'center'; x.fillText('Quellen:', qR.x + qR.w / 2, f0.y - f0.h * 0.35); x.textAlign = 'left'; }
+        ls2.forEach(function (l, k) { if (!k) return; var r = pos(l.getClientRects()[0]); x.fillStyle = '#7a7268'; x.beginPath(); x.arc(r.x + 7.5, r.y + r.h * 0.58, 1.5, 0, Math.PI * 2); x.fill(); }); }
+      /* Teilen-Symbol links (bleibt im Bild, Wunsch Nicolas) */
+      var tb = a.querySelector('.teilen svg'); if (tb && sichtbar(tb)) { var trr = pos(tb.getBoundingClientRect()); x.save(); x.translate(trr.x, trr.y); x.scale(trr.w / 24, trr.h / 24);
+        x.strokeStyle = getComputedStyle(a.querySelector('.teilen')).color; x.lineWidth = 2.1; x.lineCap = 'round'; x.lineJoin = 'round';
+        tb.querySelectorAll('path').forEach(function (pp) { try { x.stroke(new Path2D(pp.getAttribute('d'))); } catch (e) {} }); x.restore(); }
       /* KI-Stern hinter „KI-Zusammenfassung“ */
       var kb = a.querySelector('.fakt > b'); if (kb && sichtbar(kb)) { var kr = pos(kb.getBoundingClientRect()); x.fillStyle = '#C8603A'; x.font = '700 11px Arial, sans-serif'; x.textBaseline = 'middle'; x.fillText('\u2726', kr.x + kr.w - 9, kr.y + kr.h / 2); x.textBaseline = 'alphabetic'; }
       } finally { a.classList.remove('bild-modus'); sig.remove(); }
