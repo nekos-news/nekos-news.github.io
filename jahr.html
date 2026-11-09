@@ -1201,9 +1201,13 @@ html.kontrast article .quelle, html.kontrast article .quelle::before, html.kontr
 html.kontrast details.mehr summary { box-shadow: none; }
 .karten-fuss > .quelle { flex: 1 1 auto; min-width: 0; margin: 0 !important; order: 0 !important; }
 .karten-fuss { align-items: center !important; gap: 0.5rem !important; }
+/* Unterstreichungen näher an ihre Zeile, Quellen mittig (Wunsch Nicolas 2026-11-09) */
+.zahl::after { bottom: -0.06em !important; }
+mark.strich::after { bottom: -0.18em !important; }
+.karten-fuss > .quelle { text-align: center !important; }
 /* Kachel als Bild (2026-11-09) */
 .bild-buehne { position: fixed !important; left: 0 !important; top: 0 !important; z-index: -5 !important; pointer-events: none !important; height: auto !important; overflow: visible !important; padding: 44px 40px 40px !important; margin: 0 !important;
-  background-color: var(--grund, #081636) !important; }
+  background: transparent !important; } /* PNG ohne blauen Hintergrund, nur die Karte (Wunsch Nicolas 2026-11-09) */
 .bild-buehne .spur { transform: none !important; display: block !important; }
 .bild-buehne .w-folie { width: auto !important; }
 .bild-signatur { margin-left: auto; font: 400 0.74rem/1 var(--maschine); letter-spacing: 0.04em; color: var(--rost); }
