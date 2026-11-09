@@ -1206,11 +1206,8 @@ html.kontrast details.mehr summary { box-shadow: none; }
 mark.strich::after { bottom: -0.18em !important; }
 .karten-fuss > .quelle { text-align: center !important; }
 /* Kachel als Bild (2026-11-09) */
-.bild-buehne { position: fixed !important; left: 0 !important; top: 0 !important; z-index: -5 !important; pointer-events: none !important; height: auto !important; overflow: visible !important; padding: 44px 40px 40px !important; margin: 0 !important;
-  background: transparent !important; } /* PNG ohne blauen Hintergrund, nur die Karte (Wunsch Nicolas 2026-11-09) */
-.bild-buehne .spur { transform: none !important; display: block !important; }
-.bild-buehne .w-folie { width: auto !important; }
-.bild-signatur { margin-left: auto; font: 400 0.74rem/1 var(--maschine); letter-spacing: 0.04em; color: var(--rost); }
+.bild-modus .teilen, .bild-modus .gelesen-haken { display: none !important; }
+.bild-signatur { margin-left: auto; flex: none; font: 400 0.74rem/1 var(--maschine); letter-spacing: 0.04em; color: var(--rost); }
 .teilen-toast button + button { margin-left: -0.2rem; }
 </style>
 </head>
@@ -2025,30 +2022,67 @@ function mzFuss(a) { var f = a.querySelector(':scope > .karten-fuss'); if (!f) {
   }
   /* Kachel als Bild (Wunsch Nicolas 2026-11-09): die Karte, wie sie ist, als PNG; statt Haken unten rechts „@nekos_news“.
      Das Bild wird schon beim Tippen auf Teilen vorbereitet, damit das Teilen-Menü danach direkt aufgehen darf (iPhone verlangt das). */
-  var bibl = null;
-  function bibliothek() { return bibl || (bibl = new Promise(function (ok, nein) { if (window.modernScreenshot) return ok(window.modernScreenshot);
-    var sc = document.createElement('script'); sc.src = '/js/modern-screenshot-4.6.8.js'; sc.onload = function () { ok(window.modernScreenshot); }; sc.onerror = nein; document.head.appendChild(sc); })); }
+  /* Seit 2026-11-09 (2. Fassung): Die Karte wird selbst auf eine Leinwand gezeichnet – Wort für Wort an den echten Positionen, mit echten Schriften und Farben.
+     Grund: Safari auf dem iPhone kann HTML nicht zuverlässig abfotografieren (Bild blieb leer), und die versteckte Kopie war dort sichtbar. */
   function bildMachen(a) {
-    return bibliothek().then(function (ms) {
-      var r = a.getBoundingClientRect(), buehne = document.createElement('div'), spur = document.createElement('div'), folie = document.createElement('div'), k = a.cloneNode(true);
-      buehne.className = 'wischer bild-buehne'; spur.className = 'spur'; folie.className = 'w-folie aktiv';
-      buehne.style.width = Math.round(a.offsetWidth + 80) + 'px';
-      k.removeAttribute('id'); k.querySelectorAll('[id]').forEach(function (x) { x.removeAttribute('id'); });
-      k.classList.remove('liest'); k.querySelectorAll('.jetzt, .puls').forEach(function (x) { x.classList.remove('jetzt', 'puls'); });
-      k.querySelectorAll('.teilen, .gelesen-haken').forEach(function (x) { x.remove(); });
-      k.querySelectorAll('h3, .hoeren button').forEach(function (x) { x.style.setProperty('background-image', 'none', 'important'); }); /* Faser-Textur wird im Bild sonst schwarz */
-      var fuss = k.querySelector('.karten-fuss') || k.appendChild(Object.assign(document.createElement('div'), { className: 'karten-fuss' }));
-      var sig = document.createElement('span'); sig.className = 'bild-signatur'; sig.textContent = '@nekos_news'; fuss.appendChild(sig);
-      folie.appendChild(k); spur.appendChild(folie); buehne.appendChild(spur);
-      document.body.appendChild(buehne); /* fest oben links hinter allem: abseits des Bildschirms bleibt das Bild leer */
-      /* Safari (iPhone) liefert beim ersten Zeichnen oft ein leeres Bild (Fehlerfall 2026-11-09): prüfen und bis zu 5-mal neu zeichnen */
-      function leer(c) { try { var x = c.getContext('2d'), w = c.width, h = c.height, n = 0;
-        [[0.5, 0.3], [0.5, 0.5], [0.3, 0.6], [0.7, 0.45]].forEach(function (p) { if (x.getImageData(Math.floor(w * p[0]), Math.floor(h * p[1]), 1, 1).data[3] > 0) n++; }); return n < 2; } catch (e) { return false; } }
-      function versuch(k) { return ms.domToCanvas(buehne, { scale: 2.5, drawImageCount: 3, drawImageInterval: 120 }).then(function (c) {
-        if (leer(c) && k < 5) return new Promise(function (r) { setTimeout(r, 250); }).then(function () { return versuch(k + 1); }); return c; }); }
-      return versuch(1).then(function (c) { return new Promise(function (ok) { c.toBlob(ok, 'image/png'); }); })
-        .then(function (blob) { buehne.remove(); if (!blob) throw new Error('kein Bild'); return new File([blob], 'nekos-news-' + (a.id || 'meldung') + '.png', { type: 'image/png' }); },
-        function (e) { buehne.remove(); throw e; });
+    return (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(function () {
+      /* Für die Dauer des Zeichnens: Teilen und Haken weg, „@nekos_news“ an ihre Stelle (gleicher Ablauf, kein sichtbares Flackern) */
+      var fuss0 = a.querySelector('.karten-fuss'), sig = document.createElement('span'); sig.className = 'bild-signatur'; sig.textContent = '@nekos_news';
+      a.classList.add('bild-modus'); if (fuss0) fuss0.appendChild(sig);
+      try {
+      var R = a.getBoundingClientRect(), pad = 46, S = 3, W = Math.ceil(R.width + pad * 2), H = Math.ceil(R.height + pad * 2);
+      var c = document.createElement('canvas'); c.width = W * S; c.height = H * S; var x = c.getContext('2d'); x.scale(S, S);
+      function pos(r) { return { x: r.left - R.left + pad, y: r.top - R.top + pad, w: r.width, h: r.height }; }
+      function sichtbar(el) { if (!el.getClientRects().length) return false; var cs = getComputedStyle(el); return cs.visibility !== 'hidden' && cs.display !== 'none' && +cs.opacity > 0.05; }
+      var weg = a.querySelectorAll('.einfach, .stimme-name, details.mehr > :not(summary), .randnotiz, .marke');
+      function auslassen(n) { for (var i = 0; i < weg.length; i++) if (weg[i].contains(n)) return true; return false; }
+      /* Papier: Form aus dem Riss-Rand der Karte, mit Schlagschatten */
+      var pc = getComputedStyle(a, '::before'), poly = (pc.clipPath || '').match(/polygon\((.*)\)/), P = pos(R);
+      x.save(); x.shadowColor = 'rgba(2,6,20,0.45)'; x.shadowBlur = 22; x.shadowOffsetX = 3; x.shadowOffsetY = 8;
+      x.fillStyle = pc.backgroundColor && pc.backgroundColor !== 'rgba(0, 0, 0, 0)' ? pc.backgroundColor : '#e8dcc6'; x.beginPath();
+      if (poly) poly[1].split(',').forEach(function (pt, i) { var v = pt.trim().split(/\s+/).map(function (q) { return q.indexOf('%') > 0 ? parseFloat(q) / 100 : parseFloat(q) / (i ? 1 : 1); });
+        var px = P.x + (pt.trim().split(/\s+/)[0].indexOf('%') > 0 ? v[0] * P.w : v[0]), py = P.y + (pt.trim().split(/\s+/)[1].indexOf('%') > 0 ? v[1] * P.h : v[1]); i ? x.lineTo(px, py) : x.moveTo(px, py); });
+      else x.rect(P.x, P.y, P.w, P.h);
+      x.closePath(); x.fill(); x.restore();
+      /* Flächen: Überschrift, Knöpfe, Punkt der Rubrik, „Mehr anzeigen“-Rahmen, gestrichelte Linie */
+      var h3 = a.querySelector('h3'); if (h3) { var hr = pos(h3.getBoundingClientRect()); x.save(); x.shadowColor = 'rgba(46,43,42,0.35)'; x.shadowOffsetX = 3; x.shadowOffsetY = 3;
+        x.fillStyle = getComputedStyle(h3).backgroundColor; x.fillRect(hr.x, hr.y, hr.w, hr.h); x.restore(); }
+      a.querySelectorAll('.hoeren button').forEach(function (b, k) { if (!sichtbar(b)) return; var r = pos(b.getBoundingClientRect()), cx = r.x + r.w / 2, cy = r.y + r.h / 2, rad = Math.min(r.w, r.h) / 2;
+        x.fillStyle = getComputedStyle(b).backgroundColor; x.beginPath(); for (var i = 0; i < 14; i++) { var w = i / 14 * Math.PI * 2, rr = rad * (0.94 + 0.06 * Math.sin(i * 7.3 + k)); x.lineTo(cx + rr * Math.cos(w), cy + rr * Math.sin(w)); } x.closePath(); x.fill();
+        x.fillStyle = '#f4ead8';
+        if (b.classList.contains('zurueck10')) { x.strokeStyle = '#f4ead8'; x.lineWidth = rad * 0.13; x.beginPath(); x.arc(cx, cy, rad * 0.55, -Math.PI * 0.6, Math.PI * 1.25); x.stroke();
+          x.font = '800 ' + (rad * 0.5) + 'px "Libre Franklin", Arial, sans-serif'; x.textAlign = 'center'; x.textBaseline = 'middle'; x.fillText('10', cx, cy + rad * 0.04); x.textAlign = 'left'; }
+        else { x.beginPath(); x.moveTo(cx - rad * 0.28, cy - rad * 0.38); x.lineTo(cx + rad * 0.42, cy); x.lineTo(cx - rad * 0.28, cy + rad * 0.38); x.closePath(); x.fill(); } });
+      var rub = a.querySelector('.rubrik'); if (rub && sichtbar(rub)) { var rr2 = pos(rub.getBoundingClientRect()); x.fillStyle = getComputedStyle(rub, '::before').backgroundColor || '#C8603A';
+        x.beginPath(); x.arc(rr2.x + 4.5, rr2.y + rr2.h / 2, 4.4, 0, Math.PI * 2); x.fill(); }
+      var det = a.querySelector('details.mehr'); if (det && sichtbar(det)) { var dr = pos(det.getBoundingClientRect()); x.save(); x.strokeStyle = 'rgba(122,114,104,0.8)'; x.setLineDash([4, 3]); x.lineWidth = 1;
+        x.beginPath(); x.moveTo(dr.x, dr.y); x.lineTo(dr.x + dr.w, dr.y); x.stroke(); x.restore();
+        var su = det.querySelector('summary'); if (su) { var sr = pos(su.getBoundingClientRect()); x.strokeStyle = getComputedStyle(su).color; x.lineWidth = 1.5; x.strokeRect(sr.x + 0.75, sr.y + 0.75, sr.w - 1.5, sr.h - 1.5); } }
+      /* Handmarkierungen: Unterstreichungen und Kreise */
+      a.querySelectorAll('.zahl, mark.strich').forEach(function (m) { if (!sichtbar(m) || auslassen(m)) return; var rs = m.getClientRects(); for (var i = 0; i < rs.length; i++) { var r = pos(rs[i]);
+        x.strokeStyle = 'rgba(178,72,40,0.9)'; x.lineWidth = 1.8; x.lineCap = 'round'; x.beginPath(); x.moveTo(r.x, r.y + r.h - 1); x.bezierCurveTo(r.x + r.w * 0.3, r.y + r.h + 2, r.x + r.w * 0.6, r.y + r.h - 3, r.x + r.w, r.y + r.h); x.stroke(); } });
+      a.querySelectorAll('mark.kreis').forEach(function (m) { if (!sichtbar(m)) return; var r = pos(m.getBoundingClientRect()); x.strokeStyle = 'rgba(236,200,140,0.95)'; x.lineWidth = 2;
+        x.beginPath(); x.ellipse(r.x + r.w / 2, r.y + r.h / 2 + 2, r.w / 2 + 8, r.h / 2 + 1, -0.02, 0, Math.PI * 2); x.stroke(); });
+      /* Text: jedes Wort an seiner echten Stelle, in seiner echten Schrift */
+      x.textBaseline = 'alphabetic';
+      var tw = document.createTreeWalker(a, NodeFilter.SHOW_TEXT, null), n, rg = document.createRange();
+      while ((n = tw.nextNode())) { var el = n.parentNode; if (!n.nodeValue.trim() || auslassen(n) || !sichtbar(el)) continue;
+        var cs = getComputedStyle(el), fs = parseFloat(cs.fontSize); if (cs.color === 'rgba(0, 0, 0, 0)' || cs.webkitTextFillColor === 'rgba(0, 0, 0, 0)') continue;
+        x.font = cs.fontStyle + ' ' + cs.fontWeight + ' ' + cs.fontSize + ' ' + cs.fontFamily; x.fillStyle = cs.color;
+        var tt = cs.textTransform, re = /\S+/g, m;
+        while ((m = re.exec(n.nodeValue))) { rg.setStart(n, m.index); rg.setEnd(n, m.index + m[0].length); var rs = rg.getClientRects(); if (!rs.length) continue; var r = pos(rs[0]);
+          var wort = tt === 'uppercase' ? m[0].toUpperCase() : m[0], mt = x.measureText(wort), asc = mt.fontBoundingBoxAscent || fs * 0.8, desc = mt.fontBoundingBoxDescent || fs * 0.2;
+          x.save(); var ls = parseFloat(cs.letterSpacing); if (ls && 'letterSpacing' in x) x.letterSpacing = ls + 'px';
+          x.fillText(wort, r.x, r.y + (r.h - (asc + desc)) / 2 + asc); x.restore(); } }
+      /* Pseudo-Texte: „Quellen:“ und der KI-Stern */
+      var q = a.querySelector('.quelle'); if (q && sichtbar(q)) { var qa = q.querySelector('a'); if (qa) { var qr = pos(qa.getClientRects()[0]), qc = getComputedStyle(q, '::before');
+        x.font = qc.fontWeight + ' ' + qc.fontSize + ' ' + qc.fontFamily; x.fillStyle = qc.color; var t = 'Quellen: ', tw2 = x.measureText(t).width;
+        x.fillText(t, qr.x - tw2, qr.y + qr.h * 0.78); }
+        q.querySelectorAll('a').forEach(function (l) { var rs = l.getClientRects(); for (var i = 0; i < rs.length; i++) { var r = pos(rs[i]); x.fillStyle = 'rgba(46,43,42,0.3)'; x.fillRect(r.x, r.y + r.h - 1, r.w, 1); } }); }
+      /* KI-Stern hinter „KI-Zusammenfassung“ */
+      var kb = a.querySelector('.fakt > b'); if (kb && sichtbar(kb)) { var kr = pos(kb.getBoundingClientRect()); x.fillStyle = '#C8603A'; x.font = '700 11px Arial, sans-serif'; x.textBaseline = 'middle'; x.fillText('\u2726', kr.x + kr.w - 9, kr.y + kr.h / 2); x.textBaseline = 'alphabetic'; }
+      } finally { a.classList.remove('bild-modus'); sig.remove(); }
+      return new Promise(function (ok, nein) { c.toBlob(function (b) { b ? ok(new File([b], 'nekos-news-' + (a.id || 'meldung') + '.png', { type: 'image/png' })) : nein(new Error('kein Bild')); }, 'image/png'); });
     });
   }
   function bildRaus(datei, a) {
