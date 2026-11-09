@@ -1184,6 +1184,21 @@ html.ruhig .folgen-tipp { transform: none; }
 /* Gen-Z-Video schärfer: YouTube wählt die Qualität nach Player-Größe -> intern doppelt so groß rendern und verkleinern (2026-11-08) */
 .surf-fenster .bild iframe { width: 300% !important; height: 300% !important; transform: translate(-50%, -50%) scale(0.5) !important; }
 html.kontrast .hinweis b { color: #fff !important; }
+/* Aufgeräumt (Wunsch Nicolas 2026-11-09: minimalistischer, gleiche Funktionen) */
+article .quelle { display: block !important; text-align: left !important; justify-self: stretch !important; font: 400 0.68rem/1.5 var(--sans) !important; color: var(--mittelgrau) !important; }
+article .quelle::before { content: "Quellen: " !important; display: inline !important; font: 400 0.68rem var(--sans) !important; letter-spacing: 0 !important; text-transform: none !important; color: var(--mittelgrau) !important; margin: 0 !important; }
+article .quelle a { display: inline !important; padding: 0 !important; background: none !important; transform: none !important; filter: none !important; white-space: nowrap;
+  font: 600 0.68rem var(--sans) !important; color: var(--anthrazit) !important; text-decoration: underline !important; text-decoration-color: rgba(46,43,42,0.3) !important; text-underline-offset: 2px; }
+article .quelle a::before, article .quelle a::after { content: none !important; display: none !important; }
+.fakt b { color: var(--mittelgrau) !important; font-size: 0.58rem !important; }
+article .hoeren .stimme-name { display: none !important; }
+details.mehr summary { background: none !important; background-image: none !important; color: var(--rost) !important; box-shadow: inset 0 0 0 1.5px currentColor; padding: 0.26rem 0.55rem 0.22rem !important; font-size: 0.64rem !important; filter: none !important; }
+.karten-fuss { border-top: 0 !important; padding-top: 0 !important; margin-top: -0.2rem !important; min-height: 0 !important; }
+article .teilen span, .gelesen-haken small { display: none !important; }
+article .teilen svg { width: 1rem; height: 1rem; }
+.gelesen-haken svg { width: 1.25rem; height: 0.95rem; }
+html.kontrast article .quelle, html.kontrast article .quelle::before, html.kontrast article .quelle a, html.kontrast .fakt b { color: #000 !important; }
+html.kontrast details.mehr summary { box-shadow: none; }
 </style>
 </head>
 <body>
@@ -1735,9 +1750,10 @@ function mzVideoZeit(code, i) {
   var wrap = document.querySelector('.wrap[data-datum]'), listenSeite = !wrap && document.querySelector('#liste article[data-audio]'); if (!wrap && !listenSeite) return;
   var basis = wrap ? '/audio/' + wrap.getAttribute('data-datum') + '/' : '';
   var player = new Audio(), liste = [], pos = -1, alles = false, ueberspringen = false, uebersprungen = 0; window.mzPlayer = player;
-  /* Harfen-„Bidim“ vor jeder Meldung (Wunsch Nicolas 2026-11-08); „Das Wichtigste“ hat es schon in der Aufnahme */
-  var ding = new Audio('/audio/ding.mp3'), dingt = false, dingUhr = null, entsperrt = false, root = document.documentElement; ding.preload = 'auto';
-  function entsperren() { if (entsperrt) return; entsperrt = true; ding.muted = true; var q = ding.play(); if (q && q.then) q.then(function () { ding.pause(); ding.currentTime = 0; ding.muted = false; }).catch(function () { ding.muted = false; }); else ding.muted = false; }
+  /* Warmer Harfen-Jingle vor jeder Meldung (Wunsch Nicolas 2026-11-08, seit 2026-11-09 harmonischer, selbst erzeugt mit ~/NekoTools/google_tts/klaenge.py);
+     „Das Wichtigste“ hat seinen Auftakt schon in der Aufnahme. Nach der letzten Meldung bei „Alles anhören“ ein Ausklang. */
+  var ding = new Audio('/audio/jingle-artikel.mp3'), schluss = new Audio('/audio/jingle-ausklang.mp3'), dingt = false, dingUhr = null, entsperrt = false, root = document.documentElement; ding.preload = 'auto'; schluss.preload = 'auto';
+  function entsperren() { if (entsperrt) return; entsperrt = true; [ding, schluss].forEach(function (a) { a.muted = true; var q = a.play(); if (q && q.then) q.then(function () { a.pause(); a.currentTime = 0; a.muted = false; }).catch(function () { a.muted = false; }); else a.muted = false; }); }
   /* Angehört merken (nur im eigenen Browser): ab 90 % gilt eine Meldung als gehört */
   function gehoert() { try { return JSON.parse(localStorage.getItem('mz-gehoert') || '[]'); } catch (e) { return []; } }
   function istGehoert(u) { return gehoert().indexOf(u) >= 0; }
@@ -1758,12 +1774,12 @@ function mzVideoZeit(code, i) {
   function knoepfe(aktiv) { liste.forEach(function (x, i) { x.knopf.setAttribute('aria-pressed', i === aktiv); x.knopf.setAttribute('aria-label', i === aktiv ? 'Pause' : 'Anhören'); x.el.classList.toggle('liest', i === aktiv); }); }
   function spiele(i) {
     pos = i; var x = liste[i]; if (!x) { ende(); return; }
-    clearTimeout(dingUhr); ding.pause(); player.src = url(x);
+    clearTimeout(dingUhr); ding.pause(); schluss.pause(); player.src = url(x);
     if (x.el.id !== 'kurz' && !root.classList.contains('ruhig')) {
       /* Erst das Bidim, die Stimme setzt im Ausklang ein. Die Stimme startet stumm schon jetzt, damit das Handy sie später ohne Tippen weiterspielen lässt. */
       dingt = true; player.muted = true; ding.currentTime = 0; ding.play().catch(function () {});
       var q = player.play(); if (q && q.then) q.then(function () { if (dingt) { player.pause(); player.currentTime = 0; } }).catch(function () {});
-      dingUhr = setTimeout(function () { if (pos !== i || !dingt) return; dingt = false; player.muted = false; player.currentTime = 0; player.play().catch(function () {}); }, 950);
+      dingUhr = setTimeout(function () { if (pos !== i || !dingt) return; dingt = false; player.muted = false; player.currentTime = 0; player.play().catch(function () {}); }, 1100);
     } else { dingt = false; player.muted = false; player.play().catch(function () {}); }
     knoepfe(i); btn.textContent = 'Ⅱ Pause';
     if (alles) { if (window.mzZeigeMeldung) window.mzZeigeMeldung(x.el); (x.el.closest('.wischer') || x.el).scrollIntoView({ block: x.el.closest('.wischer') ? 'start' : 'center', behavior: 'smooth' }); var nM = liste.filter(function (y) { return y.el.id !== 'kurz'; }).length, iM = liste.slice(0, i + 1).filter(function (y) { return y.el.id !== 'kurz'; }).length; status.textContent = (x.el.id === 'kurz' ? 'Das Wichtigste' : 'Meldung ' + iM + ' von ' + nM) + (uebersprungen ? ' · ' + uebersprungen + ' schon gehört' : ''); }
@@ -1772,7 +1788,8 @@ function mzVideoZeit(code, i) {
   function naechste(j) { while (ueberspringen && j < liste.length && istGehoert(liste[j].url)) j++; return j; }
   function stopDing() { if (!dingt) return false; clearTimeout(dingUhr); dingt = false; ding.pause(); player.pause(); player.muted = false; player.currentTime = 0; knoepfe(-1); btn.textContent = '\u25B6\uFE0E Weiter'; return true; }
   function ende() { clearTimeout(dingUhr); dingt = false; player.muted = false; player.pause(); pos = -1; alles = false; uebersprungen = 0; knoepfe(-1); btn.textContent = '\u25B6\uFE0E Alles anhören'; status.textContent = ''; }
-  player.addEventListener('ended', function () { if (dingt) return; if (alles) spiele(naechste(pos + 1)); else ende(); });
+  player.addEventListener('ended', function () { if (dingt) return; if (!alles) { ende(); return; } var j = naechste(pos + 1);
+    if (j >= liste.length && !root.classList.contains('ruhig')) { schluss.currentTime = 0; schluss.play().catch(function () {}); } spiele(j); });
   (listenSeite ? Promise.resolve(null) : fetch(basis + 'liste.json').then(function (r) { return r.ok ? r.json() : []; }).catch(function () { return []; })).then(function (ids) {
     liste = ids === null
       ? teile.filter(function (el) { return el.getAttribute('data-audio'); }).map(function (el) { return { el: el, url: el.getAttribute('data-audio') }; })
