@@ -22,6 +22,7 @@
 <meta name="theme-color" content="#081636">
 <meta name="color-scheme" content="dark">
 <style>html, body { background: #081636; }</style><!-- sofort dunkel, kein Weißblitz (2026-11-08) -->
+<style>html { touch-action: manipulation; }</style><!-- kein Zoomen aus Versehen durch Doppeltippen, Zwei-Finger-Zoom bleibt (Wunsch Nicolas 2026-11-10) -->
 <!-- Startbildschirm der Home-Bildschirm-App: dunkelblau mit Logo statt Weiß -->
 <link rel="apple-touch-startup-image" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="/bilder/start/start2_750x1334.png">
 <link rel="apple-touch-startup-image" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="/bilder/start/start2_828x1792.png">
@@ -1341,7 +1342,7 @@ html.ruhig .wischer { transition: none; }
   <div class="news">
     <button class="news-knopf" type="button" aria-expanded="false">News ▾</button>
     <div class="news-wahl" id="news-wahl">
-      <a href="/">Heute</a><a href="/woche.html">Diese Woche</a><a href="/monat.html">Dieser Monat</a><a href="/jahr.html">Dieses Jahr</a>
+      <a href="/">Heute</a><a href="/woche.html">Diese Woche</a><a href="/monat.html">Dieser Monat</a><a href="/jahr.html">Dieses Jahr</a><a href="/archiv/">Archiv</a>
     </div>
   </div>
 <div class="news shop-menue">
@@ -1784,17 +1785,20 @@ function mzVideoZeit(code, i) {
   var wrap = document.querySelector('.wrap[data-datum]'), listenSeite = !wrap && document.querySelector('#liste article[data-audio]'); if (!wrap && !listenSeite) return;
   var basis = wrap ? '/audio/' + wrap.getAttribute('data-datum') + '/' : '';
   var player = new Audio(), liste = [], pos = -1, alles = false, ueberspringen = false, uebersprungen = 0; window.mzPlayer = player;
-  /* Warmer Harfen-Jingle vor jeder Meldung (Wunsch Nicolas 2026-11-08, seit 2026-11-09 harmonischer, selbst erzeugt mit ~/NekoTools/google_tts/klaenge.py);
-     „Das Wichtigste“ hat seinen Auftakt schon in der Aufnahme. Nach der letzten Meldung bei „Alles anhören“ ein Ausklang. */
+  /* Soundpaket „Lo-Fi-Nachrichten“ (gewählt von Nicolas 2026-11-10, selbst erzeugt mit ~/NekoTools/google_tts/klaenge2.py):
+     Wechsel-Klang vor jeder Meldung, Mini-Klick bei Pause und beim Weiterhören, Ausklang nach der letzten Meldung bei „Alles anhören“.
+     „Das Wichtigste“ hat seinen Jingle schon in der Aufnahme. Im Modus „Weniger Reize“ keine Klänge. */
   var ding = new Audio('/audio/jingle-artikel.mp3'), schluss = new Audio('/audio/jingle-ausklang.mp3'), dingt = false, dingUhr = null, entsperrt = false, root = document.documentElement; ding.preload = 'auto'; schluss.preload = 'auto';
-  function entsperren() { if (entsperrt) return; entsperrt = true; [ding, schluss].forEach(function (a) { a.muted = true; var q = a.play(); if (q && q.then) q.then(function () { a.pause(); a.currentTime = 0; a.muted = false; }).catch(function () { a.muted = false; }); else a.muted = false; }); }
+  var tonPause = new Audio('/audio/klang-pause.mp3'), tonWeiter = new Audio('/audio/klang-weiter.mp3'); tonPause.preload = 'auto'; tonWeiter.preload = 'auto'; tonPause.volume = 0.6; tonWeiter.volume = 0.6;
+  function klick(a) { if (root.classList.contains('ruhig')) return; try { a.currentTime = 0; a.play().catch(function () {}); } catch (e) {} }
+  function entsperren() { if (entsperrt) return; entsperrt = true; [ding, schluss, tonPause, tonWeiter].forEach(function (a) { a.muted = true; var q = a.play(); if (q && q.then) q.then(function () { a.pause(); a.currentTime = 0; a.muted = false; }).catch(function () { a.muted = false; }); else a.muted = false; }); }
   /* Angehört merken (nur im eigenen Browser): ab 90 % gilt eine Meldung als gehört */
   function gehoert() { try { return JSON.parse(localStorage.getItem('mz-gehoert') || '[]'); } catch (e) { return []; } }
   function istGehoert(u) { return gehoert().indexOf(u) >= 0; }
   function merkeGehoert(u) { var g = gehoert(); if (!u || g.indexOf(u) >= 0) return; g.unshift(u); try { localStorage.setItem('mz-gehoert', JSON.stringify(g.slice(0, 400))); } catch (e) {} window.dispatchEvent(new CustomEvent('mz-gehoert', { detail: { src: u } })); }
   window.mzIstGehoert = istGehoert;
   /* Lo-Fi: ist es an, spielt die Fassung mit Musik (<id>.lofi.mp3) – eine einzige Datei, damit das iPhone nichts gegenseitig anhält */
-  function mitLofi() { try { return localStorage.getItem('mz-lofi') === '1'; } catch (e) { return false; } }
+  function mitLofi() { try { return localStorage.getItem('mz-lofi') !== '0'; } catch (e) { return true; } } /* Lo-Fi ist von Haus aus an (Wunsch Nicolas 2026-11-10) */
   /* ?v: Stundenstempel, damit das Handy keine alte Aufnahme aus dem Speicher spielt, wenn sie neu vertont wurde (Fehlerfall 2026-11-09: Mitlesen passte nicht mehr) */
   var stand = '?v=' + Math.floor(Date.now() / 36e5);
   function url(x) { return (mitLofi() ? x.url.replace(/\.mp3$/, '.lofi.mp3') : x.url) + stand; }
@@ -1815,14 +1819,14 @@ function mzVideoZeit(code, i) {
       /* Erst das Bidim, die Stimme setzt im Ausklang ein. Die Stimme startet stumm schon jetzt, damit das Handy sie später ohne Tippen weiterspielen lässt. */
       dingt = true; player.muted = true; ding.currentTime = 0; ding.play().catch(function () {});
       var q = player.play(); if (q && q.then) q.then(function () { if (dingt) { player.pause(); player.currentTime = 0; } }).catch(function () {});
-      dingUhr = setTimeout(function () { if (pos !== i || !dingt) return; dingt = false; player.muted = false; player.currentTime = 0; player.play().catch(function () {}); }, 1100);
+      dingUhr = setTimeout(function () { if (pos !== i || !dingt) return; dingt = false; player.muted = false; player.currentTime = 0; player.play().catch(function () {}); }, 1300);
     } else { dingt = false; player.muted = false; player.play().catch(function () {}); }
     knoepfe(i); btn.textContent = 'Ⅱ Pause';
     if (alles) { if (window.mzZeigeMeldung) window.mzZeigeMeldung(x.el); (x.el.closest('.wischer') || x.el).scrollIntoView({ block: x.el.closest('.wischer') ? 'start' : 'center', behavior: 'smooth' }); var nM = liste.filter(function (y) { return y.el.id !== 'kurz'; }).length, iM = liste.slice(0, i + 1).filter(function (y) { return y.el.id !== 'kurz'; }).length; status.textContent = (x.el.id === 'kurz' ? 'Das Wichtigste' : 'Meldung ' + iM + ' von ' + nM) + (uebersprungen ? ' · ' + uebersprungen + ' schon gehört' : ''); }
   }
   /* „Alles anhören“ überspringt, was man schon gehört hat (Wunsch Nicolas 2026-11-08). Ist alles gehört, läuft alles von vorn. */
   function naechste(j) { while (ueberspringen && j < liste.length && istGehoert(liste[j].url)) j++; return j; }
-  function stopDing() { if (!dingt) return false; clearTimeout(dingUhr); dingt = false; ding.pause(); player.pause(); player.muted = false; player.currentTime = 0; knoepfe(-1); btn.textContent = '\u25B6\uFE0E Weiter'; return true; }
+  function stopDing() { if (!dingt) return false; clearTimeout(dingUhr); dingt = false; ding.pause(); player.pause(); player.muted = false; player.currentTime = 0; knoepfe(-1); btn.textContent = '\u25B6\uFE0E Weiter'; klick(tonPause); return true; }
   function ende() { clearTimeout(dingUhr); dingt = false; player.muted = false; player.pause(); pos = -1; alles = false; uebersprungen = 0; knoepfe(-1); btn.textContent = '\u25B6\uFE0E Alles anhören'; status.textContent = ''; }
   player.addEventListener('ended', function () { if (dingt) return; if (!alles) { ende(); return; } var j = naechste(pos + 1);
     if (j >= liste.length && !root.classList.contains('ruhig')) { schluss.currentTime = 0; schluss.play().catch(function () {}); } spiele(j); });
@@ -1834,13 +1838,13 @@ function mzVideoZeit(code, i) {
     btn.hidden = false;
     liste.forEach(function (x, i) {
       var d = document.createElement('div'); d.className = 'hoeren';
-      d.innerHTML = '<span class="huelle"><button type="button" aria-pressed="false" aria-label="Anhören"></button></span><small><span class="stimme-name">Google KI-Stimme</span></small>';
+      d.innerHTML = '<span class="huelle"><button type="button" aria-pressed="false" aria-label="Anhören"></button></span><small><span class="stimme-name">KI-Stimme</span></small>';
       var ziel = x.el.querySelector('.rubrik, h2'); ziel.insertAdjacentElement('afterend', d);
       x.knopf = d.querySelector('button');
       var rub = x.el.querySelector(':scope > .rubrik'); if (rub && x.el.tagName === 'ARTICLE') d.appendChild(rub); /* Thema rechts in die Zeile unter der Überschrift */
       (function (klein) { var a = new Audio(); a.preload = 'metadata'; a.src = x.url + stand;
         a.addEventListener('loadedmetadata', function () { var s = Math.round(a.duration); if (!isFinite(s)) return;
-          klein.innerHTML = (s < 60 ? s + ' Sek.' : Math.floor(s / 60) + ':' + ('0' + s % 60).slice(-2) + ' Min.') + '<span class="stimme-name">Google KI-Stimme</span>'; }); })(d.querySelector('small'));
+          klein.innerHTML = (s < 60 ? s + ' Sek.' : Math.floor(s / 60) + ':' + ('0' + s % 60).slice(-2) + ' Min.') + '<span class="stimme-name">KI-Stimme</span>'; }); })(d.querySelector('small'));
       var punkte = [], n = 16 + (i % 3) * 2;
       for (var k = 0; k < n; k++) { var w = k / n * Math.PI * 2, r = 50 - ((Math.sin(i * 12.9898 + k * 78.233) * 43758.5453) % 1 + 1) % 1 * 6;
         punkte.push((50 + r * Math.cos(w)).toFixed(1) + '% ' + (50 + r * Math.sin(w)).toFixed(1) + '%'); }
@@ -1848,8 +1852,8 @@ function mzVideoZeit(code, i) {
       x.knopf.style.transform = 'rotate(' + ((i * 37) % 11 - 5) + 'deg)';
       x.knopf.addEventListener('click', function () {
         entsperren(); if (pos === i && stopDing()) return;
-        if (pos === i && !player.paused) { player.pause(); knoepfe(-1); return; }
-        if (pos === i && player.paused) { player.play(); knoepfe(i); return; }
+        if (pos === i && !player.paused) { player.pause(); klick(tonPause); knoepfe(-1); return; }
+        if (pos === i && player.paused) { klick(tonWeiter); player.play(); knoepfe(i); return; }
         alles = false; uebersprungen = 0; status.textContent = ''; spiele(i);
       });
       /* 10 Sekunden zurück (Wunsch Nicolas 2026-11-08); läuft die Meldung noch nicht, startet sie */
@@ -1869,8 +1873,8 @@ function mzVideoZeit(code, i) {
   player.addEventListener('pause', function () { if (!dingt && pos >= 0 && !player.ended) btn.textContent = '\u25B6\uFE0E Weiter'; });
   btn.addEventListener('click', function () {
     entsperren(); if (pos >= 0 && stopDing()) return;
-    if (pos >= 0 && !player.paused) { player.pause(); knoepfe(-1); return; }
-    if (pos >= 0 && player.paused) { player.play(); knoepfe(pos); return; }
+    if (pos >= 0 && !player.paused) { player.pause(); klick(tonPause); knoepfe(-1); return; }
+    if (pos >= 0 && player.paused) { klick(tonWeiter); player.play(); knoepfe(pos); return; }
     alles = true; ueberspringen = liste.some(function (x) { return !istGehoert(x.url); });
     var start = naechste(0); uebersprungen = liste.filter(function (x) { return ueberspringen && istGehoert(x.url); }).length;
     spiele(start);
@@ -1983,13 +1987,15 @@ function mzVideoZeit(code, i) {
   erste.appendChild(w); erste.appendChild(nav);
   var i = 0, dx = 0;
   function breite() { return folien[0].getBoundingClientRect().width; }
+  /* Feste Höhe: so hoch wie die höchste zugeklappte Karte; nur wenn die aktuelle Karte aufgeklappt größer ist, wächst es mit */
+  function feste() { var m = 0; arts.forEach(function (a, k) { if (k === i || !a.querySelector('details[open]')) m = Math.max(m, a.offsetHeight); }); return m + 18; }
   function hoehe() { return Math.max.apply(null, arts.map(function (a) { return a.offsetHeight; })) + 18; }
   function setzen(animiert) {
     var off = (w.clientWidth - breite()) / 2 - i * breite() + dx;
     spur.style.transition = animiert ? 'transform 0.38s cubic-bezier(0.22, 0.75, 0.2, 1)' : 'none';
     spur.style.transform = 'translate3d(' + off + 'px,0,0)';
     folien.forEach(function (f, n) { f.classList.toggle('aktiv', n === i); });
-    w.style.height = (arts[i].offsetHeight + 18) + 'px'; /* Höhe der aktuellen Karte mit weichem Übergang, unten keine Lücke (Wunsch Nicolas 2026-11-09) */
+    w.style.height = feste() + 'px'; /* Pfeile, Punkte und „Alles anhören“ bleiben an derselben Stelle (Wunsch Nicolas 2026-11-10, vorher sprang die Leiste mit jeder Kartenhöhe) */
     nav.querySelector('.karussell-zaehler').textContent = (i + 1) + ' / ' + arts.length;
     /* Endlos: nach der letzten kommt wieder die erste (Wunsch Nicolas 2026-11-08) – Pfeile nie ausgegraut */
   }
@@ -2019,7 +2025,7 @@ function mzVideoZeit(code, i) {
   folien.forEach(function (f, n) { f.addEventListener('click', function (e) { if (n !== i) { e.preventDefault(); e.stopPropagation(); geh(n); } }, true); });
   addEventListener('resize', function () { setzen(false); }); addEventListener('load', function () { setzen(false); });
   /* Höhe nachziehen, wenn Schriften oder Bilder die Karte später größer machen */
-  if ('ResizeObserver' in window) { var ro = new ResizeObserver(function () { w.style.height = (arts[i].offsetHeight + 18) + 'px'; }); arts.forEach(function (a) { ro.observe(a); }); }
+  if ('ResizeObserver' in window) { var ro = new ResizeObserver(function () { w.style.height = feste() + 'px'; }); arts.forEach(function (a) { ro.observe(a); }); }
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { setzen(false); });
   setTimeout(function () { setzen(false); }, 1200);
   setzen(false);
@@ -2262,7 +2268,7 @@ function mzFuss(a) { var f = a.querySelector(':scope > .karten-fuss'); if (!f) {
 (function () {
   var knopf = document.querySelector('[data-lofi]'); if (!knopf) return;
   if (!document.querySelector('.wrap[data-datum], #liste article[data-audio]')) { knopf.hidden = true; return; } /* nur wo es etwas zum Anhören gibt */
-  var an = false; try { an = localStorage.getItem('mz-lofi') === '1'; } catch (e) {}
+  var an = true; try { an = localStorage.getItem('mz-lofi') !== '0'; } catch (e) {}
   var root = document.documentElement, spricht = false, probe = new Audio(), probeUhr = null; probe.preload = 'none';
   /* Mini-Welle: bewegt sich, solange Musik läuft; auch klein am Bedienungshilfen-Knopf */
   var welle = '<i class="welle" aria-hidden="true"><b></b><b></b><b></b><b></b></i>';

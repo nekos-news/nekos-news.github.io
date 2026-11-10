@@ -22,6 +22,7 @@
 <meta name="theme-color" content="#081636">
 <meta name="color-scheme" content="dark">
 <style>html, body { background: #081636; }</style><!-- sofort dunkel, kein Weißblitz (2026-11-08) -->
+<style>html { touch-action: manipulation; }</style><!-- kein Zoomen aus Versehen durch Doppeltippen, Zwei-Finger-Zoom bleibt (Wunsch Nicolas 2026-11-10) -->
 <!-- Startbildschirm der Home-Bildschirm-App: dunkelblau mit Logo statt Weiß -->
 <link rel="apple-touch-startup-image" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="/bilder/start/start2_750x1334.png">
 <link rel="apple-touch-startup-image" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="/bilder/start/start2_828x1792.png">
@@ -1341,7 +1342,7 @@ html.ruhig .wischer { transition: none; }
   <div class="news">
     <button class="news-knopf" type="button" aria-expanded="false">News ▾</button>
     <div class="news-wahl" id="news-wahl">
-      <a href="/">Heute</a><a href="/woche.html">Diese Woche</a><a href="/monat.html">Dieser Monat</a><a href="/jahr.html">Dieses Jahr</a>
+      <a href="/">Heute</a><a href="/woche.html">Diese Woche</a><a href="/monat.html">Dieser Monat</a><a href="/jahr.html">Dieses Jahr</a><a href="/archiv/">Archiv</a>
     </div>
   </div>
 <div class="news shop-menue">
@@ -1392,25 +1393,25 @@ html.ruhig .wischer { transition: none; }
 <div class="wrap">
   <section class="gruppe" id="liste">
     <h2 class="zettel zettel-gross">Dieses Jahr</h2>
-    <article class="papier riss" id="w1" data-audio="/audio/2026-11-07/m6.mp3">
+    <article class="papier riss" id="w1">
       <h3>Trump greift wieder im Iran an und lobt gleichzeitig die Gespräche</h3>
       <span class="rubrik">Nahost · 07.11.</span>
       <p class="fakt"><b title="KI-Zusammenfassung">KI-Zusammenfassung</b>Trump bestätigt neue Angriffe auf die Luftabwehr auf der Insel Qeshm. Er nennt sie „klein“ und redet gleichzeitig von Fortschritten in den Gesprächen mit Teheran.</p>
       <p class="quelle"><a href="https://aljazeera.com/amp/news/2026/11/7/trump-confirms-new-us-strikes-on-irans-qeshm-island">Al Jazeera</a> · <a href="https://foreignpolicy.com/2026/11/03/us-iran-strikes-midterms-israel-aid-ukraine-russia-agoa-australia/">Foreign Policy</a> · <a href="archiv/2026-11-07.html#m6">Zur Ausgabe</a></p>
     </article>
-    <article class="papier riss" id="w2" data-audio="/audio/2026-11-07/m8.mp3">
+    <article class="papier riss" id="w2">
       <h3>Klatsche für Trump: Die Demokraten holen das Repräsentantenhaus</h3>
       <span class="rubrik">USA · 07.11.</span>
       <p class="fakt"><b title="KI-Zusammenfassung">KI-Zusammenfassung</b>Laut Hochrechnungen holen die Demokraten die Mehrheit im Repräsentantenhaus, laut CNBC auch im Senat. Einzelne Rennen werden aber noch ausgezählt.</p>
       <p class="quelle"><a href="https://www.cbsnews.com/live-updates/house-election-results-2026/">CBS News</a> · <a href="https://www.cnbc.com/2026/11/04/2026-midterm-election-results-live-updates.html">CNBC</a> · <a href="archiv/2026-11-07.html#m8">Zur Ausgabe</a></p>
     </article>
-    <article class="papier riss" id="w3" data-audio="/audio/2026-11-08/m6.mp3">
+    <article class="papier riss" id="w3">
       <h3>Sechs Tote in Krakau: Tusk spricht von Terror</h3>
       <span class="rubrik">Polen · 08.11.</span>
       <p class="fakt"><b title="KI-Zusammenfassung">KI-Zusammenfassung</b>In Krakau hat ein 25-jähriger Pole am Samstag auf dem Hauptmarkt aus einem Auto auf Menschen geschossen: 6 Tote, 16 Verletzte. Laut Polens Innenminister war der Festgenommene offenbar fasziniert von rechtsextremen Ideologien.</p>
       <p class="quelle"><a href="https://www.zdfheute.de/politik/ausland/polen-krakau-schuesse-tote-verletzte-100.html">ZDFheute</a> · <a href="https://orf.at/stories/3447559/">ORF</a> · <a href="https://taz.de/Mutmasslicher-Taeter-festgenommen/!6228323/">taz</a> · <a href="archiv/2026-11-08.html#m6">Zur Ausgabe</a></p>
     </article>
-    <article class="papier riss" id="w4" data-audio="/audio/2026-11-07/m3.mp3">
+    <article class="papier riss" id="w4">
       <h3>Die Reichsbürger vom „Königreich Deutschland“ stehen vor Gericht</h3>
       <span class="rubrik">Justiz · 07.11.</span>
       <p class="fakt"><b title="KI-Zusammenfassung">KI-Zusammenfassung</b>Vor dem Oberlandesgericht Düsseldorf hat am Freitag der Prozess gegen 4 mutmaßliche Anführer der verbotenen Reichsbürger-Gruppe „Königreich Deutschland“ begonnen.</p>
@@ -1440,7 +1441,7 @@ html.ruhig .wischer { transition: none; }
       <p class="fakt"><b title="KI-Zusammenfassung">KI-Zusammenfassung</b>Im Jemen sind bei Luftangriffen der von Saudi-Arabien geführten Koalition laut Huthi-Behörden in 24 Stunden mehr als 50 Menschen gestorben. Allein bei einem Angriff östlich von Sanaa sollen es 33 Tote gewesen sein. Unabhängig bestätigt ist das nicht.</p>
       <p class="quelle"><a href="https://www.upi.com/Top_News/World-News/2026/11/07/yemen-airstrikes-kill-50/1011794080125">UPI</a> · <a href="https://www.middleeasteye.net/live-blog/live-blog-update/saudi-led-strikes-kill-least-27-yemens-sanaa-houthis-say">Middle East Eye</a> · <a href="https://www.manilatimes.net/2026/11/09/world/33-killed-in-saudi-arabia-strikes-on-yemen/2464735">Manila Times</a> · <a href="archiv/2026-11-09.html#m9">Zur Ausgabe</a></p>
     </article>
-    <article class="papier riss" id="w9" data-audio="/audio/2026-11-09/m11.mp3">
+    <article class="papier riss" id="w9">
       <h3>Gute Nachricht: Kalifornien will seinen ganzen Todestrakt leeren</h3>
       <span class="rubrik">Todesstrafe · 09.11.</span>
       <p class="fakt"><b title="KI-Zusammenfassung">KI-Zusammenfassung</b>Kaliforniens Gouverneur Gavin Newsom wandelt alle 548 Todesurteile im Todestrakt in lebenslange Haft ohne Bewährung um. Laut Death Penalty Information Center ist das die größte Massenbegnadigung in der Geschichte der USA.</p>
@@ -1452,31 +1453,31 @@ html.ruhig .wischer { transition: none; }
       <p class="fakt"><b title="KI-Zusammenfassung">KI-Zusammenfassung</b>Die CDU-Spitze hat Ilse Aigner heute auf Vorschlag von Friedrich Merz als Kandidatin für das Amt der Bundespräsidentin nominiert. SPD und Grüne stellen sich laut dpa hinter sie. Gewählt wird am 30. Januar 2027.</p>
       <p class="quelle"><a href="https://tagesspiegel.de/politik/dpa-als-kandidatin-fur-bundesprasidentenamt-nominiertaigner-spricht-von-wichtigem-signal-gegen-extremistische-krafte-in-unserem-land-16259352.html">Tagesspiegel (dpa)</a> · <a href="https://www.berliner-zeitung.de/article/ilse-aigner-soll-bundespraesidentin-werden-10577479">Berliner Zeitung</a> · <a href="https://www.badische-zeitung.de/spitzengruene-rufen-zu-wahl-aigners-als-bundespraesidentin-auf">Badische Zeitung</a> · <a href="archiv/2026-11-09.html#m12">Zur Ausgabe</a></p>
     </article>
-    <article class="papier riss" id="w11" data-audio="/audio/2026-11-08/m7.mp3">
+    <article class="papier riss" id="w11">
       <h3>Wahl verloren, Kurs verschärft? Trump macht Stephen Miller zum Stabschef</h3>
       <span class="rubrik">USA · 08.11.</span>
       <p class="fakt"><b title="KI-Zusammenfassung">KI-Zusammenfassung</b>Trump macht Stephen Miller zum neuen Stabschef im Weißen Haus, ab Montag ersetzt er Susie Wiles. Die Washington Post rechnet damit, dass Trumps Politik dadurch noch weiter nach rechts rückt.</p>
       <p class="quelle"><a href="https://www.npr.org/2026/11/06/nx-s1-6032810/stephen-miller-replaces-susie-wiles-as-white-house-chief-of-staff">NPR</a> · <a href="https://www.washingtonpost.com/politics/2026/11/06/trump-names-stephen-miller-new-white-house-chief-staff/">Washington Post</a> · <a href="https://www.cbsnews.com/news/stephen-miller-trump-chief-of-staff-susie-wiles/">CBS News</a> · <a href="archiv/2026-11-08.html#m7">Zur Ausgabe</a></p>
     </article>
-    <article class="papier riss" id="w12" data-audio="/audio/2026-11-08/m9.mp3">
+    <article class="papier riss" id="w12">
       <h3>3 Tage vor den Friedensgesprächen: Russland greift Kiew wieder massiv an</h3>
       <span class="rubrik">Ukraine · 08.11.</span>
       <p class="fakt"><b title="KI-Zusammenfassung">KI-Zusammenfassung</b>Russland hat Kiew und die Region in der Nacht zu Samstag laut ukrainischer Luftwaffe mit Raketen und 172 Drohnen angegriffen. Getroffen wurde vor allem die Energieversorgung, in Kiew gab es laut Bürgermeister Klitschko 5 Verletzte.</p>
       <p class="quelle"><a href="https://www.criticalthreats.org/analysis/russian-offensive-campaign-assessment-november-7-2026-6aefc4cc503e5">ISW</a> · <a href="https://www.ukrinform.net/">Ukrinform</a> · <a href="https://www.usnews.com/news/world/articles/2026-11-03/kremlin-confirms-trilateral-ukraine-peace-talks-in-abu-dhabi-next-week">US News (Reuters)</a> · <a href="archiv/2026-11-08.html#m9">Zur Ausgabe</a></p>
     </article>
-    <article class="papier riss" id="w13" data-audio="/audio/2026-11-08/m10.mp3">
+    <article class="papier riss" id="w13">
       <h3>Nicht Netanjahu: Ex-Armeechef Eisenkot soll Israels Regierung bilden</h3>
       <span class="rubrik">Israel · 08.11.</span>
       <p class="fakt"><b title="KI-Zusammenfassung">KI-Zusammenfassung</b>Israels Präsident Izchak Herzog hat nicht Netanjahu, sondern Oppositionspolitiker Gadi Eisenkot mit der Regierungsbildung beauftragt. Eisenkot wurde von Parteien mit 67 der 120 Abgeordneten empfohlen, eine feste Mehrheit hat er damit aber noch nicht.</p>
       <p class="quelle"><a href="https://www.tagesspiegel.de/internationales/dpa-netanjahu-vor-dem-aus-ex-militar-eisenkot-soll-regierung-in-israel-bilden-16258719.html">Tagesspiegel (dpa)</a> · <a href="https://www.aljazeera.com/news/2026/11/7/israels-president-picks-eisenkot-over-netanyahu-to-form-next-government">Al Jazeera</a> · <a href="https://www.timesofisrael.com/president-herzog-taps-eisenkot-to-form-coalition-but-path-remains-fraught/">Times of Israel</a> · <a href="archiv/2026-11-08.html#m10">Zur Ausgabe</a></p>
     </article>
-    <article class="papier riss" id="w14" data-audio="/audio/2026-11-07/m4.mp3">
+    <article class="papier riss" id="w14">
       <h3>Wer mit K.-o.-Tropfen vergewaltigt, soll härter bestraft werden</h3>
       <span class="rubrik">Recht · 07.11.</span>
       <p class="fakt"><b title="KI-Zusammenfassung">KI-Zusammenfassung</b>Der Bundestag sollte am Freitag ein schärferes Gesetz beschließen: Wer K.-o.-Tropfen für eine Vergewaltigung oder einen Raub nutzt, soll mindestens 5 Jahre ins Gefängnis.</p>
       <p class="quelle"><a href="https://www.news.de/panorama/860164168/6-november-2026-news-themen-des-tages-was-passiert-heute-in-deutschland-und-der-welt-das-ist-heute-am-06-11-2026-wichtig-in-den-nachrichten-aus-politik-wirtschaft-sport-und-co/1/">news.de (dpa)</a> · <a href="archiv/2026-11-07.html#m4">Zur Ausgabe</a></p>
     </article>
-    <article class="papier riss" id="w15" data-audio="/audio/2026-11-07/m7.mp3">
+    <article class="papier riss" id="w15">
       <h3>Russland, Ukraine, USA: Nächste Woche wird in Abu Dhabi verhandelt</h3>
       <span class="rubrik">Ukraine · 07.11.</span>
       <p class="fakt"><b title="KI-Zusammenfassung">KI-Zusammenfassung</b>Russland, die Ukraine und die USA verhandeln am 10. und 11. November in Abu Dhabi, der Kreml hat das bestätigt. Kurz vorher wurde Kiew wieder mit Raketen angegriffen.</p>
@@ -1506,7 +1507,7 @@ html.ruhig .wischer { transition: none; }
       <p class="fakt"><b title="KI-Zusammenfassung">KI-Zusammenfassung</b>Nvidia lässt sich jetzt unabhängig untersuchen. New York Times und Financial Times hatten berichtet, Chef Jensen Huang sei Ziel einer chinesischen Geheimdienstoperation gewesen. Der Vorstand sagt, es gebe keine Hinweise, dass Geheimnisse abgeflossen sind.</p>
       <p class="quelle"><a href="https://www.nbcnews.com/tech/tech-news/nvidia-ceo-jensen-huang-investigation-rcna608148">NBC News</a> · <a href="https://www.cnn.com/2026/11/08/business/nvidia-investigation-ceo-jensen-huang">CNN</a> · <a href="https://www.npr.org/2026/11/08/nx-s1-6034036/nvidia-launches-investigation-into-ceos-alleged-relationship-with-chinese-spy">NPR</a> · <a href="archiv/2026-11-09.html#m8">Zur Ausgabe</a></p>
     </article>
-    <article class="papier riss" id="w20" data-audio="/audio/2026-11-08/m1.mp3">
+    <article class="papier riss" id="w20">
       <h3>Nach 12 Männern: Wird Ilse Aigner die erste Bundespräsidentin?</h3>
       <span class="rubrik">Staat · 08.11.</span>
       <p class="fakt"><b title="KI-Zusammenfassung">KI-Zusammenfassung</b>Die Union hat sich laut Berichten auf CSU-Politikerin Ilse Aigner als Kandidatin fürs Bundespräsidentenamt geeinigt. Offiziell verkündet werden soll das am Montag, und die SPD will sie unterstützen.</p>
@@ -1801,17 +1802,20 @@ function mzVideoZeit(code, i) {
   var wrap = document.querySelector('.wrap[data-datum]'), listenSeite = !wrap && document.querySelector('#liste article[data-audio]'); if (!wrap && !listenSeite) return;
   var basis = wrap ? '/audio/' + wrap.getAttribute('data-datum') + '/' : '';
   var player = new Audio(), liste = [], pos = -1, alles = false, ueberspringen = false, uebersprungen = 0; window.mzPlayer = player;
-  /* Warmer Harfen-Jingle vor jeder Meldung (Wunsch Nicolas 2026-11-08, seit 2026-11-09 harmonischer, selbst erzeugt mit ~/NekoTools/google_tts/klaenge.py);
-     „Das Wichtigste“ hat seinen Auftakt schon in der Aufnahme. Nach der letzten Meldung bei „Alles anhören“ ein Ausklang. */
+  /* Soundpaket „Lo-Fi-Nachrichten“ (gewählt von Nicolas 2026-11-10, selbst erzeugt mit ~/NekoTools/google_tts/klaenge2.py):
+     Wechsel-Klang vor jeder Meldung, Mini-Klick bei Pause und beim Weiterhören, Ausklang nach der letzten Meldung bei „Alles anhören“.
+     „Das Wichtigste“ hat seinen Jingle schon in der Aufnahme. Im Modus „Weniger Reize“ keine Klänge. */
   var ding = new Audio('/audio/jingle-artikel.mp3'), schluss = new Audio('/audio/jingle-ausklang.mp3'), dingt = false, dingUhr = null, entsperrt = false, root = document.documentElement; ding.preload = 'auto'; schluss.preload = 'auto';
-  function entsperren() { if (entsperrt) return; entsperrt = true; [ding, schluss].forEach(function (a) { a.muted = true; var q = a.play(); if (q && q.then) q.then(function () { a.pause(); a.currentTime = 0; a.muted = false; }).catch(function () { a.muted = false; }); else a.muted = false; }); }
+  var tonPause = new Audio('/audio/klang-pause.mp3'), tonWeiter = new Audio('/audio/klang-weiter.mp3'); tonPause.preload = 'auto'; tonWeiter.preload = 'auto'; tonPause.volume = 0.6; tonWeiter.volume = 0.6;
+  function klick(a) { if (root.classList.contains('ruhig')) return; try { a.currentTime = 0; a.play().catch(function () {}); } catch (e) {} }
+  function entsperren() { if (entsperrt) return; entsperrt = true; [ding, schluss, tonPause, tonWeiter].forEach(function (a) { a.muted = true; var q = a.play(); if (q && q.then) q.then(function () { a.pause(); a.currentTime = 0; a.muted = false; }).catch(function () { a.muted = false; }); else a.muted = false; }); }
   /* Angehört merken (nur im eigenen Browser): ab 90 % gilt eine Meldung als gehört */
   function gehoert() { try { return JSON.parse(localStorage.getItem('mz-gehoert') || '[]'); } catch (e) { return []; } }
   function istGehoert(u) { return gehoert().indexOf(u) >= 0; }
   function merkeGehoert(u) { var g = gehoert(); if (!u || g.indexOf(u) >= 0) return; g.unshift(u); try { localStorage.setItem('mz-gehoert', JSON.stringify(g.slice(0, 400))); } catch (e) {} window.dispatchEvent(new CustomEvent('mz-gehoert', { detail: { src: u } })); }
   window.mzIstGehoert = istGehoert;
   /* Lo-Fi: ist es an, spielt die Fassung mit Musik (<id>.lofi.mp3) – eine einzige Datei, damit das iPhone nichts gegenseitig anhält */
-  function mitLofi() { try { return localStorage.getItem('mz-lofi') === '1'; } catch (e) { return false; } }
+  function mitLofi() { try { return localStorage.getItem('mz-lofi') !== '0'; } catch (e) { return true; } } /* Lo-Fi ist von Haus aus an (Wunsch Nicolas 2026-11-10) */
   /* ?v: Stundenstempel, damit das Handy keine alte Aufnahme aus dem Speicher spielt, wenn sie neu vertont wurde (Fehlerfall 2026-11-09: Mitlesen passte nicht mehr) */
   var stand = '?v=' + Math.floor(Date.now() / 36e5);
   function url(x) { return (mitLofi() ? x.url.replace(/\.mp3$/, '.lofi.mp3') : x.url) + stand; }
@@ -1832,14 +1836,14 @@ function mzVideoZeit(code, i) {
       /* Erst das Bidim, die Stimme setzt im Ausklang ein. Die Stimme startet stumm schon jetzt, damit das Handy sie später ohne Tippen weiterspielen lässt. */
       dingt = true; player.muted = true; ding.currentTime = 0; ding.play().catch(function () {});
       var q = player.play(); if (q && q.then) q.then(function () { if (dingt) { player.pause(); player.currentTime = 0; } }).catch(function () {});
-      dingUhr = setTimeout(function () { if (pos !== i || !dingt) return; dingt = false; player.muted = false; player.currentTime = 0; player.play().catch(function () {}); }, 1100);
+      dingUhr = setTimeout(function () { if (pos !== i || !dingt) return; dingt = false; player.muted = false; player.currentTime = 0; player.play().catch(function () {}); }, 1300);
     } else { dingt = false; player.muted = false; player.play().catch(function () {}); }
     knoepfe(i); btn.textContent = 'Ⅱ Pause';
     if (alles) { if (window.mzZeigeMeldung) window.mzZeigeMeldung(x.el); (x.el.closest('.wischer') || x.el).scrollIntoView({ block: x.el.closest('.wischer') ? 'start' : 'center', behavior: 'smooth' }); var nM = liste.filter(function (y) { return y.el.id !== 'kurz'; }).length, iM = liste.slice(0, i + 1).filter(function (y) { return y.el.id !== 'kurz'; }).length; status.textContent = (x.el.id === 'kurz' ? 'Das Wichtigste' : 'Meldung ' + iM + ' von ' + nM) + (uebersprungen ? ' · ' + uebersprungen + ' schon gehört' : ''); }
   }
   /* „Alles anhören“ überspringt, was man schon gehört hat (Wunsch Nicolas 2026-11-08). Ist alles gehört, läuft alles von vorn. */
   function naechste(j) { while (ueberspringen && j < liste.length && istGehoert(liste[j].url)) j++; return j; }
-  function stopDing() { if (!dingt) return false; clearTimeout(dingUhr); dingt = false; ding.pause(); player.pause(); player.muted = false; player.currentTime = 0; knoepfe(-1); btn.textContent = '\u25B6\uFE0E Weiter'; return true; }
+  function stopDing() { if (!dingt) return false; clearTimeout(dingUhr); dingt = false; ding.pause(); player.pause(); player.muted = false; player.currentTime = 0; knoepfe(-1); btn.textContent = '\u25B6\uFE0E Weiter'; klick(tonPause); return true; }
   function ende() { clearTimeout(dingUhr); dingt = false; player.muted = false; player.pause(); pos = -1; alles = false; uebersprungen = 0; knoepfe(-1); btn.textContent = '\u25B6\uFE0E Alles anhören'; status.textContent = ''; }
   player.addEventListener('ended', function () { if (dingt) return; if (!alles) { ende(); return; } var j = naechste(pos + 1);
     if (j >= liste.length && !root.classList.contains('ruhig')) { schluss.currentTime = 0; schluss.play().catch(function () {}); } spiele(j); });
@@ -1865,8 +1869,8 @@ function mzVideoZeit(code, i) {
       x.knopf.style.transform = 'rotate(' + ((i * 37) % 11 - 5) + 'deg)';
       x.knopf.addEventListener('click', function () {
         entsperren(); if (pos === i && stopDing()) return;
-        if (pos === i && !player.paused) { player.pause(); knoepfe(-1); return; }
-        if (pos === i && player.paused) { player.play(); knoepfe(i); return; }
+        if (pos === i && !player.paused) { player.pause(); klick(tonPause); knoepfe(-1); return; }
+        if (pos === i && player.paused) { klick(tonWeiter); player.play(); knoepfe(i); return; }
         alles = false; uebersprungen = 0; status.textContent = ''; spiele(i);
       });
       /* 10 Sekunden zurück (Wunsch Nicolas 2026-11-08); läuft die Meldung noch nicht, startet sie */
@@ -1886,8 +1890,8 @@ function mzVideoZeit(code, i) {
   player.addEventListener('pause', function () { if (!dingt && pos >= 0 && !player.ended) btn.textContent = '\u25B6\uFE0E Weiter'; });
   btn.addEventListener('click', function () {
     entsperren(); if (pos >= 0 && stopDing()) return;
-    if (pos >= 0 && !player.paused) { player.pause(); knoepfe(-1); return; }
-    if (pos >= 0 && player.paused) { player.play(); knoepfe(pos); return; }
+    if (pos >= 0 && !player.paused) { player.pause(); klick(tonPause); knoepfe(-1); return; }
+    if (pos >= 0 && player.paused) { klick(tonWeiter); player.play(); knoepfe(pos); return; }
     alles = true; ueberspringen = liste.some(function (x) { return !istGehoert(x.url); });
     var start = naechste(0); uebersprungen = liste.filter(function (x) { return ueberspringen && istGehoert(x.url); }).length;
     spiele(start);
@@ -2279,7 +2283,7 @@ function mzFuss(a) { var f = a.querySelector(':scope > .karten-fuss'); if (!f) {
 (function () {
   var knopf = document.querySelector('[data-lofi]'); if (!knopf) return;
   if (!document.querySelector('.wrap[data-datum], #liste article[data-audio]')) { knopf.hidden = true; return; } /* nur wo es etwas zum Anhören gibt */
-  var an = false; try { an = localStorage.getItem('mz-lofi') === '1'; } catch (e) {}
+  var an = true; try { an = localStorage.getItem('mz-lofi') !== '0'; } catch (e) {}
   var root = document.documentElement, spricht = false, probe = new Audio(), probeUhr = null; probe.preload = 'none';
   /* Mini-Welle: bewegt sich, solange Musik läuft; auch klein am Bedienungshilfen-Knopf */
   var welle = '<i class="welle" aria-hidden="true"><b></b><b></b><b></b><b></b></i>';

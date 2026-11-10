@@ -20,9 +20,21 @@ def woerter(mp3):
     with tempfile.TemporaryDirectory() as tmp:
         wav = os.path.join(tmp, "a.wav")
         subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", mp3, "-ar", "16000", "-ac", "1", "-c:a", "pcm_s16le", wav], check=True)
-        subprocess.run([WHISPER, "-m", MODELL, "-l", "de", "-nfa", "--dtw", "large.v3.turbo", "-ojf", "-of", os.path.join(tmp, "w"), "-f", wav],
-                       check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        # whisper.cpp bricht mit --dtw manchmal ab (filter_width-Assert bei sehr kurzen Abschnitten, 2026-11-10):
+        # dann mit 1,5 s Stille am Ende nochmal, zuletzt ohne DTW (Zeiten aus den Token-Offsets, etwas ungenauer)
+        def lauf(datei, dtw=True):
+            r = subprocess.run([WHISPER, "-m", MODELL, "-l", "de", "-nfa", *(["--dtw", "large.v3.turbo"] if dtw else []), "-ojf", "-of", os.path.join(tmp, "w"), "-f", datei],
+                               stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+            return r.returncode == 0
+        if not lauf(wav):
+            lang = os.path.join(tmp, "b.wav")
+            subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", wav, "-af", "apad=pad_dur=1.5", lang], check=True)
+            if not lauf(lang) and not lauf(wav, dtw=False):
+                raise RuntimeError("Whisper ging nicht: " + mp3)
         d = json.load(open(os.path.join(tmp, "w.json"), encoding="utf-8"))
+        for s in d.get("transcription", []):   # ohne DTW: Startzeit aus dem Token-Offset
+            for t in s.get("tokens", []):
+                if t.get("t_dtw", -1) < 0 and "offsets" in t: t["t_dtw"] = t["offsets"]["from"] / 10 + 8
     out = []
     for s in d.get("transcription", []):
         for t in s.get("tokens", []):
