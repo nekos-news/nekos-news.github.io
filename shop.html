@@ -1756,13 +1756,13 @@ function mzVideoZeit(code, i) {
     btn.hidden = false;
     liste.forEach(function (x, i) {
       var d = document.createElement('div'); d.className = 'hoeren';
-      d.innerHTML = '<span class="huelle"><button type="button" aria-pressed="false" aria-label="Anhören"></button></span><small><span class="stimme-name">Google KI-Stimme</span></small>';
+      d.innerHTML = '<span class="huelle"><button type="button" aria-pressed="false" aria-label="Anhören"></button></span><small><span class="stimme-name">KI-Stimme</span></small>';
       var ziel = x.el.querySelector('.rubrik, h2'); ziel.insertAdjacentElement('afterend', d);
       x.knopf = d.querySelector('button');
       var rub = x.el.querySelector(':scope > .rubrik'); if (rub && x.el.tagName === 'ARTICLE') d.appendChild(rub); /* Thema rechts in die Zeile unter der Überschrift */
       (function (klein) { var a = new Audio(); a.preload = 'metadata'; a.src = x.url + stand;
         a.addEventListener('loadedmetadata', function () { var s = Math.round(a.duration); if (!isFinite(s)) return;
-          klein.innerHTML = (s < 60 ? s + ' Sek.' : Math.floor(s / 60) + ':' + ('0' + s % 60).slice(-2) + ' Min.') + '<span class="stimme-name">Google KI-Stimme</span>'; }); })(d.querySelector('small'));
+          klein.innerHTML = (s < 60 ? s + ' Sek.' : Math.floor(s / 60) + ':' + ('0' + s % 60).slice(-2) + ' Min.') + '<span class="stimme-name">KI-Stimme</span>'; }); })(d.querySelector('small'));
       var punkte = [], n = 16 + (i % 3) * 2;
       for (var k = 0; k < n; k++) { var w = k / n * Math.PI * 2, r = 50 - ((Math.sin(i * 12.9898 + k * 78.233) * 43758.5453) % 1 + 1) % 1 * 6;
         punkte.push((50 + r * Math.cos(w)).toFixed(1) + '% ' + (50 + r * Math.sin(w)).toFixed(1) + '%'); }
@@ -1905,13 +1905,15 @@ function mzVideoZeit(code, i) {
   erste.appendChild(w); erste.appendChild(nav);
   var i = 0, dx = 0;
   function breite() { return folien[0].getBoundingClientRect().width; }
+  /* Feste Höhe: so hoch wie die höchste zugeklappte Karte; nur wenn die aktuelle Karte aufgeklappt größer ist, wächst es mit */
+  function feste() { var m = 0; arts.forEach(function (a, k) { if (k === i || !a.querySelector('details[open]')) m = Math.max(m, a.offsetHeight); }); return m + 18; }
   function hoehe() { return Math.max.apply(null, arts.map(function (a) { return a.offsetHeight; })) + 18; }
   function setzen(animiert) {
     var off = (w.clientWidth - breite()) / 2 - i * breite() + dx;
     spur.style.transition = animiert ? 'transform 0.38s cubic-bezier(0.22, 0.75, 0.2, 1)' : 'none';
     spur.style.transform = 'translate3d(' + off + 'px,0,0)';
     folien.forEach(function (f, n) { f.classList.toggle('aktiv', n === i); });
-    w.style.height = (arts[i].offsetHeight + 18) + 'px'; /* Höhe der aktuellen Karte mit weichem Übergang, unten keine Lücke (Wunsch Nicolas 2026-11-09) */
+    w.style.height = feste() + 'px'; /* Pfeile, Punkte und „Alles anhören“ bleiben an derselben Stelle (Wunsch Nicolas 2026-11-10, vorher sprang die Leiste mit jeder Kartenhöhe) */
     nav.querySelector('.karussell-zaehler').textContent = (i + 1) + ' / ' + arts.length;
     /* Endlos: nach der letzten kommt wieder die erste (Wunsch Nicolas 2026-11-08) – Pfeile nie ausgegraut */
   }
@@ -1941,7 +1943,7 @@ function mzVideoZeit(code, i) {
   folien.forEach(function (f, n) { f.addEventListener('click', function (e) { if (n !== i) { e.preventDefault(); e.stopPropagation(); geh(n); } }, true); });
   addEventListener('resize', function () { setzen(false); }); addEventListener('load', function () { setzen(false); });
   /* Höhe nachziehen, wenn Schriften oder Bilder die Karte später größer machen */
-  if ('ResizeObserver' in window) { var ro = new ResizeObserver(function () { w.style.height = (arts[i].offsetHeight + 18) + 'px'; }); arts.forEach(function (a) { ro.observe(a); }); }
+  if ('ResizeObserver' in window) { var ro = new ResizeObserver(function () { w.style.height = feste() + 'px'; }); arts.forEach(function (a) { ro.observe(a); }); }
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { setzen(false); });
   setTimeout(function () { setzen(false); }, 1200);
   setzen(false);

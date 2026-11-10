@@ -304,5 +304,95 @@
   "fakt": "Aldi Süd hebt seinen internen Mindestlohn zum 1. Dezember von 15 auf 16 Euro pro Stunde an und begründet das mit der gestiegenen Inflation. Laut Fachpresse zieht Lidl mit. Der gesetzliche Mindestlohn liegt bei 13,90 Euro.",
   "quellen_html": "<a href=\"https://www.aldi-sued.de/newsroom/alle-pressemitteilungen/unternehmen/2026/aldi-sued-erhoeht-internen-mindestlohn-auf-16-euro\">Aldi Süd (Mitteilung)</a> · <a href=\"https://lebensmittelpraxis.de/handel-aktuell/zentrale-management/50295-lohnwettbewerb-im-handel-lidl-und-aldi-sued-zahlen-kuenftig-mindestens-16-euro-pro-stunde.html\">Lebensmittel Praxis</a> · <a href=\"https://www.lebensmittelzeitung.net/handel/karriere/verguetung-aldi-sued-erhoeht-internen-mindestlohn-194201\">Lebensmittel Zeitung</a>",
   "krass": 4
+ },
+ {
+  "datum": "2026-11-10",
+  "id": "m1",
+  "rubrik": "Haushalt",
+  "titel": "Stromsteuer gegen Sozialkürzungen: Die Koalition hat noch 2 Tage für den Haushalt",
+  "fakt": "Die Verhandlungen über den Bundeshaushalt 2027 stocken. Laut Berichten geht es um 10 Vorhaben mit zusammen mehr als 10 Milliarden Euro. Am Donnerstag beginnt die entscheidende Sitzung im Haushaltsausschuss.",
+  "quellen_html": "<a href=\"https://www.zdfheute.de/politik/deutschland/bundeshaushalt-verhandlungen-schwarz-rote-koalition-streit-finanzierung-100.html\">ZDFheute</a> · <a href=\"https://www.kurierverlag.de/politik/bundeshaushalt-2027-schwarz-rot-ringt-im-haushaltsstreit-zr-94580655.html\">Kurier (Merkur-Gruppe)</a> · <a href=\"https://www.berliner-zeitung.de/article/klingbeils-rekordhaushalt-wackelt-droht-der-merz-koalition-das-ampel-schicksal-10577907\">Berliner Zeitung</a>",
+  "krass": 6
+ },
+ {
+  "datum": "2026-11-10",
+  "id": "m2",
+  "rubrik": "Soziales",
+  "titel": "Wer zahlt für die Sparpläne? Zu 60 Prozent Frauen, sagt eine Studie",
+  "fakt": "Laut einer Studie von Dezernat Zukunft und Deutschem Frauenrat spart der Haushaltsentwurf 2027 rund 8,4 Milliarden Euro im Sozialbereich. Etwa 60 Prozent davon, also rund 5 Milliarden Euro, sollen Frauen treffen.",
+  "quellen_html": "<a href=\"https://taz.de/Haushaltsentwurf-fuer-2027/!6228769/\">taz</a> · <a href=\"https://www.frauenrat.de/bundeshaushalt-2027-armutstreiber-fuer-millionen-frauen/\">Deutscher Frauenrat</a>",
+  "krass": 5
+ },
+ {
+  "datum": "2026-11-10",
+  "id": "m3",
+  "rubrik": "AfD",
+  "titel": "Weidel lädt ein, Aigner sagt Nein: Kein Besuch bei der AfD-Fraktion",
+  "fakt": "Die Kandidatin für das Amt der Bundespräsidentin, Ilse Aigner (CSU), will sich nicht bei der AfD-Fraktion vorstellen. Ihr Büro verweist auf Beatrix von Storch, die Aigners Nominierung ein „Armutszeugnis“ genannt hatte. Alice Weidel reagiert empört.",
+  "quellen_html": "<a href=\"https://www.t-online.de/nachrichten/deutschland/innenpolitik/id_101520542/bundespraesidentenwahl-ilse-aigner-lehnt-besuch-bei-afd-fraktion-ab.html\">t-online</a> · <a href=\"https://www.tagesspiegel.de/politik/dpa-kandidatin-fur-das-bundesprasidentenamt-aigner-lehnt-vorstellung-bei-der-afd-fraktion-offenbar-ab-16259352.html\">Tagesspiegel (dpa)</a> · <a href=\"https://www.watson.ch/international/deutschland/176912479-aigner-will-sich-nicht-bei-afd-vorstellen-weidel-reagiert-empoert\">watson</a>",
+  "krass": 4
+ },
+ {
+  "datum": "2026-11-10",
+  "id": "m4",
+  "rubrik": "Lohn",
+  "titel": "5 Prozent gefordert, nichts bekommen: In der Metallindustrie drohen jetzt 24-Stunden-Streiks",
+  "fakt": "Auch die 3. Verhandlungsrunde in der Metall- und Elektroindustrie ist gestern ohne Ergebnis zu Ende gegangen, unter anderem in NRW und Bayern. Am Mittwoch entscheidet der IG-Metall-Vorstand, ob die Warnstreiks verschärft werden.",
+  "quellen_html": "<a href=\"https://www.wz.de/nrw/metall-tarifrunde-ohne-ergebnis-eskalation-moeglich_aid-158095135\">Westdeutsche Zeitung (dpa)</a> · <a href=\"https://jungewelt.de/artikel/533476.arbeit-versus-kapital-tarifverhandlungen-in-metallbranche-ohne-ergebnis.html\">junge Welt</a> · <a href=\"https://nuernberg.igmetall.de/aktuelle-nachrichten/2026/3500-beim-grossen-warnstreik-der-ig-metall\">IG Metall Nürnberg</a>",
+  "krass": 4
+ },
+ {
+  "datum": "2026-11-10",
+  "id": "m5",
+  "rubrik": "Iran",
+  "titel": "Trump erklärt den Iran-Krieg für „effektiv vorüber“, die Blockade bleibt aber",
+  "fakt": "Nach einem Treffen mit dem Regierungschef von Katar hat Donald Trump den Krieg mit dem Iran laut dpa militärisch für „effektiv vorüber“ erklärt. Die Seeblockade gegen den Iran bleibt aber, und einen Friedensvertrag gibt es noch nicht.",
+  "quellen_html": "<a href=\"https://www.handelsblatt.com/politik/international/nach-den-midterms-trump-iran-krieg-ist-militaerisch-effektiv-vorueber/100268567.html\">Handelsblatt (dpa)</a> · <a href=\"https://www.t-online.de/nachrichten/ausland/id_101520692/trump-iran-krieg-ist-militaerisch-effektiv-vorueber-.html\">t-online</a> · <a href=\"https://www.cnn.com/2026/11/08/middleeast/saudi-arabia-riyadh-missile-financial-intl\">CNN</a>",
+  "krass": 7
+ },
+ {
+  "datum": "2026-11-10",
+  "id": "m6",
+  "rubrik": "Ukraine",
+  "titel": "Europa sitzt mit am Tisch: Heute starten die Gespräche in Abu Dhabi",
+  "fakt": "Heute und morgen verhandeln die USA, Russland und die Ukraine in Abu Dhabi, zum ersten Mal seit Februar wieder zu dritt. Neu ist: Ein Team der EU sowie Deutschland, Frankreich, Großbritannien, Italien und die NATO sollen vor Ort sein. Der Kreml sagt, das offizielle Format bleibe trotzdem zu dritt.",
+  "quellen_html": "<a href=\"https://www.euronews.com/2026/11/09/eu-to-send-joint-team-to-ukraine-russia-peace-talks-in-abu-dhabi\">Euronews</a> · <a href=\"https://www.npr.org/2026/11/08/nx-s1-6034014/europe-join-us-brokered-ukraine-talks-abu-dhabi-russia\">NPR</a> · <a href=\"https://euromaidanpress.com/2026/11/09/europe-heads-to-the-abu-dhabi-talks-on-ending-russias-war-but-the-kremlin-says-it-hasnt-discussed-a-security-deal-with-europeans/\">Euromaidan Press</a>",
+  "krass": 6
+ },
+ {
+  "datum": "2026-11-10",
+  "id": "m7",
+  "rubrik": "USA",
+  "titel": "Erst wollte er das Ergebnis akzeptieren, jetzt fragt Trump, ob die Wahl „ehrlich“ war",
+  "fakt": "Wenige Tage, nachdem er gesagt hatte, er akzeptiere die Niederlage bei den Zwischenwahlen, stellt Trump laut NBC jetzt infrage, ob die Wahl „ehrlich“ war. Belege nennt er keine. In einer neuen Umfrage von Reuters/Ipsos liegt seine Zustimmung bei 32 Prozent.",
+  "quellen_html": "<a href=\"https://www.nbcnews.com/politics/donald-trump/trump-midterm-elections-voting-machines-doubt-rcna607893\">NBC News</a> · <a href=\"https://www.washingtonpost.com/politics/2026/11/07/trump-calls-justice-department-investigate-democrats/\">Washington Post</a> · <a href=\"https://www.aljazeera.com/news/2026/11/7/trump-orders-doj-to-investigate-democrats-for-threatening-people\">Al Jazeera</a>",
+  "krass": 5
+ },
+ {
+  "datum": "2026-11-10",
+  "id": "m8",
+  "rubrik": "Gaza",
+  "titel": "Sturm über Gaza: Ein Sandwall begräbt Zelte, 5 Menschen sterben",
+  "fakt": "In Deir al-Balah im Gazastreifen ist am Sonntagabend ein Sandwall auf ein Zeltlager gestürzt. Laut Zivilschutz starben 5 Menschen, darunter 3 Kinder. Insgesamt wurden laut Al Jazeera mehr als 70.000 Zelte überflutet.",
+  "quellen_html": "<a href=\"https://aljazeera.com/news/2026/11/9/gaza-authorities-slam-global-inaction-after-mudslide-kills-five-people\">Al Jazeera</a> · <a href=\"https://www.thenationalnews.com/news/mena/2026/11/09/people-were-screaming-deadly-tent-collapse-a-warning-for-winter-in-gaza/\">The National</a>",
+  "krass": 5
+ },
+ {
+  "datum": "2026-11-10",
+  "id": "m9",
+  "rubrik": "Klima",
+  "titel": "Die Weltklimakonferenz startet, und die USA sind schon wieder nicht dabei",
+  "fakt": "Im türkischen Antalya hat gestern die Weltklimakonferenz COP31 begonnen, sie dauert bis zum 20. November. Die US-Regierung schickt laut NPR zum 2. Mal in Folge keine Delegation. UN-Chef António Guterres fordert, schneller von Öl, Gas und Kohle wegzukommen.",
+  "quellen_html": "<a href=\"https://www.npr.org/2026/11/09/nx-s1-6026787/climate-talks-antalya-turkey-cop31\">NPR</a> · <a href=\"https://orf.at/stories/3447670/\">ORF (dpa)</a> · <a href=\"https://news.un.org/en/story/2026/11/1168763\">UN News</a>",
+  "krass": 5
+ },
+ {
+  "datum": "2026-11-10",
+  "id": "m10",
+  "rubrik": "Umwelt",
+  "titel": "Gute Nachricht: Chinas CO2-Ausstoß sinkt so stark wie seit Corona nicht mehr",
+  "fakt": "Chinas CO2-Ausstoß ist im 3. Quartal 2026 um 3,1 Prozent gesunken, verglichen mit dem Vorjahr. Das zeigt eine Analyse des Forschungsinstituts CREA für das Portal Carbon Brief. Es ist der stärkste Rückgang seit den Corona-Lockdowns 2022.",
+  "quellen_html": "<a href=\"https://www.carbonbrief.org/analysis-chinas-quarterly-co2-falls-3-in-largest-drop-since-covid\">Carbon Brief</a> · <a href=\"https://www.bloomberg.com/news/articles/2026-11-06/china-s-emissions-fall-most-since-covid-on-high-fuel-costs-crea\">Bloomberg</a> · <a href=\"https://www.businessgreen.com/news/4538502/study-chinas-quarterly-emissions-cent-largest-drop-covid-pandemic\">BusinessGreen</a>",
+  "krass": 4
  }
 ]
