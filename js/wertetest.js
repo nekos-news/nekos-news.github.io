@@ -97,6 +97,29 @@
     '.wt-start{margin-top:0.8rem}',
     '.wt-karte{max-width:100%;box-sizing:border-box}.wt-netz{touch-action:pan-y}',
     '.wt-teilen{margin-top:1.1rem}.wt-teilen .wt-knopf[disabled]{opacity:.5;cursor:default}',
+    /* Vorlesen je Frage (Wunsch Nicolas 2026-11-11), Aufnahmen mit seiner Stimme: audio/wertetest/fNN.mp3 */
+    '.wt-vorlesen{display:inline-flex;align-items:center;gap:.4rem;margin:-0.4rem 0 1rem;border:0;cursor:pointer;padding:.42rem .8rem .38rem;font:800 .72rem var(--sans);letter-spacing:.05em;text-transform:uppercase;color:var(--anthrazit);background:rgba(46,43,42,0.09);border-radius:2px}',
+    '.wt-vorlesen svg{width:1rem;height:1rem;fill:currentColor}.wt-vorlesen.an{background:var(--rost,#C8603A);color:var(--creme,#f4ead8)}',
+    /* Siegertreppchen der drei passendsten Parteien (Wunsch Nicolas 2026-11-11), Figuren aus den Personen-Assets, ohne Gesicht wie im Kanal */
+    '.wt-treppe{display:grid;grid-template-columns:1fr 1fr 1fr;align-items:end;gap:0;max-width:21rem;margin:0.6rem auto 1.1rem}',
+    '.wt-platz{display:flex;flex-direction:column;align-items:center;min-width:0}',
+    '.wt-platz img{display:block;width:auto;height:8.2rem;margin-bottom:-0.15rem;filter:drop-shadow(2px 4px 3px rgba(0,0,0,0.25))}',
+    '.wt-platz.p1 img{height:9.4rem}',
+    '.wt-platz .leer{display:grid;place-items:center;height:5.2rem;width:4.6rem;margin-bottom:.5rem;background:#5A2D82;color:#fff;font:800 1rem var(--sans);transform:rotate(-3deg);box-shadow:2px 3px 0 rgba(0,0,0,0.2)}',
+    '.wt-stufe{width:100%;box-sizing:border-box;text-align:center;color:var(--creme,#f4ead8);background:var(--rost,#C8603A);padding:.35rem .2rem .45rem;box-shadow:inset 0 -3px 0 rgba(0,0,0,0.18)}',
+    '.wt-stufe b{display:block;font:800 1.6rem/1 var(--lesen)}.wt-stufe span{display:block;font:800 .7rem/1.2 var(--sans);letter-spacing:.03em;text-transform:uppercase;overflow-wrap:anywhere}.wt-stufe i{display:block;font:400 .68rem var(--maschine);font-style:normal;opacity:.85}',
+    '.wt-platz.p1 .wt-stufe{min-height:5.6rem;background:#B8502E}.wt-platz.p2 .wt-stufe{min-height:4.6rem}.wt-platz.p3 .wt-stufe{min-height:3.9rem;background:var(--ocker,#D99A4E)}',
+    /* Partei-Fenster: Wahlprogramm in Stichpunkten, Kritik, Link (Wunsch Nicolas 2026-11-11), Daten in daten/programme.json */
+    '.wt-partei{width:100%;border:0;background:none;padding:0.2rem 0;color:inherit;cursor:pointer;text-align:left}.wt-partei span:first-child{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}',
+    '.wt-platz{border:0;background:none;padding:0;cursor:pointer;color:inherit;font:inherit}',
+    '.wt-tipp{font:400 .74rem var(--maschine);color:var(--mittelgrau,#7a7268);text-align:center;margin:-0.5rem 0 0.6rem}',
+    '.wt-prog{position:fixed;inset:0;z-index:62;background:rgba(4,8,20,0.82);overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;touch-action:pan-y;padding:calc(env(safe-area-inset-top,0px) + 3.6rem) 1rem 3rem;display:grid;justify-items:center;align-content:start}',
+    '.wt-prog[hidden]{display:none}',
+    '.wt-prog .wt-karte{margin-top:0;transform:rotate(0.4deg)}',
+    '.wt-prog h3{font:800 1.4rem/1.15 var(--lesen);margin:0 0 .15rem}.wt-prog .titel{font:400 .8rem var(--maschine);color:var(--mittelgrau,#7a7268);margin:0 0 .9rem}',
+    '.wt-prog h4{font:800 .74rem var(--sans);letter-spacing:.06em;text-transform:uppercase;margin:1rem 0 .4rem;color:var(--rost,#C8603A)}.wt-prog h4.kontra{color:#7A2E22}',
+    '.wt-prog ul{margin:0;padding-left:1.1rem;font:400 .95rem/1.45 var(--lesen)}.wt-prog li{margin:0 0 .35rem}',
+    '.wt-prog .wt-knoepfe{margin-top:1.1rem}.wt-prog a.wt-knopf{text-decoration:none;display:inline-block}',
     '.wt-gespeichert{text-align:center;font:700 1.25rem/1 "Caveat",cursive;color:#C8281E;margin:.6rem 0 0;transform:rotate(-2deg)}'
   ].join('\n');
   document.head.appendChild(css);
@@ -114,7 +137,7 @@
     grund.hidden = false; document.documentElement.style.overflow = 'hidden';
     if (st.fertig) ergebnis(); else if (st.i >= FRAGEN.length) gewichten(); else if (st.i === 0 && !Object.keys(st.a).length) intro(); else frage();
   }
-  function schliessen() { grund.hidden = true; document.documentElement.style.overflow = ''; }
+  function schliessen() { stumm(); if (fenster) fenster.hidden = true; grund.hidden = true; document.documentElement.style.overflow = ''; }
 
   function intro() {
     karte.innerHTML = '<h3 class="wt-h">Wie tickst du?</h3>' +
@@ -129,16 +152,29 @@
     return '<div class="wt-stand"><span>Frage ' + (st.i + 1) + ' von ' + FRAGEN.length + '</span><span>' + ACHSEN[FRAGEN[st.i][0]].name + '</span></div>' +
       '<div class="wt-balken"><b style="width:' + Math.round(st.i / FRAGEN.length * 100) + '%"></b></div>';
   }
-  function weiter(wert) { st.a[st.i] = wert; st.i++; merke(st); if (st.i >= FRAGEN.length) gewichten(); else frage(); karte.scrollIntoView({ block: 'start' }); }
+  var ton = null;
+  function stumm() { if (ton) { ton.pause(); ton = null; } }
+  function vorlesenKnopf() {
+    var b = karte.querySelector('.wt-vorlesen'); if (!b) return; var nr = st.i + 1, url = '/audio/wertetest/f' + (nr < 10 ? '0' : '') + nr + '.mp3';
+    var text = function (an) { b.classList.toggle('an', an); b.lastChild.textContent = an ? 'Stopp' : 'Vorlesen'; };
+    b.addEventListener('click', function () {
+      if (ton) { stumm(); text(false); return; }
+      ton = new Audio(url); var mein = ton;
+      ton.addEventListener('ended', function () { if (ton === mein) { ton = null; text(false); } });
+      ton.addEventListener('error', function () { if (ton === mein) { ton = null; b.hidden = true; } });
+      ton.play().catch(function () {}); text(true);
+    });
+  }
+  function weiter(wert) { stumm(); st.a[st.i] = wert; st.i++; merke(st); if (st.i >= FRAGEN.length) gewichten(); else frage(); karte.scrollIntoView({ block: 'start' }); }
   function frage() {
     var q = FRAGEN[st.i], alt = st.a[st.i];
     if (q[2] === 'jn') {
-      karte.innerHTML = kopf() + '<p class="wt-szene">' + esc(q[1]) + '</p><div class="wt-knoepfe"><button type="button" class="wt-knopf gross" data-w="1">Ja</button><button type="button" class="wt-knopf gross" data-w="0">Nein</button></div>' +
+      karte.innerHTML = kopf() + '<p class="wt-szene">' + esc(q[1]) + '</p>' + '<button type="button" class="wt-vorlesen" aria-label="Frage vorlesen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 4V5L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 8v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></svg><span>Vorlesen</span></button>' + '<div class="wt-knoepfe"><button type="button" class="wt-knopf gross" data-w="1">Ja</button><button type="button" class="wt-knopf gross" data-w="0">Nein</button></div>' +
         '<button type="button" class="wt-zurueck" data-skip>Kann ich nicht sagen</button>' + (st.i ? '<button type="button" class="wt-zurueck" data-back>Zurück</button>' : '');
       karte.querySelectorAll('[data-w]').forEach(function (b) { b.addEventListener('click', function () { weiter(+b.getAttribute('data-w')); }); });
     } else {
       var v = alt != null ? Math.round(1 + alt * 9) : 5.5;
-      karte.innerHTML = kopf() + '<p class="wt-szene">' + esc(q[1]) + '</p><div class="wt-pole"><span>' + esc(q[2]) + '</span><span>' + esc(q[3]) + '</span></div>' +
+      karte.innerHTML = kopf() + '<p class="wt-szene">' + esc(q[1]) + '</p>' + '<button type="button" class="wt-vorlesen" aria-label="Frage vorlesen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 4V5L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 8v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></svg><span>Vorlesen</span></button>' + '<div class="wt-pole"><span>' + esc(q[2]) + '</span><span>' + esc(q[3]) + '</span></div>' +
         '<input class="wt-regler" type="range" min="1" max="10" step="1" value="' + v + '" aria-label="Zwischen ' + esc(q[2]) + ' und ' + esc(q[3]) + '">' +
         '<div class="wt-zahl">' + (alt != null ? Math.round(1 + alt * 9) : 'Regler bewegen') + '</div>' +
         '<div class="wt-knoepfe"><button type="button" class="wt-knopf gross" data-ok' + (alt == null ? ' disabled style="opacity:.45"' : '') + '>Weiter</button></div>' +
@@ -147,8 +183,9 @@
       r.addEventListener('input', function () { z.textContent = r.value; ok.disabled = false; ok.style.opacity = ''; });
       ok.addEventListener('click', function () { weiter((r.value - 1) / 9); });
     }
+    vorlesenKnopf();
     karte.querySelector('[data-skip]').addEventListener('click', function () { weiter(null); });
-    var bk = karte.querySelector('[data-back]'); if (bk) bk.addEventListener('click', function () { st.i--; merke(st); frage(); });
+    var bk = karte.querySelector('[data-back]'); if (bk) bk.addEventListener('click', function () { stumm(); st.i--; merke(st); frage(); });
   }
 
   function werte() {
@@ -225,6 +262,30 @@
     });
     sichern.addEventListener('click', runterladen);
   }
+  var PROG = null, PSTAND2 = '';
+  fetch('/daten/programme.json', { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : null; }).then(function (d) { if (d && d.parteien) { PROG = d.parteien; PSTAND2 = d.stand || ''; } }).catch(function () {});
+  var fenster = null;
+  function programm(name) {
+    var d = PROG && PROG[name]; if (!d) return;
+    if (!fenster) { fenster = document.createElement('div'); fenster.className = 'wt-prog'; fenster.setAttribute('role', 'dialog'); fenster.setAttribute('aria-modal', 'true'); document.body.appendChild(fenster);
+      fenster.addEventListener('click', function (e) { if (e.target === fenster || e.target.closest('[data-pzu]')) { fenster.hidden = true; } }); }
+    var f = FIGUR[name];
+    fenster.innerHTML = '<button type="button" class="wt-zu" data-pzu aria-label="Schließen" style="z-index:63">✕</button><div class="wt-karte">' +
+      (f ? '<img src="/bilder/parteien/' + f + '.webp" alt="" style="float:right;height:6.5rem;margin:-0.4rem -0.3rem 0 0.4rem">' : '') +
+      '<h3>' + esc(name) + '</h3><p class="titel">Wahlprogramm 2025: „' + esc(d.titel) + '“</p>' +
+      '<h4>Das wollen sie</h4><ul>' + d.punkte.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul>' +
+      '<h4 class="kontra">Das sagen Kritiker</h4><ul>' + d.kritik.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul>' +
+      '<div class="wt-knoepfe"><a class="wt-knopf" href="' + esc(d.link) + '" target="_blank" rel="noopener">Zum Wahlprogramm</a><button type="button" class="wt-knopf leise" data-pzu>Zurück</button></div>' +
+      '<p class="wt-klein">KI-Zusammenfassung des Wahlprogramms zur Bundestagswahl 2025, im Original nachgeprüft' + (PSTAND2 ? ' (Stand ' + PSTAND2.split('-').reverse().join('.') + ')' : '') + '. Kritikpunkte sind verbreitete Einwände aus Wissenschaft, Verbänden und Medien, keine Meinung von Nekos News. Lies im Zweifel das Original.</p></div>';
+    fenster.hidden = false; fenster.scrollTop = 0; var z = fenster.querySelector('.wt-zu'); if (z) z.focus();
+  }
+  var FIGUR = { 'Die Linke': 'linke', 'Grüne': 'gruene', 'SPD': 'spd', 'CDU/CSU': 'union', 'FDP': 'fdp', 'BSW': 'bsw', 'AfD': 'afd' };
+  function treppe(nah) {
+    var platz = function (p, r) { if (!p) return '<div></div>'; var f = FIGUR[p.n];
+      return '<button type="button" class="wt-platz p' + r + '" data-partei="' + esc(p.n) + '" aria-label="' + esc(p.n) + ': Wahlprogramm ansehen">' + (f ? '<img src="/bilder/parteien/' + f + '.webp" alt="" loading="lazy">' : '<div class="leer" aria-hidden="true">' + esc(p.n) + '</div>') +
+        '<div class="wt-stufe"><b>' + r + '</b><span>' + esc(p.n) + '</span><i>' + p.s + ' %</i></div></button>'; };
+    return '<div class="wt-treppe">' + platz(nah[1], 2) + platz(nah[0], 1) + platz(nah[2], 3) + '</div><p class="wt-tipp">Tipp auf eine Partei: Wahlprogramm in Stichpunkten</p>';
+  }
   function ergebnis() {
     var w = werte(), g = st.g || {};
     var nah = PARTEIEN.map(function (p) {
@@ -234,13 +295,14 @@
     var stark = REIHE.slice().sort(function (a, b) { return Math.abs(w[b] - 50) - Math.abs(w[a] - 50); });
     karte.innerHTML = '<h3 class="wt-h">So tickst du</h3>' + netz(w) +
       stark.map(function (a) { return '<p class="wt-achse"><b>' + ACHSEN[a].name + ' · ' + w[a] + ' von 100</b>' + (w[a] >= 50 ? ACHSEN[a].hoch : ACHSEN[a].tief) + '</p>'; }).join('') +
-      '<h3 class="wt-h" style="margin-top:1.2rem">Diese Parteien könnten für dich interessant sein</h3>' +
-      nah.map(function (p, i) { return '<div class="wt-partei' + (i < 2 ? ' top' : '') + '"><span>' + p.n + '</span><i><b style="width:' + Math.max(4, p.s) + '%"></b></i><span>' + p.s + ' %</span></div>'; }).join('') +
+      '<h3 class="wt-h" style="margin-top:1.2rem">Diese Parteien könnten für dich interessant sein</h3>' + treppe(nah) +
+      nah.map(function (p, i) { return '<button type="button" class="wt-partei' + (i < 2 ? ' top' : '') + '" data-partei="' + esc(p.n) + '"><span>' + esc(p.n) + '</span><i><b style="width:' + Math.max(4, p.s) + '%"></b></i><span>' + p.s + ' %</span></button>'; }).join('') +
       '<p class="wt-klein">Keine Wahlwerbung und keine Wahlempfehlung, ausschließlich eine KI-Einschätzung. Die Partei-Werte sind eine grobe Einschätzung ihrer Grundwerte aus Wahlprogrammen und aktuellen Forderungen, keine Messung' + (PSTAND ? ' (Stand ' + PSTAND.split('-').reverse().join('.') + ')' : '') + '. Schau dir die Programme selbst an, zum Beispiel im Wahl-O-Mat der Bundeszentrale für politische Bildung.</p>' +
       '<div class="wt-knoepfe wt-teilen"><button type="button" class="wt-knopf" data-teilen disabled>Ergebnis teilen</button><button type="button" class="wt-knopf leise" data-sichern disabled>Bild speichern</button></div>' +
       '<p class="wt-gespeichert" hidden>Gespeichert!</p>' +
       '<div class="wt-knoepfe wt-start"><button type="button" class="wt-knopf leise" data-neu>Nochmal machen</button></div>';
     teilenKnoepfe(w, nah, stark);
+    karte.querySelectorAll('[data-partei]').forEach(function (b) { b.addEventListener('click', function () { programm(b.getAttribute('data-partei')); }); });
     karte.querySelector('[data-neu]').addEventListener('click', function () { st = { a: {}, i: 0 }; merke(st); intro(); });
   }
 

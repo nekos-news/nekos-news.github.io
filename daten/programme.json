@@ -1,0 +1,149 @@
+{
+ "stand": "2026-11-11",
+ "hinweis": "KI-Zusammenfassung der Wahlprogramme zur Bundestagswahl 2025 (neueste Bundestags-Wahlprogramme), von Claude am 11.11.2026 im jeweiligen Original-PDF nachgeprüft. Kritikpunkte = verbreitete Einwände aus Wissenschaft, Verbänden und Medien, klar als Kritik gekennzeichnet. Wunsch Nicolas 2026-11-11.",
+ "parteien": {
+  "CDU/CSU": {
+   "titel": "Politikwechsel für Deutschland",
+   "link": "https://www.cdu.de/app/uploads/2025/01/km_btw_2025_wahlprogramm_langfassung_ansicht.pdf",
+   "punkte": [
+    "Einkommensteuer schrittweise senken, Grundfreibetrag rauf, Spitzensteuersatz erst bei deutlich höheren Einkommen",
+    "Rest-Solidaritätszuschlag abschaffen, Unternehmen mit höchstens 25 Prozent besteuern",
+    "Bürgergeld abschaffen und durch eine „Neue Grundsicherung“ mit mehr Pflichten ersetzen",
+    "Asylsuchende an den deutschen Grenzen zurückweisen, Familiennachzug für subsidiär Schutzberechtigte aussetzen",
+    "Heizungsgesetz der Ampel abschaffen, prüfen, ob abgeschaltete Atomkraftwerke wieder ans Netz können",
+    "„Aktivrente“: Wer im Rentenalter weiterarbeitet, bekommt bis 2.000 Euro im Monat steuerfrei",
+    "Aufwachsende Wehrpflicht, perspektivisch ein verpflichtendes Gesellschaftsjahr"
+   ],
+   "kritik": [
+    "Ökonomen sahen bei den Steuersenkungen eine Finanzierungslücke von grob 60 bis 100 Milliarden Euro pro Jahr",
+    "Zurückweisungen an der Grenze gelten unter Juristen als europarechtlich umstritten",
+    "Umweltverbände kritisieren, dass die Rücknahme des Heizungsgesetzes die Klimaziele erschwert"
+   ]
+  },
+  "SPD": {
+   "titel": "Mehr für Dich. Besser für Deutschland.",
+   "link": "https://www.spd.de/fileadmin/Dokumente/Beschluesse/Programm/SPD_Programm_bf.pdf",
+   "punkte": [
+    "Mindestlohn spätestens ab 2026 bei 15 Euro",
+    "95 Prozent der Steuerzahlenden entlasten, dafür Spitzeneinkommen und sehr große Vermögen stärker besteuern",
+    "Vermögensteuer für sehr hohe Vermögen wieder einführen",
+    "Rentenniveau dauerhaft bei mindestens 48 Prozent sichern",
+    "Mehrwertsteuer auf Lebensmittel von 7 auf 5 Prozent senken",
+    "„Deutschlandfonds“ mit öffentlichem und privatem Geld für Netze, Wohnungen und Ladesäulen, Schuldenbremse reformieren",
+    "Mietpreisbremse verlängern"
+   ],
+   "kritik": [
+    "Wirtschaftsverbände warnen, höhere Steuern auf Spitzeneinkommen und Vermögen träfen auch Familienunternehmen",
+    "Arbeitgeber kritisieren, dass die Politik beim Mindestlohn der unabhängigen Mindestlohnkommission vorgreift",
+    "Ökonomen weisen darauf hin, dass ein festes Rentenniveau vor allem Jüngere über höhere Beiträge oder Steuern bezahlen"
+   ]
+  },
+  "Grüne": {
+   "titel": "Zusammen wachsen",
+   "link": "https://www.gruene.de/artikel/zusammen-wachsen",
+   "punkte": [
+    "An Klimaneutralität bis 2045 festhalten, Energie- und Wärmewende fortsetzen",
+    "Einnahmen aus dem CO₂-Preis als sozial gestaffeltes Klimageld zurückzahlen",
+    "„Deutschlandfonds“ für Investitionen in Bund, Ländern und Kommunen, Schuldenbremse reformieren",
+    "Mindestlohn schrittweise rauf, zunächst 15 Euro",
+    "Globale Milliardärssteuer, Vermögensteuer auf sehr hohe Vermögen, fairere Erbschaftsteuer",
+    "Mietpreisbremse verlängern und verschärfen",
+    "Deutschland-Ticket erhalten, Bahnfahren bezahlbar machen"
+   ],
+   "kritik": [
+    "Kritiker warnen, ein steigender CO₂-Preis mache Heizen und Tanken teurer, solange das Klimageld nicht ausgezahlt wird",
+    "Eine gelockerte Schuldenbremse bedeutet mehr Schulden, die spätere Generationen tragen",
+    "Teile der Industrie halten das Tempo bei Klimaneutralität bis 2045 für zu hoch"
+   ]
+  },
+  "FDP": {
+   "titel": "Alles lässt sich ändern",
+   "link": "https://www.fdp.de/sites/default/files/2024-12/fdp-wahlprogramm_2025.pdf",
+   "punkte": [
+    "Schuldenbremse strikt einhalten",
+    "Solidaritätszuschlag komplett abschaffen, Unternehmenssteuern unter 25 Prozent senken",
+    "Spitzensteuersatz erst ab etwa 96.600 Euro Jahreseinkommen statt ab gut 68.000 Euro",
+    "Bürgergeld grundlegend reformieren: mehr Druck zur Arbeitsaufnahme",
+    "Gesetzliche Aktienrente nach schwedischem Vorbild",
+    "Deutsches Klimaziel 2045 durch das EU-Ziel 2050 ersetzen",
+    "Weniger Bundesministerien und Behörden, Bürokratie abbauen"
+   ],
+   "kritik": [
+    "Laut einer ZEW-Berechnung profitieren von den Steuerplänen vor allem hohe Einkommen (die FDP widerspricht)",
+    "Ökonomen wie Marcel Fratzscher (DIW) nannten die Finanzierung der Steuersenkungen illusorisch",
+    "Umweltverbände kritisieren das spätere Klimaziel als Rückschritt"
+   ]
+  },
+  "AfD": {
+   "titel": "Zeit für Deutschland",
+   "link": "https://www.afd.de/wp-content/uploads/2025/02/AfD_Bundestagswahlprogramm2025_web.pdf",
+   "punkte": [
+    "„Remigration“: Abschiebungen und Rückkehr in großem Umfang, Schutzstatus überprüfen",
+    "Deutschland soll aus dem Euro-System austreten",
+    "EU zu einem lockeren „Bund europäischer Nationen“ umbauen",
+    "Neue Atomkraftwerke bauen, Nord Stream 2 wieder in Betrieb nehmen",
+    "Den menschlichen Anteil am Klimawandel nennt das Programm „wissenschaftlich ungeklärt“, Klimaschutzpolitik zurückfahren",
+    "Wehrpflicht wieder einsetzen",
+    "Erbschaftsteuer und Vermögensteuer abschaffen"
+   ],
+   "kritik": [
+    "Der Klimateil widerspricht dem breiten Konsens der Klimaforschung",
+    "Ökonomen halten einen Euro-Austritt für sehr riskant für Exporte, Jobs und Ersparnisse",
+    "Kritiker sehen in „Remigration“ einen Konflikt mit Grundrechten. Der Verfassungsschutz führt die AfD als Verdachtsfall; die Einstufung als „gesichert rechtsextremistisch“ (Mai 2025) hat das Verwaltungsgericht Köln im Februar 2026 im Eilverfahren vorerst gestoppt"
+   ]
+  },
+  "Die Linke": {
+   "titel": "Alle wollen regieren. Wir wollen verändern.",
+   "link": "https://www.die-linke.de/fileadmin/user_upload/Wahlprogramm_Langfassung_Linke-BTW25_01.pdf",
+   "punkte": [
+    "Bundesweiter Mietendeckel",
+    "Keine Mehrwertsteuer auf Grundnahrungsmittel",
+    "Mindestlohn mindestens 15 Euro, bis 2026 16 Euro",
+    "Vermögensteuer wieder einführen, höhere Steuern ab 85.000 Euro Einkommen, Reichensteuer bis 75 Prozent",
+    "Rentenniveau auf 53 Prozent anheben",
+    "Deutschlandticket für 9 Euro, kostenlos für Schüler, Azubis, Studierende und Senioren",
+    "Keine Waffenlieferungen in Kriegs- und Krisengebiete"
+   ],
+   "kritik": [
+    "Laut ZEW-Berechnung würde mit dem Programm die Staatsverschuldung steigen",
+    "Ökonomen warnen, sehr hohe Steuersätze könnten Kapital und Fachkräfte vertreiben, ein Mietendeckel könne Neubau bremsen",
+    "Die Ablehnung von Waffenlieferungen gilt mit Blick auf die Ukraine als umstritten"
+   ]
+  },
+  "BSW": {
+   "titel": "Unser Land verdient mehr!",
+   "link": "https://bsw-vg.de/wp-content/themes/bsw/assets/downloads/BSW%20Wahlprogramm%202025.pdf",
+   "punkte": [
+    "Diplomatie statt Waffenlieferungen in die Ukraine",
+    "Mit Russland verhandeln, um über Nord Stream wieder günstiges Gas zu beziehen; Sanktionen als schädlich bewertet",
+    "Mindestlohn auf 15 Euro",
+    "Rentensystem nach Vorbild Österreichs, Renten bis 2.000 Euro steuerfrei",
+    "Verbrenner-Verbot und Heizungsgesetz zurücknehmen",
+    "Irreguläre Migration stoppen",
+    "0 Prozent Mehrwertsteuer auf Grundnahrungsmittel"
+   ],
+   "kritik": [
+    "Ökonomen nannten das Programm rückwärtsgewandt; es würde die Wirtschaftsleistung schmälern",
+    "Kritiker werfen dem BSW eine zu große Nähe zu russischen Positionen vor",
+    "Wie die teuren Rentenpläne bezahlt werden sollen, bleibt laut Kritikern offen"
+   ]
+  },
+  "Volt": {
+   "titel": "Holen wir uns die Zukunft zurück",
+   "link": "https://voltdeutschland.org/storage/assets-btw25/volt-kurzwahlprogramm-btw2025.pdf",
+   "punkte": [
+    "EU stärken, langfristig eine europäische Republik",
+    "Strom bis 2035 vollständig aus erneuerbaren Energien",
+    "Bis 2028 Subventionen für fossile Energie in der Industrie abbauen",
+    "Mindestens ein Drittel der CO₂-Einnahmen direkt an die Bevölkerung zurückzahlen",
+    "Verwaltung umfassend digitalisieren, eigenes Digitalministerium",
+    "Recht auf bezahlbares Wohnen ins Grundgesetz, leere Gebäude leichter zu Wohnungen machen"
+   ],
+   "kritik": [
+    "Eine europäische Republik bräuchte Vertragsänderungen, denen alle EU-Staaten zustimmen müssten",
+    "100 Prozent Ökostrom bis 2035 halten Kritiker für sehr ehrgeizig",
+    "Volt ist nicht im Bundestag vertreten, die Umsetzung hinge von anderen Parteien ab"
+   ]
+  }
+ }
+}

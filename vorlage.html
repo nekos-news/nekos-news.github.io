@@ -1864,11 +1864,15 @@ function mzVideoZeit(code, i) {
   function weiterNachEnde() { if (!alles) { ende(); return; } var j = naechste(pos + 1);
     if (j >= liste.length && !root.classList.contains('ruhig')) { schluss.currentTime = 0; schluss.play().catch(function () {}); } spiele(j); }
   player.addEventListener('ended', function () { if (dingt) return; weiterNachEnde(); });
-  /* Begrüßung + KI-Hinweis (Anfang von „Das Wichtigste“) kommen bei „Alles anhören“ immer, auch wenn die 30 Sekunden schon gehört sind:
+  /* Begrüßung (Anfang von „Das Wichtigste“, bis 2026-11-10 mit KI-Hinweis) kommt bei „Alles anhören“ immer, auch wenn die 30 Sekunden schon gehört sind:
      dann endet „Das Wichtigste“ nach dem Hinweis, und es geht mit der ersten neuen Meldung weiter (Wunsch Nicolas 2026-11-10) */
   player.addEventListener('timeupdate', function () { if (introBis && !dingt && pos >= 0 && player.currentTime >= introBis) { introBis = 0; player.pause(); weiterNachEnde(); } });
   if (basis) window.mzStandP.then(function () { return fetch(basis + 'kurz.woerter.json' + stand); }).then(function (r) { return r.ok ? r.json() : null; }).then(function (w) {
-    if (!w) return; for (var k = 0; k < Math.min(w.length - 1, 80); k++) if (/^originalartikel/i.test(w[k][1])) { introEnde = Math.max(0, w[k + 1][0] - 0.2); return; } }).catch(function () {});
+    if (!w) return; var gruss = -1; /* seit 2026-11-11: „Willkommen bei Nekos News am <Datum>.“ (bis zum Datum); ältere Ausgaben: KI-Hinweis bis „Originalartikel“ */
+    for (var k = 0; k < Math.min(w.length - 1, 80); k++) {
+      if (/^willkommen/i.test(w[k][1])) gruss = k;
+      if (gruss >= 0 && k > gruss + 3 && /\.$/.test(w[k][1]) && !/^\d+\.$/.test(w[k][1])) { introEnde = Math.max(0, w[k + 1][0] - 0.2); return; }
+      if (/^originalartikel/i.test(w[k][1])) { introEnde = Math.max(0, w[k + 1][0] - 0.2); return; } } }).catch(function () {});
   window.mzStandP.then(function () { return listenSeite ? null : fetch(basis + 'liste.json', { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : []; }).catch(function () { return []; }); }).then(function (ids) {
     liste = ids === null
       ? teile.filter(function (el) { return el.getAttribute('data-audio'); }).map(function (el) { return { el: el, url: el.getAttribute('data-audio') }; })
@@ -1926,7 +1930,7 @@ function mzVideoZeit(code, i) {
     if (pos >= 0 && player.paused) { klick(tonWeiter); player.play(); knoepfe(pos); return; }
     alles = true; ueberspringen = liste.some(function (x) { return !istGehoert(x.url); });
     var start = naechste(0); uebersprungen = liste.filter(function (x) { return ueberspringen && istGehoert(x.url); }).length;
-    if (start > 0 && liste[0].el.id === 'kurz' && introEnde > 1) { spiele(0, introEnde); return; } /* erst Begrüßung + KI-Hinweis */
+    if (start > 0 && liste[0].el.id === 'kurz' && introEnde > 1) { spiele(0, introEnde); return; } /* erst die Begrüßung */
     spiele(start);
   });
 })();
