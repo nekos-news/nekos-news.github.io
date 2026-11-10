@@ -431,7 +431,7 @@ html.kontrast .hinweis, html.kontrast .menue nav, html.kontrast .hilfe-feld, htm
 html.kontrast .leiste-oben > a, html.kontrast .menue-knopf, html.kontrast .sicht, html.kontrast .these, html.kontrast .marke, html.kontrast .reel,
 html.kontrast .reel .aufrufe, html.kontrast .filter button, html.kontrast .kanaele a, html.kontrast footer, html.kontrast .liste-info {
   background: #fff !important; background-image: none !important; color: #000 !important; border: 2px solid #000; transform: none !important; filter: none !important; clip-path: none !important; }
-html.kontrast .news-knopf, html.kontrast .hilfe-knopf, html.kontrast #btn-lesen, html.kontrast #btn-naechster, html.kontrast .zettel, html.kontrast .mitdenken,
+html.kontrast .news-knopf, html.kontrast .hilfe-knopf, html.kontrast #btn-lesen, html.kontrast #btn-naechster, html.kontrast #btn-zurueck, html.kontrast .zettel, html.kontrast .mitdenken,
 html.kontrast .hoeren button, html.kontrast .filter button[aria-pressed="true"], html.kontrast .hilfe-feld button[aria-pressed="true"] {
   background: #000 !important; background-image: none !important; color: #fff !important; outline: 2px solid #fff; transform: none !important; filter: none !important; }
 html.kontrast .zettel::before { background: #000 !important; }
@@ -996,8 +996,12 @@ html.ruhig .wischer .spur { transition: none !important; }
 .oben .hinweis .schild { width: 1.6rem !important; }
 .oben .hinweis b { font-size: 0.52rem !important; white-space: normal !important; }
 #deutschland > .zettel { margin-bottom: 0.9rem !important; }
-#btn-lesen, #btn-naechster, .leiste .hoch { background-color: #1F4E9A !important; }
-/* Während des Vorlesens: Pause/Weiter nur als Symbol, dazwischen „Nächster Artikel“ (Wunsch Nicolas 2026-11-10) */
+#btn-lesen, #btn-naechster, #btn-zurueck, .leiste .hoch { background-color: #1F4E9A !important; }
+/* Springen (Wunsch Nicolas 2026-11-10): ⏮ Ⅱ ⏭ ↑, alle gleich breit, Symbole statt Text, damit es auf jedes Handy passt */
+#btn-zurueck, #btn-naechster { min-width: 2.6rem; padding: 0.5rem 0.6rem !important; display: inline-flex; align-items: center; justify-content: center; }
+#btn-zurueck[hidden], #btn-naechster[hidden] { display: none !important; }
+#btn-naechster:disabled { opacity: 0.35; cursor: default; }
+/* Während des Vorlesens: ⏮ Pause/Weiter ⏭ nur als Symbole (Wunsch Nicolas 2026-11-10) */
 #btn-lesen.symbol { min-width: 2.6rem; padding-inline: 0.75rem; font-size: 1.05rem; }
 /* Startseite: „Alles anhören“ wackelt alle paar Sekunden kurz, bis man es einmal antippt (Wunsch Nicolas 2026-11-10) */
 @keyframes mz-wackeln { 0%, 84%, 100% { transform: rotate(0) scale(1); } 86% { transform: rotate(-4deg) scale(1.04); } 89% { transform: rotate(3.5deg) scale(1.04); }
@@ -1508,9 +1512,10 @@ html.ruhig .wischer { transition: none; }
 <!-- AUSGABE-ENDE -->
 
 <div class="leiste" aria-label="Vorlesen und Navigation">
+  <button id="btn-zurueck" type="button" hidden aria-label="Vorheriger Artikel"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><rect x="4" y="5" width="3" height="14" fill="currentColor"/><path d="M20 5v14L8.5 12z" fill="currentColor"/></svg></button>
   <button id="btn-lesen" type="button" hidden>&#x25B6;&#xFE0E; Alles anhören</button>
+  <button id="btn-naechster" type="button" hidden aria-label="Nächster Artikel"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 5v14l11.5-7z" fill="currentColor"/><rect x="17" y="5" width="3" height="14" fill="currentColor"/></svg></button>
   <span class="status" id="lese-status" aria-live="polite"></span>
-  <button id="btn-naechster" type="button" hidden>Nächster Artikel</button>
   <button type="button" class="hoch" aria-label="Nach oben" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
 </div>
 
@@ -1791,7 +1796,7 @@ function mzVideoZeit(code, i) {
   /* Tagesausgabe: audio/<datum>/liste.json; Woche/Monat/Jahr (seit 2026-11-08): jede Meldung bringt ihr Audio als data-audio mit */
   var wrap = document.querySelector('.wrap[data-datum]'), listenSeite = !wrap && document.querySelector('#liste article[data-audio]'); if (!wrap && !listenSeite) return;
   var basis = wrap ? '/audio/' + wrap.getAttribute('data-datum') + '/' : '';
-  var player = new Audio(), liste = [], pos = -1, alles = false, ueberspringen = false, uebersprungen = 0; window.mzPlayer = player;
+  var player = new Audio(), liste = [], pos = -1, alles = false, ueberspringen = false, uebersprungen = 0, introBis = 0, introEnde = 0; window.mzPlayer = player;
   /* Soundpaket „Lo-Fi-Nachrichten“ (gewählt von Nicolas 2026-11-10, selbst erzeugt mit ~/NekoTools/google_tts/klaenge2.py):
      Wechsel-Klang vor jeder Meldung, Mini-Klick bei Pause und beim Weiterhören, Ausklang nach der letzten Meldung bei „Alles anhören“.
      „Das Wichtigste“ hat seinen Jingle schon in der Aufnahme. Im Modus „Weniger Reize“ keine Klänge. */
@@ -1821,16 +1826,19 @@ function mzVideoZeit(code, i) {
   player.addEventListener('ended', function () { var x = liste[pos]; if (x) merkeGehoert(x.url); });
   /* Zeit an andere Teile melden (z. B. Story im 30-Sekunden-Zettel läuft mit) */
   ['timeupdate', 'play', 'pause', 'ended'].forEach(function (ev) { player.addEventListener(ev, function () { if (dingt) return; var x = liste[pos]; window.dispatchEvent(new CustomEvent('mz-audio', { detail: { id: x ? x.el.id : null, src: x ? x.url : null, t: player.currentTime, d: player.duration, spielt: !player.paused && !player.ended } })); }); });
-  var leiste = document.querySelector('.leiste'), btn = document.getElementById('btn-lesen'), status = document.getElementById('lese-status'), naechsterBtn = document.getElementById('btn-naechster');
+  var leiste = document.querySelector('.leiste'), btn = document.getElementById('btn-lesen'), status = document.getElementById('lese-status'), naechsterBtn = document.getElementById('btn-naechster'), zurueckBtn = document.getElementById('btn-zurueck');
   if (/^\/(index\.html)?$/.test(location.pathname)) root.classList.add('startseite');
   btn.addEventListener('click', function () { root.classList.add('lesen-geklickt'); });
-  function nochEiner() { return pos >= 0 && (alles ? naechste(pos + 1) : pos + 1) < liste.length; }
-  function zeigeLaeuft() { btn.textContent = 'Ⅱ'; btn.classList.add('symbol'); btn.setAttribute('aria-label', 'Pause'); naechsterBtn.hidden = !nochEiner(); }
-  function zeigePause() { btn.textContent = '\u25B6\uFE0E'; btn.classList.add('symbol'); btn.setAttribute('aria-label', 'Weiter'); naechsterBtn.hidden = !nochEiner(); }
+  /* Springen (Konzept 2026-11-10): ⏭ geht immer genau eine Meldung weiter, ⏮ eine zurück (auch zu schon gehörten, zum Nochmal-Hören),
+     ⏮ bei der ersten Meldung = von vorn. Nur das automatische Weiterlaufen bei „Alles anhören“ überspringt schon Gehörtes. */
+  function nochEiner() { return pos >= 0 && pos + 1 < liste.length; }
+  function knoepfeLeiste() { zurueckBtn.hidden = pos < 0; naechsterBtn.hidden = pos < 0; naechsterBtn.disabled = !nochEiner(); }
+  function zeigeLaeuft() { btn.textContent = 'Ⅱ'; btn.classList.add('symbol'); btn.setAttribute('aria-label', 'Pause'); knoepfeLeiste(); }
+  function zeigePause() { btn.textContent = '\u25B6\uFE0E'; btn.classList.add('symbol'); btn.setAttribute('aria-label', 'Weiter'); knoepfeLeiste(); }
   var teile = Array.prototype.slice.call(document.querySelectorAll('#kurz, article[id]'));
   function knoepfe(aktiv) { liste.forEach(function (x, i) { x.knopf.setAttribute('aria-pressed', i === aktiv); x.knopf.setAttribute('aria-label', i === aktiv ? 'Pause' : 'Anhören'); x.el.classList.toggle('liest', i === aktiv); }); }
-  function spiele(i) {
-    pos = i; var x = liste[i]; if (!x) { ende(); return; }
+  function spiele(i, bis) {
+    pos = i; introBis = bis || 0; var x = liste[i]; if (!x) { ende(); return; }
     clearTimeout(dingUhr); ding.pause(); schluss.pause(); player.src = url(x);
     if (x.el.id !== 'kurz' && !root.classList.contains('ruhig')) {
       /* Erst das Bidim, die Stimme setzt im Ausklang ein. Die Stimme startet stumm schon jetzt, damit das Handy sie später ohne Tippen weiterspielen lässt. */
@@ -1844,9 +1852,15 @@ function mzVideoZeit(code, i) {
   /* „Alles anhören“ überspringt, was man schon gehört hat (Wunsch Nicolas 2026-11-08). Ist alles gehört, läuft alles von vorn. */
   function naechste(j) { while (ueberspringen && j < liste.length && istGehoert(liste[j].url)) j++; return j; }
   function stopDing() { if (!dingt) return false; clearTimeout(dingUhr); dingt = false; ding.pause(); player.pause(); player.muted = false; player.currentTime = 0; knoepfe(-1); zeigePause(); klick(tonPause); return true; }
-  function ende() { clearTimeout(dingUhr); dingt = false; player.muted = false; player.pause(); pos = -1; alles = false; uebersprungen = 0; knoepfe(-1); btn.textContent = '\u25B6\uFE0E Alles anhören'; btn.classList.remove('symbol'); btn.removeAttribute('aria-label'); naechsterBtn.hidden = true; status.textContent = ''; }
-  player.addEventListener('ended', function () { if (dingt) return; if (!alles) { ende(); return; } var j = naechste(pos + 1);
-    if (j >= liste.length && !root.classList.contains('ruhig')) { schluss.currentTime = 0; schluss.play().catch(function () {}); } spiele(j); });
+  function ende() { clearTimeout(dingUhr); dingt = false; player.muted = false; player.pause(); pos = -1; alles = false; uebersprungen = 0; knoepfe(-1); btn.textContent = '\u25B6\uFE0E Alles anhören'; btn.classList.remove('symbol'); btn.removeAttribute('aria-label'); introBis = 0; zurueckBtn.hidden = true; naechsterBtn.hidden = true; status.textContent = ''; }
+  function weiterNachEnde() { if (!alles) { ende(); return; } var j = naechste(pos + 1);
+    if (j >= liste.length && !root.classList.contains('ruhig')) { schluss.currentTime = 0; schluss.play().catch(function () {}); } spiele(j); }
+  player.addEventListener('ended', function () { if (dingt) return; weiterNachEnde(); });
+  /* Begrüßung + KI-Hinweis (Anfang von „Das Wichtigste“) kommen bei „Alles anhören“ immer, auch wenn die 30 Sekunden schon gehört sind:
+     dann endet „Das Wichtigste“ nach dem Hinweis, und es geht mit der ersten neuen Meldung weiter (Wunsch Nicolas 2026-11-10) */
+  player.addEventListener('timeupdate', function () { if (introBis && !dingt && pos >= 0 && player.currentTime >= introBis) { introBis = 0; player.pause(); weiterNachEnde(); } });
+  if (basis) window.mzStandP.then(function () { return fetch(basis + 'kurz.woerter.json' + stand); }).then(function (r) { return r.ok ? r.json() : null; }).then(function (w) {
+    if (!w) return; for (var k = 0; k < Math.min(w.length - 1, 80); k++) if (/^originalartikel/i.test(w[k][1])) { introEnde = Math.max(0, w[k + 1][0] - 0.2); return; } }).catch(function () {});
   window.mzStandP.then(function () { return listenSeite ? null : fetch(basis + 'liste.json', { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : []; }).catch(function () { return []; }); }).then(function (ids) {
     liste = ids === null
       ? teile.filter(function (el) { return el.getAttribute('data-audio'); }).map(function (el) { return { el: el, url: el.getAttribute('data-audio') }; })
@@ -1871,7 +1885,7 @@ function mzVideoZeit(code, i) {
         entsperren(); if (pos === i && stopDing()) return;
         if (pos === i && !player.paused) { player.pause(); klick(tonPause); knoepfe(-1); return; }
         if (pos === i && player.paused) { klick(tonWeiter); player.play(); knoepfe(i); return; }
-        alles = false; uebersprungen = 0; status.textContent = ''; spiele(i);
+        if (!alles) { uebersprungen = 0; status.textContent = ''; } spiele(i); /* läuft „Alles anhören“, geht es ab hier weiter */
       });
       /* 10 Sekunden zurück (Wunsch Nicolas 2026-11-08); läuft die Meldung noch nicht, startet sie */
       var z10 = document.createElement('button'); z10.type = 'button'; z10.className = 'zurueck10'; z10.setAttribute('aria-label', '10 Sekunden zurück');
@@ -1889,18 +1903,22 @@ function mzVideoZeit(code, i) {
   player.addEventListener('play', function () { if (pos >= 0) zeigeLaeuft(); });
   player.addEventListener('pause', function () { if (!dingt && pos >= 0 && !player.ended) zeigePause(); });
   /* Nächster Artikel: springt zur nächsten Meldung (im Alles-anhören-Modus geht es danach normal weiter) */
-  naechsterBtn.addEventListener('click', function () {
-    entsperren(); if (pos < 0) return; var j = alles ? naechste(pos + 1) : pos + 1;
-    if (j >= liste.length) { ende(); return; }
+  function springe(j) {
+    entsperren(); if (pos < 0) return; j = Math.max(0, j); if (j >= liste.length) return;
     klick(tonWeiter); spiele(j);
     if (!alles) { var x = liste[j]; if (window.mzZeigeMeldung) window.mzZeigeMeldung(x.el); (x.el.closest('.wischer') || x.el).scrollIntoView({ block: x.el.closest('.wischer') ? 'start' : 'center', behavior: 'smooth' }); }
-  });
+  }
+  naechsterBtn.addEventListener('click', function () { springe(pos + 1); });
+  zurueckBtn.addEventListener('click', function () { springe(pos - 1); });
+  /* Sperrbildschirm / Kopfhörer: dieselben Sprünge */
+  try { navigator.mediaSession.setActionHandler('nexttrack', function () { springe(pos + 1); }); navigator.mediaSession.setActionHandler('previoustrack', function () { springe(pos - 1); }); } catch (e) {}
   btn.addEventListener('click', function () {
     entsperren(); if (pos >= 0 && stopDing()) return;
     if (pos >= 0 && !player.paused) { player.pause(); klick(tonPause); knoepfe(-1); return; }
     if (pos >= 0 && player.paused) { klick(tonWeiter); player.play(); knoepfe(pos); return; }
     alles = true; ueberspringen = liste.some(function (x) { return !istGehoert(x.url); });
     var start = naechste(0); uebersprungen = liste.filter(function (x) { return ueberspringen && istGehoert(x.url); }).length;
+    if (start > 0 && liste[0].el.id === 'kurz' && introEnde > 1) { spiele(0, introEnde); return; } /* erst Begrüßung + KI-Hinweis */
     spiele(start);
   });
 })();
