@@ -1242,7 +1242,9 @@ article .teilen svg { width: 1.35rem !important; height: 1.35rem !important; }
 html.ruhig .wischer { transition: none; }
 .faq-frage.werte-frage .werte-los { margin: 0.4rem auto 0.2rem; display: block; }
 /* Rote Handschrift „interaktiv!“ statt „(interaktiv)“: im Menü und bei der FAQ-Frage (Wunsch Nicolas 2026-11-10) */
-.hand-rot { display: inline-block; margin-left: 0.45rem; font: 700 1.25rem/0.8 "Caveat", cursive !important; letter-spacing: 0 !important; text-transform: none !important; color: #C8281E !important; transform: rotate(-6deg) translateY(0.12rem); vertical-align: middle; white-space: nowrap; } /* etwas tiefer, Mitte des Schilds (Nicolas 2026-11-11) */
+.hand-rot { display: inline-block; margin-left: 0.45rem; font: 700 1.25rem/0.8 "Caveat", cursive !important; letter-spacing: 0 !important; text-transform: none !important; color: #C8281E !important; transform: rotate(-3deg) translateY(0.26rem); vertical-align: middle; white-space: nowrap; } /* mittiger im Schild: weniger schräg, tiefer, etwas mehr Abstand (Nicolas 2026-11-11, 2x) */
+.neko-menue .hand-rot, .menue .hand-rot { margin-left: 0.9rem; }
+.menue .hand-rot { transform: rotate(-3deg) translateY(0); } /* im Burger-Menü nicht auf die Linie rutschen */
 .faq-frage summary .hand-rot { font-size: 1.45rem !important; transform: rotate(-5deg) translateY(0.1rem); }
 
 html.kontrast .hand-rot { color: inherit !important; }
