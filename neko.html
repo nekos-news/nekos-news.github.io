@@ -1240,6 +1240,12 @@ article .teilen svg { width: 1.35rem !important; height: 1.35rem !important; }
 .wischer { transition: height 0.32s ease; }
 html.ruhig .wischer { transition: none; }
 .faq-frage.werte-frage .werte-los { margin: 0.4rem auto 0.2rem; display: block; }
+/* Rote Handschrift „interaktiv!“ statt „(interaktiv)“: im Menü und bei der FAQ-Frage (Wunsch Nicolas 2026-11-10) */
+.hand-rot { display: inline-block; margin-left: 0.45rem; font: 700 1.25rem/0.8 "Caveat", cursive !important; letter-spacing: 0 !important; text-transform: none !important; color: #C8281E !important; transform: rotate(-9deg) translateY(-0.2rem); white-space: nowrap; }
+.faq-frage summary .hand-rot { font-size: 1.45rem !important; transform: rotate(-7deg) translateY(-0.05rem); }
+
+html.kontrast .hand-rot { color: inherit !important; }
+html.ruhig .hand-rot { transform: none; }
 .faq-frage .werte-hinweis { font: 400 0.74rem/1.45 var(--sans) !important; color: var(--mittelgrau); }
 /* Kachel als Bild (2026-11-09) */
 .bild-modus .gelesen-haken { display: none !important; }
@@ -1348,7 +1354,7 @@ html.ruhig .wischer { transition: none; }
 <div class="news neko-menue">
     <button class="news-knopf" type="button" aria-expanded="false">Neko ▾</button>
     <div class="news-wahl">
-      <a href="/neko.html#neko">Über mich</a><a href="/neko.html#content">Videos</a><a href="/neko.html#faq">FAQ</a>
+      <a href="/neko.html#neko">Über mich</a><a href="/neko.html#content">Videos</a><a href="/neko.html#faq">FAQ<span class="hand-rot" aria-hidden="true">interaktiv!</span></a>
     </div>
   </div>
   <div class="news">
@@ -1383,7 +1389,7 @@ html.ruhig .wischer { transition: none; }
     <b class="menue-kopf">Neko</b>
     <a href="/neko.html#neko">Über mich</a>
     <a href="/neko.html#content">Videos</a>
-    <a href="/neko.html#faq">FAQ</a>
+    <a href="/neko.html#faq">FAQ<span class="hand-rot" aria-hidden="true">interaktiv!</span></a>
     <b class="menue-kopf">News</b>
     <a href="/">Heute</a>
     <a href="/woche.html">Diese Woche</a>
@@ -1425,7 +1431,7 @@ html.ruhig .wischer { transition: none; }
   <section class="gruppe" id="faq">
     <h2 class="zettel zettel-gross">FAQ</h2>
     <article class="papier riss faq">
-      <details class="faq-frage werte-frage"><summary>Was soll ich wählen? (interaktiv)</summary>
+      <details class="faq-frage werte-frage"><summary><span>Was soll ich wählen?<span class="hand-rot">interaktiv!</span></span></summary>
         <p>36 kleine Alltagsszenen statt Politik-Thesen. Du antwortest nur mit Regler oder Ja/Nein und siehst am Ende, was dir wirklich wichtig ist und welche Parteien von ihren Grundwerten her zu dir passen könnten. Dauert ca. 10 Minuten, deine Antworten bleiben auf deinem Gerät.</p>
         <button type="button" class="werte-los" data-wertetest>Test starten</button>
         <p class="werte-hinweis">Keine Wahlwerbung und keine Wahlempfehlung: Die Auswertung ist ausschließlich eine KI-Einschätzung.</p>

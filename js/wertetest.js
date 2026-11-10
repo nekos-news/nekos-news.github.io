@@ -70,7 +70,7 @@
 
   var css = document.createElement('style');
   css.textContent = [
-    '.wt-grund{position:fixed;inset:0;z-index:60;overflow-y:auto;-webkit-overflow-scrolling:touch;background:rgba(4,8,20,0.9);padding:calc(env(safe-area-inset-top,0px) + 1.2rem) 1rem 3rem;display:grid;justify-items:center;align-content:start}',
+    '.wt-grund{position:fixed;inset:0;z-index:60;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;touch-action:pan-y;-webkit-overflow-scrolling:touch;background:rgba(4,8,20,0.9);padding:calc(env(safe-area-inset-top,0px) + 1.2rem) 1rem 3rem;display:grid;justify-items:center;align-content:start}',
     '.wt-grund[hidden]{display:none}',
     '.wt-karte{position:relative;width:min(30rem,100%);margin-top:2.6rem;padding:1.3rem 1.2rem 1.2rem;color:var(--anthrazit);background-color:var(--papier-3,#e8dcc6);background-image:var(--faser);filter:drop-shadow(0 3px 0 rgba(0,0,0,0.25)) drop-shadow(3px 10px 12px rgba(2,6,20,0.5));transform:rotate(-0.6deg)}',
     '.wt-zu{position:fixed;top:calc(env(safe-area-inset-top,0px) + 0.7rem);right:0.9rem;z-index:61;width:2.5rem;height:2.5rem;border:0;border-radius:50%;background:var(--rost,#C8603A);color:var(--creme,#f4ead8);font:800 1.3rem/1 var(--sans);cursor:pointer}',
@@ -94,7 +94,10 @@
     '.wt-partei{display:grid;grid-template-columns:5.6rem 1fr 2.6rem;align-items:center;gap:0.5rem;font:700 0.82rem var(--sans);margin:0.32rem 0}',
     '.wt-partei i{display:block;height:0.6rem;background:rgba(46,43,42,0.13)}.wt-partei i b{display:block;height:100%;background:var(--ocker,#D99A4E)}',
     '.wt-partei.top i b{background:var(--rost,#C8603A)}.wt-partei span:last-child{text-align:right;font:400 0.78rem var(--maschine)}',
-    '.wt-start{margin-top:0.8rem}'
+    '.wt-start{margin-top:0.8rem}',
+    '.wt-karte{max-width:100%;box-sizing:border-box}.wt-netz{touch-action:pan-y}',
+    '.wt-teilen{margin-top:1.1rem}.wt-teilen .wt-knopf[disabled]{opacity:.5;cursor:default}',
+    '.wt-gespeichert{text-align:center;font:700 1.25rem/1 "Caveat",cursive;color:#C8281E;margin:.6rem 0 0;transform:rotate(-2deg)}'
   ].join('\n');
   document.head.appendChild(css);
 
@@ -174,6 +177,54 @@
     return '<svg class="wt-netz" viewBox="-30 -10 280 245" role="img" aria-label="Netzdiagramm deiner Werte">' + ringe + speichen + flaeche + namen + '</svg>';
   }
 
+  /* Teilen-Bild (Wunsch Nicolas 2026-11-10): eigenes Hochformat 1080×1920 (Story), auf Canvas gezeichnet, damit es auf jedem Handy gleich aussieht */
+  function bild(w, nah, stark) {
+    var F = '"Libre Franklin", Arial, sans-serif', L = '"Literata", Georgia, serif', H = '"Caveat", cursive';
+    var laden = document.fonts && document.fonts.load ? Promise.all(['800 40px "Libre Franklin"', '800 40px "Literata"', '700 40px "Caveat"', '400 40px "Special Elite"'].map(function (f) { return document.fonts.load(f).catch(function () {}); })) : Promise.resolve();
+    return laden.then(function () {
+      var c = document.createElement('canvas'); c.width = 1080; c.height = 1920; var x = c.getContext('2d');
+      x.fillStyle = '#07112B'; x.fillRect(0, 0, 1080, 1920);
+      x.strokeStyle = 'rgba(255,255,255,0.06)'; x.lineWidth = 2; for (var g = 0; g <= 1920; g += 72) { x.beginPath(); x.moveTo(0, g); x.lineTo(1080, g); x.stroke(); } for (g = 0; g <= 1080; g += 72) { x.beginPath(); x.moveTo(g, 0); x.lineTo(g, 1920); x.stroke(); }
+      x.save(); x.translate(540, 980); x.rotate(-0.012); x.fillStyle = '#E8DCC6'; x.shadowColor = 'rgba(0,0,0,0.5)'; x.shadowBlur = 40; x.shadowOffsetY = 18;
+      x.beginPath(); var rnd = function (i) { return ((Math.sin(i * 12.9898) * 43758.5453) % 1 + 1) % 1; }, rx = 470, ry = 820;
+      x.moveTo(-rx, -ry); for (var k = 0; k <= 24; k++) x.lineTo(-rx + k * rx / 12, -ry + rnd(k) * 14); for (k = 0; k <= 24; k++) x.lineTo(rx - k * rx / 12, ry - rnd(k + 40) * 14); x.closePath(); x.fill(); x.restore();
+      x.textAlign = 'center'; x.fillStyle = '#C8603A'; x.font = '800 34px ' + F; x.fillText('NEKOS NEWS · WERTE-TEST', 540, 260);
+      x.fillStyle = '#2E2B2A'; x.font = '800 92px ' + L; x.fillText('So ticke ich', 540, 370);
+      var cx = 540, cy = 750, R = 230, n = REIHE.length, pkt = function (i, v) { var a = -Math.PI / 2 + i * 2 * Math.PI / n; return [cx + Math.cos(a) * R * v, cy + Math.sin(a) * R * v]; };
+      x.strokeStyle = 'rgba(46,43,42,0.2)'; x.lineWidth = 2;
+      [0.25, 0.5, 0.75, 1].forEach(function (v) { x.beginPath(); REIHE.forEach(function (_, i) { var p = pkt(i, v); i ? x.lineTo(p[0], p[1]) : x.moveTo(p[0], p[1]); }); x.closePath(); x.stroke(); });
+      REIHE.forEach(function (_, i) { var p = pkt(i, 1); x.beginPath(); x.moveTo(cx, cy); x.lineTo(p[0], p[1]); x.stroke(); });
+      x.beginPath(); REIHE.forEach(function (a, i) { var p = pkt(i, Math.max(0.04, w[a] / 100)); i ? x.lineTo(p[0], p[1]) : x.moveTo(p[0], p[1]); }); x.closePath();
+      x.fillStyle = 'rgba(200,96,58,0.32)'; x.fill(); x.strokeStyle = '#C8603A'; x.lineWidth = 6; x.lineJoin = 'round'; x.stroke();
+      x.fillStyle = '#2E2B2A'; x.font = '800 30px ' + F; REIHE.forEach(function (a, i) { var p = pkt(i, 1.22), t = ACHSEN[a].name.toUpperCase(), b = x.measureText(t).width, px = Math.min(925 - b / 2, Math.max(155 + b / 2, p[0])); x.fillText(t, px, p[1] + (i === 0 ? -4 : 12)); });
+      var y = 1110; x.textAlign = 'left';
+      x.fillStyle = '#C8281E'; x.font = '700 58px ' + H; x.save(); x.translate(130, y); x.rotate(-0.05); x.fillText('Am deutlichsten bei mir:', 0, 0); x.restore(); y += 70;
+      stark.slice(0, 3).forEach(function (a) { x.fillStyle = '#2E2B2A'; x.font = '800 40px ' + F; x.fillText(ACHSEN[a].name.toUpperCase(), 130, y); x.fillStyle = '#7A7268'; x.font = '400 36px "Special Elite", monospace'; x.textAlign = 'right'; x.fillText(w[a] + ' / 100', 950, y); x.textAlign = 'left'; y += 58; });
+      y += 50; x.fillStyle = '#C8281E'; x.font = '700 58px ' + H; x.save(); x.translate(130, y); x.rotate(-0.05); x.fillText('Passt am ehesten:', 0, 0); x.restore(); y += 66;
+      nah.slice(0, 3).forEach(function (p, i) { x.fillStyle = '#2E2B2A'; x.font = '800 38px ' + F; x.fillText(p.n, 130, y);
+        x.fillStyle = 'rgba(46,43,42,0.13)'; x.fillRect(420, y - 26, 400, 26); x.fillStyle = i < 2 ? '#C8603A' : '#D99A4E'; x.fillRect(420, y - 26, 400 * Math.max(4, p.s) / 100, 26);
+        x.fillStyle = '#7A7268'; x.font = '400 36px "Special Elite", monospace'; x.textAlign = 'right'; x.fillText(p.s + ' %', 950, y); x.textAlign = 'left'; y += 62; });
+      x.textAlign = 'center'; x.fillStyle = '#7A7268'; x.font = '400 27px ' + F;
+      x.fillText('Keine Wahlempfehlung, nur eine KI-Einschätzung.', 540, 1700);
+      x.fillStyle = '#EEF2FA'; x.font = '800 36px ' + F; x.fillText('Mach den Test: nekos-news.pages.dev', 540, 1860);
+      return new Promise(function (ok) { c.toBlob(function (b) { ok(b); }, 'image/png'); });
+    });
+  }
+  var LINK = location.origin + '/neko.html#faq';
+  function teilenKnoepfe(w, nah, stark) {
+    var box = karte.querySelector('.wt-teilen'), teilen = box.querySelector('[data-teilen]'), sichern = box.querySelector('[data-sichern]'), blob = null, datei = null;
+    bild(w, nah, stark).then(function (b) { blob = b; try { datei = new File([b], 'mein-werte-test.png', { type: 'image/png' }); } catch (e) {} teilen.disabled = false; sichern.disabled = false; })
+      .catch(function () { teilen.disabled = false; });
+    function runterladen() { if (!blob) return; var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'mein-werte-test.png'; document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 4000);
+      var h = box.querySelector('.wt-gespeichert'); if (h) h.hidden = false; }
+    teilen.addEventListener('click', function () {
+      var text = 'Mein Ergebnis im Werte-Test von Nekos News. Wie tickst du?';
+      if (datei && navigator.canShare && navigator.canShare({ files: [datei] })) { navigator.share({ files: [datei], title: 'Werte-Test', text: text + ' ' + LINK }).catch(function () {}); return; }
+      if (navigator.share) { navigator.share({ title: 'Werte-Test', text: text, url: LINK }).catch(function () {}); return; }
+      runterladen();
+    });
+    sichern.addEventListener('click', runterladen);
+  }
   function ergebnis() {
     var w = werte(), g = st.g || {};
     var nah = PARTEIEN.map(function (p) {
@@ -186,7 +237,10 @@
       '<h3 class="wt-h" style="margin-top:1.2rem">Diese Parteien könnten für dich interessant sein</h3>' +
       nah.map(function (p, i) { return '<div class="wt-partei' + (i < 2 ? ' top' : '') + '"><span>' + p.n + '</span><i><b style="width:' + Math.max(4, p.s) + '%"></b></i><span>' + p.s + ' %</span></div>'; }).join('') +
       '<p class="wt-klein">Keine Wahlwerbung und keine Wahlempfehlung, ausschließlich eine KI-Einschätzung. Die Partei-Werte sind eine grobe Einschätzung ihrer Grundwerte aus Wahlprogrammen und aktuellen Forderungen, keine Messung' + (PSTAND ? ' (Stand ' + PSTAND.split('-').reverse().join('.') + ')' : '') + '. Schau dir die Programme selbst an, zum Beispiel im Wahl-O-Mat der Bundeszentrale für politische Bildung.</p>' +
+      '<div class="wt-knoepfe wt-teilen"><button type="button" class="wt-knopf" data-teilen disabled>Ergebnis teilen</button><button type="button" class="wt-knopf leise" data-sichern disabled>Bild speichern</button></div>' +
+      '<p class="wt-gespeichert" hidden>Gespeichert!</p>' +
       '<div class="wt-knoepfe wt-start"><button type="button" class="wt-knopf leise" data-neu>Nochmal machen</button></div>';
+    teilenKnoepfe(w, nah, stark);
     karte.querySelector('[data-neu]').addEventListener('click', function () { st = { a: {}, i: 0 }; merke(st); intro(); });
   }
 
