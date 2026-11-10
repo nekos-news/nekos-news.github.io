@@ -999,6 +999,11 @@ html.ruhig .wischer .spur { transition: none !important; }
 #btn-lesen, #btn-naechster, .leiste .hoch { background-color: #1F4E9A !important; }
 /* Während des Vorlesens: Pause/Weiter nur als Symbol, dazwischen „Nächster Artikel“ (Wunsch Nicolas 2026-11-10) */
 #btn-lesen.symbol { min-width: 2.6rem; padding-inline: 0.75rem; font-size: 1.05rem; }
+/* Startseite: „Alles anhören“ wackelt alle paar Sekunden kurz, bis man es einmal antippt (Wunsch Nicolas 2026-11-10) */
+@keyframes mz-wackeln { 0%, 84%, 100% { transform: rotate(0) scale(1); } 86% { transform: rotate(-4deg) scale(1.04); } 89% { transform: rotate(3.5deg) scale(1.04); }
+  92% { transform: rotate(-2.5deg) scale(1.02); } 95% { transform: rotate(1.5deg); } 98% { transform: rotate(0); } }
+html.startseite:not(.ruhig):not(.lesen-geklickt) #btn-lesen:not(.symbol):not([hidden]) { animation: mz-wackeln 5.5s ease-in-out 2.5s infinite; transform-origin: 50% 60%; }
+@media (prefers-reduced-motion: reduce) { #btn-lesen { animation: none !important; } }
 .hilfe-knopf { width: 2.2rem !important; height: 2.2rem !important; }
 .hilfe-knopf svg { width: 1.2rem !important; height: 1.2rem !important; }
 /* Kein Einrasten der ganzen Seite mehr (Fehler 2026-11-08: Einrastpunkt kurz vor dem Ende zog beim Scrollen zurück, unten kam man nicht hoch/runter) */
@@ -1771,6 +1776,8 @@ function mzVideoZeit(code, i) {
   /* Zeit an andere Teile melden (z. B. Story im 30-Sekunden-Zettel läuft mit) */
   ['timeupdate', 'play', 'pause', 'ended'].forEach(function (ev) { player.addEventListener(ev, function () { if (dingt) return; var x = liste[pos]; window.dispatchEvent(new CustomEvent('mz-audio', { detail: { id: x ? x.el.id : null, src: x ? x.url : null, t: player.currentTime, d: player.duration, spielt: !player.paused && !player.ended } })); }); });
   var leiste = document.querySelector('.leiste'), btn = document.getElementById('btn-lesen'), status = document.getElementById('lese-status'), naechsterBtn = document.getElementById('btn-naechster');
+  if (/^\/(index\.html)?$/.test(location.pathname)) root.classList.add('startseite');
+  btn.addEventListener('click', function () { root.classList.add('lesen-geklickt'); });
   function nochEiner() { return pos >= 0 && (alles ? naechste(pos + 1) : pos + 1) < liste.length; }
   function zeigeLaeuft() { btn.textContent = 'Ⅱ'; btn.classList.add('symbol'); btn.setAttribute('aria-label', 'Pause'); naechsterBtn.hidden = !nochEiner(); }
   function zeigePause() { btn.textContent = '\u25B6\uFE0E'; btn.classList.add('symbol'); btn.setAttribute('aria-label', 'Weiter'); naechsterBtn.hidden = !nochEiner(); }
