@@ -10,44 +10,48 @@
     k: { name: 'Wir-Gefühl', hoch: 'Dein „Wir“ ist weit: Menschen anderswo zählen für dich fast so viel wie die nebenan.', tief: 'Dein „Wir“ ist eher eng: Familie, Region und Land kommen für dich zuerst.' },
     z: { name: 'Zukunft', hoch: 'Du denkst langfristig und verzichtest heute auch mal für morgen, etwa beim Klima.', tief: 'Dir ist das Hier und Jetzt wichtiger als das, was in 30 Jahren ist.' }
   };
-  /* [Achse, Szene, linkes Ende, rechtes Ende, +1 = rechts zählt hoch / -1 = links zählt hoch] oder Ja/Nein: [Achse, Frage, 'jn', +1 = Ja zählt hoch] */
+  /* 2026-11-11 (Wunsch Nicolas): 6 nichtssagende Szenen raus, 1 neue Szene und 8 echte Zitate rein (Zitat: [Achse, Wortlaut, 'zitat', +1 = Zustimmung zählt hoch, {w: wer, wann, q: Quelle, f: Figur}], Auflösung erst nach der Antwort).
+     [Achse, Szene, linkes Ende, rechtes Ende, +1 = rechts zählt hoch / -1 = links zählt hoch] oder Ja/Nein: [Achse, Frage, 'jn', +1 = Ja zählt hoch] */
   var FRAGEN = [
-    ['f', 'Im Bus sitzt jemand, der sichtbar weint. Was machst du?', 'Ich lasse die Person in Ruhe', 'Ich frage, ob alles okay ist', 1],
-    ['g', 'Eine Kollegin verdient mehr, weil sie besser verhandelt hat, nicht weil sie mehr leistet.', 'Fair, wer verhandelt, gewinnt', 'Unfair, gleiche Arbeit, gleicher Lohn', 1],
-    ['o', 'Dein Lieblingscafé wird von neuen Besitzern komplett umgestaltet.', 'Schade, es war gut so', 'Spannend, mal sehen', 1],
-    ['k', 'Bei einer Katastrophe in einem weit entfernten Land sterben viele Menschen.', 'Berührt mich fast wie etwas in meiner Stadt', 'Berührt mich deutlich weniger', -1],
-    ['z', 'Du bekommst unerwartet 1.000 Euro.', 'Ich gönne mir jetzt etwas Schönes', 'Ich lege das meiste für später weg', 1],
-    ['f', 'Eine fremde Person hat glaubhaft ihr Portemonnaie verloren und fragt dich nach 20 Euro für die Heimfahrt. Gibst du ihr das Geld?', 'jn', 1],
-    ['g', 'Jemand hat ein Millionenvermögen geerbt, ohne je dafür gearbeitet zu haben.', 'Sein gutes Recht', 'Davon sollte mehr an die Allgemeinheit gehen', 1],
-    ['o', 'Ein Freund erzählt, dass er seinen sicheren Job kündigt, um etwas ganz Neues zu machen.', 'Mutig, mach das', 'Ganz schön leichtsinnig', -1],
-    ['k', 'In deine Straße zieht eine Familie, die kaum Deutsch spricht.', 'Ich gehe auf sie zu', 'Ich warte erst mal ab', -1],
-    ['z', 'Ein Flug in den Urlaub ist halb so teuer wie der Zug und viel schneller.', 'Klar, Flug', 'Ich nehme trotzdem den Zug', 1],
-    ['f', 'Ein Kollege macht ständig Fehler, weil er privat eine schwere Zeit hat.', 'Ich fange ihn eine Weile auf', 'Arbeit ist Arbeit, er muss das trennen', -1],
-    ['g', 'Wer Vollzeit arbeitet, soll davon gut leben können, auch wenn Produkte dadurch etwas teurer werden. Stimmst du zu?', 'jn', 1],
-    ['o', 'Du bist auf einer Feier und kennst dort niemanden.', 'Ich lerne gern neue Leute kennen', 'Ich fühle mich eher unwohl', -1],
-    ['k', 'Eine Firma kann 100 Jobs in Deutschland retten, wenn sie dafür 300 Jobs in einem ärmeren Land streicht.', 'Richtig so, erst mal wir', 'Unfair gegenüber den anderen', 1],
-    ['z', 'Eine neue Regel würde deinen Alltag etwas teurer machen, das Klima in 30 Jahren aber deutlich verbessern.', 'Würde ich mittragen', 'Ist mir zu viel', -1],
-    ['f', 'Vor dem Supermarkt bittet jemand um etwas Kleingeld.', 'Ich gebe meistens etwas', 'Ich gehe meistens vorbei', -1],
-    ['g', 'Zwei Menschen fahren gleich schnell geblitzt, einer ist reich, einer arm. Wie sollte die Strafe sein?', 'Gleich hoch für beide', 'Nach Einkommen gestaffelt', 1],
-    ['o', 'In der Schule wird darüber gesprochen, dass Jungs auch Kleider tragen und Mädchen Fußball spielen können.', 'Finde ich gut', 'Gehört eher nicht in die Schule', -1],
-    ['k', 'Wäre es für dich okay, wenn ein Teil deiner Steuern in Hilfe für Menschen in ärmeren Ländern fließt?', 'jn', 1],
-    ['z', 'Du kannst heute 100 Euro bekommen oder in 3 Jahren 180 Euro.', 'Heute 100', 'In 3 Jahren 180', 1],
-    ['f', 'Deine Nachbarin ist alt und allein. Du hast selbst wenig Zeit.', 'Ich schaue trotzdem ab und zu vorbei', 'Dafür sind andere zuständig', -1],
-    ['g', 'Ein Supermarkt erhöht die Preise, einfach weil er es kann. Sein Gewinn steigt stark.', 'So funktioniert Markt', 'Da sollte jemand eingreifen', 1],
-    ['o', 'Jemand stellt eine Regel infrage, die schon immer so war.', 'Gut so, Regeln müssen sich erklären', 'Nervt, es hat doch funktioniert', -1],
-    ['k', 'Ein Mensch aus einem anderen Land bekommt eine Hilfe, die deine Familie nicht bekommt.', 'Das ärgert mich', 'Wenn er sie mehr braucht, okay', 1],
-    ['z', 'Würdest du weniger Fleisch essen, wenn du sicher wüsstest, dass es wirklich etwas bringt?', 'jn', 1],
-    ['f', 'Jemand wird in der Bahn beleidigt.', 'Ich mische mich ein oder hole Hilfe', 'Ich halte mich raus', -1],
-    ['g', 'Wer viel Geld hat, hat das meistens …', '… selbst verdient', '… auch viel Glück gehabt', 1],
-    ['o', 'Deine Stadt will eine Hauptstraße für ein Jahr in eine Fußgängerzone verwandeln.', 'Lass es uns ausprobieren', 'Lieber alles so lassen', -1],
-    ['k', 'Wem fühlst du dich mehr verbunden?', 'Menschen aus meiner Region', 'Menschen weltweit, die ähnlich denken wie ich', 1],
-    ['z', 'An deinem Wohnort soll ein Windrad in Sichtweite gebaut werden.', 'Okay, irgendwo muss der Strom herkommen', 'Bitte nicht hier', -1],
-    ['f', 'Hast du in den letzten 12 Monaten etwas gespendet, egal ob Geld, Zeit oder Sachen?', 'jn', 1],
-    ['g', 'Ein Freund lebt von Grundsicherung und kommt kaum über die Runden.', 'Er sollte sich mehr anstrengen', 'Das System sollte ihn besser auffangen', 1],
-    ['o', 'Wie fühlst du dich, wenn sich in der Gesellschaft viel und schnell verändert?', 'Unwohl, ich brauche Stabilität', 'Gut, Wandel ist normal', 1],
-    ['k', 'Bei einem Länderspiel gewinnt die andere Mannschaft verdient.', 'Ich gönne es ihnen', 'Ärgert mich trotzdem richtig', -1],
-    ['z', 'Eine Partei verspricht dir sofort mehr Geld, dafür steigen die Schulden für die nächste Generation.', 'Nehme ich', 'Lieber nicht', 1],
-    ['f', 'Vor dir an der Kasse braucht eine ältere Person sehr lange.', 'Ich bleibe geduldig', 'Ich werde ungeduldig', -1]
+    ["f", "Im Bus sitzt jemand, der sichtbar weint. Was machst du?", "Ich lasse die Person in Ruhe", "Ich frage, ob alles okay ist", 1],
+    ["g", "Eine Kollegin verdient mehr, weil sie besser verhandelt hat, nicht weil sie mehr leistet.", "Fair, wer verhandelt, gewinnt", "Unfair, gleiche Arbeit, gleicher Lohn", 1],
+    ["k", "Bei einer Katastrophe in einem weit entfernten Land sterben viele Menschen.", "Berührt mich fast wie etwas in meiner Stadt", "Berührt mich deutlich weniger", -1],
+    ["f", "Eine fremde Person hat glaubhaft ihr Portemonnaie verloren und fragt dich nach 20 Euro für die Heimfahrt. Gibst du ihr das Geld?", 'jn', 1],
+    ["k", "Wir haben natürlich im Stadtbild noch dieses Problem.", 'zitat', -1, { w: "Friedrich Merz (CDU), Bundeskanzler", wann: "14.10.2025 in Potsdam, über Migration", q: "https://www.zdfheute.de/politik/deutschland/merz-stadtbild-migration-100.html", f: "union" }],
+    ["g", "Jemand hat ein Millionenvermögen geerbt, ohne je dafür gearbeitet zu haben.", "Sein gutes Recht", "Davon sollte mehr an die Allgemeinheit gehen", 1],
+    ["o", "Ein Freund erzählt, dass er seinen sicheren Job kündigt, um etwas ganz Neues zu machen.", "Mutig, mach das", "Ganz schön leichtsinnig", -1],
+    ["k", "In deine Straße zieht eine Familie, die kaum Deutsch spricht.", "Ich gehe auf sie zu", "Ich warte erst mal ab", -1],
+    ["z", "Ein Flug in den Urlaub ist halb so teuer wie der Zug und viel schneller.", "Klar, Flug", "Ich nehme trotzdem den Zug", 1],
+    ["g", "Es sollte keine Milliardäre geben!", 'zitat', 1, { w: "Die Linke", wann: "Wahlprogramm zur Bundestagswahl 2025", q: "https://www.die-linke.de/fileadmin/user_upload/Wahlprogramm_Langfassung_Linke-BTW25_01.pdf", f: "linke" }],
+    ["f", "Ein Kollege macht ständig Fehler, weil er privat eine schwere Zeit hat.", "Ich fange ihn eine Weile auf", "Arbeit ist Arbeit, er muss das trennen", -1],
+    ["g", "Wer Vollzeit arbeitet, soll davon gut leben können, auch wenn Produkte dadurch etwas teurer werden. Stimmst du zu?", 'jn', 1],
+    ["o", "Die Polizei soll an Bahnhöfen Kameras mit automatischer Gesichtserkennung einsetzen dürfen.", "Gut, mehr Sicherheit", "Zu viel Überwachung", 1],
+    ["k", "Eine Firma kann 100 Jobs in Deutschland retten, wenn sie dafür 300 Jobs in einem ärmeren Land streicht.", "Richtig so, erst mal wir", "Unfair gegenüber den anderen", 1],
+    ["z", "Eine neue Regel würde deinen Alltag etwas teurer machen, das Klima in 30 Jahren aber deutlich verbessern.", "Würde ich mittragen", "Ist mir zu viel", -1],
+    ["f", "Burkas, Kopftuchmädchen und alimentierte Messermänner und sonstige Taugenichtse werden unseren Wohlstand, das Wirtschaftswachstum und vor allem den Sozialstaat nicht sichern.", 'zitat', -1, { w: "Alice Weidel (AfD)", wann: "16.05.2018 im Bundestag, sie bekam dafür einen Ordnungsruf", q: "https://www.bundestag.de/dokumente/textarchiv/2018/kw20-de-einspruch-ordnungsruf-555494", f: "afd" }],
+    ["f", "Vor dem Supermarkt bittet jemand um etwas Kleingeld.", "Ich gebe meistens etwas", "Ich gehe meistens vorbei", -1],
+    ["g", "Zwei Menschen fahren gleich schnell geblitzt, einer ist reich, einer arm. Wie sollte die Strafe sein?", "Gleich hoch für beide", "Nach Einkommen gestaffelt", 1],
+    ["o", "In der Schule wird darüber gesprochen, dass Jungs auch Kleider tragen und Mädchen Fußball spielen können.", "Finde ich gut", "Gehört eher nicht in die Schule", -1],
+    ["k", "Wäre es für dich okay, wenn ein Teil deiner Steuern in Hilfe für Menschen in ärmeren Ländern fließt?", 'jn', 1],
+    ["o", "Digital first. Bedenken second.", 'zitat', 1, { w: "FDP mit Christian Lindner", wann: "Wahlplakat zur Bundestagswahl 2017", q: "https://www.horizont.net/marketing/nachrichten/FDP-Bundesgeschaeftsfuehrer-Marco-Buschmann-Ich-bin-ueberzeugt-dass-es-noch-zu-Leaks-kommen-wird-160476", f: "fdp" }],
+    ["f", "Deine Nachbarin ist alt und allein. Du hast selbst wenig Zeit.", "Ich schaue trotzdem ab und zu vorbei", "Dafür sind andere zuständig", -1],
+    ["g", "Ein Supermarkt erhöht die Preise, einfach weil er es kann. Sein Gewinn steigt stark.", "So funktioniert Markt", "Da sollte jemand eingreifen", 1],
+    ["o", "Jemand stellt eine Regel infrage, die schon immer so war.", "Gut so, Regeln müssen sich erklären", "Nervt, es hat doch funktioniert", -1],
+    ["k", "Ein Mensch aus einem anderen Land bekommt eine Hilfe, die deine Familie nicht bekommt.", "Das ärgert mich", "Wenn er sie mehr braucht, okay", 1],
+    ["k", "Wir müssen endlich im großen Stil diejenigen abschieben, die kein Recht haben, in Deutschland zu bleiben.", 'zitat', -1, { w: "Olaf Scholz (SPD), damals Bundeskanzler", wann: "Interview im Spiegel, Oktober 2023", q: "https://taz.de/Gruene-Kritik-an-Aussagen-von-Scholz/!5967782", f: "scholz" }],
+    ["z", "Würdest du weniger Fleisch essen, wenn du sicher wüsstest, dass es wirklich etwas bringt?", 'jn', 1],
+    ["f", "Jemand wird in der Bahn beleidigt.", "Ich mische mich ein oder hole Hilfe", "Ich halte mich raus", -1],
+    ["g", "Wer viel Geld hat, hat das meistens …", "… selbst verdient", "… auch viel Glück gehabt", 1],
+    ["o", "Deine Stadt will eine Hauptstraße für ein Jahr in eine Fußgängerzone verwandeln.", "Lass es uns ausprobieren", "Lieber alles so lassen", -1],
+    ["z", "Die Frage nach dem Anteil des Menschen am Klimawandel ist wissenschaftlich ungeklärt.", 'zitat', -1, { w: "AfD", wann: "Wahlprogramm zur Bundestagswahl 2025 (leicht gekürzt)", q: "https://www.afd.de/wp-content/uploads/2025/02/AfD_Bundestagswahlprogramm2025_web.pdf", f: "afd" }],
+    ["k", "Wem fühlst du dich mehr verbunden?", "Menschen aus meiner Region", "Menschen weltweit, die ähnlich denken wie ich", 1],
+    ["z", "An deinem Wohnort soll ein Windrad in Sichtweite gebaut werden.", "Okay, irgendwo muss der Strom herkommen", "Bitte nicht hier", -1],
+    ["f", "Hast du in den letzten 12 Monaten etwas gespendet, egal ob Geld, Zeit oder Sachen?", 'jn', 1],
+    ["g", "Ein Freund lebt von Grundsicherung und kommt kaum über die Runden.", "Er sollte sich mehr anstrengen", "Das System sollte ihn besser auffangen", 1],
+    ["k", "Die nach Beginn des Ukrainekriegs verhängten Sanktionen waren ein Konjunkturprogramm für die US-Wirtschaft und ein Killerprogramm für deutsche und europäische Unternehmen.", 'zitat', -1, { w: "BSW", wann: "Wahlprogramm zur Bundestagswahl 2025", q: "https://bsw-vg.de/wp-content/themes/bsw/assets/downloads/BSW%20Wahlprogramm%202025.pdf", f: "bsw" }],
+    ["o", "Wie fühlst du dich, wenn sich in der Gesellschaft viel und schnell verändert?", "Unwohl, ich brauche Stabilität", "Gut, Wandel ist normal", 1],
+    ["z", "Eine Partei verspricht dir sofort mehr Geld, dafür steigen die Schulden für die nächste Generation.", "Nehme ich", "Lieber nicht", 1],
+    ["z", "Die Klimakrise ist ein Beschleuniger von Ungleichheit.", 'zitat', 1, { w: "Grüne", wann: "Wahlprogramm zur Bundestagswahl 2025", q: "https://www.gruene.de/artikel/zusammen-wachsen", f: "gruene" }]
   ];
   /* EINSCHÄTZUNG (keine Messung): Grundwerte der Parteien auf denselben Achsen, 0–100, anhand der Wahlprogramme 2025. Von Nicolas zu prüfen. */
   var PARTEIEN = [
@@ -60,7 +64,7 @@
     { n: 'BSW', f: 62, g: 80, o: 25, k: 35, z: 35 },
     { n: 'AfD', f: 22, g: 38, o: 8, k: 8, z: 12 }
   ];
-  var REIHE = ['f', 'g', 'o', 'k', 'z'], SPEICHER = 'mz-wertetest', PSTAND = '';
+  var REIHE = ['f', 'g', 'o', 'k', 'z'], SPEICHER = 'mz-wertetest-2' /* neu seit 2026-11-11: andere Fragen, alte Antworten passen nicht mehr */, PSTAND = '';
   /* Aktuelle Partei-Werte aus daten/parteien.json (wird montags anhand aktueller Forderungen geprüft); die Liste oben ist nur der Rückfall */
   fetch('/daten/parteien.json', { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : null; }).then(function (d) { if (d && d.parteien && d.parteien.length) { PARTEIEN = d.parteien; PSTAND = d.stand || ''; } }).catch(function () {});
 
@@ -103,7 +107,7 @@
     /* Siegertreppchen der drei passendsten Parteien (Wunsch Nicolas 2026-11-11), Figuren aus den Personen-Assets, ohne Gesicht wie im Kanal */
     '.wt-treppe{display:grid;grid-template-columns:1fr 1fr 1fr;align-items:end;gap:0;max-width:21rem;margin:0.6rem auto 1.1rem}',
     '.wt-platz{display:flex;flex-direction:column;align-items:center;min-width:0}',
-    '.wt-platz img{display:block;width:auto;height:8.2rem;margin-bottom:-0.15rem;filter:drop-shadow(2px 4px 3px rgba(0,0,0,0.25))}',
+    '.wt-platz img{display:block;width:auto;max-width:96%;height:8.2rem;object-fit:contain;object-position:50% 100%;margin:0 auto -1px;filter:drop-shadow(2px 0 2px rgba(0,0,0,0.2))}',
     '.wt-platz.p1 img{height:9.4rem}',
     '.wt-platz .leer{display:grid;place-items:center;height:5.2rem;width:4.6rem;margin-bottom:.5rem;background:#5A2D82;color:#fff;font:800 1rem var(--sans);transform:rotate(-3deg);box-shadow:2px 3px 0 rgba(0,0,0,0.2)}',
     '.wt-stufe{width:100%;box-sizing:border-box;text-align:center;color:var(--creme,#f4ead8);background:var(--rost,#C8603A);padding:.35rem .2rem .45rem;box-shadow:inset 0 -3px 0 rgba(0,0,0,0.18)}',
@@ -120,6 +124,15 @@
     '.wt-prog h4{font:800 .74rem var(--sans);letter-spacing:.06em;text-transform:uppercase;margin:1rem 0 .4rem;color:var(--rost,#C8603A)}.wt-prog h4.kontra{color:#7A2E22}',
     '.wt-prog ul{margin:0;padding-left:1.1rem;font:400 .95rem/1.45 var(--lesen)}.wt-prog li{margin:0 0 .35rem}',
     '.wt-prog .wt-knoepfe{margin-top:1.1rem}.wt-prog a.wt-knopf{text-decoration:none;display:inline-block}',
+    '.wt-zitat-frage{font:800 .74rem var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--rost,#C8603A);margin:0 0 .5rem}',
+    '.wt-zitat{margin:0 0 .6rem;padding:.2rem 0 .2rem .9rem;border-left:4px solid #BC2827;font:600 1.18rem/1.42 var(--lesen);font-style:italic}',
+    '.wt-zitat.klein{font-size:.95rem;font-weight:500;color:var(--mittelgrau,#7a7268);margin-top:.8rem}',
+    '.wt-zitat-wer{font:400 .74rem var(--maschine);color:var(--mittelgrau,#7a7268);margin:0 0 1rem}',
+    '.wt-aufl{text-align:center;padding-top:.3rem}.wt-aufl img{display:block;height:9rem;width:auto;margin:0 auto .5rem;filter:drop-shadow(2px 3px 3px rgba(0,0,0,0.25))}',
+    '.wt-aufl .wt-zitat{text-align:left}',
+    '.wt-wer-vor{font:700 1.4rem/1 "Caveat",cursive;color:#C8281E;margin:0 0 .2rem;transform:rotate(-2deg)}',
+    '.wt-wer{font:800 1.25rem/1.2 var(--lesen);margin:0}.wt-wann{font:400 .8rem var(--maschine);color:var(--mittelgrau,#7a7268);margin:.25rem 0 0}',
+    '.wt-deins{font:400 .9rem var(--sans);margin:.6rem 0 0}.wt-aufl .wt-klein a{color:inherit}',
     '.wt-gespeichert{text-align:center;font:700 1.25rem/1 "Caveat",cursive;color:#C8281E;margin:.6rem 0 0;transform:rotate(-2deg)}'
   ].join('\n');
   document.head.appendChild(css);
@@ -141,7 +154,7 @@
 
   function intro() {
     karte.innerHTML = '<h3 class="wt-h">Wie tickst du?</h3>' +
-      '<p class="wt-p">' + FRAGEN.length + ' kleine Alltagsszenen, keine Politik-Thesen. Du antwortest nur mit einem Regler oder mit Ja und Nein. Es gibt kein richtig oder falsch, nimm das, was du wirklich tun würdest.</p>' +
+      '<p class="wt-p">' + FRAGEN.length + ' Fragen: kleine Alltagsszenen und ein paar echte Zitate aus der Politik. Wer ein Zitat gesagt hat, erfährst du erst nach deiner Antwort. Du antwortest nur mit einem Regler oder mit Ja und Nein. Es gibt kein richtig oder falsch, nimm das, was du wirklich tun würdest.</p>' +
       '<p class="wt-p">Am Ende siehst du, was dir wichtig ist, und welche Parteien von ihren Grundwerten her am ehesten zu dir passen könnten. Dauert etwa 8 bis 10 Minuten.</p>' +
       '<div class="wt-knoepfe"><button type="button" class="wt-knopf gross" data-los>Los geht’s</button></div>' +
       '<p class="wt-klein">Deine Antworten bleiben nur auf deinem Gerät. Nichts wird gesendet oder gespeichert, außer in deinem Browser.</p>';
@@ -149,13 +162,17 @@
   }
 
   function kopf() {
-    return '<div class="wt-stand"><span>Frage ' + (st.i + 1) + ' von ' + FRAGEN.length + '</span><span>' + ACHSEN[FRAGEN[st.i][0]].name + '</span></div>' +
+    var q = FRAGEN[st.i];
+    return '<div class="wt-stand"><span>Frage ' + (st.i + 1) + ' von ' + FRAGEN.length + '</span><span>' + (q[2] === 'zitat' ? 'Zitat' : ACHSEN[q[0]].name) + '</span></div>' +
       '<div class="wt-balken"><b style="width:' + Math.round(st.i / FRAGEN.length * 100) + '%"></b></div>';
   }
+  /* Aufnahme je Frage über eine Prüfsumme des Textes (bleibt richtig, auch wenn sich die Reihenfolge ändert); gleiche Rechnung in ~/NekoTools/qwen_tts/fragen_audio.py */
+  function kennung(t) { var x = 5381; for (var i = 0; i < t.length; i++) x = ((x * 33) ^ t.charCodeAt(i)) >>> 0; return x.toString(36); }
   var ton = null;
   function stumm() { if (ton) { ton.pause(); ton = null; } }
+  var LAUT = '<button type="button" class="wt-vorlesen" aria-label="Frage vorlesen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 4V5L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 8v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></svg><span>Vorlesen</span></button>';
   function vorlesenKnopf() {
-    var b = karte.querySelector('.wt-vorlesen'); if (!b) return; var nr = st.i + 1, url = '/audio/wertetest/f' + (nr < 10 ? '0' : '') + nr + '.mp3';
+    var b = karte.querySelector('.wt-vorlesen'); if (!b) return; var url = '/audio/wertetest/' + kennung(FRAGEN[st.i][1]) + '.mp3';
     var text = function (an) { b.classList.toggle('an', an); b.lastChild.textContent = an ? 'Stopp' : 'Vorlesen'; };
     b.addEventListener('click', function () {
       if (ton) { stumm(); text(false); return; }
@@ -166,32 +183,44 @@
     });
   }
   function weiter(wert) { stumm(); st.a[st.i] = wert; st.i++; merke(st); if (st.i >= FRAGEN.length) gewichten(); else frage(); karte.scrollIntoView({ block: 'start' }); }
+  /* Zitat: erst ehrlich antworten, dann auflösen, wer es gesagt hat (Wunsch Nicolas 2026-11-11) */
+  function aufloesen(wert) {
+    stumm(); var q = FRAGEN[st.i], o = q[4], zu = wert == null ? null : Math.round(wert * 100);
+    karte.innerHTML = kopf() + '<div class="wt-aufl">' + (o.f ? '<img src="/bilder/parteien/' + o.f + '.webp" alt="">' : '') +
+      '<p class="wt-wer-vor">Gesagt hat das:</p><p class="wt-wer">' + esc(o.w) + '</p><p class="wt-wann">' + esc(o.wann) + '</p>' +
+      '<blockquote class="wt-zitat klein">„' + esc(q[1]) + '“</blockquote>' +
+      (zu == null ? '' : '<p class="wt-deins">Deine Zustimmung: <b>' + (zu >= 67 ? 'eher ja' : zu <= 33 ? 'eher nein' : 'teils, teils') + '</b></p>') +
+      '<p class="wt-klein"><a href="' + esc(o.q) + '" target="_blank" rel="noopener">Quelle ansehen</a></p></div>' +
+      '<div class="wt-knoepfe"><button type="button" class="wt-knopf gross" data-ok>Weiter</button></div>';
+    karte.querySelector('[data-ok]').addEventListener('click', function () { weiter(wert); });
+  }
   function frage() {
-    var q = FRAGEN[st.i], alt = st.a[st.i];
+    var q = FRAGEN[st.i], alt = st.a[st.i], zitat = q[2] === 'zitat';
     if (q[2] === 'jn') {
-      karte.innerHTML = kopf() + '<p class="wt-szene">' + esc(q[1]) + '</p>' + '<button type="button" class="wt-vorlesen" aria-label="Frage vorlesen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 4V5L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 8v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></svg><span>Vorlesen</span></button>' + '<div class="wt-knoepfe"><button type="button" class="wt-knopf gross" data-w="1">Ja</button><button type="button" class="wt-knopf gross" data-w="0">Nein</button></div>' +
+      karte.innerHTML = kopf() + '<p class="wt-szene">' + esc(q[1]) + '</p>' + LAUT + '<div class="wt-knoepfe"><button type="button" class="wt-knopf gross" data-w="1">Ja</button><button type="button" class="wt-knopf gross" data-w="0">Nein</button></div>' +
         '<button type="button" class="wt-zurueck" data-skip>Kann ich nicht sagen</button>' + (st.i ? '<button type="button" class="wt-zurueck" data-back>Zurück</button>' : '');
       karte.querySelectorAll('[data-w]').forEach(function (b) { b.addEventListener('click', function () { weiter(+b.getAttribute('data-w')); }); });
     } else {
-      var v = alt != null ? Math.round(1 + alt * 9) : 5.5;
-      karte.innerHTML = kopf() + '<p class="wt-szene">' + esc(q[1]) + '</p>' + '<button type="button" class="wt-vorlesen" aria-label="Frage vorlesen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 4V5L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 8v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></svg><span>Vorlesen</span></button>' + '<div class="wt-pole"><span>' + esc(q[2]) + '</span><span>' + esc(q[3]) + '</span></div>' +
-        '<input class="wt-regler" type="range" min="1" max="10" step="1" value="' + v + '" aria-label="Zwischen ' + esc(q[2]) + ' und ' + esc(q[3]) + '">' +
+      var v = alt != null ? Math.round(1 + alt * 9) : 5.5, links = zitat ? 'Stimme gar nicht zu' : q[2], rechts = zitat ? 'Stimme voll zu' : q[3];
+      karte.innerHTML = kopf() + (zitat ? '<p class="wt-zitat-frage">Wie sehr stimmst du zu?</p><blockquote class="wt-zitat">„' + esc(q[1]) + '“</blockquote><p class="wt-zitat-wer">Wer das gesagt hat, siehst du nach deiner Antwort.</p>' : '<p class="wt-szene">' + esc(q[1]) + '</p>') + LAUT +
+        '<div class="wt-pole"><span>' + esc(links) + '</span><span>' + esc(rechts) + '</span></div>' +
+        '<input class="wt-regler" type="range" min="1" max="10" step="1" value="' + v + '" aria-label="Zwischen ' + esc(links) + ' und ' + esc(rechts) + '">' +
         '<div class="wt-zahl">' + (alt != null ? Math.round(1 + alt * 9) : 'Regler bewegen') + '</div>' +
         '<div class="wt-knoepfe"><button type="button" class="wt-knopf gross" data-ok' + (alt == null ? ' disabled style="opacity:.45"' : '') + '>Weiter</button></div>' +
         '<button type="button" class="wt-zurueck" data-skip>Kann ich nicht sagen</button>' + (st.i ? '<button type="button" class="wt-zurueck" data-back>Zurück</button>' : '');
       var r = karte.querySelector('.wt-regler'), ok = karte.querySelector('[data-ok]'), z = karte.querySelector('.wt-zahl');
       r.addEventListener('input', function () { z.textContent = r.value; ok.disabled = false; ok.style.opacity = ''; });
-      ok.addEventListener('click', function () { weiter((r.value - 1) / 9); });
+      ok.addEventListener('click', function () { var w = (r.value - 1) / 9; if (zitat) aufloesen(w); else weiter(w); });
     }
     vorlesenKnopf();
-    karte.querySelector('[data-skip]').addEventListener('click', function () { weiter(null); });
+    karte.querySelector('[data-skip]').addEventListener('click', function () { if (zitat) aufloesen(null); else weiter(null); });
     var bk = karte.querySelector('[data-back]'); if (bk) bk.addEventListener('click', function () { stumm(); st.i--; merke(st); frage(); });
   }
 
   function werte() {
     var s = {}, n = {};
     REIHE.forEach(function (a) { s[a] = 0; n[a] = 0; });
-    FRAGEN.forEach(function (q, i) { var v = st.a[i]; if (v == null) return; var p = q[2] === 'jn' ? q[3] : q[4]; s[q[0]] += p > 0 ? v : 1 - v; n[q[0]]++; });
+    FRAGEN.forEach(function (q, i) { var v = st.a[i]; if (v == null) return; var p = (q[2] === 'jn' || q[2] === 'zitat') ? q[3] : q[4]; s[q[0]] += p > 0 ? v : 1 - v; n[q[0]]++; });
     var out = {}; REIHE.forEach(function (a) { out[a] = n[a] ? Math.round(s[a] / n[a] * 100) : 50; }); return out;
   }
 
@@ -242,15 +271,18 @@
         x.fillStyle = 'rgba(46,43,42,0.13)'; x.fillRect(420, y - 26, 400, 26); x.fillStyle = i < 2 ? '#C8603A' : '#D99A4E'; x.fillRect(420, y - 26, 400 * Math.max(4, p.s) / 100, 26);
         x.fillStyle = '#7A7268'; x.font = '400 36px "Special Elite", monospace'; x.textAlign = 'right'; x.fillText(p.s + ' %', 950, y); x.textAlign = 'left'; y += 62; });
       x.textAlign = 'center'; x.fillStyle = '#7A7268'; x.font = '400 27px ' + F;
-      x.fillText('Keine Wahlempfehlung, nur eine KI-Einschätzung.', 540, 1700);
-      x.fillStyle = '#EEF2FA'; x.font = '800 36px ' + F; x.fillText('Mach den Test: nekos-news.pages.dev', 540, 1860);
+      x.fillText('Keine Wahlempfehlung, nur eine KI-Einschätzung.', 540, 1690);
+      x.fillStyle = '#EEF2FA'; x.font = '800 36px ' + F; x.fillText('Mach den Test: nekos-news.pages.dev', 540, 1880);
+      /* Handle von Nicolas aufs Bild (Wunsch 2026-11-11) */
+      x.save(); x.translate(540, 1800); x.rotate(-0.035); x.font = '700 64px ' + H; var hw = x.measureText('@nekos_news').width + 56;
+      x.fillStyle = '#BC2827'; x.fillRect(-hw / 2, -54, hw, 76); x.fillStyle = '#F4EAD8'; x.fillText('@nekos_news', 0, 6); x.restore();
       return new Promise(function (ok) { c.toBlob(function (b) { ok(b); }, 'image/png'); });
     });
   }
   var LINK = location.origin + '/neko.html#faq';
   function teilenKnoepfe(w, nah, stark) {
-    var box = karte.querySelector('.wt-teilen'), teilen = box.querySelector('[data-teilen]'), sichern = box.querySelector('[data-sichern]'), blob = null, datei = null;
-    bild(w, nah, stark).then(function (b) { blob = b; try { datei = new File([b], 'mein-werte-test.png', { type: 'image/png' }); } catch (e) {} teilen.disabled = false; sichern.disabled = false; })
+    var box = karte.querySelector('.wt-teilen'), teilen = box.querySelector('[data-teilen]'), blob = null, datei = null; /* „Bild speichern“ entfällt (Nicolas 2026-11-11): das geht im Teilen-Menü */
+    bild(w, nah, stark).then(function (b) { blob = b; try { datei = new File([b], 'mein-werte-test.png', { type: 'image/png' }); } catch (e) {} teilen.disabled = false; })
       .catch(function () { teilen.disabled = false; });
     function runterladen() { if (!blob) return; var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'mein-werte-test.png'; document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 4000);
       var h = box.querySelector('.wt-gespeichert'); if (h) h.hidden = false; }
@@ -260,7 +292,6 @@
       if (navigator.share) { navigator.share({ title: 'Werte-Test', text: text, url: LINK }).catch(function () {}); return; }
       runterladen();
     });
-    sichern.addEventListener('click', runterladen);
   }
   var PROG = null, PSTAND2 = '';
   fetch('/daten/programme.json', { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : null; }).then(function (d) { if (d && d.parteien) { PROG = d.parteien; PSTAND2 = d.stand || ''; } }).catch(function () {});
@@ -298,7 +329,7 @@
       '<h3 class="wt-h" style="margin-top:1.2rem">Diese Parteien könnten für dich interessant sein</h3>' + treppe(nah) +
       nah.map(function (p, i) { return '<button type="button" class="wt-partei' + (i < 2 ? ' top' : '') + '" data-partei="' + esc(p.n) + '"><span>' + esc(p.n) + '</span><i><b style="width:' + Math.max(4, p.s) + '%"></b></i><span>' + p.s + ' %</span></button>'; }).join('') +
       '<p class="wt-klein">Keine Wahlwerbung und keine Wahlempfehlung, ausschließlich eine KI-Einschätzung. Die Partei-Werte sind eine grobe Einschätzung ihrer Grundwerte aus Wahlprogrammen und aktuellen Forderungen, keine Messung' + (PSTAND ? ' (Stand ' + PSTAND.split('-').reverse().join('.') + ')' : '') + '. Schau dir die Programme selbst an, zum Beispiel im Wahl-O-Mat der Bundeszentrale für politische Bildung.</p>' +
-      '<div class="wt-knoepfe wt-teilen"><button type="button" class="wt-knopf" data-teilen disabled>Ergebnis teilen</button><button type="button" class="wt-knopf leise" data-sichern disabled>Bild speichern</button></div>' +
+      '<div class="wt-knoepfe wt-teilen"><button type="button" class="wt-knopf gross" data-teilen disabled>Ergebnis teilen</button></div>' +
       '<p class="wt-gespeichert" hidden>Gespeichert!</p>' +
       '<div class="wt-knoepfe wt-start"><button type="button" class="wt-knopf leise" data-neu>Nochmal machen</button></div>';
     teilenKnoepfe(w, nah, stark);

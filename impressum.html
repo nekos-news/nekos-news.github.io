@@ -301,6 +301,7 @@ details.mehr summary:active { transform: rotate(0) scale(0.96); }
   background-image: var(--faser), linear-gradient(115deg, rgba(255,255,255,0.16), transparent 45%, rgba(0,0,0,0.08) 75%);
   clip-path: polygon(0 6%, 8% 0, 19% 5%, 31% 1%, 44% 6%, 57% 0, 69% 4%, 82% 0, 93% 5%, 100% 2%, 98% 30%, 100% 58%, 99% 96%, 90% 100%, 78% 95%, 65% 100%, 52% 96%, 39% 100%, 26% 95%, 14% 100%, 3% 96%, 1% 66%, 0 34%); }
 .gruppe:nth-of-type(even) .zettel::before { background-color: var(--braun); }
+#deutschland > .zettel::before { background-color: #BC2827; } /* „Heute“ in Dunkelrot wie das E im Logo (Nicolas 2026-11-11) */
 /* Hilfe / Barrierefreiheit */
 .hilfe { position: relative; }
 .hilfe-knopf { font-family: var(--sans); font-weight: 800; font-size: 0.78rem; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer; border: 0;
@@ -1121,7 +1122,7 @@ html.kontrast .bogen-leiste .zu, html.kontrast .bogen-leiste .bogen-play { backg
 .bogen-leiste > * { pointer-events: auto; }
 .bogen-leiste .zu, .bogen-leiste .bogen-play { position: static !important; top: auto !important; left: auto !important; right: auto !important; width: 2.6rem !important; height: 2.6rem !important; }
 /* Mitlesen: gesprochenes Wort dicker + leichter Farbwechsel (Nicolas 2026-11-08: stärker) */
-.w.jetzt { -webkit-text-stroke: 0.045em currentColor; paint-order: stroke fill; } /* nur dicker, Textfarbe bleibt (Nicolas 2026-11-08) */
+.w.jetzt { -webkit-text-stroke: 0.06em currentColor; paint-order: stroke fill; } /* 2026-11-11: etwas deutlicher (0.045 -> 0.06em) */ /* nur dicker, Textfarbe bleibt (Nicolas 2026-11-08) */
 /* „Mehr anzeigen“ pulsiert leicht, wenn gerade vorgelesen wird, was nur im Vollbild steht */
 @keyframes mehr-puls { 0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(184,64,31,0); } 50% { transform: scale(1.06); box-shadow: 0 0 0 6px rgba(184,64,31,0.22); } }
 details.mehr summary.puls { animation: mehr-puls 1.3s ease-in-out infinite; }
@@ -1241,8 +1242,8 @@ article .teilen svg { width: 1.35rem !important; height: 1.35rem !important; }
 html.ruhig .wischer { transition: none; }
 .faq-frage.werte-frage .werte-los { margin: 0.4rem auto 0.2rem; display: block; }
 /* Rote Handschrift „interaktiv!“ statt „(interaktiv)“: im Menü und bei der FAQ-Frage (Wunsch Nicolas 2026-11-10) */
-.hand-rot { display: inline-block; margin-left: 0.45rem; font: 700 1.25rem/0.8 "Caveat", cursive !important; letter-spacing: 0 !important; text-transform: none !important; color: #C8281E !important; transform: rotate(-9deg) translateY(-0.2rem); white-space: nowrap; }
-.faq-frage summary .hand-rot { font-size: 1.45rem !important; transform: rotate(-7deg) translateY(-0.05rem); }
+.hand-rot { display: inline-block; margin-left: 0.45rem; font: 700 1.25rem/0.8 "Caveat", cursive !important; letter-spacing: 0 !important; text-transform: none !important; color: #C8281E !important; transform: rotate(-6deg) translateY(0.12rem); vertical-align: middle; white-space: nowrap; } /* etwas tiefer, Mitte des Schilds (Nicolas 2026-11-11) */
+.faq-frage summary .hand-rot { font-size: 1.45rem !important; transform: rotate(-5deg) translateY(0.1rem); }
 
 html.kontrast .hand-rot { color: inherit !important; }
 html.ruhig .hand-rot { transform: none; }
@@ -1482,15 +1483,16 @@ html.ruhig .hand-rot { transform: none; }
       ob.connect(gb); gb.connect(ziel); ob.start(t); ob.stop(t + 1.9);
     });
   }
-  function papier() { var ac = c(); if (!ac) return;
+  function papier(st) { var ac = c(); if (!ac) return; st = typeof st === 'number' ? st : 1;
     var s = rauschen(ac, 0.22, function (x) { return Math.sin(Math.PI * x) * (0.6 + 0.4 * Math.random()); });
     var f = ac.createBiquadFilter(); f.type = 'bandpass'; f.Q.value = 0.7; var t = ac.currentTime;
     f.frequency.setValueAtTime(700, t); f.frequency.exponentialRampToValueAtTime(3600, t + 0.2);
-    var g = ac.createGain(); g.gain.value = 0.035; s.connect(f); f.connect(g); g.connect(ac.destination); s.start(); }
+    var g = ac.createGain(); g.gain.value = 0.035 * st; s.connect(f); f.connect(g); g.connect(ac.destination); s.start(); }
   window.mzKlick = tipp;
   document.addEventListener('click', function (e) { if (e.target.closest('a, button, summary, .reel')) papier(); }, true);
+  window.mzPapier = papier;
   window.addEventListener('mz-intro-start', function () {
-    if (c()) sonnenaufgang();
+    if (c()) { sonnenaufgang(); setTimeout(function () { papier(0.35); }, 120); } /* ganz leises Papier am Anfang (Nicolas 2026-11-11) */
   });
 })();
 /* Upload-Zeit eines Videos: steckt im Instagram-Code (Medien-ID >> 23 = ms seit 2011-08-24); ohne BigInt gilt die Reihenfolge der Liste */

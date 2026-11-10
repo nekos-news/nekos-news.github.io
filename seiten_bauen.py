@@ -139,7 +139,7 @@ FOLGEN_TIPP = '<span class="folgen-tipp" aria-hidden="true"><span>Folgen!</span>
 # Werte-Test (2026-11-09): erst online, wenn Nicolas die Partei-Werte in daten/parteien.json freigegeben hat
 WERTETEST = True  # Nicolas 2026-11-09: als erste FAQ-Frage „Was soll ich wählen? (interaktiv)“
 WERTETEST_HTML = '''      <details class="faq-frage werte-frage"><summary><span>Was soll ich wählen?<span class="hand-rot">interaktiv!</span></span></summary>
-        <p>36 kleine Alltagsszenen statt Politik-Thesen. Du antwortest nur mit Regler oder Ja/Nein und siehst am Ende, was dir wirklich wichtig ist und welche Parteien von ihren Grundwerten her zu dir passen könnten. Dauert ca. 10 Minuten, deine Antworten bleiben auf deinem Gerät.</p>
+        <p>39 Fragen: Alltagsszenen statt Politik-Thesen, dazu echte Zitate aus der Politik, bei denen du erst nach deiner Antwort erfährst, wer sie gesagt hat. Du antwortest nur mit Regler oder Ja/Nein und siehst am Ende, was dir wirklich wichtig ist und welche Parteien von ihren Grundwerten her zu dir passen könnten. Dauert ca. 10 Minuten, deine Antworten bleiben auf deinem Gerät.</p>
         <button type="button" class="werte-los" data-wertetest>Test starten</button>
         <p class="werte-hinweis">Keine Wahlwerbung und keine Wahlempfehlung: Die Auswertung ist ausschließlich eine KI-Einschätzung.</p>
         <script src="/js/wertetest.js" defer></script>
