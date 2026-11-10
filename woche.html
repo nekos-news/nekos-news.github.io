@@ -431,7 +431,7 @@ html.kontrast .hinweis, html.kontrast .menue nav, html.kontrast .hilfe-feld, htm
 html.kontrast .leiste-oben > a, html.kontrast .menue-knopf, html.kontrast .sicht, html.kontrast .these, html.kontrast .marke, html.kontrast .reel,
 html.kontrast .reel .aufrufe, html.kontrast .filter button, html.kontrast .kanaele a, html.kontrast footer, html.kontrast .liste-info {
   background: #fff !important; background-image: none !important; color: #000 !important; border: 2px solid #000; transform: none !important; filter: none !important; clip-path: none !important; }
-html.kontrast .news-knopf, html.kontrast .hilfe-knopf, html.kontrast #btn-lesen, html.kontrast .zettel, html.kontrast .mitdenken,
+html.kontrast .news-knopf, html.kontrast .hilfe-knopf, html.kontrast #btn-lesen, html.kontrast #btn-naechster, html.kontrast .zettel, html.kontrast .mitdenken,
 html.kontrast .hoeren button, html.kontrast .filter button[aria-pressed="true"], html.kontrast .hilfe-feld button[aria-pressed="true"] {
   background: #000 !important; background-image: none !important; color: #fff !important; outline: 2px solid #fff; transform: none !important; filter: none !important; }
 html.kontrast .zettel::before { background: #000 !important; }
@@ -996,7 +996,9 @@ html.ruhig .wischer .spur { transition: none !important; }
 .oben .hinweis .schild { width: 1.6rem !important; }
 .oben .hinweis b { font-size: 0.52rem !important; white-space: normal !important; }
 #deutschland > .zettel { margin-bottom: 0.9rem !important; }
-#btn-lesen, .leiste .hoch { background-color: #1F4E9A !important; }
+#btn-lesen, #btn-naechster, .leiste .hoch { background-color: #1F4E9A !important; }
+/* Während des Vorlesens: Pause/Weiter nur als Symbol, dazwischen „Nächster Artikel“ (Wunsch Nicolas 2026-11-10) */
+#btn-lesen.symbol { min-width: 2.6rem; padding-inline: 0.75rem; font-size: 1.05rem; }
 .hilfe-knopf { width: 2.2rem !important; height: 2.2rem !important; }
 .hilfe-knopf svg { width: 1.2rem !important; height: 1.2rem !important; }
 /* Kein Einrasten der ganzen Seite mehr (Fehler 2026-11-08: Einrastpunkt kurz vor dem Ende zog beim Scrollen zurück, unten kam man nicht hoch/runter) */
@@ -1444,6 +1446,7 @@ html.ruhig .wischer { transition: none; }
 <div class="leiste" aria-label="Vorlesen und Navigation">
   <button id="btn-lesen" type="button" hidden>&#x25B6;&#xFE0E; Alles anhören</button>
   <span class="status" id="lese-status" aria-live="polite"></span>
+  <button id="btn-naechster" type="button" hidden>Nächster Artikel</button>
   <button type="button" class="hoch" aria-label="Nach oben" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
 </div>
 
@@ -1749,7 +1752,10 @@ function mzVideoZeit(code, i) {
   player.addEventListener('ended', function () { var x = liste[pos]; if (x) merkeGehoert(x.url); });
   /* Zeit an andere Teile melden (z. B. Story im 30-Sekunden-Zettel läuft mit) */
   ['timeupdate', 'play', 'pause', 'ended'].forEach(function (ev) { player.addEventListener(ev, function () { if (dingt) return; var x = liste[pos]; window.dispatchEvent(new CustomEvent('mz-audio', { detail: { id: x ? x.el.id : null, src: x ? x.url : null, t: player.currentTime, d: player.duration, spielt: !player.paused && !player.ended } })); }); });
-  var leiste = document.querySelector('.leiste'), btn = document.getElementById('btn-lesen'), status = document.getElementById('lese-status');
+  var leiste = document.querySelector('.leiste'), btn = document.getElementById('btn-lesen'), status = document.getElementById('lese-status'), naechsterBtn = document.getElementById('btn-naechster');
+  function nochEiner() { return pos >= 0 && (alles ? naechste(pos + 1) : pos + 1) < liste.length; }
+  function zeigeLaeuft() { btn.textContent = 'Ⅱ'; btn.classList.add('symbol'); btn.setAttribute('aria-label', 'Pause'); naechsterBtn.hidden = !nochEiner(); }
+  function zeigePause() { btn.textContent = '\u25B6\uFE0E'; btn.classList.add('symbol'); btn.setAttribute('aria-label', 'Weiter'); naechsterBtn.hidden = !nochEiner(); }
   var teile = Array.prototype.slice.call(document.querySelectorAll('#kurz, article[id]'));
   function knoepfe(aktiv) { liste.forEach(function (x, i) { x.knopf.setAttribute('aria-pressed', i === aktiv); x.knopf.setAttribute('aria-label', i === aktiv ? 'Pause' : 'Anhören'); x.el.classList.toggle('liest', i === aktiv); }); }
   function spiele(i) {
@@ -1761,13 +1767,13 @@ function mzVideoZeit(code, i) {
       var q = player.play(); if (q && q.then) q.then(function () { if (dingt) { player.pause(); player.currentTime = 0; } }).catch(function () {});
       dingUhr = setTimeout(function () { if (pos !== i || !dingt) return; dingt = false; player.muted = false; player.currentTime = 0; player.play().catch(function () {}); }, 1300);
     } else { dingt = false; player.muted = false; player.play().catch(function () {}); }
-    knoepfe(i); btn.textContent = 'Ⅱ Pause';
+    knoepfe(i); zeigeLaeuft();
     if (alles) { if (window.mzZeigeMeldung) window.mzZeigeMeldung(x.el); (x.el.closest('.wischer') || x.el).scrollIntoView({ block: x.el.closest('.wischer') ? 'start' : 'center', behavior: 'smooth' }); var nM = liste.filter(function (y) { return y.el.id !== 'kurz'; }).length, iM = liste.slice(0, i + 1).filter(function (y) { return y.el.id !== 'kurz'; }).length; status.textContent = (x.el.id === 'kurz' ? 'Das Wichtigste' : 'Meldung ' + iM + ' von ' + nM) + (uebersprungen ? ' · ' + uebersprungen + ' schon gehört' : ''); }
   }
   /* „Alles anhören“ überspringt, was man schon gehört hat (Wunsch Nicolas 2026-11-08). Ist alles gehört, läuft alles von vorn. */
   function naechste(j) { while (ueberspringen && j < liste.length && istGehoert(liste[j].url)) j++; return j; }
-  function stopDing() { if (!dingt) return false; clearTimeout(dingUhr); dingt = false; ding.pause(); player.pause(); player.muted = false; player.currentTime = 0; knoepfe(-1); btn.textContent = '\u25B6\uFE0E Weiter'; klick(tonPause); return true; }
-  function ende() { clearTimeout(dingUhr); dingt = false; player.muted = false; player.pause(); pos = -1; alles = false; uebersprungen = 0; knoepfe(-1); btn.textContent = '\u25B6\uFE0E Alles anhören'; status.textContent = ''; }
+  function stopDing() { if (!dingt) return false; clearTimeout(dingUhr); dingt = false; ding.pause(); player.pause(); player.muted = false; player.currentTime = 0; knoepfe(-1); zeigePause(); klick(tonPause); return true; }
+  function ende() { clearTimeout(dingUhr); dingt = false; player.muted = false; player.pause(); pos = -1; alles = false; uebersprungen = 0; knoepfe(-1); btn.textContent = '\u25B6\uFE0E Alles anhören'; btn.classList.remove('symbol'); btn.removeAttribute('aria-label'); naechsterBtn.hidden = true; status.textContent = ''; }
   player.addEventListener('ended', function () { if (dingt) return; if (!alles) { ende(); return; } var j = naechste(pos + 1);
     if (j >= liste.length && !root.classList.contains('ruhig')) { schluss.currentTime = 0; schluss.play().catch(function () {}); } spiele(j); });
   (listenSeite ? Promise.resolve(null) : fetch(basis + 'liste.json').then(function (r) { return r.ok ? r.json() : []; }).catch(function () { return []; })).then(function (ids) {
@@ -1809,8 +1815,15 @@ function mzVideoZeit(code, i) {
     });
   });
   // Unten zeigt immer, was gerade läuft: Pause, solange irgendetwas abgespielt wird
-  player.addEventListener('play', function () { if (pos >= 0) btn.textContent = 'Ⅱ Pause'; });
-  player.addEventListener('pause', function () { if (!dingt && pos >= 0 && !player.ended) btn.textContent = '\u25B6\uFE0E Weiter'; });
+  player.addEventListener('play', function () { if (pos >= 0) zeigeLaeuft(); });
+  player.addEventListener('pause', function () { if (!dingt && pos >= 0 && !player.ended) zeigePause(); });
+  /* Nächster Artikel: springt zur nächsten Meldung (im Alles-anhören-Modus geht es danach normal weiter) */
+  naechsterBtn.addEventListener('click', function () {
+    entsperren(); if (pos < 0) return; var j = alles ? naechste(pos + 1) : pos + 1;
+    if (j >= liste.length) { ende(); return; }
+    klick(tonWeiter); spiele(j);
+    if (!alles) { var x = liste[j]; if (window.mzZeigeMeldung) window.mzZeigeMeldung(x.el); (x.el.closest('.wischer') || x.el).scrollIntoView({ block: x.el.closest('.wischer') ? 'start' : 'center', behavior: 'smooth' }); }
+  });
   btn.addEventListener('click', function () {
     entsperren(); if (pos >= 0 && stopDing()) return;
     if (pos >= 0 && !player.paused) { player.pause(); klick(tonPause); knoepfe(-1); return; }
