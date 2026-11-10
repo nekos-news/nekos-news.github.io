@@ -63,6 +63,8 @@ def ausgabe(datum, neu=False):
         json.dump(w, open(ziel, "w", encoding="utf-8"), ensure_ascii=False, separators=(",", ":"))
         print(f"{datum}/{f[:-4]}: {len(w)} Wörter")
         n += 1
+    if n:   # Stand-Stempel: Seite lädt Audio UND Wortzeiten mit diesem Stempel, sonst passen nach Neusprechen alte Wortzeiten (24 h im Handy-Speicher) nicht mehr (2026-11-10)
+        open(os.path.join(ordner, "stand.txt"), "w").write(str(int(__import__("time").time())))
     return n
 
 

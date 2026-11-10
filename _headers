@@ -13,3 +13,5 @@
   Cache-Control: public, max-age=86400
 /audio/*
   Cache-Control: public, max-age=86400
+/audio/*/stand.txt
+  Cache-Control: no-cache
