@@ -1,335 +1,434 @@
 [
-  {
-    "datum": "2026-11-10",
-    "id": "m1",
-    "rubrik": "Haushalt",
-    "titel": "Stromsteuer gegen Sozialkürzungen: Die Koalition hat noch 2 Tage für den Haushalt",
-    "fakt": "Die Verhandlungen über den Bundeshaushalt 2027 stocken. Laut Berichten geht es um 10 Vorhaben mit zusammen mehr als 10 Milliarden Euro. Am Donnerstag beginnt die entscheidende Sitzung im Haushaltsausschuss.",
-    "quellen_html": "<a href=\"https://www.zdfheute.de/politik/deutschland/bundeshaushalt-verhandlungen-schwarz-rote-koalition-streit-finanzierung-100.html\">ZDFheute</a> · <a href=\"https://www.kurierverlag.de/politik/bundeshaushalt-2027-schwarz-rot-ringt-im-haushaltsstreit-zr-94580655.html\">Kurier (Merkur-Gruppe)</a> · <a href=\"https://www.berliner-zeitung.de/article/klingbeils-rekordhaushalt-wackelt-droht-der-merz-koalition-das-ampel-schicksal-10577907\">Berliner Zeitung</a>",
-    "krass": 6
-  },
-  {
-    "datum": "2026-11-10",
-    "id": "m2",
-    "rubrik": "Soziales",
-    "titel": "Wer zahlt für die Sparpläne? Zu 60 Prozent Frauen, sagt eine Studie",
-    "fakt": "Laut einer Studie von Dezernat Zukunft und Deutschem Frauenrat spart der Haushaltsentwurf 2027 rund 8,4 Milliarden Euro im Sozialbereich. Etwa 60 Prozent davon, also rund 5 Milliarden Euro, sollen Frauen treffen.",
-    "quellen_html": "<a href=\"https://taz.de/Haushaltsentwurf-fuer-2027/!6228769/\">taz</a> · <a href=\"https://www.frauenrat.de/bundeshaushalt-2027-armutstreiber-fuer-millionen-frauen/\">Deutscher Frauenrat</a>",
-    "krass": 5
-  },
-  {
-    "datum": "2026-11-10",
-    "id": "m3",
-    "rubrik": "AfD",
-    "titel": "Weidel lädt ein, Aigner sagt Nein: Kein Besuch bei der AfD-Fraktion",
-    "fakt": "Die Kandidatin für das Amt der Bundespräsidentin, Ilse Aigner (CSU), will sich nicht bei der AfD-Fraktion vorstellen. Ihr Büro verweist auf Beatrix von Storch, die Aigners Nominierung ein „Armutszeugnis“ genannt hatte. Alice Weidel reagiert empört.",
-    "quellen_html": "<a href=\"https://www.t-online.de/nachrichten/deutschland/innenpolitik/id_101520542/bundespraesidentenwahl-ilse-aigner-lehnt-besuch-bei-afd-fraktion-ab.html\">t-online</a> · <a href=\"https://www.tagesspiegel.de/politik/dpa-kandidatin-fur-das-bundesprasidentenamt-aigner-lehnt-vorstellung-bei-der-afd-fraktion-offenbar-ab-16259352.html\">Tagesspiegel (dpa)</a> · <a href=\"https://www.watson.ch/international/deutschland/176912479-aigner-will-sich-nicht-bei-afd-vorstellen-weidel-reagiert-empoert\">watson</a>",
-    "krass": 4
-  },
-  {
-    "datum": "2026-11-10",
-    "id": "m4",
-    "rubrik": "Lohn",
-    "titel": "5 Prozent gefordert, nichts bekommen: In der Metallindustrie drohen jetzt 24-Stunden-Streiks",
-    "fakt": "Auch die 3. Verhandlungsrunde in der Metall- und Elektroindustrie ist gestern ohne Ergebnis zu Ende gegangen, unter anderem in NRW und Bayern. Am Mittwoch entscheidet der IG-Metall-Vorstand, ob die Warnstreiks verschärft werden.",
-    "quellen_html": "<a href=\"https://www.wz.de/nrw/metall-tarifrunde-ohne-ergebnis-eskalation-moeglich_aid-158095135\">Westdeutsche Zeitung (dpa)</a> · <a href=\"https://jungewelt.de/artikel/533476.arbeit-versus-kapital-tarifverhandlungen-in-metallbranche-ohne-ergebnis.html\">junge Welt</a> · <a href=\"https://nuernberg.igmetall.de/aktuelle-nachrichten/2026/3500-beim-grossen-warnstreik-der-ig-metall\">IG Metall Nürnberg</a>",
-    "krass": 4
-  },
-  {
-    "datum": "2026-11-10",
-    "id": "m5",
-    "rubrik": "Iran",
-    "titel": "Trump erklärt den Iran-Krieg für „effektiv vorüber“, die Blockade bleibt aber",
-    "fakt": "Nach einem Treffen mit dem Regierungschef von Katar hat Donald Trump den Krieg mit dem Iran laut dpa militärisch für „effektiv vorüber“ erklärt. Die Seeblockade gegen den Iran bleibt aber, und einen Friedensvertrag gibt es noch nicht.",
-    "quellen_html": "<a href=\"https://www.handelsblatt.com/politik/international/nach-den-midterms-trump-iran-krieg-ist-militaerisch-effektiv-vorueber/100268567.html\">Handelsblatt (dpa)</a> · <a href=\"https://www.t-online.de/nachrichten/ausland/id_101520692/trump-iran-krieg-ist-militaerisch-effektiv-vorueber-.html\">t-online</a> · <a href=\"https://www.cnn.com/2026/11/08/middleeast/saudi-arabia-riyadh-missile-financial-intl\">CNN</a>",
-    "krass": 7
-  },
-  {
-    "datum": "2026-11-10",
-    "id": "m6",
-    "rubrik": "Ukraine",
-    "titel": "Europa sitzt mit am Tisch: Heute starten die Gespräche in Abu Dhabi",
-    "fakt": "Heute und morgen verhandeln die USA, Russland und die Ukraine in Abu Dhabi, zum ersten Mal seit Februar wieder zu dritt. Neu ist: Ein Team der EU sowie Deutschland, Frankreich, Großbritannien, Italien und die NATO sollen vor Ort sein. Der Kreml sagt, das offizielle Format bleibe trotzdem zu dritt.",
-    "quellen_html": "<a href=\"https://www.euronews.com/2026/11/09/eu-to-send-joint-team-to-ukraine-russia-peace-talks-in-abu-dhabi\">Euronews</a> · <a href=\"https://www.npr.org/2026/11/08/nx-s1-6034014/europe-join-us-brokered-ukraine-talks-abu-dhabi-russia\">NPR</a> · <a href=\"https://euromaidanpress.com/2026/11/09/europe-heads-to-the-abu-dhabi-talks-on-ending-russias-war-but-the-kremlin-says-it-hasnt-discussed-a-security-deal-with-europeans/\">Euromaidan Press</a>",
-    "krass": 6
-  },
-  {
-    "datum": "2026-11-10",
-    "id": "m7",
-    "rubrik": "USA",
-    "titel": "Erst wollte er das Ergebnis akzeptieren, jetzt fragt Trump, ob die Wahl „ehrlich“ war",
-    "fakt": "Wenige Tage, nachdem er gesagt hatte, er akzeptiere die Niederlage bei den Zwischenwahlen, stellt Trump laut NBC jetzt infrage, ob die Wahl „ehrlich“ war. Belege nennt er keine. In einer neuen Umfrage von Reuters/Ipsos liegt seine Zustimmung bei 32 Prozent.",
-    "quellen_html": "<a href=\"https://www.nbcnews.com/politics/donald-trump/trump-midterm-elections-voting-machines-doubt-rcna607893\">NBC News</a> · <a href=\"https://www.washingtonpost.com/politics/2026/11/07/trump-calls-justice-department-investigate-democrats/\">Washington Post</a> · <a href=\"https://www.aljazeera.com/news/2026/11/7/trump-orders-doj-to-investigate-democrats-for-threatening-people\">Al Jazeera</a>",
-    "krass": 5
-  },
-  {
-    "datum": "2026-11-10",
-    "id": "m8",
-    "rubrik": "Gaza",
-    "titel": "Sturm über Gaza: Ein Sandwall begräbt Zelte, 5 Menschen sterben",
-    "fakt": "In Deir al-Balah im Gazastreifen ist am Sonntagabend ein Sandwall auf ein Zeltlager gestürzt. Laut Zivilschutz starben 5 Menschen, darunter 3 Kinder. Insgesamt wurden laut Al Jazeera mehr als 70.000 Zelte überflutet.",
-    "quellen_html": "<a href=\"https://aljazeera.com/news/2026/11/9/gaza-authorities-slam-global-inaction-after-mudslide-kills-five-people\">Al Jazeera</a> · <a href=\"https://www.thenationalnews.com/news/mena/2026/11/09/people-were-screaming-deadly-tent-collapse-a-warning-for-winter-in-gaza/\">The National</a>",
-    "krass": 5
-  },
-  {
-    "datum": "2026-11-10",
-    "id": "m9",
-    "rubrik": "Klima",
-    "titel": "Die Weltklimakonferenz startet, und die USA sind schon wieder nicht dabei",
-    "fakt": "Im türkischen Antalya hat gestern die Weltklimakonferenz COP31 begonnen, sie dauert bis zum 20. November. Die US-Regierung schickt laut NPR zum 2. Mal in Folge keine Delegation. UN-Chef António Guterres fordert, schneller von Öl, Gas und Kohle wegzukommen.",
-    "quellen_html": "<a href=\"https://www.npr.org/2026/11/09/nx-s1-6026787/climate-talks-antalya-turkey-cop31\">NPR</a> · <a href=\"https://orf.at/stories/3447670/\">ORF (dpa)</a> · <a href=\"https://news.un.org/en/story/2026/11/1168763\">UN News</a>",
-    "krass": 5
-  },
-  {
-    "datum": "2026-11-10",
-    "id": "m10",
-    "rubrik": "Umwelt",
-    "titel": "Gute Nachricht: Chinas CO2-Ausstoß sinkt so stark wie seit Corona nicht mehr",
-    "fakt": "Chinas CO2-Ausstoß ist im 3. Quartal 2026 um 3,1 Prozent gesunken, verglichen mit dem Vorjahr. Das zeigt eine Analyse des Forschungsinstituts CREA für das Portal Carbon Brief. Es ist der stärkste Rückgang seit den Corona-Lockdowns 2022.",
-    "quellen_html": "<a href=\"https://www.carbonbrief.org/analysis-chinas-quarterly-co2-falls-3-in-largest-drop-since-covid\">Carbon Brief</a> · <a href=\"https://www.bloomberg.com/news/articles/2026-11-06/china-s-emissions-fall-most-since-covid-on-high-fuel-costs-crea\">Bloomberg</a> · <a href=\"https://www.businessgreen.com/news/4538502/study-chinas-quarterly-emissions-cent-largest-drop-covid-pandemic\">BusinessGreen</a>",
-    "krass": 4
-  },
-  {
-    "datum": "2026-11-11",
-    "id": "m1",
-    "rubrik": "Haushalt",
-    "titel": "Die Stromsteuer bleibt der Knackpunkt: Bis Donnerstagnacht muss der Haushalt stehen",
-    "fakt": "Union und SPD haben sich laut taz am Dienstag noch nicht auf eine niedrigere Stromsteuer geeinigt. Gleichzeitig kommen neue Ausgaben dazu, zum Beispiel mehr Geld für die E-Auto-Förderung. Zeit für das fertige Paket haben die Haushälter bis Donnerstagnacht.",
-    "quellen_html": "<a href=\"https://taz.de/Bundeshaushalt-2027/!6228864/\">taz</a> · <a href=\"https://www.zfk.de/politik/strompreis-2027-ueberblick-gewinner-verlierer\">ZfK</a>",
-    "krass": 5
-  },
-  {
-    "datum": "2026-11-11",
-    "id": "m2",
-    "rubrik": "AfD",
-    "titel": "Die AfD gewinnt mit 38 Prozent und regiert trotzdem nicht: In MV kommt Rot-Rot-Grün",
-    "fakt": "SPD, Linke und Grüne haben in Schwerin ihren Koalitionsvertrag vorgestellt. Es wäre die erste rot-rot-grüne Landesregierung in Mecklenburg-Vorpommern. Die AfD war bei der Wahl im September mit 38,2 Prozent stärkste Kraft, fand aber keinen Partner.",
-    "quellen_html": "<a href=\"https://taz.de/Rot-Rot-Gruen-in-Mecklenburg-Vorpommern/!6228883/\">taz</a> · <a href=\"https://web.de/magazine/politik/wahlen/landtagswahlen/mecklenburg-vorpommern/spd-linke-gruene-koalition-mv-42931280\">dpa (web.de)</a>",
-    "krass": 6
-  },
-  {
-    "datum": "2026-11-11",
-    "id": "m3",
-    "rubrik": "Rechts",
-    "titel": "Gruppenfoto mit Hakenkreuzfahne? Razzia bei 17 Hansa-Rostock-Anhängern",
-    "fakt": "Rund 120 Polizisten haben am Dienstag die Wohnungen von 17 mutmaßlichen Hansa-Rostock-Anhängern durchsucht. Laut Staatsanwaltschaft Rostock geht es um gefährliche Körperverletzung und das Verwenden verbotener Kennzeichen. Auslöser ist ein Gruppenfoto aus England.",
-    "quellen_html": "<a href=\"https://nordkurier.de/regional/rostock/rostock/foto-mit-hakenkreuzflagge-bei-schlaegerei-treff-razzien-gegen-hansa-fans-4999382\">Nordkurier</a> · <a href=\"https://heute.at/s/nazi-eklat-grossrazzia-bei-hansa-hooligans-120279433\">heute.at</a>",
-    "krass": 4
-  },
-  {
-    "datum": "2026-11-11",
-    "id": "m4",
-    "rubrik": "Klima",
-    "titel": "Merz wird heute 71, und beim Klimagipfel fehlt er",
-    "fakt": "Auf der Weltklimakonferenz in Antalya treffen sich heute und morgen die Staats- und Regierungschefs. Kanzler Merz reist nicht hin, sein Sprecher sagt laut ZDFheute: „Der Terminkalender ist sehr voll.“ Deutschland schickt Umweltminister Carsten Schneider und Entwicklungsministerin Reem Alabali Radovan.",
-    "quellen_html": "<a href=\"https://www.zdfheute.de/politik/deutschland/merz-weltklimakonferenz-absage-100.html\">ZDFheute</a> · <a href=\"https://www.t-online.de/nachrichten/deutschland/aussenpolitik/id_101514022/weltklimakonferenz-in-antalya-darum-bleibt-merz-der-cop31-fern.html\">t-online</a> · <a href=\"https://www.nw.de/nachrichten/nachrichten/24460216_Die-wichtigsten-EU-Staatschefs-fehlen-auf-der-Klimakonferenz.html\">Neue Westfälische</a>",
-    "krass": 4
-  },
-  {
-    "datum": "2026-11-11",
-    "id": "m5",
-    "rubrik": "Reichtum",
-    "titel": "378 Millionen Dollar gegen 5 Prozent: Kaliforniens Milliardärssteuer fällt durch",
-    "fakt": "Die Wähler in Kalifornien haben die Milliardärssteuer „Prop 40“ laut AP mit 52,8 zu 47,2 Prozent abgelehnt. Geplant war eine einmalige Abgabe von 5 Prozent auf Vermögen über 1 Milliarde Dollar. Die Gegner haben laut CalMatters 378 Millionen Dollar in die Kampagne gesteckt.",
-    "quellen_html": "<a href=\"https://calmatters.org/politics/elections/2026/11/prop-40-billionaire-tax-defeated/\">CalMatters</a> · <a href=\"https://www.npr.org/sections/planet-money/2026/11/10/g-s1-152755/why-did-californias-billionaire-tax-fail-to-surf-the-blue-wave\">NPR</a> · <a href=\"https://www.washingtonpost.com/politics/2026/11/09/california-proposition-40-wealth-tax-billionaires-live-election-results/\">Washington Post</a>",
-    "krass": 6
-  },
-  {
-    "datum": "2026-11-11",
-    "id": "m6",
-    "rubrik": "USA",
-    "titel": "Nur 1 Republikaner stimmt dagegen: Das Hegseth-Impeachment ist erst mal vom Tisch",
-    "fakt": "Das US-Repräsentantenhaus hat den Antrag, Verteidigungsminister Pete Hegseth des Amtes zu entheben, mit 211 zu 204 Stimmen an den Justizausschuss geschickt. Laut ABC ist er damit für diese Legislatur praktisch erledigt. Eingebracht hatte ihn ausgerechnet der Republikaner Thomas Massie.",
-    "quellen_html": "<a href=\"https://abcnews.com/US/hegseth-dismisses-impeachment-effort-political-spectacle/story?id=138002466\">ABC News</a> · <a href=\"https://edition.cnn.com/2026/11/10/politics/live-news/hegseth-impeachment-congress\">CNN</a> · <a href=\"https://www.theglobeandmail.com/world/us-politics/article-hegseth-impeachment-vote-democrats-will-be-gunning-for-him/\">Globe and Mail</a>",
-    "krass": 5
-  },
-  {
-    "datum": "2026-11-11",
-    "id": "m7",
-    "rubrik": "Ukraine",
-    "titel": "4 Stunden in Abu Dhabi: Kiew ist zufrieden, heute geht es um die Gebiete",
-    "fakt": "Zum ersten Mal seit 9 Monaten haben Russland, die Ukraine und die USA wieder direkt verhandelt, rund 4 Stunden lang. Präsident Selenskyj nannte den Austausch „konstruktiv und ziemlich substanziell“. Heute gehen die Gespräche weiter, laut Berliner Zeitung soll es um territoriale Fragen gehen.",
-    "quellen_html": "<a href=\"https://www.berliner-zeitung.de/article/ukraine-russland-abu-dhabi-verhandlungen-ergebnisse-zweiter-tag-10584686\">Berliner Zeitung</a> · <a href=\"https://www.aljazeera.com/news/2026/11/10/russia-ukraine-and-us-to-meet-as-zelenskyy-claims-battlefield-successes\">Al Jazeera</a> · <a href=\"https://www.nbcnews.com/world/ukraine/us-mediated-talks-ending-war-russia-ukraine-begin-abu-dhabi-rcna608499\">NBC News</a>",
-    "krass": 6
-  },
-  {
-    "datum": "2026-11-11",
-    "id": "m8",
-    "rubrik": "Presse",
-    "titel": "Gegründet mit Gorbatschows Nobelpreis-Geld, jetzt macht die Nowaja Gaseta dicht",
-    "fakt": "Die russische Zeitung Nowaja Gaseta hat am Montag ihre Redaktion in Moskau geschlossen. Sie war eine der letzten Stimmen in Russland, die den Krieg gegen die Ukraine offen kritisiert haben. Laut Al Jazeera nennt sie Druck der Behörden als Grund.",
-    "quellen_html": "<a href=\"https://www.aljazeera.com/news/2026/11/9/russian-investigative-newspaper-novaya-gazeta-closes-citing-govt-clampdown\">Al Jazeera</a> · <a href=\"https://www.npr.org/2026/11/10/nx-s1-6034460/russias-most-famous-independent-newspaper-has-shut-down-after-more-than-30-years\">NPR</a> · <a href=\"https://abcnews.com/Business/wireStory/russias-top-independent-newspaper-closes-office-after-decades-138000690\">ABC News</a>",
-    "krass": 5
-  },
-  {
-    "datum": "2026-11-11",
-    "id": "m9",
-    "rubrik": "Medizin",
-    "titel": "Gute Nachricht: Ein neues Mittel soll den 2. Schlaganfall verhindern, die USA lassen es zu",
-    "fakt": "Die US-Arzneimittelbehörde FDA hat das Bayer-Medikament Asundexian zugelassen. Es soll Menschen nach einem leichten bis mittleren Schlaganfall vor einem weiteren schützen. In der großen Studie hatten damit rund 26 Prozent weniger Patienten einen erneuten Schlaganfall.",
-    "quellen_html": "<a href=\"https://www.ajmc.com/view/fda-approves-asundexian-first-fxia-inhibitor-to-prevent-repeat-stroke\">AJMC</a> · <a href=\"https://www.pharmexec.com/view/fda-approves-asundexian-for-secondary-stroke-risk-reduction\">PharmExec</a> · <a href=\"https://www.tctmd.com/news/asundexian-first-factor-xia-inhibitor-gain-fda-approval\">TCTMD</a>",
-    "krass": 4
-  },
-  {
-    "datum": "2026-11-12",
-    "id": "m1",
-    "rubrik": "Haushalt",
-    "titel": "Zuckersteuer später, Plastiksteuer gestrichen, und die Stromsteuer? Immer noch offen",
-    "fakt": "Union und SPD haben sich laut dpa bei mehreren Streitpunkten im Haushalt 2027 geeinigt: Die Zuckersteuer startet erst Anfang 2028, die Plastiksteuer fällt 2027 aus. Für die versprochene Senkung der Stromsteuer fehlen weiter rund 5,4 Milliarden Euro. Heute tagt der Haushaltsausschuss zum letzten Mal, oft bis in den frühen Morgen.",
-    "quellen_html": "<a href=\"https://www.zdfheute.de/politik/deutschland/haushalt-zuckersteuer-plastiksteuer-stromsteuer-100.html\">ZDFheute</a> · <a href=\"https://www.t-online.de/nachrichten/deutschland/id_101524460/koalition-findet-haushalts-kompromisse-zuckersteuer-spaeter.html\">dpa (t-online)</a>",
-    "krass": 5
-  },
-  {
-    "datum": "2026-11-12",
-    "id": "m2",
-    "rubrik": "Rente",
-    "titel": "Angekündigt war 1 Milliarde: Jetzt soll der Bund bei der Rentenkasse 3 Milliarden sparen",
-    "fakt": "Laut Gundula Roßbach, Präsidentin der Deutschen Rentenversicherung Bund, soll der Zuschuss des Bundes 2027 um rund 3 Milliarden Euro sinken. Im Sommer war nur von 1 Milliarde die Rede. Das Arbeitsministerium bestätigt die Zahl laut t-online nicht und verweist auf die laufenden Haushaltsverhandlungen.",
-    "quellen_html": "<a href=\"https://www.t-online.de/nachrichten/deutschland/innenpolitik/id_101523802/rentenversicherung-bund-will-renten-zuschuss-offenbar-deutlich-kuerzen.html\">t-online</a> · <a href=\"https://www.berliner-zeitung.de/article/bund-will-offenbar-drei-milliarden-bei-der-rente-streichen-wer-am-ende-dafuer-zahlt-10588260\">Berliner Zeitung</a>",
-    "krass": 5
-  },
-  {
-    "datum": "2026-11-12",
-    "id": "m3",
-    "rubrik": "Bundeswehr",
-    "titel": "72 Prozent der Soldatinnen wurden in der Truppe schon sexuell belästigt",
-    "fakt": "Laut einer neuen Studie der Bundeswehr wurden 72 Prozent der Soldatinnen und 31 Prozent der Soldaten in ihrer Dienstzeit schon mindestens einmal verbal sexuell belästigt. Die echten Fälle sind laut Studie 3- bis 6-mal so viele wie die gemeldeten. Verteidigungsminister Boris Pistorius (SPD) kündigt „null Toleranz“ und 34 Maßnahmen an.",
-    "quellen_html": "<a href=\"https://www.tagesspiegel.de/politik/belastigungen-und-korperliche-gewalt-dunkelfeldstudie-offenbart-verheerende-zahlen-zu-sexualisiertem-fehlverhalten-bei-der-bundeswehr-16270930.html\">Tagesspiegel</a> · <a href=\"https://www.bmvg.de/de/presse/aktionsplan-massnahmen-betroffenenschutz-6171558\">Verteidigungsministerium</a> · <a href=\"https://taz.de/Dunkelfeldstudie-Sexualisiertes-Fehlverhalten-kommt-bei-der-Bundeswehr-haeufig-vor/!6224335/\">taz</a>",
-    "krass": 6
-  },
-  {
-    "datum": "2026-11-12",
-    "id": "m4",
-    "rubrik": "EU",
-    "titel": "Merz will, dass alle für die Ukraine zahlen, die Slowakei nennt das „Erpressung“",
-    "fakt": "Kanzler Merz verlangt laut ORF, dass ausnahmslos alle EU-Staaten einen fairen Beitrag für die Ukraine leisten. Der slowakische Regierungschef Robert Fico wirft ihm deswegen „Erpressung“ vor, auch Tschechien lehnt ab. Heute und morgen treffen sich Europas Regierungschefs in Dublin.",
-    "quellen_html": "<a href=\"https://orf.at/stories/3447886/\">ORF</a> · <a href=\"https://www.zdfheute.de/politik/ausland/eu-gipfel-irland-hilfen-ukraine-krieg-russland-100.html\">ZDFheute</a>",
-    "krass": 4
-  },
-  {
-    "datum": "2026-11-12",
-    "id": "m5",
-    "rubrik": "Ukraine",
-    "titel": "Trumps Gesandte sitzen bei Putin, und der rückt keinen Meter von seinen Gebietsforderungen ab",
-    "fakt": "Die US-Gesandten Steve Witkoff und Jared Kushner haben Kremlchef Wladimir Putin in Moskau getroffen. Laut dpa bekräftigte Putin, dass für Russland nur eine Grenze infrage kommt, die auch die annektierten ukrainischen Gebiete einschließt. Danach wollen die beiden in Dublin mit Präsident Selenskyj sprechen.",
-    "quellen_html": "<a href=\"https://www.rheinpfalz.de/politik_artikel,-us-vertreter-in-moskau-putin-unbeugsam-bei-gebietsfragen-_arid,5947673.html\">dpa (Rheinpfalz)</a> · <a href=\"https://abcnews.com/International/witkoff-kushner-arrive-moscow-meet-putin-discuss-ukraine/story?id=138070892\">ABC News</a>",
-    "krass": 6
-  },
-  {
-    "datum": "2026-11-12",
-    "id": "m6",
-    "rubrik": "USA",
-    "titel": "Trump holte hier 20 Punkte Vorsprung, jetzt schickt Mississippi einen Demokraten in den Senat",
-    "fakt": "Der Demokrat Scott Colom hat die Senatswahl in Mississippi gegen die Republikanerin Cindy Hyde-Smith gewonnen. Er wird laut CBS der 1. schwarze Senator des Staates seit der Zeit nach dem Bürgerkrieg. Einen Demokraten hat Mississippi seit 1982 nicht mehr in den Senat gewählt.",
-    "quellen_html": "<a href=\"https://www.cbsnews.com/news/mississippi-2026-senate-scott-colom-cindy-hyde-smith/\">CBS News</a> · <a href=\"https://taz.de/US-Kongresswahlen/!6229412/\">taz</a>",
-    "krass": 5
-  },
-  {
-    "datum": "2026-11-12",
-    "id": "m7",
-    "rubrik": "Gaza",
-    "titel": "Die Zelte stehen unter Wasser, und laut UN warten 150.000 neue vor der Grenze",
-    "fakt": "Nach schweren Regenfällen sind in Gaza zehntausende Zelte überflutet. Laut UN liegen mehr als 150.000 Zelte außerhalb Gazas bereit, es fehle nur die Genehmigung der israelischen Behörden. Gleichzeitig traf ein israelischer Luftangriff laut Al Jazeera das Nasser-Krankenhaus in Chan Yunis, mindestens 6 Menschen starben.",
-    "quellen_html": "<a href=\"https://news.un.org/en/story/2026/11/1168766\">UN News</a> · <a href=\"https://www.aljazeera.com/amp/news/2026/11/11/israeli-strikes-hit-tent-camp-as-five-killed-in-gaza\">Al Jazeera</a>",
-    "krass": 7
-  },
-  {
-    "datum": "2026-11-12",
-    "id": "m8",
-    "rubrik": "Gesundheit",
-    "titel": "Gute Nachricht: Die Spritze, die fast komplett vor HIV schützt, gibt es bald für 40 Dollar im Jahr",
-    "fakt": "Die US-Arzneimittelbehörde FDA hat Anfang November laut STAT das 1. Generikum von Lenacapavir vorläufig zugelassen. Die Spritze wird 2-mal im Jahr gegeben und schützt fast vollständig vor einer HIV-Infektion. Die günstige Version vom indischen Hersteller Dr. Reddy's soll rund 40 Dollar pro Person und Jahr kosten.",
-    "quellen_html": "<a href=\"https://healthpolicy-watch.news/fda-approves-first-generic-of-hiv-prevention-drug-lenacapavir/\">Health Policy Watch</a> · <a href=\"https://www.statnews.com/pharmalot/2026/11/02/lenacapavir-generic-version-approved-fda-hiv-prevention-dr-reddys/\">STAT</a>",
-    "krass": 6
-  },
-  {
-    "datum": "2026-11-13",
-    "id": "m1",
-    "rubrik": "Haushalt",
-    "titel": "Keine Kürzung, aber bis 2028 auch kein Cent mehr: Nullrunde bei der Grundsicherung",
-    "fakt": "Laut t-online, dpa und AFP ist eine Kürzung der Grundsicherung um 5 bis 7 Euro vom Tisch, die Regelsätze bleiben aber bis Mitte 2028 gleich. Die Wohngeld-Erhöhung zum 1. Januar 2027 fällt aus. Für eine Stromsteuer-Senkung für alle fehlen weiter rund 5,4 Milliarden Euro, in der Union gibt es deswegen Ärger.",
-    "quellen_html": "<a href=\"https://www.t-online.de/nachrichten/deutschland/innenpolitik/id_101525382/haushalt-2027-auf-diese-steuererhoehungen-hat-sich-die-regierung-geeinigt.html\">t-online / dpa</a> · <a href=\"https://www.wiwo.de/politik/deutschland/haushalt-2027-koalition-findet-kompromisse-fuer-etat-stromsteuer-ungeloest/100269300.html\">WirtschaftsWoche</a> · <a href=\"https://www.handelsblatt.com/politik/deutschland/haushaltsberatung-die-nacht-der-milliarden-im-bundestag/100269269.html\">Handelsblatt</a>",
-    "krass": 6
-  },
-  {
-    "datum": "2026-11-13",
-    "id": "m2",
-    "rubrik": "AfD",
-    "titel": "Erst „gut vernetzt“ mit Geheimdiensten, jetzt war alles nur „irreführend“: Keuter rudert zurück",
-    "fakt": "Der stellvertretende AfD-Fraktionschef Stefan Keuter zieht laut dpa seine Aussage zurück, die Fraktion habe Kontakte zu russischen und amerikanischen Geheimdiensten. Er nennt sie jetzt „irreführend und sachlich unzutreffend“. Intern soll er deswegen unter Druck geraten sein.",
-    "quellen_html": "<a href=\"https://www.onvista.de/news/2026/11-12-afd-politiker-zieht-geheimdienst-aussage-zurueck-0-10-26575763\">dpa-AFX (onvista)</a> · <a href=\"https://www.finanznachrichten.de/nachrichten-2026-11/70114102-afd-politiker-zieht-geheimdienst-aussage-zurueck-016.htm\">dpa-AFX (finanznachrichten)</a>",
-    "krass": 5
-  },
-  {
-    "datum": "2026-11-13",
-    "id": "m3",
-    "rubrik": "Überwachung",
-    "titel": "Hacken, heimlich in Wohnungen, KI-Auswertung: Der Bundestag hat die Geheimdienst-Reform durchgewunken",
-    "fakt": "Der Bundestag hat heute laut Bundestag mit 308 zu 190 Stimmen bei 71 Enthaltungen die Reform beschlossen, die dem Bundesnachrichtendienst und dem Verfassungsschutz neue Rechte gibt. Union und SPD stimmten dafür, AfD und Linke dagegen, die Grünen enthielten sich. Kritiker rechnen damit, dass das Gesetz vor dem Bundesverfassungsgericht landet.",
-    "quellen_html": "<a href=\"https://www.bundestag.de/dokumente/textarchiv/2026/kw46-de-nachrichtendienste-1231530\">Bundestag</a> · <a href=\"https://www.zdfheute.de/politik/deutschland/nachrichtendienst-reform-bundestag-bnd-gesetz-100.html\">ZDFheute</a> · <a href=\"https://www.berliner-zeitung.de/article/bundestag-beschliesst-geheimdienstreform-10594633\">Berliner Zeitung</a>",
-    "krass": 7
-  },
-  {
-    "datum": "2026-11-13",
-    "id": "m4",
-    "rubrik": "Klima",
-    "titel": "„Echt? Das machen die immer noch?“ Greta lacht über Fridays for Future, und heute wird trotzdem gestreikt",
-    "fakt": "In einer Doku-Szene reagiert Greta Thunberg laut Tagesspiegel mit Lachen darauf, dass Fridays for Future in Deutschland weiter protestiert. Das Video geht gerade viral. Luisa Neubauer reagiert gelassen, heute gibt es laut ihr Proteste in rund 70 Orten.",
-    "quellen_html": "<a href=\"https://www.tagesspiegel.de/internationales/echt-das-machen-die-immer-nochgreta-thunberg-lacht-nach-frage-zu-deutschen-fridays-for-future-protesten-16277475.html\">Tagesspiegel</a>",
-    "krass": 3
-  },
-  {
-    "datum": "2026-11-13",
-    "id": "m5",
-    "rubrik": "Gaza",
-    "titel": "Waffenruhe, aber Bomben aufs Krankenhaus: Beim Angriff auf die Nasser-Klinik sterben 6 Menschen",
-    "fakt": "Ein israelischer Luftangriff auf das Nasser-Krankenhaus in Chan Junis hat laut Klinikleitung 6 Menschen getötet, darunter einen Chirurgen, und 28 verletzt. Israels Armee sagt, sie habe einen Hamas-Kommandeur angegriffen, Beweise nannte sie laut Irish Times nicht. Dabei gilt seit Oktober 2025 eine Waffenruhe.",
-    "quellen_html": "<a href=\"https://www.irishtimes.com/world/middle-east/2026/11/12/israeli-air-strike-on-nasser-hospital-in-gaza-kills-six/\">Irish Times</a> · <a href=\"https://www.aljazeera.com/news/2026/11/11/israeli-strikes-hit-tent-camp-as-five-killed-in-gaza\">Al Jazeera</a> · <a href=\"https://www.nbcnews.com/world/middle-east/israeli-strike-gaza-nasser-hospital-abu-shaira-doctor-hamas-rcna608932\">NBC News</a>",
-    "krass": 7
-  },
-  {
-    "datum": "2026-11-13",
-    "id": "m6",
-    "rubrik": "Ukraine",
-    "titel": "Putin will 5 Tage Waffenruhe für eine Stadt, Kiew traut dem Angebot nicht",
-    "fakt": "Putin hat Trumps Gesandten Steve Witkoff und Jared Kushner laut dpa eine 5-tägige Waffenruhe für die Stadt Kostjantyniwka im Gebiet Donezk vorgeschlagen. Kiew lehnt ab. Witkoff kündigt eine neue Gesprächsrunde mit der Ukraine, Russland und den USA an.",
-    "quellen_html": "<a href=\"https://www.ariva.de/news/roundup-putin-schlaegt-waffenruhe-fuer-kostjantyniwka-im-12205446\">dpa-AFX (ariva)</a> · <a href=\"https://en.interfax.com.ua/news/general/1235718.html\">Interfax-Ukraine</a> · <a href=\"https://www.euronews.com/2026/11/11/russian-ambassador-to-the-us-dies-russias-foreign-ministry-announced\">Euronews</a>",
-    "krass": 6
-  },
-  {
-    "datum": "2026-11-13",
-    "id": "m7",
-    "rubrik": "Iran",
-    "titel": "Der Krieg ist „vorüber“? Iran meldet Angriff auf ein US-Radar, die USA sagen: alles abgefangen",
-    "fakt": "Die iranischen Revolutionsgarden behaupten laut AFP, sie hätten ein US-Frühwarnradar in Bahrain zerstört. Das US-Militär bestreitet das und sagt, es habe 2 Drohnen ohne Schaden abgeschossen. Außerdem ist US-Finanzminister Scott Bessent laut US-Medien wegen iranischer Drohungen auf eine Militärbasis gezogen.",
-    "quellen_html": "<a href=\"https://de.euronews.com/2026/11/13/wollen-usa-iran-krieg-beenden-revolutionsgarden-melden-angriff-auf-us-radar-in-bahrain\">Euronews</a> · <a href=\"https://www.berliner-zeitung.de/article/iran-revolutionsgarden-melden-angriff-auf-us-radaranlage-in-bahrain-explosion-auf-lng-tanker-10593632\">Berliner Zeitung</a> · <a href=\"https://thehill.com/homenews/administration/6213592-bessent-moves-military-base/\">The Hill</a>",
-    "krass": 5
-  },
-  {
-    "datum": "2026-11-13",
-    "id": "m8",
-    "rubrik": "Tech",
-    "titel": "Der wichtigste Mann im KI-Boom ist weg: Jensen Huang tritt bei Nvidia zurück",
-    "fakt": "Nvidia-Chef Jensen Huang ist laut Konzern mit sofortiger Wirkung zurückgetreten, Finanzchefin Colette Kress übernimmt übergangsweise. Laut NBC News gab es vorher Berichte über mehrere Affären, eine davon mit einer Frau, die eine chinesische Agentin sein soll. China weist die Spionage-Vorwürfe zurück.",
-    "quellen_html": "<a href=\"https://www.nbcnews.com/tech/tech-news/nvidia-ceo-jensen-huang-resigns-reports-extramarital-relationships-rcna608402\">NBC News</a> · <a href=\"https://www.bostonglobe.com/2026/11/12/business/nvidia-ceo-resigns-heres-what-we-know/\">Boston Globe</a> · <a href=\"https://nvidianews.nvidia.com/news/nvidia-announces-ceo-transition\">Nvidia</a>",
-    "krass": 6
-  },
-  {
-    "datum": "2026-11-13",
-    "id": "m9",
-    "rubrik": "Reichtum",
-    "titel": "Mehr Leute zahlen Steuern, nur die Reichsten zahlen weniger: In Frankreich sinkt die Steuer der obersten 0,1 Prozent um 9 Prozent",
-    "fakt": "Laut Zahlen der französischen Steuerbehörde, über die IBTimes berichtet, haben die reichsten 0,1 Prozent in Frankreich 2025 im Schnitt 9 Prozent weniger Einkommensteuer gezahlt. Die meisten anderen Gruppen zahlten mehr. Insgesamt stieg die Einkommensteuer um 1 Prozent auf 92,6 Milliarden Euro.",
-    "quellen_html": "<a href=\"https://fr.ibtimes.com/france-income-tax-households-richest-taxpayers-2025-105294\">IBTimes</a> · <a href=\"https://nachrichten.fr/13-000-wohlhabende-haushalte-zahlen-keine-einkommensteuer-symptom-einer-ueberkomplexen-steuerarchitektur/\">nachrichten.fr</a> · <a href=\"https://www.stuttgarter-zeitung.de/wirtschaft/milliardaere-die-masse-zahlt-mehr-milliardaere-weniger-79688135.html\">Stuttgarter Zeitung</a>",
-    "krass": 5
-  },
-  {
-    "datum": "2026-11-13",
-    "id": "m10",
-    "rubrik": "Gesundheit",
-    "titel": "Gute Nachricht: Auf Barbados wird kein Baby mehr bei der Geburt mit HIV angesteckt",
-    "fakt": "Die Weltgesundheitsorganisation hat laut PAHO bestätigt, dass Barbados die Übertragung von HIV von Müttern auf ihre Kinder beendet hat. Von 2022 bis 2024 gab es dort keinen einzigen Fall. Möglich machen das kostenlose Tests und Behandlung für alle Schwangeren.",
-    "quellen_html": "<a href=\"https://www.paho.org/en/news/30-10-2026-barbados-eliminates-mother-child-transmission-hiv\">PAHO / WHO</a> · <a href=\"https://jamaica-gleaner.com/article/news/20261102/barbados-eliminates-mother-child-transmission-hiv\">Jamaica Gleaner</a> · <a href=\"https://www.positive.news/society/good-news-stories-from-week-45-of-2026/\">Positive News</a>",
-    "krass": 4
-  }
+ {
+  "datum": "2026-11-10",
+  "id": "m1",
+  "rubrik": "Haushalt",
+  "titel": "Stromsteuer gegen Sozialkürzungen: Die Koalition hat noch 2 Tage für den Haushalt",
+  "fakt": "Die Verhandlungen über den Bundeshaushalt 2027 stocken. Laut Berichten geht es um 10 Vorhaben mit zusammen mehr als 10 Milliarden Euro. Am Donnerstag beginnt die entscheidende Sitzung im Haushaltsausschuss.",
+  "quellen_html": "<a href=\"https://www.zdfheute.de/politik/deutschland/bundeshaushalt-verhandlungen-schwarz-rote-koalition-streit-finanzierung-100.html\">ZDFheute</a> · <a href=\"https://www.kurierverlag.de/politik/bundeshaushalt-2027-schwarz-rot-ringt-im-haushaltsstreit-zr-94580655.html\">Kurier (Merkur-Gruppe)</a> · <a href=\"https://www.berliner-zeitung.de/article/klingbeils-rekordhaushalt-wackelt-droht-der-merz-koalition-das-ampel-schicksal-10577907\">Berliner Zeitung</a>",
+  "krass": 6
+ },
+ {
+  "datum": "2026-11-10",
+  "id": "m2",
+  "rubrik": "Soziales",
+  "titel": "Wer zahlt für die Sparpläne? Zu 60 Prozent Frauen, sagt eine Studie",
+  "fakt": "Laut einer Studie von Dezernat Zukunft und Deutschem Frauenrat spart der Haushaltsentwurf 2027 rund 8,4 Milliarden Euro im Sozialbereich. Etwa 60 Prozent davon, also rund 5 Milliarden Euro, sollen Frauen treffen.",
+  "quellen_html": "<a href=\"https://taz.de/Haushaltsentwurf-fuer-2027/!6228769/\">taz</a> · <a href=\"https://www.frauenrat.de/bundeshaushalt-2027-armutstreiber-fuer-millionen-frauen/\">Deutscher Frauenrat</a>",
+  "krass": 5
+ },
+ {
+  "datum": "2026-11-10",
+  "id": "m3",
+  "rubrik": "AfD",
+  "titel": "Weidel lädt ein, Aigner sagt Nein: Kein Besuch bei der AfD-Fraktion",
+  "fakt": "Die Kandidatin für das Amt der Bundespräsidentin, Ilse Aigner (CSU), will sich nicht bei der AfD-Fraktion vorstellen. Ihr Büro verweist auf Beatrix von Storch, die Aigners Nominierung ein „Armutszeugnis“ genannt hatte. Alice Weidel reagiert empört.",
+  "quellen_html": "<a href=\"https://www.t-online.de/nachrichten/deutschland/innenpolitik/id_101520542/bundespraesidentenwahl-ilse-aigner-lehnt-besuch-bei-afd-fraktion-ab.html\">t-online</a> · <a href=\"https://www.tagesspiegel.de/politik/dpa-kandidatin-fur-das-bundesprasidentenamt-aigner-lehnt-vorstellung-bei-der-afd-fraktion-offenbar-ab-16259352.html\">Tagesspiegel (dpa)</a> · <a href=\"https://www.watson.ch/international/deutschland/176912479-aigner-will-sich-nicht-bei-afd-vorstellen-weidel-reagiert-empoert\">watson</a>",
+  "krass": 4
+ },
+ {
+  "datum": "2026-11-10",
+  "id": "m4",
+  "rubrik": "Lohn",
+  "titel": "5 Prozent gefordert, nichts bekommen: In der Metallindustrie drohen jetzt 24-Stunden-Streiks",
+  "fakt": "Auch die 3. Verhandlungsrunde in der Metall- und Elektroindustrie ist gestern ohne Ergebnis zu Ende gegangen, unter anderem in NRW und Bayern. Am Mittwoch entscheidet der IG-Metall-Vorstand, ob die Warnstreiks verschärft werden.",
+  "quellen_html": "<a href=\"https://www.wz.de/nrw/metall-tarifrunde-ohne-ergebnis-eskalation-moeglich_aid-158095135\">Westdeutsche Zeitung (dpa)</a> · <a href=\"https://jungewelt.de/artikel/533476.arbeit-versus-kapital-tarifverhandlungen-in-metallbranche-ohne-ergebnis.html\">junge Welt</a> · <a href=\"https://nuernberg.igmetall.de/aktuelle-nachrichten/2026/3500-beim-grossen-warnstreik-der-ig-metall\">IG Metall Nürnberg</a>",
+  "krass": 4
+ },
+ {
+  "datum": "2026-11-10",
+  "id": "m5",
+  "rubrik": "Iran",
+  "titel": "Trump erklärt den Iran-Krieg für „effektiv vorüber“, die Blockade bleibt aber",
+  "fakt": "Nach einem Treffen mit dem Regierungschef von Katar hat Donald Trump den Krieg mit dem Iran laut dpa militärisch für „effektiv vorüber“ erklärt. Die Seeblockade gegen den Iran bleibt aber, und einen Friedensvertrag gibt es noch nicht.",
+  "quellen_html": "<a href=\"https://www.handelsblatt.com/politik/international/nach-den-midterms-trump-iran-krieg-ist-militaerisch-effektiv-vorueber/100268567.html\">Handelsblatt (dpa)</a> · <a href=\"https://www.t-online.de/nachrichten/ausland/id_101520692/trump-iran-krieg-ist-militaerisch-effektiv-vorueber-.html\">t-online</a> · <a href=\"https://www.cnn.com/2026/11/08/middleeast/saudi-arabia-riyadh-missile-financial-intl\">CNN</a>",
+  "krass": 7
+ },
+ {
+  "datum": "2026-11-10",
+  "id": "m6",
+  "rubrik": "Ukraine",
+  "titel": "Europa sitzt mit am Tisch: Heute starten die Gespräche in Abu Dhabi",
+  "fakt": "Heute und morgen verhandeln die USA, Russland und die Ukraine in Abu Dhabi, zum ersten Mal seit Februar wieder zu dritt. Neu ist: Ein Team der EU sowie Deutschland, Frankreich, Großbritannien, Italien und die NATO sollen vor Ort sein. Der Kreml sagt, das offizielle Format bleibe trotzdem zu dritt.",
+  "quellen_html": "<a href=\"https://www.euronews.com/2026/11/09/eu-to-send-joint-team-to-ukraine-russia-peace-talks-in-abu-dhabi\">Euronews</a> · <a href=\"https://www.npr.org/2026/11/08/nx-s1-6034014/europe-join-us-brokered-ukraine-talks-abu-dhabi-russia\">NPR</a> · <a href=\"https://euromaidanpress.com/2026/11/09/europe-heads-to-the-abu-dhabi-talks-on-ending-russias-war-but-the-kremlin-says-it-hasnt-discussed-a-security-deal-with-europeans/\">Euromaidan Press</a>",
+  "krass": 6
+ },
+ {
+  "datum": "2026-11-10",
+  "id": "m7",
+  "rubrik": "USA",
+  "titel": "Erst wollte er das Ergebnis akzeptieren, jetzt fragt Trump, ob die Wahl „ehrlich“ war",
+  "fakt": "Wenige Tage, nachdem er gesagt hatte, er akzeptiere die Niederlage bei den Zwischenwahlen, stellt Trump laut NBC jetzt infrage, ob die Wahl „ehrlich“ war. Belege nennt er keine. In einer neuen Umfrage von Reuters/Ipsos liegt seine Zustimmung bei 32 Prozent.",
+  "quellen_html": "<a href=\"https://www.nbcnews.com/politics/donald-trump/trump-midterm-elections-voting-machines-doubt-rcna607893\">NBC News</a> · <a href=\"https://www.washingtonpost.com/politics/2026/11/07/trump-calls-justice-department-investigate-democrats/\">Washington Post</a> · <a href=\"https://www.aljazeera.com/news/2026/11/7/trump-orders-doj-to-investigate-democrats-for-threatening-people\">Al Jazeera</a>",
+  "krass": 5
+ },
+ {
+  "datum": "2026-11-10",
+  "id": "m8",
+  "rubrik": "Gaza",
+  "titel": "Sturm über Gaza: Ein Sandwall begräbt Zelte, 5 Menschen sterben",
+  "fakt": "In Deir al-Balah im Gazastreifen ist am Sonntagabend ein Sandwall auf ein Zeltlager gestürzt. Laut Zivilschutz starben 5 Menschen, darunter 3 Kinder. Insgesamt wurden laut Al Jazeera mehr als 70.000 Zelte überflutet.",
+  "quellen_html": "<a href=\"https://aljazeera.com/news/2026/11/9/gaza-authorities-slam-global-inaction-after-mudslide-kills-five-people\">Al Jazeera</a> · <a href=\"https://www.thenationalnews.com/news/mena/2026/11/09/people-were-screaming-deadly-tent-collapse-a-warning-for-winter-in-gaza/\">The National</a>",
+  "krass": 5
+ },
+ {
+  "datum": "2026-11-10",
+  "id": "m9",
+  "rubrik": "Klima",
+  "titel": "Die Weltklimakonferenz startet, und die USA sind schon wieder nicht dabei",
+  "fakt": "Im türkischen Antalya hat gestern die Weltklimakonferenz COP31 begonnen, sie dauert bis zum 20. November. Die US-Regierung schickt laut NPR zum 2. Mal in Folge keine Delegation. UN-Chef António Guterres fordert, schneller von Öl, Gas und Kohle wegzukommen.",
+  "quellen_html": "<a href=\"https://www.npr.org/2026/11/09/nx-s1-6026787/climate-talks-antalya-turkey-cop31\">NPR</a> · <a href=\"https://orf.at/stories/3447670/\">ORF (dpa)</a> · <a href=\"https://news.un.org/en/story/2026/11/1168763\">UN News</a>",
+  "krass": 5
+ },
+ {
+  "datum": "2026-11-10",
+  "id": "m10",
+  "rubrik": "Umwelt",
+  "titel": "Gute Nachricht: Chinas CO2-Ausstoß sinkt so stark wie seit Corona nicht mehr",
+  "fakt": "Chinas CO2-Ausstoß ist im 3. Quartal 2026 um 3,1 Prozent gesunken, verglichen mit dem Vorjahr. Das zeigt eine Analyse des Forschungsinstituts CREA für das Portal Carbon Brief. Es ist der stärkste Rückgang seit den Corona-Lockdowns 2022.",
+  "quellen_html": "<a href=\"https://www.carbonbrief.org/analysis-chinas-quarterly-co2-falls-3-in-largest-drop-since-covid\">Carbon Brief</a> · <a href=\"https://www.bloomberg.com/news/articles/2026-11-06/china-s-emissions-fall-most-since-covid-on-high-fuel-costs-crea\">Bloomberg</a> · <a href=\"https://www.businessgreen.com/news/4538502/study-chinas-quarterly-emissions-cent-largest-drop-covid-pandemic\">BusinessGreen</a>",
+  "krass": 4
+ },
+ {
+  "datum": "2026-11-11",
+  "id": "m1",
+  "rubrik": "Haushalt",
+  "titel": "Die Stromsteuer bleibt der Knackpunkt: Bis Donnerstagnacht muss der Haushalt stehen",
+  "fakt": "Union und SPD haben sich laut taz am Dienstag noch nicht auf eine niedrigere Stromsteuer geeinigt. Gleichzeitig kommen neue Ausgaben dazu, zum Beispiel mehr Geld für die E-Auto-Förderung. Zeit für das fertige Paket haben die Haushälter bis Donnerstagnacht.",
+  "quellen_html": "<a href=\"https://taz.de/Bundeshaushalt-2027/!6228864/\">taz</a> · <a href=\"https://www.zfk.de/politik/strompreis-2027-ueberblick-gewinner-verlierer\">ZfK</a>",
+  "krass": 5
+ },
+ {
+  "datum": "2026-11-11",
+  "id": "m2",
+  "rubrik": "AfD",
+  "titel": "Die AfD gewinnt mit 38 Prozent und regiert trotzdem nicht: In MV kommt Rot-Rot-Grün",
+  "fakt": "SPD, Linke und Grüne haben in Schwerin ihren Koalitionsvertrag vorgestellt. Es wäre die erste rot-rot-grüne Landesregierung in Mecklenburg-Vorpommern. Die AfD war bei der Wahl im September mit 38,2 Prozent stärkste Kraft, fand aber keinen Partner.",
+  "quellen_html": "<a href=\"https://taz.de/Rot-Rot-Gruen-in-Mecklenburg-Vorpommern/!6228883/\">taz</a> · <a href=\"https://web.de/magazine/politik/wahlen/landtagswahlen/mecklenburg-vorpommern/spd-linke-gruene-koalition-mv-42931280\">dpa (web.de)</a>",
+  "krass": 6
+ },
+ {
+  "datum": "2026-11-11",
+  "id": "m3",
+  "rubrik": "Rechts",
+  "titel": "Gruppenfoto mit Hakenkreuzfahne? Razzia bei 17 Hansa-Rostock-Anhängern",
+  "fakt": "Rund 120 Polizisten haben am Dienstag die Wohnungen von 17 mutmaßlichen Hansa-Rostock-Anhängern durchsucht. Laut Staatsanwaltschaft Rostock geht es um gefährliche Körperverletzung und das Verwenden verbotener Kennzeichen. Auslöser ist ein Gruppenfoto aus England.",
+  "quellen_html": "<a href=\"https://nordkurier.de/regional/rostock/rostock/foto-mit-hakenkreuzflagge-bei-schlaegerei-treff-razzien-gegen-hansa-fans-4999382\">Nordkurier</a> · <a href=\"https://heute.at/s/nazi-eklat-grossrazzia-bei-hansa-hooligans-120279433\">heute.at</a>",
+  "krass": 4
+ },
+ {
+  "datum": "2026-11-11",
+  "id": "m4",
+  "rubrik": "Klima",
+  "titel": "Merz wird heute 71, und beim Klimagipfel fehlt er",
+  "fakt": "Auf der Weltklimakonferenz in Antalya treffen sich heute und morgen die Staats- und Regierungschefs. Kanzler Merz reist nicht hin, sein Sprecher sagt laut ZDFheute: „Der Terminkalender ist sehr voll.“ Deutschland schickt Umweltminister Carsten Schneider und Entwicklungsministerin Reem Alabali Radovan.",
+  "quellen_html": "<a href=\"https://www.zdfheute.de/politik/deutschland/merz-weltklimakonferenz-absage-100.html\">ZDFheute</a> · <a href=\"https://www.t-online.de/nachrichten/deutschland/aussenpolitik/id_101514022/weltklimakonferenz-in-antalya-darum-bleibt-merz-der-cop31-fern.html\">t-online</a> · <a href=\"https://www.nw.de/nachrichten/nachrichten/24460216_Die-wichtigsten-EU-Staatschefs-fehlen-auf-der-Klimakonferenz.html\">Neue Westfälische</a>",
+  "krass": 4
+ },
+ {
+  "datum": "2026-11-11",
+  "id": "m5",
+  "rubrik": "Reichtum",
+  "titel": "378 Millionen Dollar gegen 5 Prozent: Kaliforniens Milliardärssteuer fällt durch",
+  "fakt": "Die Wähler in Kalifornien haben die Milliardärssteuer „Prop 40“ laut AP mit 52,8 zu 47,2 Prozent abgelehnt. Geplant war eine einmalige Abgabe von 5 Prozent auf Vermögen über 1 Milliarde Dollar. Die Gegner haben laut CalMatters 378 Millionen Dollar in die Kampagne gesteckt.",
+  "quellen_html": "<a href=\"https://calmatters.org/politics/elections/2026/11/prop-40-billionaire-tax-defeated/\">CalMatters</a> · <a href=\"https://www.npr.org/sections/planet-money/2026/11/10/g-s1-152755/why-did-californias-billionaire-tax-fail-to-surf-the-blue-wave\">NPR</a> · <a href=\"https://www.washingtonpost.com/politics/2026/11/09/california-proposition-40-wealth-tax-billionaires-live-election-results/\">Washington Post</a>",
+  "krass": 6
+ },
+ {
+  "datum": "2026-11-11",
+  "id": "m6",
+  "rubrik": "USA",
+  "titel": "Nur 1 Republikaner stimmt dagegen: Das Hegseth-Impeachment ist erst mal vom Tisch",
+  "fakt": "Das US-Repräsentantenhaus hat den Antrag, Verteidigungsminister Pete Hegseth des Amtes zu entheben, mit 211 zu 204 Stimmen an den Justizausschuss geschickt. Laut ABC ist er damit für diese Legislatur praktisch erledigt. Eingebracht hatte ihn ausgerechnet der Republikaner Thomas Massie.",
+  "quellen_html": "<a href=\"https://abcnews.com/US/hegseth-dismisses-impeachment-effort-political-spectacle/story?id=138002466\">ABC News</a> · <a href=\"https://edition.cnn.com/2026/11/10/politics/live-news/hegseth-impeachment-congress\">CNN</a> · <a href=\"https://www.theglobeandmail.com/world/us-politics/article-hegseth-impeachment-vote-democrats-will-be-gunning-for-him/\">Globe and Mail</a>",
+  "krass": 5
+ },
+ {
+  "datum": "2026-11-11",
+  "id": "m7",
+  "rubrik": "Ukraine",
+  "titel": "4 Stunden in Abu Dhabi: Kiew ist zufrieden, heute geht es um die Gebiete",
+  "fakt": "Zum ersten Mal seit 9 Monaten haben Russland, die Ukraine und die USA wieder direkt verhandelt, rund 4 Stunden lang. Präsident Selenskyj nannte den Austausch „konstruktiv und ziemlich substanziell“. Heute gehen die Gespräche weiter, laut Berliner Zeitung soll es um territoriale Fragen gehen.",
+  "quellen_html": "<a href=\"https://www.berliner-zeitung.de/article/ukraine-russland-abu-dhabi-verhandlungen-ergebnisse-zweiter-tag-10584686\">Berliner Zeitung</a> · <a href=\"https://www.aljazeera.com/news/2026/11/10/russia-ukraine-and-us-to-meet-as-zelenskyy-claims-battlefield-successes\">Al Jazeera</a> · <a href=\"https://www.nbcnews.com/world/ukraine/us-mediated-talks-ending-war-russia-ukraine-begin-abu-dhabi-rcna608499\">NBC News</a>",
+  "krass": 6
+ },
+ {
+  "datum": "2026-11-11",
+  "id": "m8",
+  "rubrik": "Presse",
+  "titel": "Gegründet mit Gorbatschows Nobelpreis-Geld, jetzt macht die Nowaja Gaseta dicht",
+  "fakt": "Die russische Zeitung Nowaja Gaseta hat am Montag ihre Redaktion in Moskau geschlossen. Sie war eine der letzten Stimmen in Russland, die den Krieg gegen die Ukraine offen kritisiert haben. Laut Al Jazeera nennt sie Druck der Behörden als Grund.",
+  "quellen_html": "<a href=\"https://www.aljazeera.com/news/2026/11/9/russian-investigative-newspaper-novaya-gazeta-closes-citing-govt-clampdown\">Al Jazeera</a> · <a href=\"https://www.npr.org/2026/11/10/nx-s1-6034460/russias-most-famous-independent-newspaper-has-shut-down-after-more-than-30-years\">NPR</a> · <a href=\"https://abcnews.com/Business/wireStory/russias-top-independent-newspaper-closes-office-after-decades-138000690\">ABC News</a>",
+  "krass": 5
+ },
+ {
+  "datum": "2026-11-11",
+  "id": "m9",
+  "rubrik": "Medizin",
+  "titel": "Gute Nachricht: Ein neues Mittel soll den 2. Schlaganfall verhindern, die USA lassen es zu",
+  "fakt": "Die US-Arzneimittelbehörde FDA hat das Bayer-Medikament Asundexian zugelassen. Es soll Menschen nach einem leichten bis mittleren Schlaganfall vor einem weiteren schützen. In der großen Studie hatten damit rund 26 Prozent weniger Patienten einen erneuten Schlaganfall.",
+  "quellen_html": "<a href=\"https://www.ajmc.com/view/fda-approves-asundexian-first-fxia-inhibitor-to-prevent-repeat-stroke\">AJMC</a> · <a href=\"https://www.pharmexec.com/view/fda-approves-asundexian-for-secondary-stroke-risk-reduction\">PharmExec</a> · <a href=\"https://www.tctmd.com/news/asundexian-first-factor-xia-inhibitor-gain-fda-approval\">TCTMD</a>",
+  "krass": 4
+ },
+ {
+  "datum": "2026-11-12",
+  "id": "m1",
+  "rubrik": "Haushalt",
+  "titel": "Zuckersteuer später, Plastiksteuer gestrichen, und die Stromsteuer? Immer noch offen",
+  "fakt": "Union und SPD haben sich laut dpa bei mehreren Streitpunkten im Haushalt 2027 geeinigt: Die Zuckersteuer startet erst Anfang 2028, die Plastiksteuer fällt 2027 aus. Für die versprochene Senkung der Stromsteuer fehlen weiter rund 5,4 Milliarden Euro. Heute tagt der Haushaltsausschuss zum letzten Mal, oft bis in den frühen Morgen.",
+  "quellen_html": "<a href=\"https://www.zdfheute.de/politik/deutschland/haushalt-zuckersteuer-plastiksteuer-stromsteuer-100.html\">ZDFheute</a> · <a href=\"https://www.t-online.de/nachrichten/deutschland/id_101524460/koalition-findet-haushalts-kompromisse-zuckersteuer-spaeter.html\">dpa (t-online)</a>",
+  "krass": 5
+ },
+ {
+  "datum": "2026-11-12",
+  "id": "m2",
+  "rubrik": "Rente",
+  "titel": "Angekündigt war 1 Milliarde: Jetzt soll der Bund bei der Rentenkasse 3 Milliarden sparen",
+  "fakt": "Laut Gundula Roßbach, Präsidentin der Deutschen Rentenversicherung Bund, soll der Zuschuss des Bundes 2027 um rund 3 Milliarden Euro sinken. Im Sommer war nur von 1 Milliarde die Rede. Das Arbeitsministerium bestätigt die Zahl laut t-online nicht und verweist auf die laufenden Haushaltsverhandlungen.",
+  "quellen_html": "<a href=\"https://www.t-online.de/nachrichten/deutschland/innenpolitik/id_101523802/rentenversicherung-bund-will-renten-zuschuss-offenbar-deutlich-kuerzen.html\">t-online</a> · <a href=\"https://www.berliner-zeitung.de/article/bund-will-offenbar-drei-milliarden-bei-der-rente-streichen-wer-am-ende-dafuer-zahlt-10588260\">Berliner Zeitung</a>",
+  "krass": 5
+ },
+ {
+  "datum": "2026-11-12",
+  "id": "m3",
+  "rubrik": "Bundeswehr",
+  "titel": "72 Prozent der Soldatinnen wurden in der Truppe schon sexuell belästigt",
+  "fakt": "Laut einer neuen Studie der Bundeswehr wurden 72 Prozent der Soldatinnen und 31 Prozent der Soldaten in ihrer Dienstzeit schon mindestens einmal verbal sexuell belästigt. Die echten Fälle sind laut Studie 3- bis 6-mal so viele wie die gemeldeten. Verteidigungsminister Boris Pistorius (SPD) kündigt „null Toleranz“ und 34 Maßnahmen an.",
+  "quellen_html": "<a href=\"https://www.tagesspiegel.de/politik/belastigungen-und-korperliche-gewalt-dunkelfeldstudie-offenbart-verheerende-zahlen-zu-sexualisiertem-fehlverhalten-bei-der-bundeswehr-16270930.html\">Tagesspiegel</a> · <a href=\"https://www.bmvg.de/de/presse/aktionsplan-massnahmen-betroffenenschutz-6171558\">Verteidigungsministerium</a> · <a href=\"https://taz.de/Dunkelfeldstudie-Sexualisiertes-Fehlverhalten-kommt-bei-der-Bundeswehr-haeufig-vor/!6224335/\">taz</a>",
+  "krass": 6
+ },
+ {
+  "datum": "2026-11-12",
+  "id": "m4",
+  "rubrik": "EU",
+  "titel": "Merz will, dass alle für die Ukraine zahlen, die Slowakei nennt das „Erpressung“",
+  "fakt": "Kanzler Merz verlangt laut ORF, dass ausnahmslos alle EU-Staaten einen fairen Beitrag für die Ukraine leisten. Der slowakische Regierungschef Robert Fico wirft ihm deswegen „Erpressung“ vor, auch Tschechien lehnt ab. Heute und morgen treffen sich Europas Regierungschefs in Dublin.",
+  "quellen_html": "<a href=\"https://orf.at/stories/3447886/\">ORF</a> · <a href=\"https://www.zdfheute.de/politik/ausland/eu-gipfel-irland-hilfen-ukraine-krieg-russland-100.html\">ZDFheute</a>",
+  "krass": 4
+ },
+ {
+  "datum": "2026-11-12",
+  "id": "m5",
+  "rubrik": "Ukraine",
+  "titel": "Trumps Gesandte sitzen bei Putin, und der rückt keinen Meter von seinen Gebietsforderungen ab",
+  "fakt": "Die US-Gesandten Steve Witkoff und Jared Kushner haben Kremlchef Wladimir Putin in Moskau getroffen. Laut dpa bekräftigte Putin, dass für Russland nur eine Grenze infrage kommt, die auch die annektierten ukrainischen Gebiete einschließt. Danach wollen die beiden in Dublin mit Präsident Selenskyj sprechen.",
+  "quellen_html": "<a href=\"https://www.rheinpfalz.de/politik_artikel,-us-vertreter-in-moskau-putin-unbeugsam-bei-gebietsfragen-_arid,5947673.html\">dpa (Rheinpfalz)</a> · <a href=\"https://abcnews.com/International/witkoff-kushner-arrive-moscow-meet-putin-discuss-ukraine/story?id=138070892\">ABC News</a>",
+  "krass": 6
+ },
+ {
+  "datum": "2026-11-12",
+  "id": "m6",
+  "rubrik": "USA",
+  "titel": "Trump holte hier 20 Punkte Vorsprung, jetzt schickt Mississippi einen Demokraten in den Senat",
+  "fakt": "Der Demokrat Scott Colom hat die Senatswahl in Mississippi gegen die Republikanerin Cindy Hyde-Smith gewonnen. Er wird laut CBS der 1. schwarze Senator des Staates seit der Zeit nach dem Bürgerkrieg. Einen Demokraten hat Mississippi seit 1982 nicht mehr in den Senat gewählt.",
+  "quellen_html": "<a href=\"https://www.cbsnews.com/news/mississippi-2026-senate-scott-colom-cindy-hyde-smith/\">CBS News</a> · <a href=\"https://taz.de/US-Kongresswahlen/!6229412/\">taz</a>",
+  "krass": 5
+ },
+ {
+  "datum": "2026-11-12",
+  "id": "m7",
+  "rubrik": "Gaza",
+  "titel": "Die Zelte stehen unter Wasser, und laut UN warten 150.000 neue vor der Grenze",
+  "fakt": "Nach schweren Regenfällen sind in Gaza zehntausende Zelte überflutet. Laut UN liegen mehr als 150.000 Zelte außerhalb Gazas bereit, es fehle nur die Genehmigung der israelischen Behörden. Gleichzeitig traf ein israelischer Luftangriff laut Al Jazeera das Nasser-Krankenhaus in Chan Yunis, mindestens 6 Menschen starben.",
+  "quellen_html": "<a href=\"https://news.un.org/en/story/2026/11/1168766\">UN News</a> · <a href=\"https://www.aljazeera.com/amp/news/2026/11/11/israeli-strikes-hit-tent-camp-as-five-killed-in-gaza\">Al Jazeera</a>",
+  "krass": 7
+ },
+ {
+  "datum": "2026-11-12",
+  "id": "m8",
+  "rubrik": "Gesundheit",
+  "titel": "Gute Nachricht: Die Spritze, die fast komplett vor HIV schützt, gibt es bald für 40 Dollar im Jahr",
+  "fakt": "Die US-Arzneimittelbehörde FDA hat Anfang November laut STAT das 1. Generikum von Lenacapavir vorläufig zugelassen. Die Spritze wird 2-mal im Jahr gegeben und schützt fast vollständig vor einer HIV-Infektion. Die günstige Version vom indischen Hersteller Dr. Reddy's soll rund 40 Dollar pro Person und Jahr kosten.",
+  "quellen_html": "<a href=\"https://healthpolicy-watch.news/fda-approves-first-generic-of-hiv-prevention-drug-lenacapavir/\">Health Policy Watch</a> · <a href=\"https://www.statnews.com/pharmalot/2026/11/02/lenacapavir-generic-version-approved-fda-hiv-prevention-dr-reddys/\">STAT</a>",
+  "krass": 6
+ },
+ {
+  "datum": "2026-11-13",
+  "id": "m1",
+  "rubrik": "Haushalt",
+  "titel": "Keine Kürzung, aber bis 2028 auch kein Cent mehr: Nullrunde bei der Grundsicherung",
+  "fakt": "Laut t-online, dpa und AFP ist eine Kürzung der Grundsicherung um 5 bis 7 Euro vom Tisch, die Regelsätze bleiben aber bis Mitte 2028 gleich. Die Wohngeld-Erhöhung zum 1. Januar 2027 fällt aus. Für eine Stromsteuer-Senkung für alle fehlen weiter rund 5,4 Milliarden Euro, in der Union gibt es deswegen Ärger.",
+  "quellen_html": "<a href=\"https://www.t-online.de/nachrichten/deutschland/innenpolitik/id_101525382/haushalt-2027-auf-diese-steuererhoehungen-hat-sich-die-regierung-geeinigt.html\">t-online / dpa</a> · <a href=\"https://www.wiwo.de/politik/deutschland/haushalt-2027-koalition-findet-kompromisse-fuer-etat-stromsteuer-ungeloest/100269300.html\">WirtschaftsWoche</a> · <a href=\"https://www.handelsblatt.com/politik/deutschland/haushaltsberatung-die-nacht-der-milliarden-im-bundestag/100269269.html\">Handelsblatt</a>",
+  "krass": 6
+ },
+ {
+  "datum": "2026-11-13",
+  "id": "m2",
+  "rubrik": "AfD",
+  "titel": "Erst „gut vernetzt“ mit Geheimdiensten, jetzt war alles nur „irreführend“: Keuter rudert zurück",
+  "fakt": "Der stellvertretende AfD-Fraktionschef Stefan Keuter zieht laut dpa seine Aussage zurück, die Fraktion habe Kontakte zu russischen und amerikanischen Geheimdiensten. Er nennt sie jetzt „irreführend und sachlich unzutreffend“. Intern soll er deswegen unter Druck geraten sein.",
+  "quellen_html": "<a href=\"https://www.onvista.de/news/2026/11-12-afd-politiker-zieht-geheimdienst-aussage-zurueck-0-10-26575763\">dpa-AFX (onvista)</a> · <a href=\"https://www.finanznachrichten.de/nachrichten-2026-11/70114102-afd-politiker-zieht-geheimdienst-aussage-zurueck-016.htm\">dpa-AFX (finanznachrichten)</a>",
+  "krass": 5
+ },
+ {
+  "datum": "2026-11-13",
+  "id": "m3",
+  "rubrik": "Überwachung",
+  "titel": "Hacken, heimlich in Wohnungen, KI-Auswertung: Der Bundestag hat die Geheimdienst-Reform durchgewunken",
+  "fakt": "Der Bundestag hat heute laut Bundestag mit 308 zu 190 Stimmen bei 71 Enthaltungen die Reform beschlossen, die dem Bundesnachrichtendienst und dem Verfassungsschutz neue Rechte gibt. Union und SPD stimmten dafür, AfD und Linke dagegen, die Grünen enthielten sich. Kritiker rechnen damit, dass das Gesetz vor dem Bundesverfassungsgericht landet.",
+  "quellen_html": "<a href=\"https://www.bundestag.de/dokumente/textarchiv/2026/kw46-de-nachrichtendienste-1231530\">Bundestag</a> · <a href=\"https://www.zdfheute.de/politik/deutschland/nachrichtendienst-reform-bundestag-bnd-gesetz-100.html\">ZDFheute</a> · <a href=\"https://www.berliner-zeitung.de/article/bundestag-beschliesst-geheimdienstreform-10594633\">Berliner Zeitung</a>",
+  "krass": 7
+ },
+ {
+  "datum": "2026-11-13",
+  "id": "m4",
+  "rubrik": "Klima",
+  "titel": "„Echt? Das machen die immer noch?“ Greta lacht über Fridays for Future, und heute wird trotzdem gestreikt",
+  "fakt": "In einer Doku-Szene reagiert Greta Thunberg laut Tagesspiegel mit Lachen darauf, dass Fridays for Future in Deutschland weiter protestiert. Das Video geht gerade viral. Luisa Neubauer reagiert gelassen, heute gibt es laut ihr Proteste in rund 70 Orten.",
+  "quellen_html": "<a href=\"https://www.tagesspiegel.de/internationales/echt-das-machen-die-immer-nochgreta-thunberg-lacht-nach-frage-zu-deutschen-fridays-for-future-protesten-16277475.html\">Tagesspiegel</a>",
+  "krass": 3
+ },
+ {
+  "datum": "2026-11-13",
+  "id": "m5",
+  "rubrik": "Gaza",
+  "titel": "Waffenruhe, aber Bomben aufs Krankenhaus: Beim Angriff auf die Nasser-Klinik sterben 6 Menschen",
+  "fakt": "Ein israelischer Luftangriff auf das Nasser-Krankenhaus in Chan Junis hat laut Klinikleitung 6 Menschen getötet, darunter einen Chirurgen, und 28 verletzt. Israels Armee sagt, sie habe einen Hamas-Kommandeur angegriffen, Beweise nannte sie laut Irish Times nicht. Dabei gilt seit Oktober 2025 eine Waffenruhe.",
+  "quellen_html": "<a href=\"https://www.irishtimes.com/world/middle-east/2026/11/12/israeli-air-strike-on-nasser-hospital-in-gaza-kills-six/\">Irish Times</a> · <a href=\"https://www.aljazeera.com/news/2026/11/11/israeli-strikes-hit-tent-camp-as-five-killed-in-gaza\">Al Jazeera</a> · <a href=\"https://www.nbcnews.com/world/middle-east/israeli-strike-gaza-nasser-hospital-abu-shaira-doctor-hamas-rcna608932\">NBC News</a>",
+  "krass": 7
+ },
+ {
+  "datum": "2026-11-13",
+  "id": "m6",
+  "rubrik": "Ukraine",
+  "titel": "Putin will 5 Tage Waffenruhe für eine Stadt, Kiew traut dem Angebot nicht",
+  "fakt": "Putin hat Trumps Gesandten Steve Witkoff und Jared Kushner laut dpa eine 5-tägige Waffenruhe für die Stadt Kostjantyniwka im Gebiet Donezk vorgeschlagen. Kiew lehnt ab. Witkoff kündigt eine neue Gesprächsrunde mit der Ukraine, Russland und den USA an.",
+  "quellen_html": "<a href=\"https://www.ariva.de/news/roundup-putin-schlaegt-waffenruhe-fuer-kostjantyniwka-im-12205446\">dpa-AFX (ariva)</a> · <a href=\"https://en.interfax.com.ua/news/general/1235718.html\">Interfax-Ukraine</a> · <a href=\"https://www.euronews.com/2026/11/11/russian-ambassador-to-the-us-dies-russias-foreign-ministry-announced\">Euronews</a>",
+  "krass": 6
+ },
+ {
+  "datum": "2026-11-13",
+  "id": "m7",
+  "rubrik": "Iran",
+  "titel": "Der Krieg ist „vorüber“? Iran meldet Angriff auf ein US-Radar, die USA sagen: alles abgefangen",
+  "fakt": "Die iranischen Revolutionsgarden behaupten laut AFP, sie hätten ein US-Frühwarnradar in Bahrain zerstört. Das US-Militär bestreitet das und sagt, es habe 2 Drohnen ohne Schaden abgeschossen. Außerdem ist US-Finanzminister Scott Bessent laut US-Medien wegen iranischer Drohungen auf eine Militärbasis gezogen.",
+  "quellen_html": "<a href=\"https://de.euronews.com/2026/11/13/wollen-usa-iran-krieg-beenden-revolutionsgarden-melden-angriff-auf-us-radar-in-bahrain\">Euronews</a> · <a href=\"https://www.berliner-zeitung.de/article/iran-revolutionsgarden-melden-angriff-auf-us-radaranlage-in-bahrain-explosion-auf-lng-tanker-10593632\">Berliner Zeitung</a> · <a href=\"https://thehill.com/homenews/administration/6213592-bessent-moves-military-base/\">The Hill</a>",
+  "krass": 5
+ },
+ {
+  "datum": "2026-11-13",
+  "id": "m8",
+  "rubrik": "Tech",
+  "titel": "Der wichtigste Mann im KI-Boom ist weg: Jensen Huang tritt bei Nvidia zurück",
+  "fakt": "Nvidia-Chef Jensen Huang ist laut Konzern mit sofortiger Wirkung zurückgetreten, Finanzchefin Colette Kress übernimmt übergangsweise. Laut NBC News gab es vorher Berichte über mehrere Affären, eine davon mit einer Frau, die eine chinesische Agentin sein soll. China weist die Spionage-Vorwürfe zurück.",
+  "quellen_html": "<a href=\"https://www.nbcnews.com/tech/tech-news/nvidia-ceo-jensen-huang-resigns-reports-extramarital-relationships-rcna608402\">NBC News</a> · <a href=\"https://www.bostonglobe.com/2026/11/12/business/nvidia-ceo-resigns-heres-what-we-know/\">Boston Globe</a> · <a href=\"https://nvidianews.nvidia.com/news/nvidia-announces-ceo-transition\">Nvidia</a>",
+  "krass": 6
+ },
+ {
+  "datum": "2026-11-13",
+  "id": "m9",
+  "rubrik": "Reichtum",
+  "titel": "Mehr Leute zahlen Steuern, nur die Reichsten zahlen weniger: In Frankreich sinkt die Steuer der obersten 0,1 Prozent um 9 Prozent",
+  "fakt": "Laut Zahlen der französischen Steuerbehörde, über die IBTimes berichtet, haben die reichsten 0,1 Prozent in Frankreich 2025 im Schnitt 9 Prozent weniger Einkommensteuer gezahlt. Die meisten anderen Gruppen zahlten mehr. Insgesamt stieg die Einkommensteuer um 1 Prozent auf 92,6 Milliarden Euro.",
+  "quellen_html": "<a href=\"https://fr.ibtimes.com/france-income-tax-households-richest-taxpayers-2025-105294\">IBTimes</a> · <a href=\"https://nachrichten.fr/13-000-wohlhabende-haushalte-zahlen-keine-einkommensteuer-symptom-einer-ueberkomplexen-steuerarchitektur/\">nachrichten.fr</a> · <a href=\"https://www.stuttgarter-zeitung.de/wirtschaft/milliardaere-die-masse-zahlt-mehr-milliardaere-weniger-79688135.html\">Stuttgarter Zeitung</a>",
+  "krass": 5
+ },
+ {
+  "datum": "2026-11-13",
+  "id": "m10",
+  "rubrik": "Gesundheit",
+  "titel": "Gute Nachricht: Auf Barbados wird kein Baby mehr bei der Geburt mit HIV angesteckt",
+  "fakt": "Die Weltgesundheitsorganisation hat laut PAHO bestätigt, dass Barbados die Übertragung von HIV von Müttern auf ihre Kinder beendet hat. Von 2022 bis 2024 gab es dort keinen einzigen Fall. Möglich machen das kostenlose Tests und Behandlung für alle Schwangeren.",
+  "quellen_html": "<a href=\"https://www.paho.org/en/news/30-10-2026-barbados-eliminates-mother-child-transmission-hiv\">PAHO / WHO</a> · <a href=\"https://jamaica-gleaner.com/article/news/20261102/barbados-eliminates-mother-child-transmission-hiv\">Jamaica Gleaner</a> · <a href=\"https://www.positive.news/society/good-news-stories-from-week-45-of-2026/\">Positive News</a>",
+  "krass": 4
+ },
+ {
+  "datum": "2026-11-14",
+  "id": "m1",
+  "rubrik": "Haushalt",
+  "titel": "Rekordhaushalt steht, aber für die Stromsteuer ist immer noch kein Geld da",
+  "fakt": "Nach rund 16 Stunden hat der Haushaltsausschuss laut dpa den Bundeshaushalt 2027 fertig gemacht: rund 560,9 Milliarden Euro Ausgaben, so viel wie nie. Die Senkung der Stromsteuer für alle ist darin nicht bezahlt, dafür fehlen rund 5,4 Milliarden Euro. Am Dienstag will die Koalition darüber sprechen.",
+  "quellen_html": "<a href=\"https://www.t-online.de/nachrichten/deutschland/id_101526942/haushalt-bereit-fuer-bundestag-weiter-ohne-stromsteuer.html\">t-online / dpa</a> · <a href=\"https://www.haufe.de/steuern/gesetzgebung-politik/bundeshaushalt-2027-weiter-ohne-stromsteuersenkung_168_703176.html\">Haufe</a> · <a href=\"https://www.ad-hoc-news.de/politik/bundeshaushalt-2027-steht-5-4-milliarden-fuer-stromsteuer-fehlen/70502458\">ad-hoc-news</a>",
+  "krass": 5
+ },
+ {
+  "datum": "2026-11-14",
+  "id": "m2",
+  "rubrik": "AfD",
+  "titel": "28 Prozent für die AfD, und Schwarz-Rot hat keine eigene Mehrheit mehr",
+  "fakt": "Im neuen ZDF-Politbarometer legt die AfD um 2 Punkte auf 28 Prozent zu, die Union fällt auf 22 Prozent. Die SPD kommt nur noch auf 13 Prozent, die Grünen überholen sie mit 15 Prozent. Union und SPD hätten zusammen keine Mehrheit mehr.",
+  "quellen_html": "<a href=\"https://www.t-online.de/nachrichten/deutschland/umfragen/id_101527128/umfrage-afd-legt-zu-spd-und-cdu-csu-ohne-mehrheit.html\">t-online</a> · <a href=\"https://berliner-zeitung.de/article/afd-vergroessert-vorsprung-zur-union-im-zdf-politbarometer-10593935\">Berliner Zeitung</a>",
+  "krass": 6
+ },
+ {
+  "datum": "2026-11-14",
+  "id": "m3",
+  "rubrik": "AfD",
+  "titel": "Weltmeister von 1990, später bei „Querdenken“: Die AfD will Thomas Berthold zum Bundespräsidenten machen",
+  "fakt": "Nach Informationen der dpa will die AfD den Fußball-Weltmeister von 1990, Thomas Berthold, als Kandidaten für die Wahl des Bundespräsidenten aufstellen. Entscheiden soll das heute der Bundesvorstand mit den Landeschefs. Chancen hat er kaum: Union und SPD schicken Ilse Aigner (CSU) ins Rennen.",
+  "quellen_html": "<a href=\"https://www.t-online.de/sport/fussball/id_101528146/bundespraesidenten-wahl-afd-will-weltmeister-thomas-berthold-nominieren.html\">t-online / dpa</a>",
+  "krass": 4
+ },
+ {
+  "datum": "2026-11-14",
+  "id": "m4",
+  "rubrik": "Arbeit",
+  "titel": "Länger arbeiten oder Werke dicht? Mercedes stoppt alle Investitionen in Deutschland",
+  "fakt": "Mercedes-Benz legt laut heise und ZDF alle neuen Investitionen an deutschen Standorten auf Eis und prüft, Werke zu schließen. Hintergrund ist der Streit mit Betriebsrat und IG Metall, der Konzern will laut ZDF weg von der 35-Stunden-Woche ohne Lohnausgleich. Die Arbeitnehmerseite lehnt Werksschließungen klar ab.",
+  "quellen_html": "<a href=\"https://www.heise.de/news/Mercedes-stoppt-Investitionen-in-Deutschland-und-prueft-Werksschliessungen-11523770.html\">heise</a> · <a href=\"https://www.zdfheute.de/wirtschaft/unternehmen/investitionen-deutschland-kostensenkungen-werksschliessungen-stopp-100.html\">ZDFheute</a> · <a href=\"https://autohaus.de/nachrichten/autohandel/investitionsstopp-mercedes-prueft-moegliche-werksschliessungen-3934716\">autohaus.de</a>",
+  "krass": 6
+ },
+ {
+  "datum": "2026-11-14",
+  "id": "m5",
+  "rubrik": "Familie",
+  "titel": "Mehr Geld am Anfang, weniger am Ende: So will die Regierung das Elterngeld umbauen",
+  "fakt": "Das Kabinett hat laut ZDFheute die Elterngeld-Reform von Familienministerin Karin Prien (CDU) beschlossen. Es bleibt bei 14 Monaten, aber jedes Elternteil hat künftig 4 feste Monate statt 2. Am Anfang gibt es mehr Geld, später weniger, Sozialverbände und Grüne kritisieren die Erhöhung als zu klein.",
+  "quellen_html": "<a href=\"https://www.zdfheute.de/politik/deutschland/elterngeldreform-bundeskabinett-100.html\">ZDFheute</a> · <a href=\"https://www.t-online.de/nachrichten/deutschland/id_101528212/kabinett-einigt-sich-auf-elterngeldreform.html\">t-online</a> · <a href=\"https://www.handelsblatt.com/politik/deutschland/gesetzesaenderung-kabinett-einigt-sich-auf-elterngeldreform/100269780.html\">Handelsblatt</a>",
+  "krass": 5
+ },
+ {
+  "datum": "2026-11-14",
+  "id": "m6",
+  "rubrik": "Umwelt",
+  "titel": "Dein Kaffee soll keinen Regenwald mehr kosten: Der Bundestag beschließt das Gesetz gegen Entwaldung",
+  "fakt": "Der Bundestag hat laut Utopia und Bundestag das deutsche Gesetz zur EU-Entwaldungsverordnung beschlossen. Kaffee, Kakao, Soja, Holz und andere Waren dürfen nur noch in die EU, wenn dafür seit Ende 2020 kein Wald gerodet wurde. Die Regeln sollen ab 30. Dezember gelten, Waldbesitzer kritisieren hohe Strafen.",
+  "quellen_html": "<a href=\"https://utopia.de/news/betrifft-kaffee-kakao-und-soja-bundestag-beschliesst-gesetz-gegen-entwaldung_992632/\">Utopia</a> · <a href=\"https://www.bundestag.de/presse/hib/kurzmeldungen-1232810\">Bundestag</a> · <a href=\"https://agrarzeitung.de/nachrichten/politik/eudr-verordnung-bundestag-beschliesst-vorschriften-gegen-entwaldung-160187\">Agrarzeitung</a>",
+  "krass": 4
+ },
+ {
+  "datum": "2026-11-14",
+  "id": "m7",
+  "rubrik": "Iran",
+  "titel": "„Wir brauchen keinen Deal mit dem Iran“: Trump stellt seinen Vize Vance kalt",
+  "fakt": "Trump hat laut Al Jazeera seinen Vize JD Vance angewiesen, die Iran-Gespräche ruhen zu lassen, und geschrieben, die USA bräuchten keinen Deal. Gleichzeitig sagt Trump, Saudi-Arabien, Katar und andere Golfstaaten hätten ihn gebeten, mit neuen großen Angriffen zu warten. Die Seeblockade in der Straße von Hormus bleibt.",
+  "quellen_html": "<a href=\"https://www.aljazeera.com/features/2026/11/13/why-is-trump-saying-no-deal-necessary-with-iran-as-he-sidelines-jd-vance\">Al Jazeera</a> · <a href=\"https://www.dawn.com/news/2044218\">Dawn</a> · <a href=\"https://www.aljazeera.com/news/liveblog/2026/11/13/iran-war-live-riyadh-china-discuss-houthis-as-group-claims-aramco-attacks\">Al Jazeera Liveblog</a>",
+  "krass": 6
+ },
+ {
+  "datum": "2026-11-14",
+  "id": "m8",
+  "rubrik": "USA",
+  "titel": "Trump, Xi und Putin an einem Tisch: Zum ersten Mal treffen sich die 3 Atommächte",
+  "fakt": "Das Weiße Haus hat laut CNN angekündigt, dass sich Trump nächste Woche in China gemeinsam mit Xi Jinping und Wladimir Putin trifft, zum ersten Mal in dieser Runde. Thema sollen vor allem Atomwaffen sein, auch über den Iran wollen sie reden. Die USA dämpfen die Erwartungen.",
+  "quellen_html": "<a href=\"https://www.cnn.com/2026/11/13/politics/trump-putin-xi-meeting\">CNN</a> · <a href=\"https://www.washingtonpost.com/politics/2026/11/13/trump-meet-with-putin-xi-jinping/\">Washington Post</a> · <a href=\"https://aa.com.tr/en/asia-pacific/trump-to-hold-trilateral-talks-with-xi-putin-in-china-next-week-white-house/4124821\">Anadolu</a>",
+  "krass": 6
+ },
+ {
+  "datum": "2026-11-14",
+  "id": "m9",
+  "rubrik": "Ukraine",
+  "titel": "Erst verhandeln, dann eine der größten Drohnen-Nächte des Kriegs",
+  "fakt": "Nach den Gesprächen über ein Kriegsende melden Russland und die Ukraine laut dpa neue schwere Drohnenangriffe. Russland schickte laut ukrainischen Behörden 117 Drohnen, in Sumy starben 2 Menschen. Russland meldet Tote in Wolgograd und Samara und spricht von über 1.000 abgefangenen Drohnen.",
+  "quellen_html": "<a href=\"https://www.zdfheute.de/politik/ausland/ukraine-russland-konflikt-blog-102.html\">ZDFheute</a> · <a href=\"https://boerse.de/nachrichten/ROUNDUP-2-Ukraine-und-Russland-melden-nach-Drohnenangriffen-Tote-und-Verletzte/38719618\">dpa-AFX (boerse.de)</a>",
+  "krass": 5
+ },
+ {
+  "datum": "2026-11-14",
+  "id": "m10",
+  "rubrik": "Rechts",
+  "titel": "Über 20 Schusswaffen und Werbung bei Jugendlichen: Spanien zerschlägt die Neonazi-Gruppe Núcleo Nacional",
+  "fakt": "Die spanische Polizei hat laut Euronews bei einer Razzia gegen die Neonazi-Gruppe Núcleo Nacional 14 Menschen festgenommen und mehr als 20 Schusswaffen gefunden. Die Gruppe soll gezielt Jugendliche angeworben haben. Eine Richterin hat ihre Aktivitäten gestoppt und die Büros schließen lassen.",
+  "quellen_html": "<a href=\"https://de.euronews.com/2026/11/13/polizei-zerschlagt-neonazi-gruppe-waffenarsenal-beschlagnahmt\">Euronews</a> · <a href=\"https://www.diaridetarragona.com/espana/275089/policia-nacional-detiene-12-miembros-grupo-neonazi-nucleo-nacional-siete-provincias.html\">Diari de Tarragona</a>",
+  "krass": 5
+ },
+ {
+  "datum": "2026-11-14",
+  "id": "m11",
+  "rubrik": "Klima",
+  "titel": "Gute Nachricht: Chinas CO2-Ausstoß sinkt so stark wie seit Jahren nicht",
+  "fakt": "Chinas CO2-Ausstoß ist im dritten Quartal laut einer Analyse für Carbon Brief um 3,1 Prozent gesunken, so stark wie seit Jahren nicht. Weniger Kohlestrom, mehr Elektroautos und weniger Öl im Verkehr haben dazu beigetragen. Seit März 2024 stagniert oder sinkt der Ausstoß.",
+  "quellen_html": "<a href=\"https://www.carbonbrief.org/analysis-chinas-quarterly-co2-falls-3-in-largest-drop-since-covid\">Carbon Brief</a> · <a href=\"https://www.infranken.de/deutschland/chinas-co2-ausstoss-laut-analyse-deutlich-gesunken-art-6409118,PRINT\">dpa (inFranken)</a>",
+  "krass": 5
+ }
 ]
