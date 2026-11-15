@@ -430,5 +430,86 @@
   "fakt": "Chinas CO2-Ausstoß ist im dritten Quartal laut einer Analyse für Carbon Brief um 3,1 Prozent gesunken, so stark wie seit Jahren nicht. Weniger Kohlestrom, mehr Elektroautos und weniger Öl im Verkehr haben dazu beigetragen. Seit März 2024 stagniert oder sinkt der Ausstoß.",
   "quellen_html": "<a href=\"https://www.carbonbrief.org/analysis-chinas-quarterly-co2-falls-3-in-largest-drop-since-covid\">Carbon Brief</a> · <a href=\"https://www.infranken.de/deutschland/chinas-co2-ausstoss-laut-analyse-deutlich-gesunken-art-6409118,PRINT\">dpa (inFranken)</a>",
   "krass": 5
+ },
+ {
+  "datum": "2026-11-15",
+  "id": "m1",
+  "rubrik": "Landtag",
+  "titel": "Die AfD gewinnt die Wahl in MV und regiert trotzdem nicht: Rot-Rot-Grün steht",
+  "fakt": "SPD, Linke und Grüne haben am Samstag laut dpa ihren Koalitionsvertrag in Mecklenburg-Vorpommern unterschrieben, es ist die erste rot-rot-grüne Regierung im Land. Zusammen haben sie 39 von 71 Sitzen. Die AfD wurde im September mit 38,2 Prozent stärkste Kraft und ist jetzt die einzige Opposition.",
+  "quellen_html": "<a href=\"https://www.berliner-zeitung.de/article/spd-stimmt-koalitionsvertrag-in-mecklenburg-vorpommern-zu-10597428\">Berliner Zeitung</a> · <a href=\"https://www.ad-hoc-news.de/politik/mecklenburg-vorpommern-spd-linke-und-gruene-besiegeln-buendnis/70512577\">ad-hoc-news / dpa</a>",
+  "krass": 5
+ },
+ {
+  "datum": "2026-11-15",
+  "id": "m2",
+  "rubrik": "AfD",
+  "titel": "15 Städte, 1 Forderung: Lasst ein AfD-Verbot endlich prüfen",
+  "fakt": "Die Initiative „Prüf“ hatte für Samstag zu Kundgebungen in 15 Landeshauptstädten aufgerufen, in Bremen kamen laut Radio Bremen rund 300 Menschen. Die Forderung: Der Bundesrat soll beim Bundesverfassungsgericht beantragen, die AfD zu prüfen. Laut der Initiative fehlen dafür noch 4 Stimmen.",
+  "quellen_html": "<a href=\"https://www.butenunbinnen.de/nachrichten/pruef-demo-bremen-100.html\">buten un binnen</a> · <a href=\"https://www.campact.de/blog/landesweite-pruef-demos-zum-afd-verbot/\">Campact (Unterstützer)</a>",
+  "krass": 4
+ },
+ {
+  "datum": "2026-11-15",
+  "id": "m3",
+  "rubrik": "AfD",
+  "titel": "Chrupalla will keine „unschönen Bilder“ bei Abschiebungen, Weidel postet „Remigration“",
+  "fakt": "Co-Parteichef Tino Chrupalla hat in einem Video das Vorgehen der US-Abschiebebehörde ICE kritisiert, laut dpa will er solche „unschönen Bilder“ in Deutschland nicht sehen. Alice Weidel widersprach ihm öffentlich. Laut Spiegel sollen ihm auch in der Fraktion etliche Abgeordnete widersprochen haben.",
+  "quellen_html": "<a href=\"https://www.tagesspiegel.de/politik/migrationsstreit-bei-der-afd-die-hardliner-um-weidel-zeigen-chrupalla-offenbar-seine-grenzen-auf-16283415.html\">Tagesspiegel</a> · <a href=\"https://www.migazin.de/2026/11/12/nach-trump-niederlage-afd-angst-unschoenen-bildern-bei-abschiebungen/\">MiGAZIN / dpa</a>",
+  "krass": 4
+ },
+ {
+  "datum": "2026-11-15",
+  "id": "m4",
+  "rubrik": "Kanzler",
+  "titel": "Reformen „jetzt“, aber welche? Merz gibt zu, dass er „Deutschland 2040“ nicht gut genug erklärt hat",
+  "fakt": "Auf dem CDU-Landesparteitag in Neumünster hat Kanzler Merz laut dpa schnelle Reformen gefordert, aber keine Details genannt. Er räumte ein, sein Zielbild „Deutschland 2040“ nicht immer ausreichend erklärt zu haben. Vor der Halle protestierten Gewerkschaften gegen die Pläne bei Rente und Arbeitszeit.",
+  "quellen_html": "<a href=\"https://www.rheinpfalz.de/politik_artikel,-merz-r%C3%A4umt-ein-deutschland-2040-nicht-gut-genug-erkl%C3%A4rt-_arid,5948494.html\">Rheinpfalz / dpa</a> · <a href=\"https://www.kreisbote.de/politik/merz-raeumt-ein-deutschland-2040-nicht-gut-genug-erklaert-zr-94590154.html\">Kreisbote / dpa</a>",
+  "krass": 4
+ },
+ {
+  "datum": "2026-11-15",
+  "id": "m5",
+  "rubrik": "USA",
+  "titel": "4 Stunden kein einziger Abflug in den USA, und jetzt will Trumps Minister 50 Milliarden",
+  "fakt": "Wegen einer Störung der Flugsicherung durfte am Freitag in den USA gut 4 Stunden lang kein Flugzeug starten, laut Al Jazeera der längste landesweite Stopp seit 25 Jahren. Über 4.700 Flüge fielen aus. Verkehrsminister Sean Duffy macht alte Technik verantwortlich und fordert 50 Milliarden Dollar.",
+  "quellen_html": "<a href=\"https://www.aljazeera.com/news/2026/11/14/faa-ground-stop-lifted-why-were-us-flights-grounded-and-whats-next\">Al Jazeera</a> · <a href=\"https://www.cnn.com/2026/11/13/us/live-news/flights-ground-stop-faa\">CNN</a> · <a href=\"https://www.cnbc.com/2026/11/13/faa-ground-stop.html\">CNBC</a>",
+  "krass": 4
+ },
+ {
+  "datum": "2026-11-15",
+  "id": "m6",
+  "rubrik": "Ungarn",
+  "titel": "Fast 18 Millionen Euro, teils im Wald vergraben: Ermittler finden Bargeld im Fall eines Orbán-Ministers",
+  "fakt": "Ungarns Anti-Korruptionsbehörde hat laut dpa Bargeld im Wert von rund 17,7 Millionen Euro gefunden, teils im Wald vergraben, teils in Lagerhallen und Tresoren. Es geht um ein Verfahren gegen Miklós Seszták, Entwicklungsminister unter Viktor Orbán. Er soll Schmiergeld angenommen haben und bestreitet die Vorwürfe.",
+  "quellen_html": "<a href=\"https://www.handelsblatt.com/politik/international/orbans-ex-minister-im-wald-vergraben-ermittler-in-ungarn-finden-millionen-euro/100269922.html\">Handelsblatt / dpa</a> · <a href=\"https://orf.at/stories/3448196/\">ORF</a>",
+  "krass": 5
+ },
+ {
+  "datum": "2026-11-15",
+  "id": "m7",
+  "rubrik": "Ukraine",
+  "titel": "Keine Waffen, kein Geld: Bulgarien steigt bei der Ukraine-Hilfe aus",
+  "fakt": "Bulgariens Regierungschef Rumen Radew hat laut t-online angekündigt, keine Waffen und Munition aus Armeebeständen mehr an die Ukraine zu liefern. An der neuen Runde europäischer Finanzhilfen will sich Bulgarien auch nicht beteiligen. Als Grund nennt er Probleme mit dem eigenen Haushalt.",
+  "quellen_html": "<a href=\"https://www.t-online.de/nachrichten/ausland/internationale-politik/id_101529134/krieg-in-der-ukraine-nato-land-will-ukraine-keine-waffen-mehr-liefern.html\">t-online</a> · <a href=\"https://de.euronews.com/2026/06/10/bulgarien-waffenlieferungen-ukraine\">Euronews</a>",
+  "krass": 5
+ },
+ {
+  "datum": "2026-11-15",
+  "id": "m8",
+  "rubrik": "Klima",
+  "titel": "840 Milliarden fehlen jedes Jahr: UN-Chef Guterres will die Übergewinne von Öl und Gas besteuern",
+  "fakt": "Auf dem Klimagipfel COP31 in Antalya geht es vor allem ums Geld: Laut einer Analyse könnten der Klimafinanzierung bei den aktuellen Trends jedes Jahr 840 Milliarden Dollar fehlen. UN-Generalsekretär Guterres fordert eine Steuer auf Übergewinne fossiler Konzerne. Verhandelt wird noch bis zum 20. November.",
+  "quellen_html": "<a href=\"https://news.un.org/en/story/2026/11/1168802\">UN News</a>",
+  "krass": 4
+ },
+ {
+  "datum": "2026-11-15",
+  "id": "m9",
+  "rubrik": "Wohnen",
+  "titel": "Gute Nachricht: In Minnesota bleibt kein Veteran mehr lange obdachlos, das Ziel heißt 90 Tage bis zur Wohnung",
+  "fakt": "Minnesota hat laut seiner Regierung das Ziel erreicht, Obdachlosigkeit unter Veteranen „effektiv“ zu beenden. Das heißt: Wer obdachlos wird, soll innerhalb von 90 Tagen eine feste Wohnung bekommen. Als letzter Landkreis hat Ramsey County das geschafft.",
+  "quellen_html": "<a href=\"https://kstp.com/kstp-news/top-news/minnesota-announces-effective-end-to-veteran-homelessness-achieving-decades-long-goal/\">KSTP</a>",
+  "krass": 3
  }
 ]
