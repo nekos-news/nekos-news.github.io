@@ -511,5 +511,86 @@
   "fakt": "Minnesota hat laut seiner Regierung das Ziel erreicht, Obdachlosigkeit unter Veteranen „effektiv“ zu beenden. Das heißt: Wer obdachlos wird, soll innerhalb von 90 Tagen eine feste Wohnung bekommen. Als letzter Landkreis hat Ramsey County das geschafft.",
   "quellen_html": "<a href=\"https://kstp.com/kstp-news/top-news/minnesota-announces-effective-end-to-veteran-homelessness-achieving-decades-long-goal/\">KSTP</a>",
   "krass": 3
+ },
+ {
+  "datum": "2026-11-16",
+  "id": "m1",
+  "rubrik": "AfD",
+  "titel": "Zum ersten Mal überholt die AfD in NRW die SPD",
+  "fakt": "Im neuen NRW-Trend von Infratest dimap für den WDR kommt die AfD auf 18 Prozent und wäre damit erstmals zweitstärkste Kraft im Land. Die SPD rutscht auf 16 Prozent und landet hinter den Grünen mit 17 Prozent. Die CDU bleibt mit 30 Prozent vorn, verliert aber 2 Punkte.",
+  "quellen_html": "<a href=\"https://hasepost.de/cdu-in-nrw-weiter-vorn-afd-erstmals-zweitstaerkste-kraft-778317/\">Hasepost / dts</a> · <a href=\"https://www.ad-hoc-news.de/politik/nrw-umfrage-cdu-bleibt-vorn-afd-ueberholt-spd/70516558\">ad-hoc-news</a> · <a href=\"https://koeln.t-online.de/region/koeln/id_101529714/umfrage-schock-in-nrw-afd-zieht-an-spd-vorbei-cdu-verliert.html\">t-online</a>",
+  "krass": 6
+ },
+ {
+  "datum": "2026-11-16",
+  "id": "m2",
+  "rubrik": "Reichtum",
+  "titel": "Wer mehr als 500 Millionen hat, soll endlich zahlen: Die Grünen wollen eine Steuer auf Extremvermögen",
+  "fakt": "Die Grünen-Fraktion hat im Bundestag einen Antrag für eine Vermögensteuer auf sehr große Vermögen eingebracht. Ab 500 Millionen Euro sollen 2 Prozent fällig werden, ab 1 Milliarde 3 und ab 10 Milliarden 4 Prozent. Laut Antrag brächte das rund 20 Milliarden Euro im Jahr.",
+  "quellen_html": "<a href=\"https://de.euronews.com/2026/11/13/vermogenssteuer-fur-extremreiche-grune-fordern-zwei-prozent-ab-500-millionen-euro\">Euronews</a>",
+  "krass": 5
+ },
+ {
+  "datum": "2026-11-16",
+  "id": "m3",
+  "rubrik": "Strompreis",
+  "titel": "Stromsteuer runter für alle? Söder sagt ja, aber die Mütterrente bleibt tabu",
+  "fakt": "CSU-Chef Markus Söder hat im ZDF gefordert, dass sich die Koalition bei der Stromsteuer für alle und bei der kalten Progression noch einigt. Kanzler Merz hatte gesagt, die Senkung für alle komme vorerst nicht, weil gut 5 Milliarden Euro fehlen. Am Dienstag tagt der Koalitionsausschuss.",
+  "quellen_html": "<a href=\"https://www.zdfheute.de/politik/deutschland/soeder-csu-koalition-haushalt-stromsteuer-muetterrente-100.html\">ZDFheute</a> · <a href=\"https://de.nachrichten.yahoo.com/uns-l%C3%A4cherlich-s%C3%B6der-zieht-stromsteuer-202825174.html\">Yahoo Nachrichten</a>",
+  "krass": 5
+ },
+ {
+  "datum": "2026-11-16",
+  "id": "m4",
+  "rubrik": "Protest",
+  "titel": "100 angemeldet, 1.200 gekommen: Die Gen Z geht in Berlin wieder auf die Straße",
+  "fakt": "Zur Demo der Initiative „Gen Z regelt“ kamen laut Polizei rund 1.200 Menschen, angemeldet waren 100. Es ging gegen Wehrpflicht, Sozialkürzungen und kaputte Schulen. Laut dpa gab es 20 vorläufige Festnahmen und 28 Strafanzeigen.",
+  "quellen_html": "<a href=\"https://www.boersennews.de/nachrichten/artikel/dpa-afx/roundup-2-1-200-menschen-bei-gen-z-demo-in-berlin-28-strafanzeigen/5352908/\">dpa (boersennews)</a> · <a href=\"https://taz.de/Gen-Z-Demonstrationen/!6229255/\">taz</a>",
+  "krass": 4
+ },
+ {
+  "datum": "2026-11-16",
+  "id": "m5",
+  "rubrik": "SPD",
+  "titel": "„Ich klebe auch nicht an meinem Stuhl“: Wer führt die SPD nach Bas?",
+  "fakt": "Seit dem Rücktritt von Bärbel Bas am 12. Oktober führt Lars Klingbeil die SPD allein und lässt offen, ob er wieder antritt. Laut t-online wollen die Jusos eine Frau als alleinige Vorsitzende. Gewählt wird auf dem Parteitag am 16. und 17. Januar in Bremen.",
+  "quellen_html": "<a href=\"https://www.zdfheute.de/politik/deutschland/spd-vorsitz-klingbeil-schwesig-pistorius-parteivorsitz-100.html\">ZDFheute</a> · <a href=\"https://www.t-online.de/nachrichten/deutschland/innenpolitik/id_101528786/spd-chef-klingbeil-in-bedraengnis-jusos-wollen-parteichef-stuerzen.html\">t-online</a>",
+  "krass": 4
+ },
+ {
+  "datum": "2026-11-16",
+  "id": "m6",
+  "rubrik": "Iran",
+  "titel": "Tanker sollen auf Minen gefahren sein, und Trump will vorerst doch nicht angreifen?",
+  "fakt": "Irans Revolutionsgarde meldet, dass in der Straße von Hormus 2 Öltanker auf Seeminen gefahren sind, ein Supertanker soll gesunken sein. Unabhängig bestätigt ist das nicht. Laut Reuters hat Trump Beratern gesagt, er könnte auf Angriffe verzichten, solange der Iran nicht provoziert.",
+  "quellen_html": "<a href=\"https://www.arabnews.pk/middle-east/two-tankers-on-fire-after-hitting-naval-mines-in-the-strait-of-hormuz-irans-irgc-says-3007105\">Arab News / Reuters</a> · <a href=\"https://www.khaleejtimes.com/world/americas/trump-may-hold-off-iran-attacks-barring-new-provocations\">Khaleej Times / Reuters</a> · <a href=\"https://www.foreignexchanges.news/p/world-roundup-november-14-15-2026\">Foreign Exchanges</a>",
+  "krass": 7
+ },
+ {
+  "datum": "2026-11-16",
+  "id": "m7",
+  "rubrik": "Ukraine",
+  "titel": "Donbas abgeben, dafür in die NATO? Selenskyj sagt, die USA hätten genau das gefragt",
+  "fakt": "Laut CBS sagte Wolodymyr Selenskyj, US-Unterhändler hätten zum ersten Mal gefragt, ob die Ukraine im Tausch gegen eine NATO-Mitgliedschaft aus dem Donbas abziehen würde. Er will Sicherheitsgarantien und die Bevölkerung entscheiden lassen. Am Wochenende griffen sich beide Seiten weiter aus der Luft an.",
+  "quellen_html": "<a href=\"https://cbsnews.com/news/ukraine-russia-war-nato-us-donbas\">CBS News</a> · <a href=\"https://www.rferl.org/a/ukraine-russia-war-drone-strikes-oil-refinery/33899022.html\">RFE/RL</a>",
+  "krass": 6
+ },
+ {
+  "datum": "2026-11-16",
+  "id": "m8",
+  "rubrik": "Klima",
+  "titel": "Letzte Woche Klimagipfel, und beim Geld und beim Öl ist immer noch nichts geklärt",
+  "fakt": "Die UN-Klimakonferenz COP31 in Antalya geht in ihre letzte Woche, sie endet am Freitag. Laut UN News gibt es einen ersten Entwurf für eine politische Erklärung. Offen sind vor allem die Klimafinanzierung und der Ausstieg aus Kohle, Öl und Gas.",
+  "quellen_html": "<a href=\"https://news.un.org/en/story/2026/11/1168763\">UN News</a> · <a href=\"https://www.bundesumweltministerium.de/pressemitteilung/deutschland-auf-der-weltklimakonferenz-in-antalya-pariser-klimaabkommen-schneller-umsetzen\">Bundesumweltministerium</a> · <a href=\"https://taz.de/Harsche-Kritik-am-Bundeskanzler/!6227563/\">taz</a>",
+  "krass": 5
+ },
+ {
+  "datum": "2026-11-16",
+  "id": "m9",
+  "rubrik": "Klima",
+  "titel": "Gute Nachricht: Norwegens höchstes Gericht kippt die Genehmigung für 3 Ölfelder",
+  "fakt": "Norwegens Oberster Gerichtshof hat am Freitag laut dpa die Genehmigungen für 3 Öl- und Gasfelder in der Nordsee für ungültig erklärt. Der Staat habe die Klimafolgen nicht gründlich genug geprüft, auch die der Verbrennung im Ausland. Geklagt hatten Greenpeace Norwegen und die Jugendorganisation Natur og Ungdom.",
+  "quellen_html": "<a href=\"https://www.yahoo.com/news/science/articles/climate-activists-win-legal-challenge-153338018.html\">dpa (Yahoo)</a> · <a href=\"https://sg.news.yahoo.com/norway-top-court-rules-oil-104930427.html\">AFP (Yahoo)</a>",
+  "krass": 5
  }
 ]
