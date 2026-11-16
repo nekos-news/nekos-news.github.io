@@ -132,7 +132,7 @@ def ohne_ki(datei):
     t = re.sub(r'\s*<footer class="papier riss">\s*<span>Kein Journalismus.*?</footer>', '', t, count=1, flags=re.S)
     open(pfad, "w", encoding="utf-8").write(t)
 
-PATREON = ""  # Link zu Nekos Patreon, sobald bekannt (leer = Knopf ausgeblendet)
+PATREON = "https://www.patreon.com/Nekos_News"  # Link zu Nekos Patreon (von Nicolas 2026-11-16; leer = Knopf ausgeblendet)
 
 FOLGEN_TIPP = '<span class="folgen-tipp" aria-hidden="true"><span>Folgen!</span><svg viewBox="0 0 40 40"><path d="M6 6 C 10 18, 18 28, 31 34 M31 34 L22 34.5 M31 34 L28.5 25.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>'
 
