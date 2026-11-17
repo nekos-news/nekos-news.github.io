@@ -631,7 +631,7 @@
  },
  {
   "datum": "2026-11-17",
-  "id": "m5",
+  "id": "m6",
   "rubrik": "Israel",
   "titel": "„Versuchter Putsch“? Israels Opposition erhebt schwere Vorwürfe gegen Netanjahus Büro",
   "fakt": "Laut einem Bericht des israelischen Senders Channel 12 soll Netanjahus Bürochef kurz vor der Wahl vom 27. Oktober bei der Polizei Mitglieder der arabischen Partei Raam beschuldigt haben. Oppositionsführer wie Jair Lapid sprechen von einem „versuchten Putsch“. Der Bürochef bestreitet den Bericht, die Polizei prüft den Vorgang.",
@@ -640,7 +640,7 @@
  },
  {
   "datum": "2026-11-17",
-  "id": "m6",
+  "id": "m7",
   "rubrik": "USA",
   "titel": "Trump, Xi und Putin an einem Tisch, und vielleicht kommt sogar Kim dazu",
   "fakt": "Trump ist am Montag zu einer Asienreise aufgebrochen. Nach einem Halt in Manila reist er zum APEC-Gipfel ins chinesische Shenzhen, wo er sich laut AP am Donnerstag erstmals gemeinsam mit Xi Jinping und Wladimir Putin trifft. Laut Weißem Haus geht es vor allem um Atomwaffen.",
@@ -649,7 +649,7 @@
  },
  {
   "datum": "2026-11-17",
-  "id": "m7",
+  "id": "m8",
   "rubrik": "Jemen",
   "titel": "Nur noch 60 Kilometer: Die Huthi rücken auf Aden vor, und die Regierung gibt eine wichtige Meerenge auf",
   "fakt": "Die vom Iran unterstützten Huthi stehen laut AFP rund 60 Kilometer vor Aden, dem Sitz der international anerkannten Regierung. Die Regierung hat laut Al Jazeera ihre Truppen aus dem Gebiet an der Meerenge Bab al-Mandeb abgezogen, um die Stadt zu verteidigen.",
@@ -658,7 +658,7 @@
  },
  {
   "datum": "2026-11-17",
-  "id": "m8",
+  "id": "m9",
   "rubrik": "Migration",
   "titel": "Über 1.500 Menschen an einem einzigen Tag: Die Kanaren melden einen Rekord, die meisten landen auf einer winzigen Insel",
   "fakt": "Am Samstag sind laut dpa und spanischen Behörden rund 1.500 Bootsflüchtlinge auf den Kanaren angekommen, so viele wie nie an einem Tag. Die meisten erreichten die kleine Insel El Hierro. Kanaren-Präsident Fernando Clavijo fordert, dass Madrid die vereinbarten Hilfen sofort umsetzt.",
@@ -667,11 +667,29 @@
  },
  {
   "datum": "2026-11-17",
-  "id": "m9",
+  "id": "m11",
   "rubrik": "Justiz",
   "titel": "Gute Nachricht: Der Supreme Court lässt Trump beim Streichen von Forschungsgeld abblitzen",
   "fakt": "Der Oberste Gerichtshof der USA hat am Montag eine Berufung der Trump-Regierung abgelehnt. Damit bleibt ein Urteil bestehen, nach dem das Streichen von Forschungsgeld für Forschende der University of California wegen Bezügen zu Vielfalt und Gleichstellung wahrscheinlich gegen die Meinungsfreiheit verstößt. Keiner der 9 Richter widersprach öffentlich.",
   "quellen_html": "<a href=\"https://www.yahoo.com/news/politics/articles/supreme-court-declines-trump-push-150053758.html\">CNN (Yahoo)</a> · <a href=\"https://www.yahoo.com/news/politics/articles/supreme-court-turns-down-trumps-152212136.html\">Los Angeles Times (Yahoo)</a>",
   "krass": 4
+ },
+ {
+  "datum": "2026-11-17",
+  "id": "m5",
+  "rubrik": "Banken",
+  "titel": "15 Millionen interne Dokumente: Hat die Deutsche Bank bei Geldwäsche weggeschaut?",
+  "fakt": "Internationale Medien, darunter Spiegel, ZDF frontal, New York Times und Financial Times, haben laut dpa mehr als 15 Millionen interne Dokumente der Deutschen Bank ausgewertet. Laut den Berichten soll die Bank über Jahre Kontrollen gegen Geldwäsche vernachlässigt und interne Warnungen übergangen haben. Die Bank sagt, die Vorgänge lägen viele Jahre zurück.",
+  "quellen_html": "<a href=\"https://www.handelsblatt.com/politik/deutschland/durchgestochene-daten-kontrollen-missachtet-schwere-vorwuerfe-gegen-deutsche-bank/100270467.html\">Handelsblatt (dpa)</a> · <a href=\"https://www.cio.de/article/4249622/geldwaesche-leak-deutsche-bank-opferte-compliance-fuer-profite.html\">CIO (dpa)</a>",
+  "krass": 6
+ },
+ {
+  "datum": "2026-11-17",
+  "id": "m10",
+  "rubrik": "Ukraine",
+  "titel": "Ein Stück der Krim-Brücke ist weg: Die Ukraine trifft Putins Prestigeprojekt",
+  "fakt": "Nach ukrainischen Angriffen ist laut ZDF der Hauptbogen der Straßenbrücke zur Krim eingestürzt, der Autoverkehr ist eingestellt. Präsident Selenskyj bestätigte den Angriff und nennt ihn Vergeltung für russische Angriffe auf die Infrastruktur der Ukraine. Kremlsprecher Dmitri Peskow kündigte den Wiederaufbau an.",
+  "quellen_html": "<a href=\"https://www.zdfheute.de/politik/ausland/kiew-bruecke-angriff-ukraine-krieg-russland-100.html\">ZDFheute</a> · <a href=\"https://www.tagesspiegel.de/internationales/angriff-auf-putins-prestigeprojekt-ukraine-bringt-krim-brucke-teilweise-zum-einsturz--krisensitzung-einberufen-16292941.html\">Tagesspiegel</a> · <a href=\"https://web.de/magazine/politik/russland-krieg-ukraine/krim-bruecke-ukrainischem-angriff-teilweise-eingestuerzt-42953700\">web.de (dpa)</a>",
+  "krass": 6
  }
 ]
