@@ -763,5 +763,77 @@
   "fakt": "Die NASA-Sonde Voyager 1 hat am Mittwoch laut EarthSky um 10:16 Uhr Weltzeit eine Entfernung von einem Lichttag zur Erde erreicht, rund 25,9 Milliarden Kilometer. Kein von Menschen gebautes Objekt war je so weit weg. Die Sonde wurde 1977 gestartet und schickt immer noch Daten.",
   "quellen_html": "<a href=\"https://earthsky.org/space/voyager-1-1-light-day-from-earth-november-17-18-2026/\">EarthSky</a> · <a href=\"https://aljazeera.com/news/2026/11/14/nasas-voyager-1-to-hit-new-space-distance-record-of-one-light-day\">Al Jazeera</a> · <a href=\"https://sciencenews.org/article/voyager-1-light-day-exploration\">Science News</a>",
   "krass": 4
+ },
+ {
+  "datum": "2026-11-19",
+  "id": "m1",
+  "rubrik": "Arbeit",
+  "titel": "Bis zu 4 Jahre befristet, ohne Grund: Die Regierung lockert das Arbeitsrecht, und die Gewerkschaften sehen vor allem Junge als Verlierer",
+  "fakt": "Das Bundeskabinett hat am Mittwoch einen Gesetzentwurf von Arbeitsminister Alexander Schweitzer (SPD) beschlossen: Befristete Verträge ohne Sachgrund sollen bis zu 4 statt 2 Jahre erlaubt sein. Wer mehr als rund 180.000 Euro im Jahr verdient, soll künftig gegen eine Abfindung auch ohne Begründung gekündigt werden können. Gewerkschaften lehnen die Pläne ab, Arbeitgeber loben sie.",
+  "quellen_html": "<a href=\"https://www.wiwo.de/politik/deutschland/kuendigungsschutz-bundesregierung-beschliesst-lockerungen/100270895.html\">WirtschaftsWoche (Reuters)</a> · <a href=\"https://www.ad-hoc-news.de/wirtschaft/roundup-2-regierung-erleichtert-befristungen-von-jobs/70531720\">ad-hoc-news (dpa-AFX)</a> · <a href=\"https://www.handelsblatt.com/politik/deutschland/bundesregierung-kritik-an-schweitzers-reformplaenen-fuer-arbeitsmarkt/100269094.html\">Handelsblatt</a>",
+  "krass": 6
+ },
+ {
+  "datum": "2026-11-19",
+  "id": "m2",
+  "rubrik": "AfD",
+  "titel": "29 zu 19: Die AfD liegt in der neuen YouGov-Umfrage 10 Punkte vor der Union",
+  "fakt": "In der neuen Sonntagsfrage von YouGov kommt die AfD auf 29 Prozent, 1 Punkt mehr als im Oktober. Die Union legt ebenfalls 1 Punkt zu, auf 19 Prozent. SPD und Grüne liegen gleichauf bei je 15 Prozent, das BSW fällt laut YouGov zum ersten Mal unter 3 Prozent.",
+  "quellen_html": "<a href=\"https://www.berliner-zeitung.de/article/yougov-sonntagsfrage-afd-bei-29-prozent-union-bei-19-10605843\">Berliner Zeitung</a> · <a href=\"https://www.mittelstand-nachrichten.de/aktuell/dts_politik/yougov-sonntagsfrage-afd-bleibt-staerkste-partei-union-bei-19-prozent/\">Mittelstand-Nachrichten (dts)</a>",
+  "krass": 5
+ },
+ {
+  "datum": "2026-11-19",
+  "id": "m3",
+  "rubrik": "Faktencheck",
+  "titel": "„69 Prozent“ für Aigner? Correctiv sagt: Die CDU hat die Umfrage falsch zitiert",
+  "fakt": "Die CDU hat auf Instagram behauptet, 69 Prozent der Bürgerinnen und Bürger hielten Ilse Aigner für eine gute Bundespräsidentin. Laut Faktencheck von Correctiv stimmt das so nicht: Die 69 Prozent aus einer Forsa-Umfrage beziehen sich nur auf die Befragten, die Aigner überhaupt kennen. Auf alle Befragten gerechnet sind es rund 45 Prozent.",
+  "quellen_html": "<a href=\"https://correctiv.org/?p=298968\">Correctiv</a> · <a href=\"https://www.berliner-zeitung.de/article/yougov-sonntagsfrage-afd-bei-29-prozent-union-bei-19-10605843\">Berliner Zeitung</a>",
+  "krass": 3
+ },
+ {
+  "datum": "2026-11-19",
+  "id": "m4",
+  "rubrik": "Gaza",
+  "titel": "Panzer über die Gelbe Linie, und Trumps eigener Friedensrat warnt: Die Waffenruhe kann kippen",
+  "fakt": "Israels Armee hat am Mittwoch eine Bodenoffensive im Zentrum von Gaza gestartet und ist dabei über die sogenannte Gelbe Linie vorgerückt, hinter die sie sich laut Waffenruhe-Plan zurückgezogen hatte. Am selben Tag wurde ein Bericht von Trumps „Board of Peace“ bekannt: Laut Reuters wirft er Israel und der Hamas vor, ihre Zusagen nicht einzuhalten, und warnt vor einem Ende der Waffenruhe.",
+  "quellen_html": "<a href=\"https://www.france24.com/en/middle-east/20261118-gazans-flee-shelters-as-israeli-army-launches-ground-operation-beyond-yellow-line\">France 24</a> · <a href=\"https://www.irishtimes.com/world/middle-east/2026/11/18/trumps-board-of-peace-accuses-israel-and-hamas-of-failing-to-end-war-in-gaza/\">Irish Times (Reuters)</a> · <a href=\"https://www.thenationalnews.com/news/us/2026/11/18/israel-and-hamas-failing-to-meet-gaza-ceasefire-commitments-board-of-peace-warns/\">The National</a>",
+  "krass": 7
+ },
+ {
+  "datum": "2026-11-19",
+  "id": "m5",
+  "rubrik": "USA",
+  "titel": "Trump, Xi und Putin zum ersten Mal zu dritt an einem Tisch, und Trump sagt, die Schlagzeile hat er schon",
+  "fakt": "Am Rand des Asien-Pazifik-Gipfels in Shenzhen wollen sich Donald Trump, Xi Jinping und Wladimir Putin am Donnerstag zum ersten Mal zu dritt treffen. Laut NBC haben Trump und Putin vorher schon ein Einzelgespräch begonnen. Fachleute erwarten wenig konkrete Ergebnisse.",
+  "quellen_html": "<a href=\"https://www.aljazeera.com/news/liveblog/2026/11/19/apec-live-trump-xi-and-putin-to-meet-in-historic-three-way-china-summit\">Al Jazeera</a> · <a href=\"https://www.nbcnews.com/politics/trump-administration/live-blog/trump-xi-putin-china-apec-congress-2026-live-updates-rcna609888\">NBC News</a> · <a href=\"https://www.cnbc.com/2026/11/18/trump-xi-putin-apec-shenzhen-china.html\">CNBC</a>",
+  "krass": 6
+ },
+ {
+  "datum": "2026-11-19",
+  "id": "m6",
+  "rubrik": "Iran",
+  "titel": "4 Angriffe in 6 Tagen auf Bahrain, und die Gespräche über ein Kriegsende stecken fest",
+  "fakt": "Nach einem US-Angriff auf die iranische Insel Qeshm hat der Iran am Mittwoch einen von den USA genutzten Stützpunkt in Kuwait und mehrere Ziele in Bahrain angegriffen. Beide Länder melden abgefangene Drohnen. Die Vermittlung durch Katar kommt laut Al Jazeera nicht voran.",
+  "quellen_html": "<a href=\"https://www.aljazeera.com/news/2026/11/18/kuwait-bahrain-face-new-iran-attacks-after-us-strike-on-qeshm-island\">Al Jazeera</a> · <a href=\"https://www.nbcnews.com/world/iran/iran-widens-gulf-attacks-targeting-us-air-base-kuwait-sites-bahrain-rcna610128\">NBC News (AP)</a>",
+  "krass": 5
+ },
+ {
+  "datum": "2026-11-19",
+  "id": "m7",
+  "rubrik": "Afrika",
+  "titel": "Droht der nächste Krieg? Äthiopien und Eritrea sollen Truppen an der Grenze zusammenziehen",
+  "fakt": "Laut Reuters haben Äthiopien und Eritrea Truppen entlang ihrer gemeinsamen Grenze zusammengezogen, die Armeen sollen in Schlagweite stehen. Das berichten Konfliktbeobachter wie ACLED und die International Crisis Group. Eritrea nennt die Vorwürfe Propaganda, Äthiopien äußerte sich nicht.",
+  "quellen_html": "<a href=\"https://www.al-monitor.com/originals/2026/11/ethiopia-and-eritrea-amass-forces-along-border-heightening-war-fears-sources-say\">Al-Monitor (Reuters)</a> · <a href=\"https://www.koreatimes.co.kr/world/20261118/ethiopia-and-eritrea-amass-forces-along-border-heightening-war-fears-sources-say\">Korea Times (Reuters)</a>",
+  "krass": 6
+ },
+ {
+  "datum": "2026-11-19",
+  "id": "m8",
+  "rubrik": "Energie",
+  "titel": "Gute Nachricht: Die EU will Stromnetze, Solar- und Windparks viel schneller genehmigen",
+  "fakt": "Die EU-Staaten und das Europaparlament haben sich in der Nacht auf Mittwoch vorläufig auf eine neue Richtlinie geeinigt: Genehmigungen für erneuerbare Energien, Stromnetze, Speicher und Ladesäulen sollen schneller und einfacher werden. Die Einigung muss noch formell bestätigt werden, danach haben die Länder 18 Monate Zeit für die Umsetzung.",
+  "quellen_html": "<a href=\"http://www.pv-magazine.com/2026/11/18/eu-reaches-provisional-deal-to-accelerate-renewable-energy-permitting/\">pv magazine</a> · <a href=\"https://www.consilium.europa.eu/en/press/press-releases/2026/11/18/grids-package-council-and-parliament-agree-to-streamline-permitting-for-a-faster-clean-energy-transition/\">Rat der EU</a>",
+  "krass": 4
  }
 ]
