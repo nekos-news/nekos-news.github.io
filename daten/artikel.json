@@ -804,9 +804,9 @@
   "datum": "2026-11-19",
   "id": "m5",
   "rubrik": "USA",
-  "titel": "Trump, Xi und Putin zum ersten Mal zu dritt an einem Tisch, und Trump sagt, die Schlagzeile hat er schon",
-  "fakt": "Am Rand des Asien-Pazifik-Gipfels in Shenzhen wollen sich Donald Trump, Xi Jinping und Wladimir Putin am Donnerstag zum ersten Mal zu dritt treffen. Laut NBC haben Trump und Putin vorher schon ein Einzelgespräch begonnen. Fachleute erwarten wenig konkrete Ergebnisse.",
-  "quellen_html": "<a href=\"https://www.aljazeera.com/news/liveblog/2026/11/19/apec-live-trump-xi-and-putin-to-meet-in-historic-three-way-china-summit\">Al Jazeera</a> · <a href=\"https://www.nbcnews.com/politics/trump-administration/live-blog/trump-xi-putin-china-apec-congress-2026-live-updates-rcna609888\">NBC News</a> · <a href=\"https://www.cnbc.com/2026/11/18/trump-xi-putin-apec-shenzhen-china.html\">CNBC</a>",
+  "titel": "80 Minuten zu dritt, 4 Punkte auf Papier: In der „Friedenserklärung“ von Trump, Xi und Putin kommt die Ukraine nicht vor",
+  "fakt": "Donald Trump, Xi Jinping und Wladimir Putin haben sich in Shenzhen laut AFP rund 80 Minuten getroffen. Danach haben chinesische Staatsmedien eine „Friedenserklärung“ mit 4 Punkten veröffentlicht. Laut dpa steht darin nichts zum Krieg in der Ukraine und keine konkrete Vereinbarung zu anderen Konflikten.",
+  "quellen_html": "<a href=\"https://taz.de/-Treffen-von-Putin-Trump-und-XI-/!6231342/\">taz</a> · <a href=\"https://www.t-online.de/nachrichten/ausland/internationale-politik/id_101536654/dreiertreffen-in-china-xi-putin-und-trump-besiegeln-vier-punkte-plan.html\">t-online</a> · <a href=\"https://www.nzz.ch/international/spitzentreffen-in-shenzhen-donald-trump-xi-jinping-und-wladimir-putin-verabschieden-eine-deklaration-fuer-den-frieden-ld.10068309\">NZZ</a>",
   "krass": 6
  },
  {
@@ -830,6 +830,15 @@
  {
   "datum": "2026-11-19",
   "id": "m8",
+  "rubrik": "Justiz",
+  "titel": "Zum ersten Mal überhaupt: Das höchste UN-Gericht sagt, ein Staat hat Völkermord begangen, nämlich Myanmar an den Rohingya",
+  "fakt": "Der Internationale Gerichtshof in Den Haag hat Myanmar am Donnerstag für Völkermord an den Rohingya verantwortlich erklärt. Laut LTO ist es das erste Mal, dass das Gericht einem Staat direkt vorwirft, selbst einen Völkermord begangen zu haben. Das Urteil ist endgültig und bindend.",
+  "quellen_html": "<a href=\"https://www.zdfheute.de/politik/ausland/myanmar-rohingya-voelkermord-internationaler-gerichtshof-100.html\">ZDFheute</a> · <a href=\"https://www.lto.de/recht/nachrichten/n/igh-internationaler-gerichtshof-gambia-myanmar-voelkermord-rohingya-minderheit\">LTO</a> · <a href=\"https://www.berliner-zeitung.de/article/rohingya-igh-macht-myanmar-fuer-voelkermord-verantwortlich-10614957\">Berliner Zeitung</a>",
+  "krass": 8
+ },
+ {
+  "datum": "2026-11-19",
+  "id": "m9",
   "rubrik": "Energie",
   "titel": "Gute Nachricht: Die EU will Stromnetze, Solar- und Windparks viel schneller genehmigen",
   "fakt": "Die EU-Staaten und das Europaparlament haben sich in der Nacht auf Mittwoch vorläufig auf eine neue Richtlinie geeinigt: Genehmigungen für erneuerbare Energien, Stromnetze, Speicher und Ladesäulen sollen schneller und einfacher werden. Die Einigung muss noch formell bestätigt werden, danach haben die Länder 18 Monate Zeit für die Umsetzung.",
