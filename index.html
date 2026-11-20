@@ -1859,6 +1859,8 @@ function mzVideoZeit(code, i) {
       dingUhr = setTimeout(function () { if (pos !== i || !dingt) return; dingt = false; player.muted = false; player.currentTime = 0; player.play().catch(function () {}); }, 1300);
     } else { dingt = false; player.muted = false; player.play().catch(function () {}); }
     knoepfe(i); zeigeLaeuft();
+    /* Ist bei „Alles anhören“ ein Bogen offen, wechselt er mit zur neuen Meldung (Wunsch Nicolas 2026-11-20) */
+    if (alles) { var ob = document.querySelector('.bogen-grund:not([hidden]) .bogen'); if (ob && ob.dataset.fuer !== x.el.id && window.mzBogenWechsel) window.mzBogenWechsel(x.el); }
     if (alles) { if (window.mzZeigeMeldung) window.mzZeigeMeldung(x.el); (x.el.closest('.wischer') || x.el).scrollIntoView({ block: x.el.closest('.wischer') ? 'start' : 'center', behavior: 'smooth' }); var nM = liste.filter(function (y) { return y.el.id !== 'kurz'; }).length, iM = liste.slice(0, i + 1).filter(function (y) { return y.el.id !== 'kurz'; }).length; status.textContent = (x.el.id === 'kurz' ? 'Das Wichtigste' : 'Meldung ' + iM + ' von ' + nM) + (uebersprungen ? ' · ' + uebersprungen + ' schon gehört' : ''); }
   }
   /* „Alles anhören“ überspringt, was man schon gehört hat (Wunsch Nicolas 2026-11-08). Ist alles gehört, läuft alles von vorn. */
@@ -1986,12 +1988,14 @@ function mzVideoZeit(code, i) {
     art.querySelectorAll('.marke').forEach(function (m) { out += '<p class="randnotiz"><b>Noch offen:</b> ' + m.textContent + '</p>'; });
     art.querySelectorAll('.andere-sicht').forEach(function (m) { out += '<p class="randnotiz anders"><b>Anders dargestellt:</b> ' + m.innerHTML + '</p>'; });
     return out; }
-  mehr.forEach(function (d) {
-    var s = d.querySelector('summary');
-    s.addEventListener('click', function (e) {
-      e.preventDefault();
+  /* Bogen zu einer anderen Meldung wechseln, z. B. bei „Alles anhören“ (2026-11-20) */
+  window.mzBogenWechsel = function (el) { if (g.hidden) return; var d = el.querySelector('details.mehr'); if (d) oeffne(d); else zu(); };
+  mehr.forEach(function (d) { d.querySelector('summary').addEventListener('click', function (e) { e.preventDefault(); oeffne(d); }); });
+  function oeffne(d) {
       var art = d.closest('article'), h = art.querySelector('h3'), fakt = art.querySelector('.fakt'), q = art.querySelector('.quelle');
       var text = Array.prototype.map.call(d.querySelectorAll('p'), function (p) { return p.innerHTML; }).join('</p><p class="bogen-text">');
+      /* Anfangstext (KI-Zusammenfassung aus der Meldung) steht im Bogen mit drin, sonst fehlt der Anfang (Wunsch Nicolas 2026-11-20) */
+      if (fakt) { var anf = fakt.cloneNode(true), lb = anf.querySelector('b'); if (lb) lb.remove(); text = anf.innerHTML + '</p><p class="bogen-text">' + text; }
       g.innerHTML = '<article class="bogen papier riss"><button class="zu" type="button" aria-label="Schließen">✕</button>' +
         '<h3>' + (h ? h.innerHTML : '') + '</h3>' + '<p class="fakt bogen-text"><b>KI-Zusammenfassung</b>' + text + '</p>' + randnotizen(art) + (q ? '<p class="quelle">' + q.innerHTML + '</p>' : '') + '</article>';
       g.querySelectorAll('mark').forEach(function (m) { m.parentNode.classList.add('sichtbar'); });
@@ -2012,8 +2016,7 @@ function mzVideoZeit(code, i) {
       g.querySelector('.bogen').dataset.fuer = art.id;
       /* Kein „Weiter →“-Knopf unten mehr (Wunsch Nicolas 2026-11-08) */
       g.hidden = false; g.scrollTop = 0; document.body.style.overflow = 'hidden';
-    });
-  });
+  }
   g.addEventListener('click', function (e) { if (e.target === g || e.target.closest('.zu')) zu(); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !g.hidden) zu(); });
 })();
