@@ -883,7 +883,7 @@
  },
  {
   "datum": "2026-11-20",
-  "id": "m5",
+  "id": "m7",
   "rubrik": "Jemen",
   "titel": "Die Huthi treffen das höchste Hochhaus von Riad, den Turm des saudischen Staatsfonds",
   "fakt": "Bei einem Angriff der Huthi-Miliz aus dem Jemen ist am Donnerstagmorgen der Turm des saudischen Staatsfonds PIF in Riad beschädigt worden. Laut Reuters gingen auf 7 bis 8 Etagen die Fenster zu Bruch, verletzt wurde laut saudischen Behörden niemand. Es ist der zweite Treffer im Finanzviertel von Riad in weniger als 2 Wochen.",
@@ -892,7 +892,7 @@
  },
  {
   "datum": "2026-11-20",
-  "id": "m6",
+  "id": "m8",
   "rubrik": "USA",
   "titel": "Freigelassen und Minuten später wieder festgenommen: Eine Richterin in Colorado wirft ICE Missachtung des Gerichts vor",
   "fakt": "Eine Bundesrichterin in Colorado hat Verantwortliche der Einwanderungsbehörde ICE am Mittwoch wegen Missachtung des Gerichts verurteilt. ICE hatte Migranten, die laut Gericht freikommen mussten, direkt nach der Freilassung wieder festgenommen. Eine Strafe gab es nicht, weil ICE die Praxis inzwischen gestoppt hat.",
@@ -901,7 +901,7 @@
  },
  {
   "datum": "2026-11-20",
-  "id": "m7",
+  "id": "m9",
   "rubrik": "Grönland",
   "titel": "Erst wollte Trump Grönland haben, jetzt bekommen die USA dort mehr Militärbasen, und Dänemark stimmt 109 zu 0 dafür",
   "fakt": "Das dänische Parlament hat am Donnerstag einstimmig mit 109 zu 0 Stimmen ein Sicherheitsabkommen mit Grönland und den USA angenommen. Es erlaubt den USA mehr Militär auf Grönland, die Insel bleibt aber unter dänischer Kontrolle. Das Parlament in Grönland hatte schon Anfang des Monats zugestimmt.",
@@ -910,16 +910,16 @@
  },
  {
   "datum": "2026-11-20",
-  "id": "m8",
+  "id": "m10",
   "rubrik": "Somalia",
   "titel": "Somalia wirft den Botschafter der Emirate raus und spricht von einer „offenen Invasion“",
-  "fakt": "Somalia hat dem Botschafter der Vereinigten Arabischen Emirate am Donnerstag 72 Stunden gegeben, um das Land zu verlassen, und den eigenen Botschafter aus Abu Dhabi zurückgeholt. Die Regierung wirft den Emiraten vor, die Souveränität Somalias zu verletzen. Die Emirate verurteilen den Schritt.",
+  "fakt": "Somalia hat dem Botschafter der Vereinigten Arabischen Emirate am Donnerstag 72 Stunden gegeben, um das Land zu verlassen, und den eigenen Botschafter aus den Emiraten zurückgeholt. Die Regierung wirft den Emiraten vor, die Souveränität Somalias zu verletzen. Die Emirate verurteilen den Schritt.",
   "quellen_html": "<a href=\"https://www.aljazeera.com/news/2026/11/19/somalia-expels-uae-ambassador-accuses-abu-dhabi-of-violating-sovereignty\">Al Jazeera (Reuters)</a> · <a href=\"https://www.france24.com/en/live-news/20261119-somalia-expels-uae-ambassador-alleging-interference\">France 24 (AFP)</a>",
   "krass": 4
  },
  {
   "datum": "2026-11-20",
-  "id": "m9",
+  "id": "m11",
   "rubrik": "Klima",
   "titel": "Kohle, Öl und Gas? Im neuen Entwurf der Klimakonferenz kommen sie gar nicht mehr vor",
   "fakt": "Auf der UN-Klimakonferenz COP31 in Antalya haben die Verhandler am Donnerstag einen neuen Entwurf für die Abschlusserklärung vorgelegt. Laut Reuters fehlt darin jeder Hinweis auf ein Ende von Kohle, Öl und Gas, auch ein Ziel von 120 Milliarden Dollar für Klimaanpassung in ärmeren Ländern ist raus. Planmäßig endet die Konferenz heute, oft wird aber länger verhandelt.",
@@ -928,11 +928,29 @@
  },
  {
   "datum": "2026-11-20",
-  "id": "m10",
+  "id": "m12",
   "rubrik": "Verbraucher",
   "titel": "Gute Nachricht: Gericht kippt DAZN-Preiserhöhungen, und zum ersten Mal muss eine Firma nach einer Sammelklage direkt Geld zurückzahlen",
   "fakt": "Das Oberlandesgericht Hamm hat am Mittwoch entschieden, dass DAZN seine Abo-Preise 2021 und 2022 nicht einseitig erhöhen durfte. Rund 8.800 Kunden hatten sich der Sammelklage der Verbraucherzentrale angeschlossen, sie sollen das zu viel gezahlte Geld zurückbekommen. Laut Verbraucherzentrale ist es das erste Mal, dass ein deutsches Gericht so etwas in einer Verbraucher-Sammelklage anordnet.",
   "quellen_html": "<a href=\"https://www.zdfheute.de/panorama/dazn-urteil-streamingdienst-preiserhoehungen-100.html\">ZDFheute</a> · <a href=\"https://www.vzbv.de/urteile/sammelklage-gegen-dazn-gericht-kippt-preiserhoehungen\">Verbraucherzentrale Bundesverband</a>",
   "krass": 4
+ },
+ {
+  "datum": "2026-11-20",
+  "id": "m5",
+  "rubrik": "Protest",
+  "titel": "Bessere Schulen, keine Wehrpflicht: Die Gen Z geht heute wieder in rund 50 Städten auf die Straße",
+  "fakt": "Die Initiative „Gen Z regelt“ ruft heute zu großen Demos in Berlin, Köln, Frankfurt und München auf, laut ZDF schließen sich rund 50 weitere Städte an. Die jungen Leute fordern mehr Geld für Schulen, mehr Klimaschutz und keine Rückkehr zur Wehrpflicht. Bis zum Nachmittag blieb es laut ZDF überwiegend friedlich, die Polizei ist mit Großaufgeboten im Einsatz.",
+  "quellen_html": "<a href=\"https://www.zdfheute.de/politik/deutschland/gen-z-proteste-schulpolitik-militaerdienst-liveblog-100.html\">ZDFheute (Liveblog)</a> · <a href=\"https://www.zdfheute.de/politik/deutschland/gen-z-regelt-neue-proteste-freitag-100.html\">ZDFheute</a> · <a href=\"https://www.news4teachers.de/2026/11/neue-schuelerproteste-gegen-marode-schulen-fuer-bessere-bildung-gew-gruene-und-bundeselternrat-rufen-zur-unterstuetzung-auf/\">News4teachers</a>",
+  "krass": 5
+ },
+ {
+  "datum": "2026-11-20",
+  "id": "m6",
+  "rubrik": "Ukraine",
+  "titel": "Putin hatte Vergeltung angekündigt, jetzt trifft Russland 3 Brücken in Kyjiw, und es gibt mindestens 9 Tote",
+  "fakt": "Russland hat die Ukraine in der Nacht auf Freitag mit einem der laut Selenskyj größten Angriffe des Krieges überzogen und in Kyjiw 3 Brücken über den Fluss Dnipro beschädigt. Laut ukrainischer Regierung sind mindestens 9 Menschen gestorben, 7 davon in Kyjiw. Kurz vorher hatte Putin Vergeltung für die ukrainischen Angriffe auf die Krim-Brücke angekündigt.",
+  "quellen_html": "<a href=\"https://kyivindependent.com/russia-launches-mass-missile-attack-against-ukraine-after-putin-vows-revenge/\">Kyiv Independent</a> · <a href=\"https://abcnews.com/International/wireStory/russian-attacks-kyiv-kill-3-cripple-bridges-cut-138313948\">AP (ABC News)</a> · <a href=\"https://meduza.io/en/news/2026/11/20/russian-missile-and-drone-attack-on-kyiv-kills-three-and-damages-three-dnipro-bridges-mayor-says\">Meduza</a>",
+  "krass": 7
  }
 ]
