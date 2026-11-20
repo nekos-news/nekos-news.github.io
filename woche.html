@@ -1420,13 +1420,13 @@ html.ruhig .hand-rot { transform: none; }
       <p class="fakt"><b title="KI-Zusammenfassung">KI-Zusammenfassung</b>Der Internationale Gerichtshof in Den Haag hat Myanmar am Donnerstag für Völkermord an den Rohingya verantwortlich erklärt. Laut LTO ist es das erste Mal, dass das Gericht einem Staat direkt vorwirft, selbst einen Völkermord begangen zu haben. Das Urteil ist endgültig und bindend.</p>
       <p class="quelle"><a href="https://www.zdfheute.de/politik/ausland/myanmar-rohingya-voelkermord-internationaler-gerichtshof-100.html">ZDFheute</a> · <a href="https://www.lto.de/recht/nachrichten/n/igh-internationaler-gerichtshof-gambia-myanmar-voelkermord-rohingya-minderheit">LTO</a> · <a href="https://www.berliner-zeitung.de/article/rohingya-igh-macht-myanmar-fuer-voelkermord-verantwortlich-10614957">Berliner Zeitung</a> · <a href="archiv/2026-11-19.html#m8">Zur Ausgabe</a></p>
     </article>
-    <article class="papier riss" id="w2">
+    <article class="papier riss" id="w2" data-audio="/audio/2026-11-20/m1.mp3">
       <h3>40 Länder in Berlin für die Ukraine, dann ruft Trump an und soll über die Hilfen schimpfen</h3>
       <span class="rubrik">Ukraine · 20.11.</span>
       <p class="fakt"><b title="KI-Zusammenfassung">KI-Zusammenfassung</b>Beim bisher größten Treffen der sogenannten Koalition der Willigen haben am Donnerstag 40 Länder in Berlin über weitere Hilfe für die Ukraine beraten, dabei waren auch Präsident Selenskyj und die US-Unterhändler Witkoff und Kushner. Trump hat sich laut Teilnehmerkreisen aus der Air Force One zuschalten lassen. Laut „Politico“ soll er dabei skeptisch über weitere Milliardenhilfen gesprochen haben.</p>
       <p class="quelle"><a href="https://www.tagesspiegel.de/internationales/schimpftirade-in-der-air-force-one-trump-lasst-sich-beim-ukraine-gipfel-zuschalten-und-kritisiert-offenbar-hilfen-fur-kyjiw-16304627.html">Tagesspiegel (dpa)</a> · <a href="https://www.t-online.de/nachrichten/ukraine/id_101537270/gipfel-zum-ukraine-krieg-merz-und-selenskyj-gegen-putin-trump-und-xi.html">t-online</a> · <a href="https://www.ad-hoc-news.de/politik/ukraine-gipfel-40-laender-staerken-selenskyj-in-berlin/70536850">ad-hoc-news (dpa)</a> · <a href="archiv/2026-11-20.html#m1">Zur Ausgabe</a></p>
     </article>
-    <article class="papier riss" id="w3">
+    <article class="papier riss" id="w3" data-audio="/audio/2026-11-20/m2.mp3">
       <h3>Die AfD kontrolliert jetzt den Verfassungsschutz mit, der sie beobachtet, mit 5 Stimmen mehr, als sie Abgeordnete hat</h3>
       <span class="rubrik">AfD · 20.11.</span>
       <p class="fakt"><b title="KI-Zusammenfassung">KI-Zusammenfassung</b>Der Landtag von Sachsen-Anhalt hat am Donnerstagabend die AfD-Politiker Tobias Rausch und Matthias Büttner in das Gremium gewählt, das den Verfassungsschutz kontrolliert. Der Verfassungsschutz stuft die Landes-AfD seit 2023 als gesichert rechtsextremistisch ein. Der AfD-Vorschlag bekam 44 Stimmen, die AfD hat aber nur 39 Abgeordnete.</p>
@@ -1450,7 +1450,7 @@ html.ruhig .hand-rot { transform: none; }
       <p class="fakt"><b title="KI-Zusammenfassung">KI-Zusammenfassung</b>Irans Revolutionsgarde meldet, dass in der Straße von Hormus 2 Öltanker auf Seeminen gefahren sind, ein Supertanker soll gesunken sein. Unabhängig bestätigt ist das nicht. Laut Reuters hat Trump Beratern gesagt, er könnte auf Angriffe verzichten, solange der Iran nicht provoziert.</p>
       <p class="quelle"><a href="https://www.arabnews.pk/middle-east/two-tankers-on-fire-after-hitting-naval-mines-in-the-strait-of-hormuz-irans-irgc-says-3007105">Arab News / Reuters</a> · <a href="https://www.khaleejtimes.com/world/americas/trump-may-hold-off-iran-attacks-barring-new-provocations">Khaleej Times / Reuters</a> · <a href="https://www.foreignexchanges.news/p/world-roundup-november-14-15-2026">Foreign Exchanges</a> · <a href="archiv/2026-11-16.html#m6">Zur Ausgabe</a></p>
     </article>
-    <article class="papier riss" id="w7">
+    <article class="papier riss" id="w7" data-audio="/audio/2026-11-20/m9.mp3">
       <h3>Kohle, Öl und Gas? Im neuen Entwurf der Klimakonferenz kommen sie gar nicht mehr vor</h3>
       <span class="rubrik">Klima · 20.11.</span>
       <p class="fakt"><b title="KI-Zusammenfassung">KI-Zusammenfassung</b>Auf der UN-Klimakonferenz COP31 in Antalya haben die Verhandler am Donnerstag einen neuen Entwurf für die Abschlusserklärung vorgelegt. Laut Reuters fehlt darin jeder Hinweis auf ein Ende von Kohle, Öl und Gas, auch ein Ziel von 120 Milliarden Dollar für Klimaanpassung in ärmeren Ländern ist raus. Planmäßig endet die Konferenz heute, oft wird aber länger verhandelt.</p>
@@ -1798,6 +1798,8 @@ function mzVideoZeit(code, i) {
       dingUhr = setTimeout(function () { if (pos !== i || !dingt) return; dingt = false; player.muted = false; player.currentTime = 0; player.play().catch(function () {}); }, 1300);
     } else { dingt = false; player.muted = false; player.play().catch(function () {}); }
     knoepfe(i); zeigeLaeuft();
+    /* Ist bei „Alles anhören“ ein Bogen offen, wechselt er mit zur neuen Meldung (Wunsch Nicolas 2026-11-20) */
+    if (alles) { var ob = document.querySelector('.bogen-grund:not([hidden]) .bogen'); if (ob && ob.dataset.fuer !== x.el.id && window.mzBogenWechsel) window.mzBogenWechsel(x.el); }
     if (alles) { if (window.mzZeigeMeldung) window.mzZeigeMeldung(x.el); (x.el.closest('.wischer') || x.el).scrollIntoView({ block: x.el.closest('.wischer') ? 'start' : 'center', behavior: 'smooth' }); var nM = liste.filter(function (y) { return y.el.id !== 'kurz'; }).length, iM = liste.slice(0, i + 1).filter(function (y) { return y.el.id !== 'kurz'; }).length; status.textContent = (x.el.id === 'kurz' ? 'Das Wichtigste' : 'Meldung ' + iM + ' von ' + nM) + (uebersprungen ? ' · ' + uebersprungen + ' schon gehört' : ''); }
   }
   /* „Alles anhören“ überspringt, was man schon gehört hat (Wunsch Nicolas 2026-11-08). Ist alles gehört, läuft alles von vorn. */
@@ -1925,12 +1927,14 @@ function mzVideoZeit(code, i) {
     art.querySelectorAll('.marke').forEach(function (m) { out += '<p class="randnotiz"><b>Noch offen:</b> ' + m.textContent + '</p>'; });
     art.querySelectorAll('.andere-sicht').forEach(function (m) { out += '<p class="randnotiz anders"><b>Anders dargestellt:</b> ' + m.innerHTML + '</p>'; });
     return out; }
-  mehr.forEach(function (d) {
-    var s = d.querySelector('summary');
-    s.addEventListener('click', function (e) {
-      e.preventDefault();
+  /* Bogen zu einer anderen Meldung wechseln, z. B. bei „Alles anhören“ (2026-11-20) */
+  window.mzBogenWechsel = function (el) { if (g.hidden) return; var d = el.querySelector('details.mehr'); if (d) oeffne(d); else zu(); };
+  mehr.forEach(function (d) { d.querySelector('summary').addEventListener('click', function (e) { e.preventDefault(); oeffne(d); }); });
+  function oeffne(d) {
       var art = d.closest('article'), h = art.querySelector('h3'), fakt = art.querySelector('.fakt'), q = art.querySelector('.quelle');
       var text = Array.prototype.map.call(d.querySelectorAll('p'), function (p) { return p.innerHTML; }).join('</p><p class="bogen-text">');
+      /* Anfangstext (KI-Zusammenfassung aus der Meldung) steht im Bogen mit drin, sonst fehlt der Anfang (Wunsch Nicolas 2026-11-20) */
+      if (fakt) { var anf = fakt.cloneNode(true), lb = anf.querySelector('b'); if (lb) lb.remove(); text = anf.innerHTML + '</p><p class="bogen-text">' + text; }
       g.innerHTML = '<article class="bogen papier riss"><button class="zu" type="button" aria-label="Schließen">✕</button>' +
         '<h3>' + (h ? h.innerHTML : '') + '</h3>' + '<p class="fakt bogen-text"><b>KI-Zusammenfassung</b>' + text + '</p>' + randnotizen(art) + (q ? '<p class="quelle">' + q.innerHTML + '</p>' : '') + '</article>';
       g.querySelectorAll('mark').forEach(function (m) { m.parentNode.classList.add('sichtbar'); });
@@ -1951,8 +1955,7 @@ function mzVideoZeit(code, i) {
       g.querySelector('.bogen').dataset.fuer = art.id;
       /* Kein „Weiter →“-Knopf unten mehr (Wunsch Nicolas 2026-11-08) */
       g.hidden = false; g.scrollTop = 0; document.body.style.overflow = 'hidden';
-    });
-  });
+  }
   g.addEventListener('click', function (e) { if (e.target === g || e.target.closest('.zu')) zu(); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !g.hidden) zu(); });
 })();
