@@ -8,7 +8,8 @@ Eingabe (schreibt der Morgenlauf): daten/news/<datum>/entwurf.json
 
 Ausgabe: daten/news_auftrag_<datum>.json (Format von FILMCRAFT, 2026-11-21) und in daten/news/<datum>/:
   <id>_haupt.mp3 + <id>_haupt.woerter.json  = Herkunftssatz + Kernteil der Meldung (vor „Mehr anzeigen“) OHNE die Überschrift
-  Seit 2026-11-21 (Nicolas): pro Meldung NUR EIN Video mit EINEM Start; Hook-Art darf von Meldung zu Meldung wechseln.
+  Seit 2026-11-21 (Nicolas): pro Meldung NUR EIN Video mit EINEM Start, nur Kurzfassung 30–45 s; haupt = Herkunft + Kern + Schlusssatz
+  („… Den ganzen Überblick findest du auf unserer Seite, Nekos News.“); keine Frage mehr. seite_url = Archivseite mit #id.
   <id>_start1.mp3 + .woerter.json            = der eine Start
   Gleiche Stimme wie die Zeitung (Qwen, STIL probe2, gleiche Aussprache-Liste), ohne Musik.
 daten/news/ und news_auftrag_*.json sind in .gitignore: nichts davon geht online.
@@ -25,6 +26,10 @@ import soundfile as sf
 sys.path.insert(0, HIER)
 from wortzeiten import woerter
 from zeitung_audio import klartext
+
+
+SCHLUSS = "Wer sich ausführlicher informieren will: Den ganzen Überblick findest du auf unserer Seite, Nekos News."
+SEITE = "https://nekos-news.pages.dev/archiv/%s#%s"   # Archivseite bleibt fest, #mX öffnet die Meldung
 
 
 def warte_bis_frei():
@@ -75,6 +80,8 @@ def main():
         haupt = kern[len(erster):].strip() if kern.startswith(erster) else kern
         # Satz 2 im Video = Herkunft („Das berichtet heute die Tagesschau.“), dann der Inhalt (Wunsch Nicolas 2026-11-21 über ANALYSE)
         if m.get("herkunft"): haupt = m["herkunft"].strip() + " " + haupt
+        # Nur noch die Kurzfassung (30–45 s); am Ende statt Frage der Hinweis auf unsere Seite (Entscheidung Nicolas 2026-11-21 über ANALYSE)
+        haupt = haupt + " " + m.get("schluss", SCHLUSS)
         p = lambda n: os.path.join(ordner, "%s_%s.mp3" % (mid, n))
         sprich(s, stil, haupt, p("haupt"))
         starts = []
@@ -84,7 +91,7 @@ def main():
                                foto=os.path.join(HIER, f["datei"]) if not os.path.isabs(f["datei"]) else f["datei"], nachweis=f["nachweis"]))
         q = quellen(seite, mid)
         aus.append(dict(id=mid, datum=datum, favorit=True, ueberschrift=erster.rstrip("."), haupt=p("haupt"),
-                        woerter=p("haupt")[:-4] + ".woerter.json", haupt_text=haupt, starts=starts, frage=m["frage"], belegstellen=m.get("belegstellen", []),
+                        woerter=p("haupt")[:-4] + ".woerter.json", haupt_text=haupt, starts=starts, frage=m.get("frage", ""), seite_url=SEITE % (datum, mid), belegstellen=m.get("belegstellen", []),
                         artikel_url=q[0] if q else "", quellen=q))
     ziel = os.path.join(HIER, "daten", "news_auftrag_%s.json" % datum)
     json.dump(aus, open(ziel, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
