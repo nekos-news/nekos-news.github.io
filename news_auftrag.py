@@ -79,6 +79,7 @@ def main():
         erster = klartext(ueberschrift.group(1)) + "."
         haupt = kern[len(erster):].strip() if kern.startswith(erster) else kern
         # Satz 2 im Video = Herkunft („Das berichtet heute die Tagesschau.“), dann der Inhalt (Wunsch Nicolas 2026-11-21 über ANALYSE)
+        if m.get("kurztext"): haupt = m["kurztext"].strip()   # eigene Kurzfassung, wenn der Kern zu lang ist (Ziel 30–45 s gesamt)
         if m.get("herkunft"): haupt = m["herkunft"].strip() + " " + haupt
         # Nur noch die Kurzfassung (30–45 s); am Ende statt Frage der Hinweis auf unsere Seite (Entscheidung Nicolas 2026-11-21 über ANALYSE)
         haupt = haupt + " " + m.get("schluss", SCHLUSS)
@@ -91,7 +92,7 @@ def main():
                                foto=os.path.join(HIER, f["datei"]) if not os.path.isabs(f["datei"]) else f["datei"], nachweis=f["nachweis"]))
         q = quellen(seite, mid)
         aus.append(dict(id=mid, datum=datum, favorit=True, ueberschrift=erster.rstrip("."), haupt=p("haupt"),
-                        woerter=p("haupt")[:-4] + ".woerter.json", haupt_text=haupt, starts=starts, frage=m.get("frage", ""), seite_url=SEITE % (datum, mid), belegstellen=m.get("belegstellen", []),
+                        woerter=p("haupt")[:-4] + ".woerter.json", haupt_text=haupt, haupt_sekunden=round(float(subprocess.run(['ffprobe','-v','error','-show_entries','format=duration','-of','csv=p=0',p('haupt')],capture_output=True,text=True).stdout or 0),1), starts=starts, frage=m.get("frage", ""), seite_url=SEITE % (datum, mid), belegstellen=m.get("belegstellen", []),
                         artikel_url=q[0] if q else "", quellen=q))
     ziel = os.path.join(HIER, "daten", "news_auftrag_%s.json" % datum)
     json.dump(aus, open(ziel, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
