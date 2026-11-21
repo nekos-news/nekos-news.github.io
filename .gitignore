@@ -1,3 +1,7 @@
 # Tages-MP3s liegen seit 2026-11-08 im Pages-Projekt nekos-news-audio (audio_hochladen.sh), nicht in git
 audio/20*/*.mp3
 .wrangler/
+
+# News-Video-Aufträge (Fotos, Start-Audios) nur lokal für FILMCRAFT, nicht online (2026-11-21)
+daten/news/
+daten/news_auftrag_*.json
