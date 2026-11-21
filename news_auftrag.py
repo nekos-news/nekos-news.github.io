@@ -3,7 +3,7 @@
 
 Eingabe (schreibt der Morgenlauf): daten/news/<datum>/entwurf.json
   {"meldungen": [{"id": "m3", "starts": ["Satz 1", "Satz 2", "Satz 3"], "frage": "…?",
-                  "fotos": [{"datei": "daten/news/<datum>/m3_foto1.jpg", "nachweis": "Foto: … / Wikimedia Commons, CC BY-SA 4.0"}, … 3×]}]}
+                  "belegstellen": ["wörtlich aus dem Originalartikel", …1–2], "fotos": [{"datei": "daten/news/<datum>/m3_foto1.jpg", "nachweis": "Foto: … / Wikimedia Commons, CC BY-SA 4.0"}, … 3×]}]}
   (3–5 Favoriten; Fotos mit commons_foto.py holen, nur freie Lizenzen)
 
 Ausgabe: daten/news_auftrag_<datum>.json (Format von FILMCRAFT, 2026-11-21) und in daten/news/<datum>/:
@@ -81,7 +81,7 @@ def main():
                                foto=os.path.join(HIER, f["datei"]) if not os.path.isabs(f["datei"]) else f["datei"], nachweis=f["nachweis"]))
         q = quellen(seite, mid)
         aus.append(dict(id=mid, datum=datum, favorit=True, ueberschrift=erster.rstrip("."), haupt=p("haupt"),
-                        woerter=p("haupt")[:-4] + ".woerter.json", haupt_text=haupt, starts=starts, frage=m["frage"],
+                        woerter=p("haupt")[:-4] + ".woerter.json", haupt_text=haupt, starts=starts, frage=m["frage"], belegstellen=m.get("belegstellen", []),
                         artikel_url=q[0] if q else "", quellen=q))
     ziel = os.path.join(HIER, "daten", "news_auftrag_%s.json" % datum)
     json.dump(aus, open(ziel, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
