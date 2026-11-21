@@ -5,12 +5,13 @@ Nur freie Lizenzen (CC0, Public Domain, CC BY, CC BY-SA). Keine Agenturfotos aus
   python3 commons_foto.py suche "Olaf Scholz 2025"       → Kandidaten mit Lizenz, Urheber, Größe, Datum
   python3 commons_foto.py hole "File:Name.jpg" ZIEL.jpg   → lädt (max. 1920 px breit), gibt den Bildnachweis aus
   python3 commons_foto.py hole "File:Name.jpg" ZIEL.jpg --ausschnitte 3
-        → ZIEL1.jpg (ganz), ZIEL2.jpg (enger, oberes Drittel), ZIEL3.jpg (noch enger) – für 3 Starts mit demselben Foto
+        → ZIEL1.jpg (ganz), ZIEL2.jpg (80 %), ZIEL3.jpg (65 %), auf den Kopf zentriert – für 3 Starts mit demselben Foto
 Das ausgewählte Bild vor der Nutzung ansehen (richtige Person? aktuell? kein Logo/Wasserzeichen?).
 """
 import json, os, re, subprocess, sys, urllib.parse, urllib.request
 
 API = "https://commons.wikimedia.org/w/api.php"
+GESICHT = os.path.expanduser("~/NekoTools/gesicht/gesicht")  # Apple Vision, größtes Gesicht als x y b h
 UA = "MorgenzeitungFotoHelfer/1.0 (lokales Skript; freie Lizenzen)"
 FREI = re.compile(r"^(CC0|Public domain|PD|CC BY(-SA)? \d|CC BY(-SA)?$|Attribution)", re.I)
 
@@ -60,11 +61,25 @@ def hole(titel, ziel, ausschnitte=1):
     if ausschnitte <= 1:
         subprocess.run(["ffmpeg", "-loglevel", "error", "-y", "-i", roh, "-q:v", "2", basis + ".jpg"], check=True); dateien.append(basis + ".jpg")
     else:
-        # 1 = ganz, 2 = 75 % (oben mittig, da sitzt meist das Gesicht), 3 = 55 %
-        for i, f in enumerate([1.0, 0.75, 0.55][:ausschnitte], 1):
-            vf = "crop=iw*%.2f:ih*%.2f:(iw-iw*%.2f)/2:(ih-ih*%.2f)*0.25" % (f, f, f, f)
+        # 1 = ganz, 2 = 80 %, 3 = 65 %, auf den Kopf zentriert (Wunsch FILMCRAFT 2026-11-21: ganzes Gesicht samt Kinn, oben etwas Luft;
+        # die Titelseite schneidet danach mittig auf ~0,96 B/H zu, deshalb Kopf ungefähr in die Bildmitte)
+        W, H = [int(v) for v in subprocess.run(["ffprobe", "-v", "error", "-show_entries", "stream=width,height", "-of", "csv=p=0", roh],
+                                               capture_output=True, text=True).stdout.split(",")[:2]]
+        g = subprocess.run([GESICHT, roh], capture_output=True, text=True).stdout.split() if os.path.exists(GESICHT) else []
+        if len(g) == 4:
+            fx, fy, fb, fh = map(int, g)
+            kx, ky = fx + fb / 2, fy + fh / 2 - 0.15 * fh            # Mitte Kopf (etwas nach oben wegen Haaren)
+            oben, unten = fy - 0.6 * fh, fy + fh * 1.15                # Haare bzw. Kinn mit Rand
+        else:
+            kx, ky = W / 2, H * 0.45; oben = unten = ky                 # kein Gesicht erkannt: mittig, etwas nach oben
+            print("Hinweis: kein Gesicht erkannt, Ausschnitte mittig – Bild ansehen", file=sys.stderr)
+        for i, f in enumerate([1.0, 0.8, 0.65][:ausschnitte], 1):
+            b, h = W * f, H * f
+            h = max(h, unten - oben); b = min(W, max(b, h * W / H)); h = min(H, b * H / W)   # Kopf passt immer ganz rein
+            cx = min(max(0, kx - b / 2), W - b); cy = min(max(0, ky - h / 2), H - h)
             p = "%s%d.jpg" % (basis, i)
-            subprocess.run(["ffmpeg", "-loglevel", "error", "-y", "-i", roh, "-vf", vf, "-q:v", "2", p], check=True); dateien.append(p)
+            subprocess.run(["ffmpeg", "-loglevel", "error", "-y", "-i", roh, "-vf", "crop=%d:%d:%d:%d" % (b, h, cx, cy), "-q:v", "2", p], check=True)
+            dateien.append(p)
     os.remove(roh)
     return dict(dateien=dateien, nachweis=nachweis(x), seite=x["seite"], lizenz=x["lizenz"], urheber=x["urheber"])
 
