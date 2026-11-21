@@ -2,13 +2,14 @@
 """Auftragsdatei für die eigenständigen News-Videos (FILMCRAFT/ANALYSE), Wunsch Nicolas 2026-11-21 („Ja, ab morgen“).
 
 Eingabe (schreibt der Morgenlauf): daten/news/<datum>/entwurf.json
-  {"meldungen": [{"id": "m3", "starts": ["Satz 1", "Satz 2", "Satz 3"], "frage": "…?",
-                  "belegstellen": ["wörtlich aus dem Originalartikel", …1–2], "fotos": [{"datei": "daten/news/<datum>/m3_foto1.jpg", "nachweis": "Foto: … / Wikimedia Commons, CC BY-SA 4.0"}, … 3×]}]}
+  {"meldungen": [{"id": "m3", "starts": ["krasse Aussage wie eine Überschrift"], "herkunft": "Das berichtet heute die Tagesschau.", "frage": "…?",
+                  "belegstellen": ["wörtlich aus dem Originalartikel", …1–2], "fotos": [{"datei": "daten/news/<datum>/m3_foto1.jpg", "nachweis": "Foto: … / Wikimedia Commons, CC BY-SA 4.0"}, …]}]}
   (3–5 Favoriten; Fotos mit commons_foto.py holen, nur freie Lizenzen)
 
 Ausgabe: daten/news_auftrag_<datum>.json (Format von FILMCRAFT, 2026-11-21) und in daten/news/<datum>/:
-  <id>_haupt.mp3 + <id>_haupt.woerter.json  = Kernteil der Meldung (vor „Mehr anzeigen“) OHNE die Überschrift (= erster Satz)
-  <id>_start1..3.mp3 + .woerter.json         = die drei Hook-Starts
+  <id>_haupt.mp3 + <id>_haupt.woerter.json  = Herkunftssatz + Kernteil der Meldung (vor „Mehr anzeigen“) OHNE die Überschrift
+  Seit 2026-11-21 (Nicolas): pro Meldung NUR EIN Video mit EINEM Start; Hook-Art darf von Meldung zu Meldung wechseln.
+  <id>_start1.mp3 + .woerter.json            = der eine Start
   Gleiche Stimme wie die Zeitung (Qwen, STIL probe2, gleiche Aussprache-Liste), ohne Musik.
 daten/news/ und news_auftrag_*.json sind in .gitignore: nichts davon geht online.
 
@@ -72,6 +73,8 @@ def main():
         ueberschrift = re.search(r'<article[^>]*id="%s"[^>]*>.*?<h3>(.*?)</h3>' % mid, seite, re.S)
         erster = klartext(ueberschrift.group(1)) + "."
         haupt = kern[len(erster):].strip() if kern.startswith(erster) else kern
+        # Satz 2 im Video = Herkunft („Das berichtet heute die Tagesschau.“), dann der Inhalt (Wunsch Nicolas 2026-11-21 über ANALYSE)
+        if m.get("herkunft"): haupt = m["herkunft"].strip() + " " + haupt
         p = lambda n: os.path.join(ordner, "%s_%s.mp3" % (mid, n))
         sprich(s, stil, haupt, p("haupt"))
         starts = []
