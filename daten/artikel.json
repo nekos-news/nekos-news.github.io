@@ -1033,5 +1033,86 @@
   "fakt": "Der Bundesrat hat am Freitag dem ersten Teil der Führerschein-Reform zugestimmt. Die Theorie darf dann auch per App gelernt werden, und die Preise aller Fahrschulen sollen online vergleichbar sein. Die meisten Regeln gelten ab dem 1. Juli 2027.",
   "quellen_html": "<a href=\"https://live.deutsche-boerse.com/nachrichten/Bundesrat-billigt-ersten-Teil-der-Fuehrerschein-Reform-d69ea8c0-a788-4ac1-aed5-7756d966d7a1\">dpa-AFX</a> · <a href=\"https://bsaktuell.de/deutschland-und-welt/fuehrerscheinreform-bundesrat-stimmt-aenderungen-am-fahrlehrergesetz-zu/371911\">BS Aktuell</a>",
   "krass": 4
+ },
+ {
+  "datum": "2026-11-22",
+  "id": "m1",
+  "rubrik": "AfD",
+  "titel": "Remigration ins Wahlprogramm? Die NRW-AfD streitet heute in Mülheim über ihren Kurs",
+  "fakt": "Die NRW-AfD will heute auf einem Parteitag in Mülheim an der Ruhr ihr Programm für die Landtagswahl 2027 beschließen. Laut ZDF und dpa stehen sich dabei 2 Lager gegenüber: Der Landesvorstand um Landeschef Martin Vincentz hat einen laut dpa eher gemäßigt formulierten Entwurf vorgelegt, der extrem rechte Flügel will ihn bei Abschiebungen und Integration deutlich verschärfen.",
+  "quellen_html": "<a href=\"https://www.zdfheute.de/politik/deutschland/afd-nrw-streit-und-konflikte-100.html\">ZDFheute</a> · <a href=\"https://www.onvista.de/news/2026/11-19-nrw-afd-ringt-um-kurs-bei-abschiebungen-und-integration-0-10-26578071\">onvista (dpa)</a>",
+  "krass": 5
+ },
+ {
+  "datum": "2026-11-22",
+  "id": "m2",
+  "rubrik": "Steuern",
+  "titel": "Ein Milliarden-Geschenk, kaum Steuern: Selbst in der CDU wächst der Ärger über die Erbschaftsteuer",
+  "fakt": "Recherchen von ZDF, Spiegel und Manager Magazin auf Basis interner Dokumente der Deutschen Bank zeigen laut ZDF, wie Springer-Chef Mathias Döpfner 2020 ein Aktienpaket im Milliardenwert geschenkt bekam und dafür offenbar kaum Steuern zahlen musste. Der Verlag nennt den Vorwurf unlauterer Steuertricks abwegig. Politiker von SPD und CDU fordern jetzt strengere Regeln bei der Erbschaft- und Schenkungsteuer.",
+  "quellen_html": "<a href=\"https://www.zdfheute.de/politik/deutschland/inside-deutsche-bank-leak-erbschaftsteuer-doepfner-springer-100.html\">ZDFheute</a> · <a href=\"https://www.ad-hoc-news.de/politik/erbschaftsteuer-cdu-und-spd-kritisieren-milliarden-schlupfloecher/70538746\">ad-hoc-news (dts)</a>",
+  "krass": 6
+ },
+ {
+  "datum": "2026-11-22",
+  "id": "m3",
+  "rubrik": "Bundeswehr",
+  "titel": "Panzer lieber per Zug: Die Bundeswehr soll ihre Fahrt nach Litauen geändert haben, um Russland nicht zu provozieren",
+  "fakt": "Laut Bild am Sonntag hat die Bundeswehr ihre Panzer für eine große Übung in Litauen kurzfristig per Bahn statt als Kolonne über Straßen in Polen gebracht. Der Grund laut dem Bericht: Sichtbare deutsche Panzerkolonnen auf dem Weg an die Nato-Ostgrenze sollten Russland nicht unnötig provozieren. Das Verteidigungsministerium sagt, ein Wechsel des Transportwegs sei nichts Ungewöhnliches und müsse geübt werden.",
+  "quellen_html": "<a href=\"https://www.welt.de/politik/deutschland/article6b0228355842ff528b9e34bc/geplante-grossuebung-russland-nicht-provozieren-bundeswehr-aendert-kraefte-verlegung-nach-litauen.html\">WELT</a> · <a href=\"https://www.n-tv.de/politik/01-49-Russland-nicht-provozieren-Bundeswehr-aendert-Verlegung-nach-Litauen-id30859357.html\">n-tv</a>",
+  "krass": 4
+ },
+ {
+  "datum": "2026-11-22",
+  "id": "m4",
+  "rubrik": "Netz",
+  "titel": "Je mehr sie sich gegen Gewalt an Frauen einsetzt, desto mehr Hass bekommt die Justizministerin ab",
+  "fakt": "Justizministerin Stefanie Hubig sagt der Bild am Sonntag, sie bekomme mehr Hass im Netz, seit sie sich stark gegen Gewalt an Frauen einsetzt. Digitale Gewalt werde gezielt genutzt, um Frauen aus Debatten zu drängen. Das Kabinett hat im Oktober einen Gesetzentwurf gegen digitale Gewalt beschlossen.",
+  "quellen_html": "<a href=\"https://www.ad-hoc-news.de/politik/stefanie-hubig-meldet-mehr-hass-wegen-einsatz-gegen-gewalt/70543758\">ad-hoc-news (dts)</a> · <a href=\"https://regionalheute.de/justizministerin-erlebt-verstaerkten-hass-im-netz-1795320062/\">regionalHeute (dts)</a>",
+  "krass": 4
+ },
+ {
+  "datum": "2026-11-22",
+  "id": "m5",
+  "rubrik": "USA",
+  "titel": "Ab Januar ermitteln die Demokraten, und Trump sagt den Firmen schon jetzt: Erst mal bei mir melden",
+  "fakt": "Trump hat am späten Freitag eine Verordnung erlassen: Alle Firmen, die Aufträge vom Staat haben, sollen sich mit dem Weißen Haus abstimmen, wenn der Kongress Informationen von ihnen will. Wer sich nicht daran hält, dem drohen laut AP gekündigte Verträge. Demokraten nennen die Verordnung rechtswidrig.",
+  "quellen_html": "<a href=\"https://www.pbs.org/newshour/politics/trump-orders-federal-contractors-to-check-with-white-house-before-responding-to-congress\">PBS (AP)</a> · <a href=\"https://www.washingtonpost.com/politics/2026/11/21/trump-white-house-orders-contractors-limit-information-shared-with-congress/\">Washington Post</a>",
+  "krass": 6
+ },
+ {
+  "datum": "2026-11-22",
+  "id": "m6",
+  "rubrik": "Geld",
+  "titel": "Trump und Elizabeth Warren auf einer Linie? Beide wollen Kreditkartenzinsen bei 10 Prozent deckeln",
+  "fakt": "Trump hat am Samstag in einem Interview mit Fox News gesagt, er würde mit dem neuen, von den Demokraten geführten Kongress eine Obergrenze von 10 Prozent für Kreditkartenzinsen umsetzen. Die Demokratin Elizabeth Warren hat das begrüßt. Banken und Kreditkartenfirmen lehnen den Plan laut AP scharf ab.",
+  "quellen_html": "<a href=\"https://www.pbs.org/newshour/politics/trump-vows-to-work-with-democrats-to-cap-credit-card-interest-rates-at-10\">PBS (AP)</a> · <a href=\"https://www.foxbusiness.com/politics/trump-opens-door-bipartisan-deal-credit-card-rates-americans-face-record-debt\">Fox Business</a>",
+  "krass": 4
+ },
+ {
+  "datum": "2026-11-22",
+  "id": "m7",
+  "rubrik": "Ostsee",
+  "titel": "Drohnen treffen einen russischen Frachter, und plötzlich brennt es 20 Kilometer vor Finnland",
+  "fakt": "Am Samstag haben laut russischen Behörden 2 Drohnen den russischen Frachter „Sparta II“ im Finnischen Meerbusen getroffen, das Schiff geriet in Brand. Finnische Behörden halten laut Handelsblatt einen ukrainischen Angriff für wahrscheinlich, die Ukraine äußerte sich zunächst nicht. Das Schiff steht laut Tagesspiegel unter US-Sanktionen und gehört einer Firma, die Logistik für Russlands Verteidigungsministerium macht.",
+  "quellen_html": "<a href=\"https://www.tagesspiegel.de/internationales/drohnen-greifen-russischen-frachter-an-moskau-evakuiert-crew-vor-der-finnischen-kuste-von-brennendem-schiff-16311729.html\">Tagesspiegel</a> · <a href=\"https://www.handelsblatt.com/politik/international/ostsee-russisches-frachtschiff-nach-drohnenangriff-vor-finnland-in-brand/100271784.html\">Handelsblatt</a>",
+  "krass": 5
+ },
+ {
+  "datum": "2026-11-22",
+  "id": "m8",
+  "rubrik": "Klima",
+  "titel": "Der Konferenzchef sagt, alle können zustimmen. Klimagruppen sagen: auf keinen Fall",
+  "fakt": "Nach mehr als 30 Stunden Verlängerung liegt der Klimakonferenz in Antalya ein neuer Entwurf für die Abschlusserklärung vor, abgestimmt werden soll am Sonntagvormittag. Der Konferenzpräsident sagt laut Reuters, die Sorgen zu fossilen Energien und zum Geld für Anpassung seien ausgeräumt. Laut dpa enthält der neue Text aber erneut kein direktes Bekenntnis zum Ausstieg aus Kohle, Öl und Gas.",
+  "quellen_html": "<a href=\"https://www.handelsblatt.com/politik/international/umwelt-klimagipfel-neuer-textentwurf-erwaehnt-oel-und-gas-nicht/100271812.html\">Handelsblatt (dpa)</a> · <a href=\"https://news.un.org/en/story/2026/11/1168845\">UN News</a> · <a href=\"https://www.al-monitor.com/originals/2026/11/cop31-climate-talks-close-final-deal-says-summit-president\">Al-Monitor (Reuters)</a>",
+  "krass": 6
+ },
+ {
+  "datum": "2026-11-22",
+  "id": "m9",
+  "rubrik": "Gesundheit",
+  "titel": "Gute Nachricht: Eritrea hat eine Krankheit besiegt, die Menschen blind macht",
+  "fakt": "Die Weltgesundheitsorganisation WHO hat am Montag bestätigt, dass Eritrea Trachom als Problem für die öffentliche Gesundheit beseitigt hat. Trachom ist weltweit die häufigste Infektion, die zu Blindheit führt. Eritrea ist laut WHO das 34. Land weltweit und das 11. in Afrika, das das geschafft hat.",
+  "quellen_html": "<a href=\"https://allafrica.com/stories/202611160817.html\">allAfrica (WHO)</a> · <a href=\"https://www.natureworldnews.com/articles/73875/20261116/who-confirms-eritrea-has-beaten-trachoma-worlds-leading-infectious-cause-blindness.htm\">Nature World News</a>",
+  "krass": 4
  }
 ]
