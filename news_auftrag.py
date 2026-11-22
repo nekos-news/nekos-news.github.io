@@ -14,7 +14,8 @@ Ausgabe: daten/news_auftrag_<datum>.json (Format von FILMCRAFT, 2026-11-21) und 
   Gleiche Stimme wie die Zeitung (Qwen, STIL probe2, gleiche Aussprache-Liste), ohne Musik.
 daten/news/ und news_auftrag_*.json sind in .gitignore: nichts davon geht online.
 
-Nutzung: ~/NekoTools/qwen_tts/venv/bin/python news_auftrag.py <datum>
+Nutzung: ~/NekoTools/qwen_tts/venv/bin/python news_auftrag.py <datum> [--nur m9]
+  --nur <id>: nur diese Meldung neu sprechen (nach Änderung in entwurf.json), die übrigen Einträge der Auftragsdatei bleiben.
 Wartet von selbst, solange ein anderer Qwen-Lauf, FilmCraft-Render oder der Handy-Emulator läuft (Mac-Abstürze 2026-11-17/21).
 """
 import json, os, re, subprocess, sys, time, hashlib, tempfile
@@ -71,8 +72,10 @@ def main():
     seite = seite_fuer(datum); bl = dict(Z.bloecke(seite))
     warte_bis_frei()
     stil = os.environ.get("STIL", "probe2"); s = Z.Stimme(stil=stil)
+    nur = sys.argv[sys.argv.index("--nur") + 1] if "--nur" in sys.argv else None
     aus = []
     for m in entwurf["meldungen"]:
+        if nur and m["id"] != nur: continue
         mid = m["id"]; print(mid, flush=True)
         kern = bl[mid].split(Z.TRENNER)[0].strip()
         ueberschrift = re.search(r'<article[^>]*id="%s"[^>]*>.*?<h3>(.*?)</h3>' % mid, seite, re.S)
@@ -95,6 +98,9 @@ def main():
                         woerter=p("haupt")[:-4] + ".woerter.json", haupt_text=haupt, haupt_sekunden=round(float(subprocess.run(['ffprobe','-v','error','-show_entries','format=duration','-of','csv=p=0',p('haupt')],capture_output=True,text=True).stdout or 0),1), starts=starts, frage=m.get("frage", ""), seite_url=SEITE % (datum, mid), belegstellen=m.get("belegstellen", []),
                         artikel_url=q[0] if q else "", quellen=q))
     ziel = os.path.join(HIER, "daten", "news_auftrag_%s.json" % datum)
+    if nur:   # nur eine Meldung ersetzt, Reihenfolge bleibt
+        alt = json.load(open(ziel, encoding="utf-8")); neu = {x["id"]: x for x in aus}
+        aus = [neu.pop(x["id"], x) for x in alt] + list(neu.values())
     json.dump(aus, open(ziel, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     print(len(aus), "Meldungen ->", ziel)
 
