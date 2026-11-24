@@ -61,6 +61,7 @@ def sprich(s, stil, text, ziel):
     if not os.path.exists(c):
         w, sr, werte = s.sprich(t); os.makedirs(Z.CACHE, exist_ok=True); sf.write(c, w, sr)
         print("  Treffer min %.2f  %s" % (min(werte), t[:60]), flush=True)
+    c = Z.straffen_datei(c, t)   # Pausen im Satz kürzer wie in der Zeitung (Nicolas 2026-11-24)
     Z.ff("-i", c, "-af", Z.LN, *Z.ENDE, ziel)
     json.dump(woerter(ziel), open(ziel[:-4] + ".woerter.json", "w", encoding="utf-8"), ensure_ascii=False, separators=(",", ":"))
 
