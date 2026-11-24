@@ -1792,7 +1792,7 @@ function mzVideoZeit(code, i) {
   window.mzLofiWechsel = function () { var x = liste[pos]; if (!x || dingt) return; var t = player.currentTime, lief = !player.paused, neu = url(x); if (player.src.indexOf(neu) >= 0) return;
     player.src = neu; player.addEventListener('loadedmetadata', function () { player.currentTime = t; }, { once: true }); if (lief) player.play().catch(function () {}); };
   player.addEventListener('timeupdate', function () { var x = liste[pos]; if (x && !dingt && player.duration && player.currentTime / player.duration > 0.9) merkeGehoert(x.url); });
-  player.addEventListener('ended', function () { var x = liste[pos]; if (x) merkeGehoert(x.url); });
+  player.addEventListener('ended', function () { var x = liste[pos]; if (x && !dingt) merkeGehoert(x.url); });
   /* Zeit an andere Teile melden (z. B. Story im 30-Sekunden-Zettel läuft mit) */
   ['timeupdate', 'play', 'pause', 'ended'].forEach(function (ev) { player.addEventListener(ev, function () { if (dingt) return; var x = liste[pos]; window.dispatchEvent(new CustomEvent('mz-audio', { detail: { id: x ? x.el.id : null, src: x ? x.url : null, t: player.currentTime, d: player.duration, spielt: !player.paused && !player.ended } })); }); });
   var leiste = document.querySelector('.leiste'), btn = document.getElementById('btn-lesen'), status = document.getElementById('lese-status'), naechsterBtn = document.getElementById('btn-naechster'), zurueckBtn = document.getElementById('btn-zurueck');
@@ -1820,7 +1820,8 @@ function mzVideoZeit(code, i) {
     if (alles) { var ob = document.querySelector('.bogen-grund:not([hidden]) .bogen'); if (ob && ob.dataset.fuer !== x.el.id && window.mzBogenWechsel) window.mzBogenWechsel(x.el); }
     if (alles) { if (window.mzZeigeMeldung) window.mzZeigeMeldung(x.el); (x.el.closest('.wischer') || x.el).scrollIntoView({ block: x.el.closest('.wischer') ? 'start' : 'center', behavior: 'smooth' }); var nM = liste.filter(function (y) { return y.el.id !== 'kurz'; }).length, iM = liste.slice(0, i + 1).filter(function (y) { return y.el.id !== 'kurz'; }).length; status.textContent = (x.el.id === 'kurz' ? 'Das Wichtigste' : 'Meldung ' + iM + ' von ' + nM) + (uebersprungen ? ' · ' + uebersprungen + ' schon gehört' : ''); }
   }
-  /* „Alles anhören“ überspringt, was man schon gehört hat (Wunsch Nicolas 2026-11-08). Ist alles gehört, läuft alles von vorn. */
+  /* „Alles anhören“ überspringt, was man schon gehört hat (Wunsch Nicolas 2026-11-08). Sind alle MELDUNGEN gehört, läuft alles von vorn.
+     Nur die Meldungen zählen: War nur „Das Wichtigste“ noch ungehört, kamen sonst die 30 Sekunden, dann gleich der Ausklang (Fehler 2026-11-24). */
   function naechste(j) { while (ueberspringen && j < liste.length && istGehoert(liste[j].url)) j++; return j; }
   function stopDing() { if (!dingt) return false; clearTimeout(dingUhr); dingt = false; ding.pause(); player.pause(); player.muted = false; player.currentTime = 0; knoepfe(-1); zeigePause(); klick(tonPause); return true; }
   function ende() { clearTimeout(dingUhr); dingt = false; player.muted = false; player.pause(); pos = -1; alles = false; uebersprungen = 0; knoepfe(-1); btn.textContent = '\u25B6\uFE0E Alles anhören'; btn.classList.remove('symbol'); btn.removeAttribute('aria-label'); introBis = 0; zurueckBtn.hidden = true; naechsterBtn.hidden = true; status.textContent = ''; }
@@ -1891,7 +1892,7 @@ function mzVideoZeit(code, i) {
     entsperren(); if (pos >= 0 && stopDing()) return;
     if (pos >= 0 && !player.paused) { player.pause(); klick(tonPause); knoepfe(-1); return; }
     if (pos >= 0 && player.paused) { klick(tonWeiter); player.play(); knoepfe(pos); return; }
-    alles = true; ueberspringen = liste.some(function (x) { return !istGehoert(x.url); });
+    alles = true; ueberspringen = liste.some(function (x) { return x.el.id !== 'kurz' && !istGehoert(x.url); });
     var start = naechste(0); uebersprungen = liste.filter(function (x) { return ueberspringen && istGehoert(x.url); }).length;
     if (start > 0 && liste[0].el.id === 'kurz' && introEnde > 1) { spiele(0, introEnde); return; } /* erst die Begrüßung */
     spiele(start);
