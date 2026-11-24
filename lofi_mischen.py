@@ -31,8 +31,9 @@ def ausgabe(datum, neu=False):
         quelle, ziel = os.path.join(ordner, i + ".mp3"), os.path.join(ordner, i + ".lofi.mp3")
         d = dauer(quelle)
         if neu or not os.path.exists(ziel):
+            # asetpts: beim Schleifen-Übergang von lofi.m4a springen sonst die Zeitstempel, die Musik lief dann bis 90 s nach der Stimme weiter (Fehler 2026-11-24)
             subprocess.run(["ffmpeg", "-hide_banner", "-loglevel", "error", "-y", "-i", quelle, "-stream_loop", "-1", "-ss", f"{ab % gesamt:.2f}", "-i", LOFI,
-                            "-filter_complex", (f"[1]atrim=0:{d - 3.6:.2f},afade=t=in:d=1.5,afade=t=out:st={d - 4.6:.2f}:d=1.2,adelay=4000|4000[m];" if i == "kurz" else f"[1]atrim=0:{d + 0.6:.2f},afade=t=in:d=0.8,afade=t=out:st={d - 0.6:.2f}:d=1.2[m];") + f"[0][m]amix=inputs=2:duration=longest:normalize=0,aresample=48000,asetnsamples=n=1152:p=0",
+                            "-filter_complex", (f"[1]asetpts=N/SR/TB,atrim=0:{d - 3.6:.2f},afade=t=in:d=1.5,afade=t=out:st={d - 4.6:.2f}:d=1.2,adelay=4000|4000[m];" if i == "kurz" else f"[1]asetpts=N/SR/TB,atrim=0:{d + 0.6:.2f},afade=t=in:d=0.8,afade=t=out:st={d - 0.6:.2f}:d=1.2[m];") + f"[0][m]amix=inputs=2:duration=longest:normalize=0,aresample=48000,asetnsamples=n=1152:p=0",
                             "-ac", "1", "-ar", "48000", "-b:a", "64k", ziel], check=True)
             print(f"{datum}/{i}.lofi.mp3")
         ab += d + 1.0
