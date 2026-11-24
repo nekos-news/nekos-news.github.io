@@ -1209,9 +1209,9 @@
     "datum": "2026-11-24",
     "id": "m1",
     "rubrik": "Justiz",
-    "titel": "Wer seine Ex tötet, weil sie ihn verlässt, gilt nicht immer als Mörder. Das soll sich jetzt ändern",
-    "fakt": "Justizministerin Stefanie Hubig will den Mordparagrafen ändern. Wer aus „geschlechtsspezifischen“ Motiven tötet, soll künftig klar wegen Mordes bestraft werden. Auch die Union hat sich jetzt hinter die Idee gestellt, der Entwurf muss aber noch durch Kabinett, Bundestag und Bundesrat.",
-    "quellen_html": "<a href=\"https://taz.de/Gewalt-gegen-Frauen/!6232169/\">taz</a> · <a href=\"https://www.sueddeutsche.de/gesundheit/gewalt-gegen-frauen-studie-tu-muenchen-opfer-verletzungen-li.3582610\">Süddeutsche</a> · <a href=\"https://www.zdfheute.de/politik/deutschland/hubig-mordparagraph-femizide-100.html\">ZDFheute</a> · <a href=\"https://www.n-tv.de/politik/Union-will-Femizide-als-Mord-einstufen-id31568895.html\">n-tv</a>",
+    "titel": "Im Schnitt wurden 2025 mehr als 2 Frauen pro Woche vom Partner oder Ex getötet. Nicht immer gilt das als Mord",
+    "fakt": "342 Frauen und Mädchen wurden 2025 in Deutschland getötet, 130 davon vom Partner oder Ex-Partner. Das zeigen die neuen Zahlen vom Bundeskriminalamt. Justizministerin Stefanie Hubig will, dass Tötungen aus „geschlechtsspezifischen“ Motiven klar als Mord gelten. Auch die Union steht dahinter, beschlossen ist aber noch nichts.",
+    "quellen_html": "<a href=\"https://www.zdfheute.de/politik/deutschland/bka-haeusliche-gewalt-opfer-mehrheit-weiblich-100.html\">ZDFheute</a> · <a href=\"https://www.bka.de/DE/Presse/Listenseite_Pressemitteilungen/2026/Presse2026/261124_PM_BLB_HG_GgF.html\">Bundeskriminalamt</a> · <a href=\"https://taz.de/Gewalt-gegen-Frauen/!6232667/\">taz</a> · <a href=\"https://www.zdfheute.de/politik/deutschland/hubig-mordparagraph-femizide-100.html\">ZDFheute</a> · <a href=\"https://www.n-tv.de/politik/Union-will-Femizide-als-Mord-einstufen-id31568895.html\">n-tv</a>",
     "krass": 7
   },
   {
@@ -1227,9 +1227,9 @@
     "datum": "2026-11-24",
     "id": "m3",
     "rubrik": "Gewalt",
-    "titel": "Die Grünen sitzen in Schwerte zusammen, dann stürmt ein Maskierter rein",
-    "fakt": "In Schwerte bei Dortmund hat am Montagabend ein Unbekannter eine Sitzung der Grünen gestürmt. Laut WDR wurden 3 Menschen verletzt und ins Krankenhaus gebracht. Der Täter ist geflohen, der Staatsschutz prüft, ob die Tat politisch motiviert war.",
-    "quellen_html": "<a href=\"https://www1.wdr.de/nrw/ruhrgebiet/kreis-unna/angriff-fraktionssitzung-gruene-schwerte-100.html\">WDR</a> · <a href=\"https://www.tagesschau.de/inland/regional/nordrheinwestfalen/gruene-angriff-nrw-schwerte-100.html\">Tagesschau</a> · <a href=\"https://www.zdfheute.de/politik/deutschland/schwerte-unbekannter-stuermt-gruenen-sitzung-100.html\">ZDFheute</a>",
+    "titel": "Die Grünen sitzen in Schwerte zusammen, dann kommt ein Maskierter rein und sprüht Pfefferspray",
+    "fakt": "In Schwerte bei Dortmund hat ein maskierter Mann am Montagabend eine Sitzung der Grünen angegriffen und laut Polizei Pfefferspray versprüht. 7 Menschen wurden leicht verletzt, eine weitere Person musste im Krankenhaus behandelt werden. Der Täter ist weiter auf der Flucht, der Staatsschutz ermittelt.",
+    "quellen_html": "<a href=\"https://handelsblatt.com/politik/deutschland/vorfall-bei-gruenen-sitzung-unbekannter-nach-pfefferspray-angriff-im-parteibuero-fluechtig/100272441.html\">Handelsblatt (dpa)</a> · <a href=\"https://www.presseportal.de/blaulicht/pm/4971/6396859\">Polizei Dortmund</a> · <a href=\"https://www.ruhrnachrichten.de/schwerte/schwerte-polizei-rettungseinsatz-uebergriff-nahe-gruenen-parteibuero-w1277873-2002310563/\">Ruhr Nachrichten</a>",
     "krass": 7
   },
   {
@@ -1303,5 +1303,14 @@
     "fakt": "Der kostenlose Stromspar-Check ist laut Umweltministerium für 3 weitere Jahre gesichert. Von 2027 bis 2029 gibt es dafür 165 Millionen Euro, mehr als 100.000 weitere Haushalte sollen Hilfe bekommen. Neu: Den Zuschuss von bis zu 200 Euro gibt es dann nicht nur für Kühlschränke, sondern auch für Waschmaschinen.",
     "quellen_html": "<a href=\"https://www.tagesschau.de/wirtschaft/verbraucher/stromspar-checks-kostenlose-energieberatung-bundesumweltministerium-100.html\">Tagesschau</a> · <a href=\"https://www.deutschlandfunk.de/umweltminister-schneider-foerderprogramm-fuer-stromspar-check-wird-ausgeweitet-102.html\">Deutschlandfunk</a> · <a href=\"https://www.bundesumweltministerium.de/pressemitteilung/bundesumweltminister-schneider-stromspar-check-wird-ausgeweitet-um-mehr-haushalte-mit-geringem-einkommen-beim-energiesparen-zu-unterstuetzen\">Umweltministerium</a>",
     "krass": 4
+  },
+  {
+    "datum": "2026-11-24",
+    "id": "m12",
+    "rubrik": "Nato",
+    "titel": "Schon wieder Polen: Eine russische Drohne fliegt rein, und die Regierung geht von Absicht aus",
+    "fakt": "In der Nacht zu Dienstag ist laut polnischem Militär eine russische Drohne in den Luftraum von Polen eingedrungen. Polens Vize-Verteidigungsminister geht von Absicht aus. Russland hat sich bisher nicht dazu geäußert.",
+    "quellen_html": "<a href=\"https://www.tagesspiegel.de/internationales/dpa-wir-gehen-davon-aus-dass-es-absicht-war-russische-drohne-dringt-in-polens-luftraum-ein-16318099.html\">Tagesspiegel (dpa)</a> · <a href=\"https://taz.de/Russische-Provokation-gegen-die-NATO/!6232673/\">taz</a> · <a href=\"https://notesfrompoland.com/2026/11/24/nato-to-send-surveillance-aircraft-to-poland-after-russian-missile-strikes/\">Notes from Poland</a>",
+    "krass": 6
   }
 ]
