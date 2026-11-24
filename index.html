@@ -1815,10 +1815,10 @@ function mzVideoZeit(code, i) {
   /* Soundpaket „Lo-Fi-Nachrichten“ (gewählt von Nicolas 2026-11-10, selbst erzeugt mit ~/NekoTools/google_tts/klaenge2.py):
      Wechsel-Klang vor jeder Meldung, Mini-Klick bei Pause und beim Weiterhören, Ausklang nach der letzten Meldung bei „Alles anhören“.
      „Das Wichtigste“ hat seinen Jingle schon in der Aufnahme. Im Modus „Weniger Reize“ keine Klänge. */
-  var ding = new Audio('/audio/jingle-artikel.mp3'), schluss = new Audio('/audio/jingle-ausklang.mp3'), dingt = false, dingUhr = null, entsperrt = false, root = document.documentElement; ding.preload = 'auto'; schluss.preload = 'auto';
+  var schluss = new Audio('/audio/jingle-ausklang.mp3'), dingt = false, dingUhr = null, startZeit = 0, versuch = 0, entsperrt = false, root = document.documentElement; schluss.preload = 'auto';
   var tonPause = new Audio('/audio/klang-pause.mp3'), tonWeiter = new Audio('/audio/klang-weiter.mp3'); tonPause.preload = 'auto'; tonWeiter.preload = 'auto'; tonPause.volume = 0.6; tonWeiter.volume = 0.6;
   function klick(a) { if (root.classList.contains('ruhig')) return; try { a.currentTime = 0; a.play().catch(function () {}); } catch (e) {} }
-  function entsperren() { if (entsperrt) return; entsperrt = true; [ding, schluss, tonPause, tonWeiter].forEach(function (a) { a.muted = true; var q = a.play(); if (q && q.then) q.then(function () { a.pause(); a.currentTime = 0; a.muted = false; }).catch(function () { a.muted = false; }); else a.muted = false; }); }
+  function entsperren() { if (entsperrt) return; entsperrt = true; [schluss, tonPause, tonWeiter].forEach(function (a) { a.muted = true; var q = a.play(); if (q && q.then) q.then(function () { a.pause(); a.currentTime = 0; a.muted = false; }).catch(function () { a.muted = false; }); else a.muted = false; }); }
   /* Angehört merken (nur im eigenen Browser): ab 90 % gilt eine Meldung als gehört */
   function gehoert() { try { return JSON.parse(localStorage.getItem('mz-gehoert') || '[]'); } catch (e) { return []; } }
   function istGehoert(u) { return gehoert().indexOf(u) >= 0; }
@@ -1834,11 +1834,11 @@ function mzVideoZeit(code, i) {
   window.mzStandP = basis ? fetch(basis + 'stand.txt', { cache: 'no-cache' }).then(function (r) { return r.ok ? r.text() : ''; })
     .then(function (t) { t = (t || '').trim(); if (/^\d+$/.test(t)) stand = '?v=' + t; }).catch(function () {}) : Promise.resolve();
   function url(x) { return (mitLofi() ? x.url.replace(/\.mp3$/, '.lofi.mp3') : x.url) + stand; }
-  player.addEventListener('error', function () { var x = liste[pos]; if (x && /\.lofi\.mp3$/.test(player.src)) { player.src = x.url + stand; if (!dingt) player.play().catch(function () {}); } }); /* fehlt die Lo-Fi-Fassung: ohne Musik */
+  player.addEventListener('error', function () { var x = liste[pos]; if (dingt) { if (x) stimme(); return; } if (x && /\.lofi\.mp3$/.test(player.src)) { player.src = x.url + stand; startZeit = Date.now(); player.play().catch(function () {}); } }); /* fehlt die Lo-Fi-Fassung: ohne Musik */
   window.mzLofiWechsel = function () { var x = liste[pos]; if (!x || dingt) return; var t = player.currentTime, lief = !player.paused, neu = url(x); if (player.src.indexOf(neu) >= 0) return;
     player.src = neu; player.addEventListener('loadedmetadata', function () { player.currentTime = t; }, { once: true }); if (lief) player.play().catch(function () {}); };
-  player.addEventListener('timeupdate', function () { var x = liste[pos]; if (x && !dingt && player.duration && player.currentTime / player.duration > 0.9) merkeGehoert(x.url); });
-  player.addEventListener('ended', function () { var x = liste[pos]; if (x && !dingt) merkeGehoert(x.url); });
+  player.addEventListener('timeupdate', function () { var x = liste[pos]; if (x && !dingt && !zuFrueh() && player.duration && player.currentTime / player.duration > 0.9) merkeGehoert(x.url); });
+  player.addEventListener('ended', function () { var x = liste[pos]; if (x && !dingt && !zuFrueh()) merkeGehoert(x.url); });
   /* Zeit an andere Teile melden (z. B. Story im 30-Sekunden-Zettel läuft mit) */
   ['timeupdate', 'play', 'pause', 'ended'].forEach(function (ev) { player.addEventListener(ev, function () { if (dingt) return; var x = liste[pos]; window.dispatchEvent(new CustomEvent('mz-audio', { detail: { id: x ? x.el.id : null, src: x ? x.url : null, t: player.currentTime, d: player.duration, spielt: !player.paused && !player.ended } })); }); });
   var leiste = document.querySelector('.leiste'), btn = document.getElementById('btn-lesen'), status = document.getElementById('lese-status'), naechsterBtn = document.getElementById('btn-naechster'), zurueckBtn = document.getElementById('btn-zurueck');
@@ -1852,15 +1852,21 @@ function mzVideoZeit(code, i) {
   function zeigePause() { btn.textContent = '\u25B6\uFE0E'; btn.classList.add('symbol'); btn.setAttribute('aria-label', 'Weiter'); knoepfeLeiste(); }
   var teile = Array.prototype.slice.call(document.querySelectorAll('#kurz, article[id]'));
   function knoepfe(aktiv) { liste.forEach(function (x, i) { x.knopf.setAttribute('aria-pressed', i === aktiv); x.knopf.setAttribute('aria-label', i === aktiv ? 'Pause' : 'Anhören'); x.el.classList.toggle('liest', i === aktiv); }); }
+  function stimme() { clearTimeout(dingUhr); dingt = false; var x = liste[pos]; if (!x) return; startZeit = Date.now(); player.src = url(x); player.play().catch(function () {}); }
+  /* Endet eine Aufnahme keine 3 Sekunden nach dem Start, ist das ein Fehler: nie als gehört merken, nie zur nächsten springen (2026-11-24) */
+  function zuFrueh() { return Date.now() - startZeit < 3000; }
+  function abbruch() { var x = liste[pos], t = player.currentTime, d = player.duration; if (!x) return;
+    if (!versuch) { versuch = 1; startZeit = Date.now(); player.src = x.url + '?r=' + Date.now(); player.play().catch(function () {}); return; }
+    ende(); status.textContent = 'Die Aufnahme bricht ab (' + x.el.id + ', ' + (t || 0).toFixed(1) + ' von ' + (d || 0).toFixed(1) + ' Sek.). Bitte noch mal antippen.'; }
   function spiele(i, bis) {
     pos = i; introBis = bis || 0; var x = liste[i]; if (!x) { ende(); return; }
-    clearTimeout(dingUhr); ding.pause(); schluss.pause(); player.src = url(x);
+    clearTimeout(dingUhr); schluss.pause(); versuch = 0; player.muted = false;
     if (x.el.id !== 'kurz' && !root.classList.contains('ruhig')) {
-      /* Erst das Bidim, die Stimme setzt im Ausklang ein. Die Stimme startet stumm schon jetzt, damit das Handy sie später ohne Tippen weiterspielen lässt. */
-      dingt = true; player.muted = true; ding.currentTime = 0; ding.play().catch(function () {});
-      var q = player.play(); if (q && q.then) q.then(function () { if (dingt) { player.pause(); player.currentTime = 0; } }).catch(function () {});
-      dingUhr = setTimeout(function () { if (pos !== i || !dingt) return; dingt = false; player.muted = false; player.currentTime = 0; player.play().catch(function () {}); }, 1300);
-    } else { dingt = false; player.muted = false; player.play().catch(function () {}); }
+      /* Klang und Stimme nacheinander im selben Player (2026-11-24): vorher lief die Stimme stumm an, wurde angehalten und zurückgespult;
+         auf dem iPhone von Nicolas sprangen die Meldungen damit alle durch. Die Uhr ist nur die Reserve, falls der Klang hängt. */
+      dingt = true; player.src = '/audio/jingle-artikel.mp3'; player.play().catch(function () {});
+      dingUhr = setTimeout(function () { if (pos === i && dingt) stimme(); }, 4000);
+    } else stimme();
     knoepfe(i); zeigeLaeuft();
     /* Ist bei „Alles anhören“ ein Bogen offen, wechselt er mit zur neuen Meldung (Wunsch Nicolas 2026-11-20) */
     if (alles) { var ob = document.querySelector('.bogen-grund:not([hidden]) .bogen'); if (ob && ob.dataset.fuer !== x.el.id && window.mzBogenWechsel) window.mzBogenWechsel(x.el); }
@@ -1869,11 +1875,11 @@ function mzVideoZeit(code, i) {
   /* „Alles anhören“ überspringt, was man schon gehört hat (Wunsch Nicolas 2026-11-08). Sind alle MELDUNGEN gehört, läuft alles von vorn.
      Nur die Meldungen zählen: War nur „Das Wichtigste“ noch ungehört, kamen sonst die 30 Sekunden, dann gleich der Ausklang (Fehler 2026-11-24). */
   function naechste(j) { while (ueberspringen && j < liste.length && istGehoert(liste[j].url)) j++; return j; }
-  function stopDing() { if (!dingt) return false; clearTimeout(dingUhr); dingt = false; ding.pause(); player.pause(); player.muted = false; player.currentTime = 0; knoepfe(-1); zeigePause(); klick(tonPause); return true; }
+  function stopDing() { if (!dingt) return false; clearTimeout(dingUhr); player.pause(); dingt = false; startZeit = Date.now(); if (liste[pos]) player.src = url(liste[pos]); knoepfe(-1); zeigePause(); klick(tonPause); return true; }
   function ende() { clearTimeout(dingUhr); dingt = false; player.muted = false; player.pause(); pos = -1; alles = false; uebersprungen = 0; knoepfe(-1); btn.textContent = '\u25B6\uFE0E Alles anhören'; btn.classList.remove('symbol'); btn.removeAttribute('aria-label'); introBis = 0; zurueckBtn.hidden = true; naechsterBtn.hidden = true; status.textContent = ''; }
   function weiterNachEnde() { if (!alles) { ende(); return; } var j = naechste(pos + 1);
     if (j >= liste.length && !root.classList.contains('ruhig')) { schluss.currentTime = 0; schluss.play().catch(function () {}); } spiele(j); }
-  player.addEventListener('ended', function () { if (dingt) return; weiterNachEnde(); });
+  player.addEventListener('ended', function () { if (pos < 0) return; if (dingt) { stimme(); return; } if (zuFrueh()) { abbruch(); return; } weiterNachEnde(); });
   /* Begrüßung (Anfang von „Das Wichtigste“, bis 2026-11-10 mit KI-Hinweis) kommt bei „Alles anhören“ immer, auch wenn die 30 Sekunden schon gehört sind:
      dann endet „Das Wichtigste“ nach dem Hinweis, und es geht mit der ersten neuen Meldung weiter (Wunsch Nicolas 2026-11-10) */
   player.addEventListener('timeupdate', function () { if (introBis && !dingt && pos >= 0 && player.currentTime >= introBis) { introBis = 0; player.pause(); weiterNachEnde(); } });
