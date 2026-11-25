@@ -1335,9 +1335,9 @@
     "datum": "2026-11-25",
     "id": "m3",
     "rubrik": "Kanzler",
-    "titel": "Nur noch 11 Prozent sind mit Merz zufrieden, und heute muss er seinen Schulden-Haushalt verteidigen",
-    "fakt": "Nur noch 11 Prozent sind mit Kanzler Merz zufrieden, 88 Prozent sind unzufrieden. Das zeigt eine neue Forsa-Umfrage für RTL und ntv. Heute ist die große Debatte im Bundestag. Es geht um den Haushalt für 2027. Rechnet man alles zusammen, wird fast jeder dritte Euro geliehen.",
-    "quellen_html": "<a href=\"https://www.n-tv.de/politik/Schwarz-Rot-haengt-weiter-im-Umfragetief-Merz-wieder-auf-Tiefstwert-id31570188.html\">n-tv</a> · <a href=\"https://www.n-tv.de/politik/Nicht-einmal-Klingbeil-wirkt-begeistert-vom-Haushalt-id31572128.html\">n-tv (Haushalt)</a> · <a href=\"https://www.deutschlandfunk.de/haushaltsberatungen-generaldebatte-mit-kanzler-merz-104.html\">Deutschlandfunk</a>",
+    "titel": "Nur noch 11 Prozent sind mit Merz zufrieden, und er sagt im Bundestag: Das Geld reicht nicht mehr für alles",
+    "fakt": "Nur noch 11 Prozent sind mit Kanzler Merz zufrieden, das zeigt eine neue Forsa-Umfrage für RTL und ntv. Heute hat er im Bundestag seinen Haushalt für 2027 verteidigt und gesagt, dass der Staat nicht mehr alles bezahlen kann. Rechnet man alles zusammen, soll dabei fast jeder dritte Euro geliehen werden.",
+    "quellen_html": "<a href=\"https://www.tagesschau.de/inland/innenpolitik/generaldebatte-bundestag-154.html\">Tagesschau</a> · <a href=\"https://www.n-tv.de/politik/Schwarz-Rot-haengt-weiter-im-Umfragetief-Merz-wieder-auf-Tiefstwert-id31570188.html\">n-tv</a> · <a href=\"https://www.n-tv.de/politik/Nicht-einmal-Klingbeil-wirkt-begeistert-vom-Haushalt-id31572128.html\">n-tv (Haushalt)</a> · <a href=\"https://de.nachrichten.yahoo.com/afd-will-beim-verfassungsgericht-gegen-124942993.html\">Yahoo Nachrichten</a>",
     "krass": 6
   },
   {
@@ -1411,5 +1411,23 @@
     "fakt": "In Brasilien haben Forscher Mücken freigelassen, die Dengue viel schlechter übertragen. Eine Studie mit 5.757 Kindern hat verglichen: Gebiete mit diesen Mücken, und Gebiete ohne sie. Mit den Mücken gab es 68,5 Prozent weniger Dengue-Infektionen. Und das, obwohl Brasilien 2024 den größten Ausbruch seiner Geschichte hatte. Wichtig: Andere Fachleute haben die Studie noch nicht geprüft.",
     "quellen_html": "<a href=\"https://www.eurekalert.org/news-releases/1152851\">EurekAlert</a> · <a href=\"https://www.aljazeera.com/news/2026/11/24/how-brazils-mosquitoes-are-helping-to-fight\">Al Jazeera</a>",
     "krass": 5
+  },
+  {
+    "datum": "2026-11-25",
+    "id": "m12",
+    "rubrik": "Razzia",
+    "titel": "Erst 14 Jahre alt und schon unter Verdacht: Die Bundesanwaltschaft ermittelt wegen Rechtsterror",
+    "fakt": "Die Bundesanwaltschaft hat heute 3 Jugendliche festnehmen lassen, und die sind erst 14 und 15 Jahre alt. Sie sollen zu einer rechtsextremen Gruppe namens „Terror 18“ gehören, die laut den Ermittlern Brandanschläge und sogar gezielte Tötungen geplant hat. Unter anderem geht es um eine Unterkunft für Geflüchtete in Niedersachsen.",
+    "quellen_html": "<a href=\"https://www.tagesschau.de/inland/terror-18-rechtsextremistische-gruppe-100.html\">Tagesschau</a> · <a href=\"https://taz.de/Ermittlungen-gegen-Terror-18/!6233004/\">taz</a> · <a href=\"https://www.zdfheute.de/panorama/kriminalitaet/neonazi-terror-18-durchsuchungen-polizei-bka-100.html\">ZDFheute</a> · <a href=\"https://www.t-online.de/nachrichten/deutschland/gesellschaft/id_101545550/-terror-18-razzia-bei-rechtsextremistischer-deutscher-gruppe-.html\">t-online</a> · <a href=\"https://de.nachrichten.yahoo.com/lass-mal-anz%C3%BCnden-razzia-gegen-123141454.html\">Yahoo Nachrichten</a>",
+    "krass": 7
+  },
+  {
+    "datum": "2026-11-25",
+    "id": "m13",
+    "rubrik": "Zölle",
+    "titel": "Das Gericht hat viele seiner Zölle gekippt, jetzt plant Trump neue: 15 Prozent auf Waren aus der EU",
+    "fakt": "Die USA planen neue Zölle gegen die EU und 13 weitere Handelspartner. Für betroffene Waren aus der EU sind 15 Prozent vorgesehen, für China sogar 20 Prozent. In Kraft treten könnten sie laut einem US-Beamten frühestens im Januar, aber vorher gibt es noch Anhörungen, und die beginnen laut der Handelsbehörde erst am 25. Januar.",
+    "quellen_html": "<a href=\"https://www.tagesschau.de/ausland/amerika/usa-zoelle-124.html\">Tagesschau</a> · <a href=\"https://www.zdfheute.de/politik/ausland/usa-zoelle-eu-handel-100.html\">ZDFheute</a> · <a href=\"https://www.tagesspiegel.de/wirtschaft/dpa-zollkonflikt-usa-schlagen-neuen-15-prozent-zoll-fur-eu-importe-vor-16325070.html\">Tagesspiegel (dpa)</a> · <a href=\"https://www.cnbc.com/2026/11/25/us-tariffs-trump-section-301.html\">CNBC</a> · <a href=\"https://ustr.gov/about/policy-offices/press-office/press-releases/2026/november/ustr-makes-determinations-and-proposes-actions-14-section-301-investigations-relating-structural\">US-Handelsbehörde</a>",
+    "krass": 7
   }
 ]
