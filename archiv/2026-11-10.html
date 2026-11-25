@@ -1518,6 +1518,17 @@ html.ruhig .hand-rot { transform: none; }
     </article>
   </section>
 </div>
+<script data-alt>
+/* Ältere Ausgabe: nur noch die Highlights, dazu die Meldung aus dem Link (archiv_aufraeumen.py, 2026-11-25) */
+(function () { var bleibt = ["m5"], ziel = location.hash.slice(1), w = document.querySelector('.wrap[data-datum]'); if (!w) return;
+  w.querySelectorAll('article[id]').forEach(function (a) { if (bleibt.indexOf(a.id) < 0 && a.id !== ziel) a.remove(); });
+  var k = document.getElementById('kurz'); if (k) k.remove();
+  w.querySelectorAll('section.gruppe').forEach(function (s) { if (!s.querySelector('article')) s.remove(); });
+  var s = w.querySelector('section.gruppe'); if (!s) return;
+  w.querySelectorAll('section.gruppe h2.zettel').forEach(function (h) { h.remove(); });
+  var h = document.createElement('h2'); h.className = 'zettel'; h.textContent = 'Highlights vom 10.11.2026'; s.insertBefore(h, s.firstChild);
+})();
+</script>
 <!-- AUSGABE-ENDE -->
 
 <div class="leiste" aria-label="Vorlesen und Navigation">

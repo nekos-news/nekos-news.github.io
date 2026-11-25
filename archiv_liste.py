@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
-"""Baut archiv/index.html aus allen archiv/JJJJ-MM-TT.html (neueste oben)."""
+"""Baut archiv/index.html: nur die letzten 7 Tage (Wunsch Nicolas 2026-11-25), Älteres steht als Highlights in Monat und Jahr."""
 import os, re, datetime
 ORDNER = os.path.join(os.path.dirname(os.path.abspath(__file__)), "archiv")
 TAGE = ["Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag"]
 dateien = sorted((f for f in os.listdir(ORDNER) if re.fullmatch(r"\d{4}-\d{2}-\d{2}\.html", f)), reverse=True)
+neueste = datetime.date.fromisoformat(dateien[0][:10])
+dateien = [f for f in dateien if (neueste - datetime.date.fromisoformat(f[:10])).days < 7]
 zeilen = []
 for f in dateien:
     d = datetime.date.fromisoformat(f[:10])
@@ -28,10 +30,12 @@ h1 { justify-self: start; margin: 0 0 0.6rem; font-family: "Libre Caslon Text", 
 .papier:nth-of-type(even) { transform: rotate(-0.5deg); }
 .tag { font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #C8603A; font-size: 0.8rem; align-self: center; }
 .datum { font-family: "Libre Caslon Text", Georgia, serif; font-weight: 700; font-size: 1.2rem; }
+.info { margin: 0; color: #E8DCC6; line-height: 1.5; } .info a { color: inherit; font-weight: 700; }
 .zurueck { justify-self: start; margin-top: 1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.85rem; text-decoration: none;
   background: #C8603A; color: #E8DCC6; padding: 0.5rem 0.9rem; transform: rotate(-1.5deg); }
 </style></head><body><div class="wrap">
   <h1>Archiv</h1>
+  <p class="info">Die letzten 7 Tage. Ältere Highlights findest du unter <a href="/monat.html">Dieser Monat</a> und <a href="/jahr.html">Dieses Jahr</a>.</p>
 """ + "\n".join(zeilen) + """
   <a class="zurueck" href="../">← Zurück</a>
 </div></body></html>
