@@ -1312,5 +1312,104 @@
     "fakt": "In der Nacht zu Dienstag ist laut polnischem Militär eine russische Drohne in den Luftraum von Polen eingedrungen. Polens Vize-Verteidigungsminister geht von Absicht aus. Russland hat sich bisher nicht dazu geäußert.",
     "quellen_html": "<a href=\"https://www.tagesspiegel.de/internationales/dpa-wir-gehen-davon-aus-dass-es-absicht-war-russische-drohne-dringt-in-polens-luftraum-ein-16318099.html\">Tagesspiegel (dpa)</a> · <a href=\"https://taz.de/Russische-Provokation-gegen-die-NATO/!6232673/\">taz</a> · <a href=\"https://notesfrompoland.com/2026/11/24/nato-to-send-surveillance-aircraft-to-poland-after-russian-missile-strikes/\">Notes from Poland</a>",
     "krass": 6
+  },
+  {
+    "datum": "2026-11-25",
+    "id": "m1",
+    "rubrik": "Linke",
+    "titel": "Im September gewählt, im November raus: Die Berliner Linke wirft Vanessa Emde aus der Fraktion",
+    "fakt": "Die Linksfraktion in Berlin hat Vanessa Emde ausgeschlossen. 33 von 44 Abgeordneten stimmten dafür. Emde steht wegen ihrer Aussagen zu Israel in der Kritik, ihr wird Antisemitismus vorgeworfen. Der Rauswurf war eine Bedingung der SPD, sonst gäbe es keine Koalition.",
+    "quellen_html": "<a href=\"https://www.tagesschau.de/inland/innenpolitik/emde-ausschluss-berlin-linke-100.html\">Tagesschau</a> · <a href=\"https://www.zdfheute.de/politik/deutschland/linke-berlin-emde-fraktion-100.html\">ZDFheute</a> · <a href=\"https://taz.de/Berliner-Linksfraktion-schliesst-Emde-aus/!6232976/\">taz</a>",
+    "krass": 6
+  },
+  {
+    "datum": "2026-11-25",
+    "id": "m2",
+    "rubrik": "AfD",
+    "titel": "In 13 Tagen will die AfD ihren ersten Ministerpräsidenten, und die anderen finden bisher keinen gemeinsamen Kandidaten",
+    "fakt": "Ulrich Siegmund von der AfD will Ministerpräsident werden, und zwar in Sachsen-Anhalt. Gewählt werden soll am 8. Dezember. SPD, Grüne und Linke suchen einen gemeinsamen Gegenkandidaten, den auch die CDU mittragen könnte. Die Chefin der Linksfraktion sagt: Diese Person gibt es bisher nicht.",
+    "quellen_html": "<a href=\"https://www.n-tv.de/politik/Sachsen-Anhalts-Linke-findet-bisher-keinen-gemeinsamen-Siegmund-Gegenkandidaten-id31573832.html\">n-tv</a> · <a href=\"https://www.zdfheute.de/politik/deutschland/sachsen-anhalt-ministerpraesident-wahl-100.html\">ZDFheute</a> · <a href=\"https://www.t-online.de/nachrichten/deutschland/id_101538350/sachsen-anhalt-so-will-ulrich-siegmund-ministerpraesident-werden.html\">t-online</a>",
+    "krass": 8
+  },
+  {
+    "datum": "2026-11-25",
+    "id": "m3",
+    "rubrik": "Kanzler",
+    "titel": "Nur noch 11 Prozent sind mit Merz zufrieden, und heute muss er seinen Schulden-Haushalt verteidigen",
+    "fakt": "Nur noch 11 Prozent sind mit Kanzler Merz zufrieden, 88 Prozent sind unzufrieden. Das zeigt eine neue Forsa-Umfrage für RTL und ntv. Heute ist die große Debatte im Bundestag. Es geht um den Haushalt für 2027. Rechnet man alles zusammen, wird fast jeder dritte Euro geliehen.",
+    "quellen_html": "<a href=\"https://www.n-tv.de/politik/Schwarz-Rot-haengt-weiter-im-Umfragetief-Merz-wieder-auf-Tiefstwert-id31570188.html\">n-tv</a> · <a href=\"https://www.n-tv.de/politik/Nicht-einmal-Klingbeil-wirkt-begeistert-vom-Haushalt-id31572128.html\">n-tv (Haushalt)</a> · <a href=\"https://www.deutschlandfunk.de/haushaltsberatungen-generaldebatte-mit-kanzler-merz-104.html\">Deutschlandfunk</a>",
+    "krass": 6
+  },
+  {
+    "datum": "2026-11-25",
+    "id": "m4",
+    "rubrik": "Steuern",
+    "titel": "Reiche sollen mehr Steuern zahlen? Nur wenn dein Job 4 Jahre befristet sein darf, sagt die Union",
+    "fakt": "Die Union macht Druck auf die SPD. Höhere Steuern für Reiche soll es nur geben, wenn auch die Arbeitsmarktreform kommt. Dann dürften Firmen Jobs bis zu 4 Jahre befristen, ohne einen Grund zu nennen. Bisher sind es 2 Jahre.",
+    "quellen_html": "<a href=\"https://www.n-tv.de/politik/Union-Hoehere-Steuern-fuer-Reiche-nur-mit-Arbeitsmarktreform-id31572991.html\">n-tv</a> · <a href=\"https://www.zdfheute.de/politik/deutschland/einkommen-steuerreform-entwurf-kabinett-klingbeil-100.html\">ZDFheute</a> · <a href=\"https://www.produktion.de/wirtschaft/was-die-arbeitsrechtsreformnbspfuer-arbeitgeber-bedeutet-und-warum-der-dgb-warnt/2771152\">Produktion</a>",
+    "krass": 7
+  },
+  {
+    "datum": "2026-11-25",
+    "id": "m5",
+    "rubrik": "Schule",
+    "titel": "Bombendrohung per Mail: Allein in Baden-Württemberg waren es über 1.100 Schulen",
+    "fakt": "Am Montag gab es eine Welle von Bombendrohungen, und die war viel größer als gedacht. Allein in Baden-Württemberg traf es über 1.100 Schulen, vorher war von rund 450 die Rede. Auch Schulen in Düsseldorf und Duisburg bekamen solche Mails. Hinweise auf echte Sprengsätze gibt es bisher nicht.",
+    "quellen_html": "<a href=\"https://www.tagesschau.de/inland/drohmails-schulen-gdp-destabilisierung-100.html\">Tagesschau</a> · <a href=\"https://www.nordbayern.de/nuernberg/polizeibericht/bombendrohungen-an-hunderten-schulen-in-ganz-deutschland-auch-in-nurnberg-gingen-drohschreiben-ein-1.15364366\">Nordbayern (dpa)</a> · <a href=\"https://www.mt.de/regionales/nrw/Bombendrohungen-per-E-Mail-auch-an-Schulen-in-NRW-24469198.html\">Mindener Tageblatt (dpa)</a>",
+    "krass": 6
+  },
+  {
+    "datum": "2026-11-25",
+    "id": "m6",
+    "rubrik": "Polizei",
+    "titel": "Abschied von Palantir: Die NRW-Polizei nimmt Software aus München, und die ist sogar günstiger",
+    "fakt": "Die Polizei in NRW trennt sich von der US-Firma Palantir. Den Auftrag bekommt Celonis aus München. Laut Innenministerium ist das sogar günstiger. Viele Datenbanken gleichzeitig durchsuchen, das soll die Polizei aber weiter können.",
+    "quellen_html": "<a href=\"https://taz.de/Abkehr-von-Palantir/!6232888/\">taz (dpa)</a> · <a href=\"https://wiwo.de/unternehmen/dienstleister/datenanalyse-die-polizei-nrw-wechselt-zur-datenanalyse-von-palantir-zum-startup-celonis/100272389.html\">Wirtschaftswoche</a> · <a href=\"https://www.lz.de/ueberregional/nrw/24469892_Nach-Palantir-NRW-Polizei-setzt-auf-deutsche-Software.html\">Lippische Landes-Zeitung</a>",
+    "krass": 5
+  },
+  {
+    "datum": "2026-11-25",
+    "id": "m7",
+    "rubrik": "Russland",
+    "titel": "Russland hält es geheim, jetzt ist es geleakt: Mindestens 490.000 tote Soldaten",
+    "fakt": "Laut BBC sind im Ukraine-Krieg mindestens 490.000 russische Soldaten gestorben. Die Zahl stammt aus Daten vom russischen Statistikamt, die Hacker erbeutet haben. Das Amt gibt einen Cyberangriff zu, bestreitet aber, dass geschützte Daten abgeflossen sind.",
+    "quellen_html": "<a href=\"https://www.bbc.co.uk/news/articles/cmx27g533zwyo\">BBC</a> · <a href=\"https://taz.de/Kriegsverluste-seit-der-Vollinvasion/!6232723/\">taz</a>",
+    "krass": 8
+  },
+  {
+    "datum": "2026-11-25",
+    "id": "m8",
+    "rubrik": "Asyl",
+    "titel": "Darf man Geflüchtete einfach zurückschicken? Ausnahmsweise ja, sagt das Menschenrechtsgericht",
+    "fakt": "Der Europäische Gerichtshof für Menschenrechte hat ein wichtiges Urteil gesprochen. Benutzt ein Staat Geflüchtete gezielt als Druckmittel, dürfen Nachbarstaaten sie ausnahmsweise zurückschicken, ohne alles genau zu prüfen. Im Normalfall bleiben solche Pushbacks verboten.",
+    "quellen_html": "<a href=\"https://www.tagesschau.de/ausland/europa/egmr-pushbacks-belarus-100.html\">Tagesschau</a> · <a href=\"https://taz.de/Urteil-zu-Pushbacks/!6232747/\">taz</a> · <a href=\"https://www.lto.de/recht/nachrichten/n/egmr-push-backs-pushbacks-belarus-polen-lettland-litauen-urteil\">LTO</a>",
+    "krass": 7
+  },
+  {
+    "datum": "2026-11-25",
+    "id": "m9",
+    "rubrik": "KI",
+    "titel": "Nacktbilder per KI, und niemand hat dich gefragt: 2 US-Staaten verklagen die Firmen von Elon Musk",
+    "fakt": "Die US-Staaten Virginia und Oregon verklagen Firmen von Elon Musk. Es geht um den Chatbot Grok. Nutzer sollen damit massenhaft sexualisierte Bilder gemacht haben, von echten Menschen, auch von Kindern. Laut Klage fehlten Schutzmaßnahmen mit Absicht. Das Unternehmen sagt, es gehe gegen solche Nutzer vor.",
+    "quellen_html": "<a href=\"https://taz.de/Pornografische-KI-Bilder/!6232834/\">taz (AP)</a> · <a href=\"https://www.cnbc.com/2026/11/23/oregon-virginia-spacex-grok-deepfake-lawsuits.html\">CNBC</a> · <a href=\"https://therecord.media/oregon-virginia-sue-spacex-over-grok-csam-ncii\">The Record</a>",
+    "krass": 7
+  },
+  {
+    "datum": "2026-11-25",
+    "id": "m10",
+    "rubrik": "Kuba",
+    "titel": "Die Menschen in Kuba sterben 4 Jahre früher, und die US-Ölblockade macht die Lage laut WHO noch schlimmer",
+    "fakt": "In Kuba ist die Lebenserwartung gesunken, zum ersten Mal seit 1950. Laut Weltgesundheitsorganisation ging sie in 5 Jahren von 78,8 auf 74,4 Jahre zurück. Der Chef der WHO fordert, dass die USA ihre Treibstoffblockade sofort beenden, weil sie vor allem Kindern schade.",
+    "quellen_html": "<a href=\"https://www.tagesschau.de/ausland/amerika/kuba-lebenserwartungen-who-100.html\">Tagesschau</a> · <a href=\"https://www.aljazeera.com/news/2026/11/25/who-chief-urges-end-to-us-fuel-blockade-on-cuba\">Al Jazeera</a>",
+    "krass": 6
+  },
+  {
+    "datum": "2026-11-25",
+    "id": "m11",
+    "rubrik": "Gesundheit",
+    "titel": "Gute Nachricht: Forscher lassen Mücken frei, und es gibt viel weniger Dengue-Fieber",
+    "fakt": "In Brasilien haben Forscher Mücken freigelassen, die Dengue viel schlechter übertragen. Eine Studie mit 5.757 Kindern zeigt jetzt: Die Dengue-Infektionen gingen um 68,5 Prozent zurück. Und das, obwohl Brasilien 2024 den größten Ausbruch seiner Geschichte hatte.",
+    "quellen_html": "<a href=\"https://www.eurekalert.org/news-releases/1152851\">EurekAlert</a> · <a href=\"https://www.aljazeera.com/news/2026/11/24/how-brazils-mosquitoes-are-helping-to-fight\">Al Jazeera</a>",
+    "krass": 5
   }
 ]
