@@ -2474,7 +2474,15 @@ function mzFuss(a) { var f = a.querySelector(':scope > .karten-fuss'); if (!f) {
   if (img.complete) setzen(); img.addEventListener('load', setzen); addEventListener('resize', setzen);
 })();
 /* Überschrift ruhiger, Datum ohne Wochentag (Variante 1, gewählt von Nicolas 2026-11-28) */
-(function () { var h = document.querySelector('.kurz h2'); if (h) h.classList.add('schoen');
+(function () { var h = document.querySelector('.kurz h2'); if (h) { h.classList.add('schoen');
+    /* fester Umbruch: „in“ rutschte auf dem iPhone unter Nekos Zeitung (2026-11-28) */
+    var m = h.textContent.trim().match(/^(Das Wichtigste)\s+(in .+)$/i); if (m) h.innerHTML = m[1] + '<br>' + m[2]; }
+  /* Schrift so groß wie möglich, aber immer mit Abstand zu Nekos Zeitung (gemessen auf 320–430 px Breite, 2026-11-28) */
+  var n = document.querySelector('.kurz .neko');
+  function passen() { if (!h || !n) return; h.style.fontSize = ''; var groesse = parseFloat(getComputedStyle(h).fontSize), r = document.createRange();
+    for (var i = 0; i < 30; i++) { r.selectNodeContents(h); var mx = 0; Array.prototype.forEach.call(r.getClientRects(), function (c) { mx = Math.max(mx, c.right); });
+      var z = n.getBoundingClientRect(); if (!z.width || mx < z.left + z.width * 0.03 - 8 || groesse <= 13) break; groesse -= 0.5; h.style.setProperty('font-size', groesse + 'px', 'important'); } }
+  if (n && !n.complete) n.addEventListener('load', passen); passen(); addEventListener('resize', passen); if (document.fonts) document.fonts.ready.then(passen);
   var v = '1';   /* Nicolas 2026-11-28: ohne Wochentag sieht besser aus */ document.documentElement.setAttribute('data-kopf', v); })();
 /* Lange Markierungen (über ca. 18 Zeichen) umbrechen lassen, sonst ragen sie aus schmalen Überschriften (2026-11-28) */
 (function () { document.querySelectorAll('mark.strich, mark.kreis').forEach(function (m) { if (m.textContent.trim().length > 18) m.classList.add('lang'); }); })();
