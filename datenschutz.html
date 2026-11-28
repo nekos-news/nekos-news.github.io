@@ -1291,6 +1291,9 @@ mark.kreis.lang::after { display: none !important; }
 .ki-info strong { display: block; color: var(--rost); font-weight: 800; font-size: 0.68rem; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 0.15rem; }
 .ki-info[hidden] { display: none; }
 html.kontrast .ki-info { color: #000 !important; border-color: #000 !important; }
+/* Themen-Punkt („● Mieten“) weg (Wunsch Nicolas 2026-11-28); auf Woche/Monat/Jahr bleibt nur das Datum */
+article .rubrik:not(.nur-datum) { display: none !important; }
+article .rubrik.nur-datum::before { display: none !important; }
 </style>
 </head>
 <body>
@@ -2397,6 +2400,8 @@ function mzFuss(a) { var f = a.querySelector(':scope > .karten-fuss'); if (!f) {
     info.addEventListener('click', function (e) { e.stopPropagation(); info.hidden = true; b.setAttribute('aria-expanded', 'false'); });
   });
 })();
+/* Rubrik: nur das Datum behalten, wenn eins dransteht (Woche/Monat/Jahr), sonst ausgeblendet (2026-11-28) */
+(function () { document.querySelectorAll('article .rubrik').forEach(function (r) { var m = r.textContent.match(/(\d{1,2}\.\d{1,2}\.)\s*$/); if (m) { r.textContent = m[1]; r.classList.add('nur-datum'); } }); })();
 </script>
 </body>
 </html>
