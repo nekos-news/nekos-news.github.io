@@ -1258,6 +1258,25 @@ html.ruhig .hand-rot { transform: none; }
 .bild-modus .gelesen-haken { display: none !important; }
 .bild-signatur { margin-left: auto; flex: none; font: 400 0.74rem/1 var(--maschine); letter-spacing: 0.04em; color: var(--rost); }
 .teilen-toast button + button { margin-left: -0.2rem; }
+/* Kopf neu (Wunsch Nicolas 2026-11-28): Logo perspektivisch auf Nekos Zeitung (oben links auf der Seite, mit Papierfläche), Datum groß über dem Papier,
+   Neko tiefer (Kopf nicht im „Gen Z?“), ruhigere Überschrift. Datum ohne Wochentag (data-kopf="1"). */
+.oben:has(+ .wrap[data-datum])::after { height: 2.4rem !important; }
+.wrap[data-datum] .kurz { margin-top: 4rem !important; }
+.kurz .neko-wrap { top: -4rem !important; }
+.kurz .zeile { position: absolute !important; left: 0.1rem; bottom: calc(100% + 0.9rem); top: auto !important; margin: 0 !important; padding: 0 !important; z-index: 4; }
+.kurz .zeile > span:first-of-type { flex-direction: column !important; align-items: flex-start !important; gap: 0.25rem !important;
+  font-family: var(--sans); font-weight: 800; font-size: 0.74rem !important; letter-spacing: 0.14em; text-transform: uppercase; color: var(--creme) !important; }
+.kurz .zeile .erpress span { font-size: 1.7rem !important; box-shadow: 0 3px 0 rgba(0,0,0,0.35); }
+html[data-kopf="1"] .kurz .zeile > span:first-of-type { font-size: 0 !important; letter-spacing: 0; }
+html[data-kopf="1"] .kurz .zeile .erpress span { font-size: 2rem !important; }
+.kurz .zeitung-flaeche, .kurz .zeitung-logo { position: absolute; left: 0; top: 0; transform-origin: 0 0; pointer-events: none; }
+.kurz .zeitung-flaeche { background: #DECBB0; }
+.kurz .zeitung-logo { mix-blend-mode: multiply; max-width: none !important; max-height: none !important; filter: none !important; }
+.kurz h2.schoen { font-family: var(--serif) !important; font-weight: 800 !important; font-size: 1.18rem !important; line-height: 1.15 !important; letter-spacing: 0 !important;
+  text-transform: none !important; color: var(--anthrazit) !important; margin-right: 7.4rem !important; }
+html.kontrast .kurz .zeile > span:first-of-type { color: #fff !important; }
+.kurz .zeile .erpress span:nth-child(2)::after, .kurz .zeile .erpress span:nth-child(4)::after { background: var(--creme) !important; }
+.kurz .zeile .erpress span:nth-child(2), .kurz .zeile .erpress span:nth-child(4) { margin-right: 0.75rem !important; }
 /* Lange Markierungen dürfen umbrechen (Nicolas 2026-11-28: Überschrift ragte über den Kasten, z. B. „mehr als doppelt so viel wie 2012“) */
 mark.strich.lang { white-space: normal !important; -webkit-box-decoration-break: clone; box-decoration-break: clone; padding-bottom: 0.12em;
   background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 14' preserveAspectRatio='none'%3E%3Cpath d='M2 7 C 25 4, 55 10, 98 6' fill='none' stroke='%238F3A22' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E") left bottom / 100% 0.4em no-repeat !important; }
@@ -2438,7 +2457,27 @@ function mzFuss(a) { var f = a.querySelector(':scope > .karten-fuss'); if (!f) {
     else { laeuft = false; aus(); } });
 })();
 /* Logo links neben „Samstag 7.11.“ */
-(function () { var z = document.querySelector('.kurz .zeile'); if (!z) return; var l = document.createElement('img'); l.className = 'kurz-logo'; l.src = '/bilder/logo_buchstaben.png'; l.alt = 'Nekos News'; z.insertBefore(l, z.firstChild); })();
+(function () {
+  var w = document.querySelector('.kurz .neko-wrap'), img = w && w.querySelector('.neko'); if (!w || !img) return;
+  /* Logo auf der Zeitung (Nicolas 2026-11-28). Achsen der Zeitungsseite GEMESSEN (Kantenrichtungen in neko_zeitung.png, 240 x 300):
+     Zeilen steigen 3° nach rechts an, Spalten kippen 72° (18° aus der Senkrechten). Seite ist dadurch ein Parallelogramm, also reicht eine affine Abbildung.
+     Seitenkoordinaten (p, q) -> Bild: O + p*U + q*V. Ziel-Block in Seitenkoordinaten an echten Kanten: links Textkante p 4,5, oben Kopfzeile q 10,
+     rechts Spaltenkante vor dem Bildkasten p 42; Höhe aus dem Seitenverhältnis des Logos. */
+  var R = Math.PI / 180, U = [Math.cos(-3 * R), Math.sin(-3 * R)], V = [Math.cos(72 * R), Math.sin(72 * R)], O = [60, 115];
+  var BLOCK = { p: 4.5, q: 10, b: 37.5, rand: 1.1 };
+  var f = document.createElement('span'); f.className = 'zeitung-flaeche';
+  var f2 = document.createElement('span'); f2.className = 'zeitung-flaeche';   /* deckt die grauen Kopfzeilen ganz ab (Nicolas: Balken sah man an drei Seiten) */
+  var l = document.createElement('img'); l.className = 'zeitung-logo'; l.src = '/bilder/logo_buchstaben.png'; l.alt = 'Nekos News';
+  w.appendChild(f); w.appendChild(f2); w.appendChild(l);
+  function stellen(el, p, q, b, h, k) { var x = (O[0] + p * U[0] + q * V[0]) * k, y = (O[1] + p * U[1] + q * V[1]) * k;
+    el.style.cssText = 'left:0;top:0;width:' + b * k + 'px;height:' + h * k + 'px;transform-origin:0 0;transform:matrix(' + [U[0], U[1], V[0], V[1], x, y].join(',') + ')'; }
+  function setzen() { var k = img.clientWidth / 240; if (!k) return; var B = BLOCK, h = B.b * 280 / 330;
+    stellen(f, B.p - 1.8, B.q - 1.6, B.b + 3, h + 3, k); stellen(f2, B.p - 1.8, B.q - 1.6, 76.5 - (B.p - 1.8), 10.2, k); stellen(l, B.p + B.rand, B.q + B.rand * h / B.b, B.b - 2 * B.rand, h - 2 * B.rand * h / B.b, k); }
+  if (img.complete) setzen(); img.addEventListener('load', setzen); addEventListener('resize', setzen);
+})();
+/* Überschrift ruhiger, Datum ohne Wochentag (Variante 1, gewählt von Nicolas 2026-11-28) */
+(function () { var h = document.querySelector('.kurz h2'); if (h) h.classList.add('schoen');
+  var v = '1';   /* Nicolas 2026-11-28: ohne Wochentag sieht besser aus */ document.documentElement.setAttribute('data-kopf', v); })();
 /* Lange Markierungen (über ca. 18 Zeichen) umbrechen lassen, sonst ragen sie aus schmalen Überschriften (2026-11-28) */
 (function () { document.querySelectorAll('mark.strich, mark.kreis').forEach(function (m) { if (m.textContent.trim().length > 18) m.classList.add('lang'); }); })();
 </script>
