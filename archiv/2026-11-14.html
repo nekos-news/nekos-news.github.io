@@ -1258,6 +1258,12 @@ html.ruhig .hand-rot { transform: none; }
 .bild-modus .gelesen-haken { display: none !important; }
 .bild-signatur { margin-left: auto; flex: none; font: 400 0.74rem/1 var(--maschine); letter-spacing: 0.04em; color: var(--rost); }
 .teilen-toast button + button { margin-left: -0.2rem; }
+/* Lange Markierungen dürfen umbrechen (Nicolas 2026-11-28: Überschrift ragte über den Kasten, z. B. „mehr als doppelt so viel wie 2012“) */
+mark.strich.lang { white-space: normal !important; -webkit-box-decoration-break: clone; box-decoration-break: clone; padding-bottom: 0.12em;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 14' preserveAspectRatio='none'%3E%3Cpath d='M2 7 C 25 4, 55 10, 98 6' fill='none' stroke='%238F3A22' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E") left bottom / 100% 0.4em no-repeat !important; }
+mark.strich.lang::after { display: none !important; }
+mark.kreis.lang { white-space: normal !important; }
+mark.kreis.lang::after { display: none !important; }
 </style>
 </head>
 <body>
@@ -2431,6 +2437,8 @@ function mzFuss(a) { var f = a.querySelector(':scope > .karten-fuss'); if (!f) {
 })();
 /* Logo links neben „Samstag 7.11.“ */
 (function () { var z = document.querySelector('.kurz .zeile'); if (!z) return; var l = document.createElement('img'); l.className = 'kurz-logo'; l.src = '/bilder/logo_buchstaben.png'; l.alt = 'Nekos News'; z.insertBefore(l, z.firstChild); })();
+/* Lange Markierungen (über ca. 18 Zeichen) umbrechen lassen, sonst ragen sie aus schmalen Überschriften (2026-11-28) */
+(function () { document.querySelectorAll('mark.strich, mark.kreis').forEach(function (m) { if (m.textContent.trim().length > 18) m.classList.add('lang'); }); })();
 </script>
 </body>
 </html>
