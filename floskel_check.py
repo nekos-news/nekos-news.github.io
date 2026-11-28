@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Abwechslung prüfen (Wunsch Nicolas 2026-11-28: „wenn man die Sachen alle in Folge hört, nervt das voll, dass die Formulierungen zu gleich sind“).
 Messung 24.–28.11.: „Kurz zur Einordnung“ in 40 von 57 Meldungen, „Der Haken“ in 19, „Heißt für dich“ in 7.
-Regeln je Ausgabe: jede feste Übergangsfloskel höchstens 2-mal; Satzanfänge (erste 2 Wörter) öfter als 3-mal nur als Hinweis;
+Regeln je Ausgabe: jede feste Übergangsfloskel höchstens 1-mal (Nicolas: die Etiketten mit Doppelpunkt nerven beim Hören); Satzanfänge (erste 2 Wörter) öfter als 3-mal nur als Hinweis;
 „Mehr anzeigen“ zweier Meldungen hintereinander beginnt nie gleich. Exit 1 bei Verstoß.
 Nutzung: python3 floskel_check.py [datei.html]   (Standard index.html)"""
 import re, sys, html, collections
@@ -21,7 +21,7 @@ for mid, a in arts:
     m = re.search(r'<summary>.*?</summary>\s*<p>(.*?)</p>', a, re.S)
     mehr_anf.append((mid, " ".join(klar(m.group(1)).split()[:3]) if m else ""))
 for f, n in zahl.items():
-    if n > 2: fehler.append("„%s“ %d-mal (höchstens 2)" % (f, n))
+    if n > 1: fehler.append("„%s“ %d-mal (höchstens 1, besser als normaler Satz erzählen)" % (f, n))
 for a, n in anf.most_common():
     if n > 3: hinweise.append("Satzanfang „%s …“ %d-mal – wenn es keine Namen sind, umformulieren" % (a, n))
 for (m1, a1), (m2, a2) in zip(mehr_anf, mehr_anf[1:]):
