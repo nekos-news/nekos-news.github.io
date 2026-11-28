@@ -1618,5 +1618,95 @@
     "fakt": "Forschende aus Australien und London haben 141 Arten von Vögeln und Säugetieren untersucht. Von jeder dieser Arten gab es seit 1950 irgendwann weniger als 50 Tiere in freier Natur. Von den Arten, denen Menschen direkt geholfen haben, haben sich laut der Studie 61 Prozent wieder auf mindestens 100 Tiere erholt, ohne direkte Hilfe nur 2 Prozent.",
     "quellen_html": "<a href=\"https://news.mongabay.com/short-article/2026/11/species-down-to-the-last-50-animals-can-recover-but-rarely-without-help/\">Mongabay</a> · <a href=\"https://www.eurekalert.org/news-releases/1150546\">EurekAlert (Monash University)</a>",
     "krass": 4
+  },
+  {
+    "datum": "2026-11-28",
+    "id": "m1",
+    "rubrik": "AfD",
+    "titel": "„Jetzt endlich“: Die SPD rechnet mit dem Verbotsantrag, und Weidel sagt, die AfD bereitet sich schon darauf vor",
+    "fakt": "SPD-Generalsekretär Tim Klüssendorf hat am Freitag beim Kongress der Jusos in Bochum gesagt, er sei zuversichtlich, dass jetzt endlich ein Antrag auf ein Verbot der AfD gestellt wird. Kurz zuvor hatte AfD-Chefin Alice Weidel in einem Podcast der „Welt“ gesagt, sie rechne fest damit, dass so ein Antrag kommt, und ihre Partei bereite sich darauf vor.",
+    "quellen_html": "<a href=\"https://www.zdfheute.de/politik/deutschland/juso-bundeskonkress-spd-kritik-tuermer-kluessendorf-afd-verbor-100.html\">ZDFheute</a> · <a href=\"https://www.nordkurier.de/politik/kluessendorf-rechnet-jetzt-endlich-mit-afd-verbotsantrag-5044244\">dpa (Nordkurier)</a> · <a href=\"https://bluewin.ch/en/news/alice-weidel-is-fully-expecting-a-motion-to-ban-the-afd-li.3689733\">blue News</a>",
+    "krass": 6
+  },
+  {
+    "datum": "2026-11-28",
+    "id": "m2",
+    "rubrik": "SPD",
+    "titel": "„Ist da noch Puls in der SPD?“ Der Juso-Chef rechnet mit der eigenen Partei ab",
+    "fakt": "Juso-Chef Philipp Türmer hat am Freitag den Kongress der Jusos in Bochum mit harter Kritik an der SPD eröffnet. Die Partei wirke seit Jahren wie eingeschläfert, sagte Türmer, und ihre Strategie für die Mitte sei diffus und ohne klare Überzeugung. Er fragte in den Saal: „Ist da noch Puls in der SPD?“",
+    "quellen_html": "<a href=\"https://www.t-online.de/nachrichten/deutschland/id_101550298/juso-chef-tuermer-spd-wirkt-wie-eingeschlaefert.html\">dpa (t-online)</a> · <a href=\"https://www.zdfheute.de/politik/deutschland/juso-bundeskonkress-spd-kritik-tuermer-kluessendorf-afd-verbor-100.html\">ZDFheute</a> · <a href=\"https://tagesspiegel.de/politik/philipp-turmer-atzt-uber-den-chef-lars-klingbeil-das-ist-stand-jetzt-der-parteivorsitzende-der-spd-16337145.html\">Tagesspiegel</a>",
+    "krass": 4
+  },
+  {
+    "datum": "2026-11-28",
+    "id": "m3",
+    "rubrik": "Mieten",
+    "titel": "Kleine Wohnung, großer Preis: In Berlin kosten Mini-Wohnungen mehr als doppelt so viel wie 2012",
+    "fakt": "Wer eine kleine Wohnung bis 40 Quadratmeter sucht, zahlt in großen Städten deutlich mehr als 2012. Das zeigt eine Studie des Instituts der deutschen Wirtschaft, über die die Rheinische Post berichtet. In Berlin stieg die Miete in Anzeigen seit 2012 um 121 Prozent, und am teuersten ist München mit 845 Euro im Monat.",
+    "quellen_html": "<a href=\"https://www.finanznachrichten.de/nachrichten-2026-11/70240748-studie-mieten-fuer-kleine-wohnungen-stark-gestiegen-003.htm\">dts (finanznachrichten.de)</a>",
+    "krass": 6
+  },
+  {
+    "datum": "2026-11-28",
+    "id": "m4",
+    "rubrik": "Sprit",
+    "titel": "Der Spritpreisdeckel soll kommen, aber laut einer Rechnung hätte er dir nur ein paar Euro im Jahr gebracht",
+    "fakt": "Ab dem 1. Januar soll es einen Höchstpreis für Benzin und Diesel geben, der den Tankrabatt ablöst, und am Mittwoch soll das Kabinett den Entwurf des Wirtschaftsministeriums beschließen. Fachleute des Instituts RWI haben nachgerechnet: Mit der geplanten Formel hätte ein Autofahrer, der durchschnittlich viel fährt, im Jahr 2025 nur etwa 1,60 Euro gespart, und seit April 2026 aufs Jahr gerechnet etwa 5,20 Euro.",
+    "quellen_html": "<a href=\"https://www.stuttgarter-nachrichten.de/politik/spritpreisdeckel-lachnummer-wenige-euro-79786315.html\">Stuttgarter Nachrichten</a> · <a href=\"https://www.news.de/auto/860225566/spritpreisdeckel-entwurf-geht-in-regierungsabstimmung-automobilindustrie-news-der-dpa-aktuell-zu-verkehr-preis-und-verbraucher/1/\">dpa (news.de)</a>",
+    "krass": 5
+  },
+  {
+    "datum": "2026-11-28",
+    "id": "m5",
+    "rubrik": "Arbeit",
+    "titel": "84.000 Menschen mehr als vor einem Jahr bekommen Arbeitslosengeld, und die kleine Erholung kommt am Arbeitsmarkt nicht an",
+    "fakt": "Im November waren in Deutschland 2,936 Millionen Menschen arbeitslos, das sind 51.000 mehr als vor einem Jahr, meldet die Bundesagentur für Arbeit. Arbeitslosengeld bekommen jetzt 1,068 Millionen Menschen, also 84.000 mehr als vor einem Jahr. Laut der Agentur führt die leichte Erholung der Wirtschaft nicht zu mehr Bewegung am Arbeitsmarkt.",
+    "quellen_html": "<a href=\"https://www.presseportal.de/pm/6776/6399040\">Bundesagentur für Arbeit</a> · <a href=\"https://www.t-online.de/finanzen/aktuelles/wirtschaft/id_101549112/agentur-fuer-arbeit-weniger-arbeitslose-im-november.html\">dpa (t-online)</a>",
+    "krass": 5
+  },
+  {
+    "datum": "2026-11-28",
+    "id": "m6",
+    "rubrik": "Ukraine",
+    "titel": "Die Ukraine greift russische Schiffe vor Libyen an, und ausgerechnet Italien ist sauer",
+    "fakt": "Die Ukraine hat am 22. November mit Drohnen auf dem Wasser russische Schiffe im und vor einem Hafen im Osten Libyens angegriffen, darunter ein Kriegsschiff. Italien, das die Ukraine bisher mit mehr als 3 Milliarden Euro Militärhilfe unterstützt hat, kritisiert das deutlich. Nach einem Telefonat mit Italiens Regierungschefin Meloni hat Präsident Selenskyj eingeräumt, dass der Angriff vorher nicht mit den Partnern in Europa abgesprochen war.",
+    "quellen_html": "<a href=\"https://www.aljazeera.com/news/2026/11/26/why-is-italy-angry-with-ukraine-for-striking-russian-ships-off-libya\">Al Jazeera</a> · <a href=\"https://www.t-online.de/nachrichten/ukraine/id_101550512/selenskyj-korrigiert-gegenueber-meloni-seine-aussagen.html\">t-online</a> · <a href=\"https://www.t-online.de/nachrichten/ukraine/id_101541456/ukraine-krieg-russischer-militaerkonvoi-nach-libyen-kehrt-wohl-um.html\">t-online (Newsblog)</a>",
+    "krass": 5
+  },
+  {
+    "datum": "2026-11-28",
+    "id": "m7",
+    "rubrik": "Frankreich",
+    "titel": "Geheime Infos aus dem Innenministerium für Le Pens Partei? Ermittler durchsuchen das Büro ihres früheren Bürochefs",
+    "fakt": "In Paris haben Ermittler beim früheren Bürochef von Marine Le Pen durchsucht, und zwar seine Wohnung und sein Büro in der Parteizentrale. Das wurde am Freitag bekannt. Er steht im Verdacht, vertrauliche Informationen aus dem Innenministerium bekommen zu haben. Le Pen weist zurück, dass die Parteiführung damit zu tun hat.",
+    "quellen_html": "<a href=\"https://de.nachrichten.yahoo.com/kreise-b%C3%BCro-wohnung-le-pens-002646115.html\">AFP (Yahoo)</a> · <a href=\"https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000055144844\">Légifrance (Dekret)</a> · <a href=\"https://de.euronews.com/2026/07/07/le-pen-prozess-verurteilung\">Euronews</a>",
+    "krass": 5
+  },
+  {
+    "datum": "2026-11-28",
+    "id": "m8",
+    "rubrik": "Trump",
+    "titel": "Erst jubelt Trump über die neuen Zahlen zur Wirtschaft, dann nennt er die alten „fake“",
+    "fakt": "Das zuständige US-Amt hat das Wachstum der Wirtschaft im Sommer von 3,4 auf 4,3 Prozent nach oben korrigiert, das ist ein normaler Vorgang. Trump hat daraufhin an Thanksgiving behauptet, die erste Zahl kurz vor der Wahl sei absichtlich zu niedrig gewesen, und eine Untersuchung gefordert. Belege nannte er laut Bloomberg nicht.",
+    "quellen_html": "<a href=\"https://finance.yahoo.com/economy/articles/trump-says-revised-gdp-numbers-150335514.html\">Bloomberg (Yahoo)</a> · <a href=\"https://www.axios.com/2026/11/26/trump-gdp-investigation-economy-statistics\">Axios</a>",
+    "krass": 5
+  },
+  {
+    "datum": "2026-11-28",
+    "id": "m9",
+    "rubrik": "Iran",
+    "titel": "Die USA schießen wieder auf ein Frachtschiff, und Iran droht, die Blockade zu brechen",
+    "fakt": "Das US-Militär hat am Donnerstag im Golf von Oman auf ein Frachtschiff geschossen, das aus einem iranischen Hafen kam und laut den USA die Blockade gegen Iran durchbrechen wollte. Das Schiff kann seitdem nicht mehr fahren, die Besatzung blieb laut US-Militär unverletzt. Irans Marinechef kündigte am Freitag im Staatsfernsehen an, die Blockade brechen zu wollen.",
+    "quellen_html": "<a href=\"https://www.aljazeera.com/news/2026/11/27/us-military-says-it-disabled-merchant-ship-trying-to-breach-iran-blockade\">Al Jazeera / AP</a> · <a href=\"https://thehill.com/policy/defense/6245428-us-naval-blockade-iran-ship-disabled/\">The Hill</a>",
+    "krass": 5
+  },
+  {
+    "datum": "2026-11-28",
+    "id": "m10",
+    "rubrik": "Umwelt",
+    "titel": "Gute Nachricht: In der EU gehen 57 Prozent weniger vorzeitige Todesfälle auf Feinstaub zurück als 2005",
+    "fakt": "Die Europäische Umweltagentur hat neue Zahlen vorgelegt: Zwischen 2005 und 2024 ist die Zahl der vorzeitigen Todesfälle in der EU, die auf zu viel Feinstaub zurückgehen, um 57 Prozent gesunken. Gründe sind laut der Agentur die Regeln für saubere Luft und weniger Ausstoß von Schadstoffen. Trotzdem waren es laut ihrer Schätzung im Jahr 2024 noch rund 222.000 vorzeitige Todesfälle.",
+    "quellen_html": "<a href=\"https://www.eea.europa.eu/en/newsroom/news/updated-data-shows-over-220-000-premature-deaths-attributable-to-fine-particle-air-pollution\">Europäische Umweltagentur</a>",
+    "krass": 4
   }
 ]
