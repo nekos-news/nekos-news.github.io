@@ -34,17 +34,20 @@ SEITE = "https://nekos-news.pages.dev/archiv/%s#%s"   # Archivseite bleibt fest,
 
 
 
-def ohne_doppelte_herkunft(haupt, herkunft):
-    """Herkunftssatz nur einmal (Hinweis FILMCRAFT/ANALYSE 2026-11-28, m3/m10): reine Quellensätze im Kern
-    („Das zeigt eine Studie des IW, über die die RP berichtet.“) fliegen raus, wenn die Herkunft davorsteht.
-    Sätze mit Inhalt bleiben; nennt der Kern die Quelle trotzdem früh nochmal, gibt es eine Warnung (dann kurztext setzen)."""
-    namen = {w.strip(".,:;") for w in herkunft.split() if len(w.strip(".,:;")) >= 5 and w[0].isupper()}
-    saetze = re.split(r"(?<=[.!?])\s+", haupt)
+def mit_herkunft(haupt, herkunft):
+    """Herkunftssatz nur einmal (Hinweise FILMCRAFT/ANALYSE 2026-11-28, m1/m3/m10):
+    reine Quellensätze im Kern („Das zeigt eine Studie des IW, über die die RP berichtet.“) fliegen raus;
+    nennt danach schon der erste Satz des Kerns die Quelle („Klüssendorf hat beim Juso-Kongress gesagt …“),
+    fällt der Herkunftssatz weg, sonst kommt er davor."""
+    woerter = lambda t: {w.strip(".,:;„“\"") for w in t.split()}
+    namen = {w for w in woerter(herkunft) if len(w) >= 5 and w[:1].isupper() and w not in ("Instituts", "Studie", "Zahlen")}
+    saetze = re.split(r"(?<=[.!?])\s+", haupt.strip())
     quelle = re.compile(r"^(Das|Dies) (zeig|sagt|bericht|meld|schreib|geht aus)\w*")
-    rest = [t for t in saetze if not (quelle.match(t) and namen & {w.strip(".,:;") for w in t.split()})]
-    if any(namen & {w.strip(".,:;") for w in t.split()} for t in rest[:2]):
-        print("  Achtung: Quelle steht im Kern früh nochmal, evtl. kurztext setzen:", rest[0][:70], flush=True)
-    return " ".join(rest)
+    rest = [t for t in saetze if not (quelle.match(t) and namen & woerter(t))]
+    if rest and namen & woerter(rest[0]):
+        print("  Herkunft steht schon im ersten Satz, Herkunftssatz entfällt", flush=True)
+        return " ".join(rest)
+    return herkunft.strip() + " " + " ".join(rest)
 
 def warte_bis_frei():
     muster = "zeitung_audio_qwen|vertonen.py|dazn_probe|filmcraft-cli|qemu-system"
@@ -97,7 +100,7 @@ def main():
         haupt = kern[len(erster):].strip() if kern.startswith(erster) else kern
         # Satz 2 im Video = Herkunft („Das berichtet heute die Tagesschau.“), dann der Inhalt (Wunsch Nicolas 2026-11-21 über ANALYSE)
         if m.get("kurztext"): haupt = m["kurztext"].strip()   # eigene Kurzfassung, wenn der Kern zu lang ist (Ziel 30–45 s gesamt)
-        if m.get("herkunft"): haupt = m["herkunft"].strip() + " " + ohne_doppelte_herkunft(haupt, m["herkunft"])
+        if m.get("herkunft"): haupt = mit_herkunft(haupt, m["herkunft"])
         # Nur noch die Kurzfassung (30–45 s); am Ende statt Frage der Hinweis auf unsere Seite (Entscheidung Nicolas 2026-11-21 über ANALYSE)
         haupt = haupt + " " + m.get("schluss", SCHLUSS)
         p = lambda n: os.path.join(ordner, "%s_%s.mp3" % (mid, n))
