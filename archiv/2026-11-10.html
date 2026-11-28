@@ -1330,6 +1330,20 @@ article.papier p a[href^="mailto:"], #impressum a, #datenschutz a { color: var(-
 /* Aufrufe-Label wächst mit der Kachel: deckt die alte Instagram-Zahl im Vorschaubild immer ab (am Desktop standen sonst zwei Zahlen, 2026-11-28) */
 .reel { container-type: inline-size; }
 .reel .aufrufe { font-size: clamp(0.62rem, 7.6cqw, 1.05rem) !important; min-width: 50% !important; padding: 0.35em 0.6em 0.3em !important; }
+/* ===== Design-Runde 2026-11-28 (Wunsch Nicolas: „so schön wie es geht“) ===== */
+/* 1. Desktop: alles größer statt schmaler Streifen mitten im Bildschirm */
+@media (min-width: 1100px) { html { zoom: 1.22; } html, body { overflow-x: hidden; } }   /* mit Zoom rechnete der Browser Überbreite: seitliches Scrollen sperren */
+@media (min-width: 1500px) { html { zoom: 1.4; } }
+/* 2. Dauer neben dem Abspielknopf als kleiner Stempel */
+article .hoeren small { font: 700 0.68rem var(--maschine) !important; letter-spacing: 0.02em; color: var(--rost) !important; border: 1.5px solid currentColor;
+  padding: 0.18rem 0.42rem 0.12rem; transform: rotate(-2deg); border-radius: 2px; opacity: 0.9; }
+/* 3. Trennlinie über „Mehr anzeigen“ als gerissene Bleistiftlinie statt Strichel */
+article details.mehr { border-top: 0 !important; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 6' preserveAspectRatio='none'%3E%3Cpath d='M0 3 C 60 1, 120 5, 200 3 S 340 1, 400 3' fill='none' stroke='%237a7268' stroke-width='1.2' stroke-linecap='round' opacity='0.55'/%3E%3C/svg%3E") top / 100% 6px no-repeat; }
+/* 4. „Mehr anzeigen“ als Papierschnipsel statt Rahmen-Knopf */
+details.mehr summary { border: 0 !important; color: var(--creme) !important; background-color: var(--rost) !important; background-image: var(--raster), var(--faser) !important; background-size: var(--raster-gr), auto !important;
+  padding: 0.42rem 0.75rem 0.36rem !important; transform: rotate(-1.2deg); clip-path: polygon(0 6%, 100% 0, 98% 100%, 2% 94%); box-shadow: none; }
+details.mehr[open] summary { transform: rotate(0.8deg); }
+html.kontrast details.mehr summary { background: #000 !important; color: #fff !important; }
 </style>
 </head>
 <body>
