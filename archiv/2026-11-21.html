@@ -1286,11 +1286,11 @@ mark.kreis.lang::after { display: none !important; }
 /* „KI-Zsf.“ statt „KI-Zusammenfassung“, antippbar mit kurzem Hinweis (Wunsch Nicolas 2026-11-28, ersetzt den großen Kasten oben) */
 .fakt > b.ki-zsf { cursor: pointer; position: relative; text-transform: none !important; letter-spacing: 0.02em !important; text-decoration: underline dotted; text-underline-offset: 2px; -webkit-tap-highlight-color: transparent; }
 .fakt > b.ki-zsf:focus-visible { outline: 2px solid var(--rost); outline-offset: 2px; }
-.ki-info { display: block; margin: 0.35rem 0 0.6rem; padding: 0.55rem 0.7rem 0.5rem; background: #1F4E9A; color: #EEF2FA; font: 500 0.74rem/1.4 var(--sans);
-  transform: rotate(-0.6deg); box-shadow: 0 3px 0 rgba(0,0,0,0.25); text-indent: 0; }
-.ki-info strong { display: block; color: #FFD08A; font-weight: 800; font-size: 0.68rem; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 0.15rem; }
+.ki-info { display: block; margin: 0.3rem 0 0.7rem; padding: 0.15rem 0 0.15rem 0.7rem; background: none; color: var(--anthrazit); font: 500 0.76rem/1.45 var(--sans);
+  border-left: 3px solid var(--rost); text-indent: 0; }   /* ohne blauen Kasten, direkt auf dem Papier (Nicolas 2026-11-28: Blau nicht schön) */
+.ki-info strong { display: block; color: var(--rost); font-weight: 800; font-size: 0.68rem; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 0.15rem; }
 .ki-info[hidden] { display: none; }
-html.kontrast .ki-info { background: #000 !important; color: #fff !important; }
+html.kontrast .ki-info { color: #000 !important; border-color: #000 !important; }
 </style>
 </head>
 <body>
