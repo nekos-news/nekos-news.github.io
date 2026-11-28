@@ -1298,7 +1298,7 @@ article .rubrik.nur-datum::before { display: none !important; }
 #kurz .stimme-name { display: none !important; }
 /* Halbtonraster wie in den Videos (FILMCRAFT-Vorgabe: „Grunge 265 fein“ von texturelabs, Multiplizieren, Kontrast ×1,2, nur abdunkeln)
    auf Zetteln, Überschrift-Kästen, Knöpfen und Datumsschnipseln (Nicolas 2026-11-28: „sieht zu plain aus, zu flach“). Kachel: /bilder/halbton.png */
-:root { --raster: url("/bilder/halbton.png"); --raster-gr: 170px; }
+:root { --raster: url("/bilder/halbton.png"); --raster-gr: 320px; }   /* 2026-11-28: 170 → 320 px, Nicolas: „ein bisschen größer, sieht man fast gar nicht“ */
 .zettel::before { background-image: var(--raster), var(--faser), linear-gradient(115deg, rgba(255,255,255,0.16), transparent 45%, rgba(0,0,0,0.08) 75%) !important; background-size: var(--raster-gr), auto, auto !important; }
 article h3, .leiste-oben > a, .news-knopf, .story-inline .folie a, .menue-knopf { background-image: var(--raster), var(--faser) !important; background-size: var(--raster-gr), auto !important; }
 .erpress span { background-image: var(--raster) !important; background-size: var(--raster-gr) !important; }
