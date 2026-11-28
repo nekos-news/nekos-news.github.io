@@ -1310,6 +1310,10 @@ html body .leiste .hoch, html body .hoeren button.zurueck10, html body .zurueck1
   background-image: var(--raster), var(--faser) !important; background-size: var(--raster-gr), auto !important; }
 html.kontrast .hoeren button, html.kontrast .pfeil, html.kontrast #btn-lesen, html.kontrast button.hoch, html.kontrast .hilfe-knopf { background-image: none !important; }
 html.kontrast .zettel::before, html.kontrast article h3, html.kontrast .leiste-oben > a, html.kontrast .news-knopf, html.kontrast .erpress span { background-image: none !important; }
+/* Kurz-Zettel: keine zweite „57 Sek.“ neben der Überschrift; die Zahl in der Überschrift zählt beim Hören runter (Nicolas 2026-11-28: „eleganter lösen“) */
+#kurz .hoeren small { display: none !important; }
+#kurz h2.schoen .sek { display: inline-block; min-width: 1.2em; text-align: right; font-variant-numeric: tabular-nums; }
+#kurz h2.schoen.laeuft .sek-zeile { color: var(--rost); }
 </style>
 </head>
 <body>
@@ -2493,6 +2497,11 @@ function mzFuss(a) { var f = a.querySelector(':scope > .karten-fuss'); if (!f) {
       var setzeSek = function (s) { var z = h.querySelector('.sek-zeile'); if (!z || !s) return; z.querySelector('.sek').textContent = s; z.style.visibility = ''; if (window.mzPassen) window.mzPassen(); };
       h.querySelector('.sek-zeile').style.visibility = 'hidden';
       if (window.mzKurzDauer) setzeSek(window.mzKurzDauer); addEventListener('mz-kurz-dauer', function (e) { setzeSek(e.detail); });
+      /* beim Hören zählt die Zahl runter („in 42 Sekunden“ = noch so viel), danach wieder die ganze Länge */
+      addEventListener('mz-audio', function (e) { var d = e.detail, z = h.querySelector('.sek'); if (!z || !window.mzKurzDauer) return;
+        var fertig = d.id !== 'kurz' || !d.d || d.t >= d.d - 0.3;
+        if (fertig) { z.textContent = window.mzKurzDauer; h.classList.remove('laeuft'); return; }
+        z.textContent = Math.max(0, Math.ceil(d.d - d.t)); h.classList.toggle('laeuft', !!d.spielt); });   /* Pause: Restzeit bleibt stehen */
       setTimeout(function () { var z = h.querySelector('.sek-zeile'); if (z && z.style.visibility === 'hidden') z.remove(); }, 6000);   /* keine Aufnahme: nur „Das Wichtigste des Tages“ */
     } }
   /* Schrift so groß wie möglich, aber immer mit Abstand zu Nekos Zeitung (gemessen auf 320–430 px Breite, 2026-11-28) */
