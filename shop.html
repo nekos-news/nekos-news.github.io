@@ -1283,6 +1283,14 @@ mark.strich.lang { white-space: normal !important; -webkit-box-decoration-break:
 mark.strich.lang::after { display: none !important; }
 mark.kreis.lang { white-space: normal !important; }
 mark.kreis.lang::after { display: none !important; }
+/* „KI-Zsf.“ statt „KI-Zusammenfassung“, antippbar mit kurzem Hinweis (Wunsch Nicolas 2026-11-28, ersetzt den großen Kasten oben) */
+.fakt > b.ki-zsf { cursor: pointer; position: relative; text-transform: none !important; letter-spacing: 0.02em !important; text-decoration: underline dotted; text-underline-offset: 2px; -webkit-tap-highlight-color: transparent; }
+.fakt > b.ki-zsf:focus-visible { outline: 2px solid var(--rost); outline-offset: 2px; }
+.ki-info { display: block; margin: 0.35rem 0 0.6rem; padding: 0.55rem 0.7rem 0.5rem; background: #1F4E9A; color: #EEF2FA; font: 500 0.74rem/1.4 var(--sans);
+  transform: rotate(-0.6deg); box-shadow: 0 3px 0 rgba(0,0,0,0.25); text-indent: 0; }
+.ki-info strong { display: block; color: #FFD08A; font-weight: 800; font-size: 0.68rem; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 0.15rem; }
+.ki-info[hidden] { display: none; }
+html.kontrast .ki-info { background: #000 !important; color: #fff !important; }
 </style>
 </head>
 <body>
@@ -2389,6 +2397,20 @@ function mzFuss(a) { var f = a.querySelector(':scope > .karten-fuss'); if (!f) {
   var v = '1';   /* Nicolas 2026-11-28: ohne Wochentag sieht besser aus */ document.documentElement.setAttribute('data-kopf', v); })();
 /* Lange Markierungen (über ca. 18 Zeichen) umbrechen lassen, sonst ragen sie aus schmalen Überschriften (2026-11-28) */
 (function () { document.querySelectorAll('mark.strich, mark.kreis').forEach(function (m) { if (m.textContent.trim().length > 18) m.classList.add('lang'); }); })();
+/* „KI-Zsf.“: kurzes Etikett, Antippen zeigt den Hinweis (Wunsch Nicolas 2026-11-28) */
+(function () {
+  document.querySelectorAll('article .fakt > b').forEach(function (b) {
+    if (!/KI-Zusammenfassung/i.test(b.textContent)) return;
+    b.textContent = 'KI-Zsf.'; b.classList.add('ki-zsf'); b.setAttribute('role', 'button'); b.setAttribute('tabindex', '0'); b.setAttribute('aria-expanded', 'false');
+    b.setAttribute('title', 'KI-Zusammenfassung – antippen für mehr');
+    var info = document.createElement('span'); info.className = 'ki-info'; info.hidden = true;
+    info.innerHTML = '<strong>Achtung, KI-Zusammenfassung</strong>Diesen Text hat eine KI zusammengefasst. Der Inhalt kommt aus echtem Journalismus: Die Originalartikel findest du unten bei „Quellen“.';
+    b.parentNode.insertBefore(info, b.parentNode.firstChild);
+    function umschalten(e) { e.preventDefault(); e.stopPropagation(); var auf = info.hidden; info.hidden = !auf; b.setAttribute('aria-expanded', auf ? 'true' : 'false'); }
+    b.addEventListener('click', umschalten); b.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') umschalten(e); });
+    info.addEventListener('click', function (e) { e.stopPropagation(); info.hidden = true; b.setAttribute('aria-expanded', 'false'); });
+  });
+})();
 </script>
 </body>
 </html>

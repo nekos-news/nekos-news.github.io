@@ -20,6 +20,10 @@ for mid, a in arts:
         if len(w) >= 3 and w[0] != "Mehr": anf[" ".join(w[:2])] += 1
     m = re.search(r'<summary>.*?</summary>\s*<p>(.*?)</p>', a, re.S)
     mehr_anf.append((mid, " ".join(klar(m.group(1)).split()[:3]) if m else ""))
+    # Einheiten in Aufzählungen nur einmal (Nicolas 2026-11-28: „nervt, wie oft da Euro gesagt wird“)
+    for satz in re.split(r"(?<=[.!?])\s+", t):
+        for e in ("Euro", "Prozent", "Millionen", "Milliarden", "Menschen", "Jahre", "Jahren"):
+            if len(re.findall(r"\b" + e + r"\b", satz)) > 2: fehler.append("%s: „%s“ %d-mal in einem Satz – Einheit nur einmal am Ende („Frankfurt 620, Stuttgart 600 und Köln 595 Euro“): %s …" % (mid, e, len(re.findall(r"\b" + e + r"\b", satz)), satz[:60]))
 for f, n in zahl.items():
     if n > 1: fehler.append("„%s“ %d-mal (höchstens 1, besser als normaler Satz erzählen)" % (f, n))
 for a, n in anf.most_common():
