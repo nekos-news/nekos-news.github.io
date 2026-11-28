@@ -1298,10 +1298,17 @@ article .rubrik.nur-datum::before { display: none !important; }
 #kurz .stimme-name { display: none !important; }
 /* Halbtonraster wie in den Videos (FILMCRAFT-Vorgabe: „Grunge 265 fein“ von texturelabs, Multiplizieren, Kontrast ×1,2, nur abdunkeln)
    auf Zetteln, Überschrift-Kästen, Knöpfen und Datumsschnipseln (Nicolas 2026-11-28: „sieht zu plain aus, zu flach“). Kachel: /bilder/halbton.png */
-:root { --raster: url("/bilder/halbton.png"); --raster-gr: 320px; }   /* 2026-11-28: 170 → 320 px, Nicolas: „ein bisschen größer, sieht man fast gar nicht“ */
+:root { --raster: url("/bilder/halbton.png"); --raster-gr: 420px; }   /* 2026-11-28: 170 → 320 → 420 px und dunkler (Kachel ×1,7), Nicolas: „deutlicher, größer, dunkler, auf allen farbigen Flächen“ */
 .zettel::before { background-image: var(--raster), var(--faser), linear-gradient(115deg, rgba(255,255,255,0.16), transparent 45%, rgba(0,0,0,0.08) 75%) !important; background-size: var(--raster-gr), auto, auto !important; }
 article h3, .leiste-oben > a, .news-knopf, .story-inline .folie a, .menue-knopf { background-image: var(--raster), var(--faser) !important; background-size: var(--raster-gr), auto !important; }
 .erpress span { background-image: var(--raster) !important; background-size: var(--raster-gr) !important; }
+/* auf ALLEN farbigen Flächen: Abspiel-/Zurück-Knöpfe, Pfeile, „Alles anhören“, Hoch, Hilfe, Klebestreifen, Aufrufe, Kanal-Knöpfe, Shop */
+.hoeren button, .pfeil, #btn-lesen, button.hoch, .hilfe-knopf, span.aufrufe, article h3::after, article h3::before, a.tt, a.yt, a.patreon, a.anfrage,
+button.werte-los, span.profil::after, span.marke, button.wagen, .liste-hinweis, .kurz li a::after, .story-inline .balken span {
+  background-image: var(--raster), var(--faser) !important; background-size: var(--raster-gr), auto !important; }
+html body .leiste .hoch, html body .hoeren button.zurueck10, html body .zurueck10, html body .news-wahl a, html body .filter button, html body .menue nav a[href="/archiv/"] {
+  background-image: var(--raster), var(--faser) !important; background-size: var(--raster-gr), auto !important; }
+html.kontrast .hoeren button, html.kontrast .pfeil, html.kontrast #btn-lesen, html.kontrast button.hoch, html.kontrast .hilfe-knopf { background-image: none !important; }
 html.kontrast .zettel::before, html.kontrast article h3, html.kontrast .leiste-oben > a, html.kontrast .news-knopf, html.kontrast .erpress span { background-image: none !important; }
 </style>
 </head>
