@@ -1957,6 +1957,7 @@ function mzVideoZeit(code, i) {
       var rub = x.el.querySelector(':scope > .rubrik'); if (rub && x.el.tagName === 'ARTICLE') d.appendChild(rub); /* Thema rechts in die Zeile unter der Überschrift */
       (function (klein) { var a = new Audio(); a.preload = 'metadata'; a.src = x.url + stand;
         a.addEventListener('loadedmetadata', function () { var s = Math.round(a.duration); if (!isFinite(s)) return;
+          if (x.el.id === 'kurz') { window.mzKurzDauer = s; window.dispatchEvent(new CustomEvent('mz-kurz-dauer', { detail: s })); }
           klein.innerHTML = (s < 60 ? s + ' Sek.' : Math.floor(s / 60) + ':' + ('0' + s % 60).slice(-2) + ' Min.') + '<span class="stimme-name">KI-Stimme</span>'; }); })(d.querySelector('small'));
       var punkte = [], n = 16 + (i % 3) * 2;
       for (var k = 0; k < n; k++) { var w = k / n * Math.PI * 2, r = 50 - ((Math.sin(i * 12.9898 + k * 78.233) * 43758.5453) % 1 + 1) % 1 * 6;
@@ -2489,13 +2490,20 @@ function mzFuss(a) { var f = a.querySelector(':scope > .karten-fuss'); if (!f) {
 /* Überschrift ruhiger, Datum ohne Wochentag (Variante 1, gewählt von Nicolas 2026-11-28) */
 (function () { var h = document.querySelector('.kurz h2'); if (h) { h.classList.add('schoen');
     /* fester Umbruch: „in“ rutschte auf dem iPhone unter Nekos Zeitung (2026-11-28) */
-    var m = h.textContent.trim().match(/^(Das Wichtigste)\s+(in .+)$/i); if (m) h.innerHTML = m[1] + '<br>' + m[2]; }
+    /* „Das Wichtigste des Tages / in 57 Sekunden“: echte Länge der Aufnahme statt fester 30 (Nicolas 2026-11-28) */
+    if (/^Das Wichtigste/i.test(h.textContent.trim())) {
+      h.innerHTML = 'Das Wichtigste des Tages<br><span class="sek-zeile">in <span class="sek"></span> Sekunden</span>';
+      var setzeSek = function (s) { var z = h.querySelector('.sek-zeile'); if (!z || !s) return; z.querySelector('.sek').textContent = s; z.style.visibility = ''; if (window.mzPassen) window.mzPassen(); };
+      h.querySelector('.sek-zeile').style.visibility = 'hidden';
+      if (window.mzKurzDauer) setzeSek(window.mzKurzDauer); addEventListener('mz-kurz-dauer', function (e) { setzeSek(e.detail); });
+      setTimeout(function () { var z = h.querySelector('.sek-zeile'); if (z && z.style.visibility === 'hidden') z.remove(); }, 6000);   /* keine Aufnahme: nur „Das Wichtigste des Tages“ */
+    } }
   /* Schrift so groß wie möglich, aber immer mit Abstand zu Nekos Zeitung (gemessen auf 320–430 px Breite, 2026-11-28) */
   var n = document.querySelector('.kurz .neko');
   function passen() { if (!h || !n) return; h.style.fontSize = ''; var groesse = parseFloat(getComputedStyle(h).fontSize), r = document.createRange();
     for (var i = 0; i < 30; i++) { r.selectNodeContents(h); var mx = 0; Array.prototype.forEach.call(r.getClientRects(), function (c) { mx = Math.max(mx, c.right); });
       var z = n.getBoundingClientRect(); if (!z.width || mx < z.left + z.width * 0.03 - 8 || groesse <= 13) break; groesse -= 0.5; h.style.setProperty('font-size', groesse + 'px', 'important'); } }
-  if (n && !n.complete) n.addEventListener('load', passen); passen(); addEventListener('resize', passen); if (document.fonts) document.fonts.ready.then(passen);
+  window.mzPassen = passen; if (n && !n.complete) n.addEventListener('load', passen); passen(); addEventListener('resize', passen); if (document.fonts) document.fonts.ready.then(passen);
   var v = '1';   /* Nicolas 2026-11-28: ohne Wochentag sieht besser aus */ document.documentElement.setAttribute('data-kopf', v); })();
 /* Lange Markierungen (über ca. 18 Zeichen) umbrechen lassen, sonst ragen sie aus schmalen Überschriften (2026-11-28) */
 (function () { document.querySelectorAll('mark.strich, mark.kreis').forEach(function (m) { if (m.textContent.trim().length > 18) m.classList.add('lang'); }); })();
