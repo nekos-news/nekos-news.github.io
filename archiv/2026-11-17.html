@@ -739,7 +739,7 @@ details.mehr > p { display: none; }
 .bogen-grund { position: fixed; inset: 0; z-index: 25; display: grid; place-items: center; padding: 3.6rem 0.9rem 1.2rem; overflow-y: auto;
   background: rgba(4,8,20,0.72); }
 /* Unschärfe als eigene Ebene: direkt am Vollbild würde sie verhindern, dass die Knopfleiste fest oben bleibt (Fehler 2026-11-08) */
-.bogen-grund::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none; -webkit-backdrop-filter: blur(16px) brightness(0.7); backdrop-filter: blur(16px) brightness(0.7); }
+.bogen-grund::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none; background: rgba(5,14,36,0.7);   /* dunkler: oben schien die Meldung der Seite durch (2026-11-28) */ -webkit-backdrop-filter: blur(16px) brightness(0.7); backdrop-filter: blur(16px) brightness(0.7); }
 .bogen-grund[hidden] { display: none; }
 .bogen { position: relative; box-sizing: border-box; width: min(34rem, calc(100vw - 3.4rem)); padding: 1.6rem 1.3rem 1.4rem; display: grid; gap: 0.8rem; transform: rotate(-0.6deg); animation: bogen-rein 0.35s cubic-bezier(0.2, 0.9, 0.25, 1.1) both; }
 @keyframes bogen-rein { from { opacity: 0; transform: translateY(30px) rotate(-3deg) scale(0.96); } }
@@ -1307,7 +1307,7 @@ article h3, .leiste-oben > a, .news-knopf, .story-inline .folie a, .menue-knopf 
 button.werte-los, span.profil::after, span.marke, button.wagen, .liste-hinweis, .kurz li a::after, .story-inline .balken span {
   background-image: var(--raster), var(--faser) !important; background-size: var(--raster-gr), auto !important; }
 /* Klebestreifen (Tesafilm) und Pinnnadeln an den Überschriften bekommen KEIN Raster (Nicolas 2026-11-28) */
-html body .leiste .hoch, html body .hoeren button.zurueck10, html body .zurueck10, html body .news-wahl a, html body .filter button, html body .menue nav a[href="/archiv/"] {
+html body .leiste .hoch, html body .hoeren button.zurueck10, html body .zurueck10, html body .news-wahl a, html body .filter button {
   background-image: var(--raster), var(--faser) !important; background-size: var(--raster-gr), auto !important; }
 html.kontrast .hoeren button, html.kontrast .pfeil, html.kontrast #btn-lesen, html.kontrast button.hoch, html.kontrast .hilfe-knopf { background-image: none !important; }
 html.kontrast .zettel::before, html.kontrast article h3, html.kontrast .leiste-oben > a, html.kontrast .news-knopf, html.kontrast .erpress span { background-image: none !important; }
@@ -1356,6 +1356,8 @@ html.kontrast .abschied b { background: #000 !important; }
 /* längerer Knopftext („Alle heutigen Artikel abspielen“) bricht auf schmalen Handys zweizeilig um statt überzustehen */
 .leiste { width: max-content; max-width: calc(100vw - 2rem); }   /* fest bei left:50% schrumpfte die Leiste auf die halbe Breite */
 #btn-lesen:not(.symbol) { white-space: normal !important; width: auto !important; flex: 0 1 auto !important; min-width: 0 !important; max-width: min(19rem, calc(100vw - 6.5rem)) !important; font-size: 0.8rem !important; line-height: 1.15 !important; text-align: left; padding-block: 0.5rem 0.45rem !important; }
+/* Lese-Ansicht offen: die Meldungen der Seite dahinter ausblenden, damit oben nichts durchscheint (2026-11-28) */
+body:has(.bogen-grund:not([hidden])) .w-folie > article:not(.bogen) { visibility: hidden; }
 </style>
 </head>
 <body>
@@ -2585,8 +2587,9 @@ function mzFuss(a) { var f = a.querySelector(':scope > .karten-fuss'); if (!f) {
 (function () { document.querySelectorAll('mark.strich, mark.kreis').forEach(function (m) { if (m.textContent.trim().length > 18) m.classList.add('lang'); }); })();
 /* „KI-Zsf.“: kurzes Etikett, Antippen zeigt den Hinweis (Wunsch Nicolas 2026-11-28) */
 (function () {
-  document.querySelectorAll('article .fakt > b').forEach(function (b) {
-    if (!/KI-Zusammenfassung/i.test(b.textContent)) return;
+  function kiZsf(wurzel) { (wurzel.querySelectorAll ? wurzel : document).querySelectorAll('article .fakt > b, .bogen .fakt > b').forEach(function (b) {
+    if (b.__kiZsf || !/KI-Zusammenfassung|KI-Zsf/i.test(b.textContent)) return; b.__kiZsf = true;   /* Kopien (Lese-Ansicht) bekommen eigene Klick-Funktion */
+    var alt = b.parentNode.querySelector(':scope > .ki-info'); if (alt) alt.remove();
     b.textContent = 'KI-Zsf.'; b.classList.add('ki-zsf'); b.setAttribute('role', 'button'); b.setAttribute('tabindex', '0'); b.setAttribute('aria-expanded', 'false');
     b.setAttribute('title', 'KI-Zusammenfassung – antippen für mehr');
     var info = document.createElement('span'); info.className = 'ki-info'; info.hidden = true;
@@ -2595,7 +2598,9 @@ function mzFuss(a) { var f = a.querySelector(':scope > .karten-fuss'); if (!f) {
     function umschalten(e) { e.preventDefault(); e.stopPropagation(); var auf = info.hidden; info.hidden = !auf; b.setAttribute('aria-expanded', auf ? 'true' : 'false'); }
     b.addEventListener('click', umschalten); b.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') umschalten(e); });
     info.addEventListener('click', function (e) { e.stopPropagation(); info.hidden = true; b.setAttribute('aria-expanded', 'false'); });
-  });
+  }); }
+  kiZsf(document);
+  new MutationObserver(function (m) { m.forEach(function (x) { x.addedNodes.forEach(function (n) { if (n.nodeType === 1) kiZsf(n.parentNode || n); }); }); }).observe(document.body, { childList: true, subtree: true });
 })();
 /* Rubrik: nur das Datum behalten, wenn eins dransteht (Woche/Monat/Jahr), sonst ausgeblendet (2026-11-28) */
 (function () { document.querySelectorAll('article .rubrik').forEach(function (r) { var m = r.textContent.match(/(\d{1,2}\.\d{1,2}\.)\s*$/); if (m) { r.textContent = m[1]; r.classList.add('nur-datum'); } }); })();
