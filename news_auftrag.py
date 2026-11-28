@@ -45,6 +45,11 @@ def mit_herkunft(haupt, herkunft):
     quelle = re.compile(r"^(Das|Dies) (zeig|sagt|bericht|meld|schreib|geht aus)\w*")
     rest = [t for t in saetze if not (quelle.match(t) and namen & woerter(t))]
     if rest and namen & woerter(rest[0]):
+        # Das Medium bleibt gesprochen (ANALYSE 2026-11-28: „Quelle im Ton schafft Vertrauen“)
+        medium = re.search(r"bericht(?:et|en) (die|das|der) ([^.,]+)", herkunft)
+        if medium and not (woerter(medium.group(2)) & woerter(rest[0])):
+            verb = "berichten" if herkunft[medium.start():].startswith("berichten") else "berichtet"
+            rest.insert(1, "Das %s %s %s." % (verb, medium.group(1), medium.group(2).strip()))
         print("  Herkunft steht schon im ersten Satz, Herkunftssatz entfällt", flush=True)
         return " ".join(rest)
     return herkunft.strip() + " " + " ".join(rest)
