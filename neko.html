@@ -2417,7 +2417,7 @@ function mzFuss(a) { var f = a.querySelector(':scope > .karten-fuss'); if (!f) {
     b.textContent = 'KI-Zsf.'; b.classList.add('ki-zsf'); b.setAttribute('role', 'button'); b.setAttribute('tabindex', '0'); b.setAttribute('aria-expanded', 'false');
     b.setAttribute('title', 'KI-Zusammenfassung – antippen für mehr');
     var info = document.createElement('span'); info.className = 'ki-info'; info.hidden = true;
-    info.innerHTML = '<strong>Achtung, KI-Zusammenfassung</strong>Diesen Text hat eine KI zusammengefasst. Der Inhalt kommt aus echtem Journalismus: Die Originalartikel findest du unten bei „Quellen“.';
+    info.innerHTML = '<strong>Achtung, KI-Zusammenfassung</strong>Diesen Text hat eine KI zusammengefasst. Der Inhalt kommt aus echtem Journalismus: Die Originalartikel findest du unten bei „Quellen“. Auch meine Stimme beim Vorlesen ist KI.';
     b.parentNode.insertBefore(info, b.parentNode.firstChild);
     function umschalten(e) { e.preventDefault(); e.stopPropagation(); var auf = info.hidden; info.hidden = !auf; b.setAttribute('aria-expanded', auf ? 'true' : 'false'); }
     b.addEventListener('click', umschalten); b.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') umschalten(e); });
