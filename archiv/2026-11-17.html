@@ -1153,6 +1153,9 @@ html.kontrast .hoeren button.zurueck10 { background: #fff !important; color: #00
 .oben:has(+ .wrap:not([data-datum])) { padding-top: 3.4rem; }
 .oben:has(+ .wrap:not([data-datum])) .logo-oben { display: block !important; position: static !important; justify-self: center; width: min(8rem, 34vw) !important; margin: 0.9rem 0 0.6rem !important; }
 .oben:has(+ .wrap:not([data-datum])) .hinweis { justify-self: center !important; margin-inline: auto !important; max-width: min(24rem, 84%) !important; font-size: 0.6rem !important; }
+/* KI-Hinweis oben entfernt (Nicolas 2026-11-28: steht an jedem Artikel); Tagesseiten ohne zweites Logo über der Zeitung */
+.oben:has(+ .wrap[data-datum]) .logo-oben { display: none !important; }
+.oben:has(+ .wrap[data-datum])::after { content: ""; display: block; height: 4.6rem; }   /* Platz, den der Kasten hatte, damit Neko nicht unter das Menü rutscht */
 /* FAQ dichter an die Fragen, mehr Luft zu den Videos; Gen Z? lesbar; Shop-Beschreibung wie verpixelt (2026-11-08) */
 #faq { gap: 0.7rem !important; margin-top: 3.4rem; }
 .genz-tipp { font-size: 1.55rem !important; letter-spacing: 0.02em; }
@@ -1408,7 +1411,6 @@ html.ruhig .hand-rot { transform: none; }
 </div>
 <div class="oben">
   <img class="logo-oben" src="/bilder/logo_buchstaben.png" alt="Nekos News" width="330" height="280">
-  <p class="hinweis"><svg class="schild" viewBox="0 0 64 56" aria-hidden="true"><path d="M32 3 L61 52 L3 52 Z" fill="#D99A4E" stroke="#2E2B2A" stroke-width="5" stroke-linejoin="round"/><text x="32" y="45" text-anchor="middle" font-family="Libre Franklin, Arial, sans-serif" font-weight="800" font-size="19" fill="#2E2B2A">KI</text></svg><span><b>Achtung, KI-Zusammenfassungen:</b> Diese Seite fasst Berichte echter Journalist:innen zusammen. Links zu den Originalartikeln für eine ernsthafte Information sind vorhanden.</span></p>
 </div>
 <!-- AUSGABE-START -->
 <div class="wrap" data-datum="2026-11-17">
