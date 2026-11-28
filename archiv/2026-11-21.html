@@ -1315,6 +1315,21 @@ html.kontrast .zettel::before, html.kontrast article h3, html.kontrast .leiste-o
 #kurz .hoeren small { display: none !important; }
 #kurz h2.schoen .sek { display: inline-block; min-width: 1.2em; text-align: right; font-variant-numeric: tabular-nums; }
 #kurz h2.schoen.laeuft .sek-zeile { color: var(--rost); }
+/* Archiv-Übersicht im Look der Seite (2026-11-28) */
+#archiv { display: grid !important; gap: 0.75rem !important; }
+#archiv > a.archiv-tag { margin: 0 !important; min-height: 0 !important; }
+.archiv-info { margin: 0.2rem 0 0.4rem; color: var(--creme); font: 500 0.92rem/1.5 var(--sans); text-align: center; }
+.archiv-info a { color: inherit; font-weight: 800; text-decoration-color: var(--rost); text-underline-offset: 3px; }
+a.archiv-tag { display: flex !important; justify-content: space-between; align-items: baseline; gap: 1rem; padding: 0.9rem 1.1rem !important; text-decoration: none; color: var(--anthrazit); }
+a.archiv-tag:nth-of-type(odd) { transform: rotate(0.5deg); } a.archiv-tag:nth-of-type(even) { transform: rotate(-0.4deg); }
+a.archiv-tag .tag { font: 800 0.78rem var(--sans); letter-spacing: 0.12em; text-transform: uppercase; color: var(--rost); }
+a.archiv-tag .datum { font: 700 1.2rem var(--serif); }
+a.archiv-tag:hover .datum { color: var(--rost); }
+/* Impressum/Datenschutz: Links im Stil der Seite statt Standard-Blau */
+article.papier p a[href^="mailto:"], #impressum a, #datenschutz a { color: var(--anthrazit); text-decoration-color: var(--rost); text-underline-offset: 3px; font-weight: 600; }
+/* Aufrufe-Label wächst mit der Kachel: deckt die alte Instagram-Zahl im Vorschaubild immer ab (am Desktop standen sonst zwei Zahlen, 2026-11-28) */
+.reel { container-type: inline-size; }
+.reel .aufrufe { font-size: clamp(0.62rem, 7.6cqw, 1.05rem) !important; min-width: 50% !important; padding: 0.35em 0.6em 0.3em !important; }
 </style>
 </head>
 <body>
@@ -1914,7 +1929,9 @@ function mzVideoZeit(code, i) {
   function knoepfe(aktiv) { liste.forEach(function (x, i) { x.knopf.setAttribute('aria-pressed', i === aktiv); x.knopf.setAttribute('aria-label', i === aktiv ? 'Pause' : 'Anhören'); x.el.classList.toggle('liest', i === aktiv); }); }
   function stimme() { clearTimeout(dingUhr); dingt = false; var x = liste[pos]; if (!x) return; startZeit = Date.now(); player.src = url(x); player.play().catch(function () {}); }
   /* Endet eine Aufnahme keine 3 Sekunden nach dem Start, ist das ein Fehler: nie als gehört merken, nie zur nächsten springen (2026-11-24) */
-  function zuFrueh() { return Date.now() - startZeit < 3000; }
+  function zuFrueh() { var d = player.duration, t = player.currentTime;
+    if (d && isFinite(d) && d > 3 && t >= d - 1.5) return false;   /* echtes Ende erreicht (z. B. nach Vorspulen): kein Fehler (Bugfix 2026-11-28, vorher startete die Meldung von vorn) */
+    return Date.now() - startZeit < 3000; }
   function abbruch() { var x = liste[pos], t = player.currentTime, d = player.duration; if (!x) return;
     if (!versuch) { versuch = 1; startZeit = Date.now(); player.src = x.url + '?r=' + Date.now(); player.play().catch(function () {}); return; }
     ende(); status.textContent = 'Die Aufnahme bricht ab (' + x.el.id + ', ' + (t || 0).toFixed(1) + ' von ' + (d || 0).toFixed(1) + ' Sek.). Bitte noch mal antippen.'; }

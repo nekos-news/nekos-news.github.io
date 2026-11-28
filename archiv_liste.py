@@ -9,36 +9,18 @@ dateien = [f for f in dateien if (neueste - datetime.date.fromisoformat(f[:10]))
 zeilen = []
 for f in dateien:
     d = datetime.date.fromisoformat(f[:10])
-    zeilen.append(f'    <a class="papier" href="{f}"><span class="tag">{TAGE[d.weekday()]}</span><span class="datum">{d:%d.%m.%Y}</span></a>')
-html = """<!doctype html>
-<html lang="de"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Archiv · Nekos News Shop</title><meta name="robots" content="noindex"><meta name="theme-color" content="#13306B">
-<link rel="icon" type="image/png" href="../icon-192.png">
-<link rel="stylesheet" href="/schriften/schriften.css?v=4">
-<style>
-html { touch-action: manipulation; } /* kein Doppeltipp-Zoom (2026-11-10) */
-body { margin: 0; min-height: 100vh; background-color: #13306B; color: #2E2B2A; font-family: "Libre Franklin", Arial, sans-serif;
-  background-image: repeating-linear-gradient(0deg, rgba(232,220,198,0.07) 0 1px, transparent 1px 28px),
-    repeating-linear-gradient(90deg, rgba(232,220,198,0.07) 0 1px, transparent 1px 28px); }
-.wrap { max-width: 40rem; margin: 0 auto; padding: calc(2rem + env(safe-area-inset-top, 0px)) 16px 3rem; display: grid; gap: 1rem; }
-h1 { justify-self: start; margin: 0 0 0.6rem; font-family: "Libre Caslon Text", Georgia, serif; font-size: 2rem; background: #E8DCC6; padding: 0.5rem 1rem; transform: rotate(-1deg);
-  filter: drop-shadow(0 4px 0 rgba(0,0,0,0.28)) drop-shadow(6px 16px 18px rgba(2,6,20,0.62)); }
-.papier { display: flex; justify-content: space-between; gap: 1rem; text-decoration: none; color: inherit; background: #EDE4D2; padding: 0.8rem 1rem;
-  filter: drop-shadow(0 3px 0 rgba(0,0,0,0.25)) drop-shadow(4px 10px 12px rgba(2,6,20,0.55)); }
-.papier:nth-of-type(odd) { transform: rotate(0.6deg); background: #E2D6BE; }
-.papier:nth-of-type(even) { transform: rotate(-0.5deg); }
-.tag { font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #C8603A; font-size: 0.8rem; align-self: center; }
-.datum { font-family: "Libre Caslon Text", Georgia, serif; font-weight: 700; font-size: 1.2rem; }
-.info { margin: 0; color: #E8DCC6; line-height: 1.5; } .info a { color: inherit; font-weight: 700; }
-.zurueck { justify-self: start; margin-top: 1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.85rem; text-decoration: none;
-  background: #C8603A; color: #E8DCC6; padding: 0.5rem 0.9rem; transform: rotate(-1.5deg); }
-</style></head><body><div class="wrap">
-  <h1>Archiv</h1>
-  <p class="info">Die letzten 7 Tage. Ältere Highlights findest du unter <a href="/monat.html">Dieser Monat</a> und <a href="/jahr.html">Dieses Jahr</a>.</p>
+    zeilen.append(f'    <a class="papier riss archiv-tag" href="/archiv/{f[:-5]}"><span class="tag">{TAGE[d.weekday()]}</span><span class="datum">{d:%d.%m.%Y}</span></a>')
+# Seit 2026-11-28 aus der gemeinsamen Vorlage (Menü, Logo, Raster, Halbton wie alle Seiten; vorher eigene schlichte Seite ohne Menü)
+v = open(os.path.join(os.path.dirname(ORDNER), "vorlage.html"), encoding="utf-8").read()
+a = v.index("<!-- AUSGABE-START -->") + len("<!-- AUSGABE-START -->"); b = v.index("<!-- AUSGABE-ENDE -->")
+inhalt = """<div class="wrap">
+  <section class="gruppe" id="archiv">
+    <h2 class="zettel zettel-gross">Archiv</h2>
+    <p class="archiv-info">Die letzten 7 Tage. Ältere Highlights findest du unter <a href="/monat.html">Dieser Monat</a> und <a href="/jahr.html">Dieses Jahr</a>.</p>
 """ + "\n".join(zeilen) + """
-  <a class="zurueck" href="../">← Zurück</a>
-</div></body></html>
-"""
+  </section>
+</div>"""
+html = v[:a] + "\n" + inhalt + "\n" + v[b:]
+html = html.replace("<title>Nekos News Shop</title>", "<title>Archiv · Nekos News Shop</title>", 1).replace('<head>', '<head><meta name="robots" content="noindex">', 1)
 open(os.path.join(ORDNER, "index.html"), "w", encoding="utf-8").write(html)
 print(f"Archiv: {len(dateien)} Ausgaben")
